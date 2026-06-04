@@ -48,3 +48,17 @@ function topFunction() {
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
+
+function showPersonBox(seats) {
+
+    const personBox = document.getElementById("personBox");
+    const persons = document.getElementById("persons");
+
+    personBox.style.display = "block";
+
+    persons.innerHTML = '<option value="">Select Persons</option>';
+
+    for(let i=1; i<=seats; i++){
+        persons.innerHTML += `<option value="${i}">${i} Person${i>1?'s':''}</option>`;
+    }
+}
