@@ -92,4 +92,162 @@
   .place-img {
     height: 240px;
   }
+}* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #fff7ed, #eef2ff);
+}
+
+.cab-section {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.cab-section h2 {
+  font-size: 34px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.cab-section p {
+  color: #6b7280;
+  margin-bottom: 35px;
+}
+
+.cab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.cab-card {
+  background: white;
+  padding: 35px 20px;
+  border-radius: 22px;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+  border: 3px solid transparent;
+  transition: 0.3s;
+  position: relative;
+}
+
+.cab-card:hover {
+  transform: translateY(-8px);
+}
+
+.cab-card input {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  transform: scale(1.3);
+}
+
+.cab-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.cab-card h3 {
+  margin: 10px 0;
+  color: #111827;
+}
+
+.cab-card span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.cab-card:has(input:checked) {
+  border-color: #ff7a00;
+  background: #fff7ed;
+}
+
+.person-box {
+  display: none;
+  margin-top: 35px;
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.form-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+select {
+  width: 250px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  background: #ff7a00;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e86f00;
+}
+
+@media (max-width: 768px) {
+  .cab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cab-section {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+.booking-form{
+    max-width:700px;
+    margin:30px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.booking-form h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.booking-form button{
+    width:100%;
+    padding:15px;
+    background:#ff7a00;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
 }

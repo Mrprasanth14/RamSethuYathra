@@ -1,30 +1,67 @@
- <link rel="stylesheet" href="style.css">
- <link rel="stylesheet" href="fulsigh.css">
-<label class="cab-card">
-    <input type="radio" name="cab" value="4" onclick="showPersonBox('4')">
-    ★ 4 Seater
-</label>
+<link rel="stylesheet" href="fulsigh.css">
 
-<label class="cab-card">
-    <input type="radio" name="cab" value="7" onclick="showPersonBox('7')">
-    ★ 7 Seater
-</label>
+<section class="cab-section">
+  <h2>Select Your Cab</h2>
+  <p>Choose your comfortable travel option</p>
 
-<label class="cab-card">
-    <input type="radio" name="cab" value="20" onclick="showPersonBox('20')">
-    ★ Van/Traveller
-</label>
+  <div class="cab-grid">
+    <label class="cab-card">
+      <input type="radio" name="cab" value="4" onclick="showPersonBox(4)">
+      <div class="cab-icon">🚗</div>
+      <h3>4 Seater</h3>
+      <span>Best for small family</span>
+    </label>
 
-<!-- Hidden Section -->
-<div id="personBox" style="display:none;">
+    <label class="cab-card">
+      <input type="radio" name="cab" value="7" onclick="showPersonBox(7)">
+      <div class="cab-icon">🚙</div>
+      <h3>7 Seater</h3>
+      <span>Best for large family</span>
+    </label>
+
+    <label class="cab-card">
+      <input type="radio" name="cab" value="20" onclick="showPersonBox(20)">
+      <div class="cab-icon">🚌</div>
+      <h3>Van / Traveller</h3>
+      <span>Best for group trip</span>
+    </label>
+  </div>
+
+  <div id="personBox" class="person-box">
     <h3>How Many Persons?</h3>
 
-    <select id="persons">
+    <div class="form-row">
+      <select id="persons">
         <option value="">Select Persons</option>
-    </select>
+      </select>
 
-    <button>Continue</button>
+      <button onclick="continueBooking()">Continue Booking</button>
+    </div>
+  </div>
+  <div id="bookingForm" class="booking-form" style="display:none;">
+
+  <h2>Booking Details</h2>
+
+ <input type="text" id="name" placeholder="Full Name" required>
+
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
+
+<input type="date" id="date" required>
+
+<input type="time" id="time" required>
+
+<select id="pickup">
+  <option value="">Select Pickup Location</option>
+  <option>Rameswaram Bus Stand</option>
+  <option>Railway Station</option>
+  <option>Hotel Pickup</option>
+</select>
+
+  <textarea placeholder="Special Requirements"></textarea>
+
+<button type="button" onclick="sendWhatsApp()">Continue Booking</button>
+
 </div>
-<script src="script.js"></script>
-  
 </section>
+
+<script src="script.js"></script>

@@ -45,20 +45,61 @@ function topFunction() {
   });
 }
 
-function toggleDark() {
-  document.body.classList.toggle("dark");
+function showPersonBox(seats) {
+  const personBox = document.getElementById("personBox");
+  const persons = document.getElementById("persons");
+
+  personBox.style.display = "block";
+  persons.innerHTML = '<option value="">Select Persons</option>';
+
+  for (let i = 1; i <= seats; i++) {
+    persons.innerHTML += `<option value="${i}">${i} Person${i > 1 ? "s" : ""}</option>`;
+  }
 }
 
-function showPersonBox(seats) {
+function continueBooking() {
+  const persons = document.getElementById("persons").value;
 
-    const personBox = document.getElementById("personBox");
-    const persons = document.getElementById("persons");
+  if (persons === "") {
+    alert("Please select persons");
+    return;
+  }
 
-    personBox.style.display = "block";
+  document.getElementById("bookingForm").style.display = "block";
 
-    persons.innerHTML = '<option value="">Select Persons</option>';
+  document.getElementById("bookingForm")
+    .scrollIntoView({ behavior: "smooth" });
+}
+function sendWhatsApp() {
 
-    for(let i=1; i<=seats; i++){
-        persons.innerHTML += `<option value="${i}">${i} Person${i>1?'s':''}</option>`;
-    }
+  const cab = document.querySelector('input[name="cab"]:checked')?.value;
+  const persons = document.getElementById("persons").value;
+  const name = document.getElementById("name").value;
+  const mobile = document.getElementById("mobile").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const pickup = document.getElementById("pickup").value;
+
+  if (!name || !mobile || !date || !time || !pickup) {
+    alert("Please fill all details");
+    return;
+  }
+
+  const message =
+`🚖 New Booking Request
+
+👤 Name: ${name}
+📞 Mobile: ${mobile}
+
+🚗 Cab: ${cab} Seater
+👥 Persons: ${persons}
+
+📍 Pickup: ${pickup}
+📅 Date: ${date}
+⏰ Time: ${time}`;
+
+  const whatsappURL =
+  `https://wa.me/918838170745?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, "_blank");
 }
