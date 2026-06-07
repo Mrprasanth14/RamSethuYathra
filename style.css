@@ -726,3 +726,58 @@ font-size:18px;
   backdrop-filter: blur(10px);
   box-shadow: 0 14px 35px rgba(0,0,0,0.12);
 }
+/* FINAL MOBILE FIX */
+@media (max-width: 768px) {
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .rooms-section {
+    padding: 30px 15px !important;
+    background-attachment: scroll;
+  }
+
+  .section-title {
+    font-size: 28px !important;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+
+  .room-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px;
+    width: 100%;
+    margin: 25px auto;
+  }
+
+  .room-card {
+    width: 100% !important;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .room-card img {
+    height: 180px !important;
+  }
+
+  .booking-form {
+    width: 100% !important;
+    max-width: 360px;
+    margin: 30px auto;
+    padding: 22px !important;
+  }
+
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea,
+  .booking-form button {
+    width: 100%;
+  }
+}
