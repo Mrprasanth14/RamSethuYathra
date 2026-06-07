@@ -103,3 +103,68 @@ function sendWhatsApp() {
 
   window.open(whatsappURL, "_blank");
 }
+function sendRoomWhatsApp() {
+  const room = document.querySelector('input[name="room"]:checked')?.value;
+  const persons = document.getElementById("roomPersons").value;
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+  const mobile = document.getElementById("roomMobile").value;
+  const email = document.getElementById("roomEmail").value;
+  const request = document.getElementById("request").value;
+
+  if (!room) {
+    alert("Please select a room");
+    return;
+  }
+
+  if (!persons || !checkin || !checkout || !mobile || !email) {
+    alert("Please fill all booking details");
+    return;
+  }
+
+  const message =
+`🏨 New Room Booking Request
+
+🛏️ Room: ${room}
+👥 Persons: ${persons}
+
+📅 Check In: ${checkin}
+📅 Check Out: ${checkout}
+
+📞 Mobile: ${mobile}
+📧 Email: ${email}
+
+📝 Request: ${request}`;
+
+  const whatsappURL =
+    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`;
+
+  window.location.href = whatsappURL;
+}
+function showTempleDetails() {
+  const box = document.getElementById("templeDetails");
+
+  if (box.style.display === "none") {
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
+}
+function showWellDetails() {
+  const box = document.getElementById("WellDetails");
+
+  if (box.style.display === "none") {
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
+}
+function showPoojaDetails() {
+  const box = document.getElementById("PoojaDetails");
+
+  if (box.style.display === "none") {
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
+}

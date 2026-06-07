@@ -1,17 +1,22 @@
  <link rel="stylesheet" href="style.css">
 <section class="rooms-section">
 
-<h2>Choose Your Room</h2>
+<h2 class="section-title">🏨 Select Your Stay</h2>
+<p class="section-subtitle">Comfortable rooms for your Ram Sethu Yatra</p>
 
 <div class="room-container">
 
 <!-- Room Card 1 -->
 <div class="room-card">
-    <img src="images/room1.jpg" alt="Standard Room">
+    <img src="images/4011087171522283.jpg" alt="Standard Room">
 
     <div class="room-details">
         <h3>Standard Room</h3>
-        <p>11 - 11</p>
+        <div class="room-features">
+  <span>🛏️ AC Room</span>
+  <span>📶 Free WiFi</span>
+  <span>🚿 Hot Water</span>
+</div>
         <!-- <p>₹2,500 / Night</p> -->
 
         <label>
@@ -23,11 +28,15 @@
 
 <!-- Room Card 2 -->
 <div class="room-card">
-    <img src="images/room2.jpg" alt="Family Room">
+    <img src="images/_Elegant living room with a blend of modern and….jpg" alt="Family Room">
 
     <div class="room-details">
         <h3>Family Room</h3>
-        <p>11 - 11</p>
+        <div class="room-features">
+  <span>🛏️ AC Room</span>
+  <span>📶 Free WiFi</span>
+  <span>🚿 Hot Water</span>
+</div>
         <!-- <p>₹4,500 / Night</p> -->
 
         <label>
@@ -39,11 +48,15 @@
 
 <!-- Room Card 3 -->
 <div class="room-card">
-    <img src="images/room3.jpg" alt="Premium Room">
+    <img src="images/Modern blue theme bedroom with soft lighting and….jpg" alt="Premium Room">
 
     <div class="room-details">
         <h3>Premium Room</h3>
-        <p>11 - 11</p>
+        <div class="room-features">
+  <span>🛏️ AC Room</span>
+  <span>📶 Free WiFi</span>
+  <span>🚿 Hot Water</span>
+</div>
         <!-- <p>₹6,500 / Night</p> -->
 
         <label>
@@ -59,7 +72,7 @@
 <h3>Booking Details</h3>
 
 <label>How Many Persons?</label>
-<select>
+<select id="roomPersons">
     <option>1 Person</option>
     <option>2 Persons</option>
     <option>3 Persons</option>
@@ -69,22 +82,22 @@
 </select>
 
 <label>Check In</label>
-<input type="date">
+<input type="date" id="checkin">
 
 <label>Check Out</label>
-<input type="date">
+<input type="date" id="checkout">
 
 <label>Mobile Number</label>
-<input type="tel" placeholder="Enter Mobile Number">
+<input type="tel" id="roomMobile" placeholder="Enter Mobile Number">
 
 <label>Email</label>
-<input type="email" placeholder="Enter Email">
+<input type="email" id="roomEmail" placeholder="Enter Email">
 
 <label>Special Request</label>
-<textarea placeholder="Any special requirements"></textarea>
+<textarea id="request" placeholder="Any special requirements"></textarea>
 
-<button class="book-btn">Book Now</button>
+<button type="button" onclick="sendRoomWhatsApp()">Continue Booking</button>
 
 </div>
-
 </section>
+<script src="script.js"></script>

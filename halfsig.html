@@ -1,30 +1,138 @@
  <link rel="stylesheet" href="style.css">
  <link rel="stylesheet" href="fulsigh.css">
-<section class="full-page">
-  <div class="place">
-    <h2>★ Ramanathaswamy Temple</h2>
+ <body>
+<section class="place-section">
 
-    <div class="image-row">
-      <img src="images/Ram.jpg" class="place-img">
-      <img src="images/RAMESWARAM.jpg" class="place-img">
-    </div>
-  </div>
-   <div class="place">
-    <h2>★ 22 Well</h2>
-
-    <div class="image-row">
-      <img src="images/Ram.jpg" class="place-img">
-      <img src="images/RAMESWARAM.jpg" class="place-img">
-    </div>
-  </div>
-  <div class="place">
-    <h2>★ Poojai</h2>
-
-    <div class="image-row">
-      <img src="images/Ram.jpg" class="place-img">
-      <img src="images/RAMESWARAM.jpg" class="place-img">
-    </div>
-  </div>
-
+  <h2 class="page-title">✨ Half Sightseeing Places</h2>
+  <p class="page-subtitle">Explore famous spiritual places in Rameswaram</p>
   
+    <div class="place-card">
+    <div class="place-images">
+      <img src="images/temple1.jpg">
+      <img src="images/temple2.jpg">
+    </div>
+
+    <div class="place-content">
+      <span class="tag">Temple Visit</span>
+      <h3>Ramanathaswamy Temple</h3>
+      <p>One of the most sacred temples in India, famous for its spiritual history and architecture.</p>
+      <button onclick="showTempleDetails()">View Details</button>
+    </div>
+  </div>
+  <div id="templeDetails" class="details-box" style="display:none;">
+
+  <h3>🏛 Ramanathaswamy Temple Package</h3>
+  <label>How Many Persons?</label>
+  <select id="templePersons">
+    <option>1 Person</option>
+    <option>2 Persons</option>
+    <option>3 Persons</option>
+    <option>4 Persons</option>
+  </select>
+
+  <label>Date</label>
+  <input type="date">
+
+  <label>Time</label>
+  <input type="time">
+
+  <label>Mobile Number</label>
+  <input type="tel" placeholder="Enter Mobile Number">
+
+  <button>Book Now</button>
+
+</div>
+
+<div class="place-card well-card">
+
+  <div class="place-images">
+    <img src="images/well1.jpg">
+    <img src="images/well2.jpg">
+  </div>
+
+  <div class="place-content">
+    <span class="tag well">💧 Holy Bath</span>
+
+    <h3>22 Holy Wells</h3>
+
+    <p>
+      Experience the sacred bath in 22 holy wells,
+      each believed to have unique spiritual and
+      healing benefits.
+    </p>
+
+    <button onclick="showWellDetails()">View Details</button>
+  </div>
+
+</div>
+<div id="WellDetails" class="details-box" style="display:none;">
+
+  <h3>🏛 Holy Wells Package</h3>
+  <label>How Many Persons?</label>
+  <select id="templePersons">
+    <option>1 Person</option>
+    <option>2 Persons</option>
+    <option>3 Persons</option>
+    <option>4 Persons</option>
+  </select>
+
+  <label>Date</label>
+  <input type="date">
+
+  <label>Time</label>
+  <input type="time">
+
+  <label>Mobile Number</label>
+  <input type="tel" placeholder="Enter Mobile Number">
+
+  <button>Book Now</button>
+
+</div>
+<div class="place-card poojai-card">
+
+  <div class="place-images">
+    <img src="images/poojai1.jpg">
+    <img src="images/poojai2.jpg">
+  </div>
+
+  <div class="place-content">
+    <span class="tag poojai">🪔 Spiritual Service</span>
+
+    <h3>Special Poojai</h3>
+
+    <p>
+      Participate in sacred poojai services at Ramanathaswamy Temple.
+      Devotees can book Archanai, Abhishekam, Rudra Poojai,
+      Lakshmi Poojai, and other special rituals for blessings,
+      prosperity, health, and spiritual well-being.
+    </p>
+
+    <button onclick="showPoojaDetails()">View Details</button>
+  </div>
+</div>
+<div id="PoojaDetails" class="details-box" style="display:none;">
+
+  <h3>🏛 Temple Poojai Package</h3>
+  <label>How Many Persons?</label>
+  <select id="templePersons">
+    <option>1 Person</option>
+    <option>2 Persons</option>
+    <option>3 Persons</option>
+    <option>4 Persons</option>
+  </select>
+
+  <label>Date</label>
+  <input type="date">
+
+  <label>Time</label>
+  <input type="time">
+
+  <label>Mobile Number</label>
+  <input type="tel" placeholder="Enter Mobile Number">
+
+  <button>Book Now</button>
+
+</div>
 </section>
+<script src="script.js"></script>
+ </body>
