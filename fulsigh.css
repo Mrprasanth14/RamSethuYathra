@@ -1,3 +1,200 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #fff7ed, #eef2ff);
+  overflow-x: hidden;
+}
+
+/* PC VIEW */
+.cab-section {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.cab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.cab-card {
+  background: white;
+  padding: 35px 20px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+  border: 3px solid transparent;
+  transition: 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.cab-card input {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+
+.cab-icon {
+  font-size: 45px;
+}
+
+.cab-card:has(input:checked) {
+  border-color: #ff7a00;
+  background: #fff7ed;
+}
+
+.person-box,
+.booking-form {
+  max-width: 700px;
+  margin: 35px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.person-box {
+  display: none;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea,
+select {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  background: #ff7a00;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  .cab-section {
+    width: 100%;
+    margin: 0;
+    padding: 30px 15px;
+  }
+
+  .cab-section h2 {
+    font-size: 28px;
+  }
+
+  .cab-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cab-card {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    padding: 28px 18px;
+  }
+
+  .person-box,
+  .booking-form {
+    width: 100%;
+    max-width: 360px;
+    padding: 22px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+
+
+.place-card{
+  background:white;
+  padding:22px;
+  border-radius:24px;
+  margin-bottom:35px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+  transition:.3s;
+}
+
+.place-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:20px;
+}
+
+.place-images img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.place-content{
+  padding: 10px 5px;
+}
+
+.poojai{
+  background:#fff7d6;
+  color:#b45309;
+}
+
+.poojai-card{
+  border-left:6px solid #f59e0b;
+}
+
+.temple-card{
+    border-left: 6px solid #ff7a00;
+}
+
+.well-card{
+    border-left: 6px solid #0ea5e9;
+}
+
+.poojai-card{
+    border-left: 6px solid #eab308;
+}
+
+.temple{
+    background:#fff3e6;
+    color:#ff7a00;
+}
+
+.well{
+    background:#e0f2fe;
+    color:#0284c7;
+}
+
+.poojai{
+    background:#fef3c7;
+    color:#ca8a04;
+}
+
+.tag{
+    padding:8px 15px;
+    border-radius:25px;
+    font-weight:bold;
+}
+.place-card{
+  border-left: 6px solid #ff7a00;
+}
+
 body{
   margin:0;
   font-family: Arial, sans-serif;
@@ -24,6 +221,9 @@ body{
 }
 
 .place-card{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap:25px;
   background:white;
   padding:22px;
   border-radius:24px;
@@ -41,21 +241,18 @@ body{
   grid-template-columns:1fr 1fr;
   gap:14px;
 }
-/* body{
-    background-image: url("images/Experience\ the\ pure\ devotion\ of\ Bajrang\ Bali\ as\ he….jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-} */
+
 .place-images img{
   width:100%;
-  height:100%;
+  height:210px;
   object-fit:cover;
-  border-radius:15px;
+  border-radius:18px;
 }
 
 .place-content{
-  padding: 10px 5px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
 .tag{
@@ -89,121 +286,13 @@ body{
   font-weight:bold;
   margin-top:15px;
 }
-.poojai{
-  background:#fff7d6;
-  color:#b45309;
-}
 
-.poojai-card{
-  border-left:6px solid #f59e0b;
-}
-
-.details-box{
-  margin-top:20px;
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-
-.details-box input,
-.details-box select{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border:1px solid #ddd;
-  border-radius:10px;
-}
-
-.details-box button{
-  width:100%;
-  padding:14px;
-  border:none;
-  background:#ff7a00;
-  color:white;
-  border-radius:10px;
-}
-.body{
-    min-height:100vh;
-    padding:60px 20px;
-
-    background:
-      linear-gradient(
-        rgba(255,255,255,0.85),
-        rgba(255,255,255,0.85)
-      ),
-      url('images/4011087171522283.jpg');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
-
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
+@media(max-width:768px){
+  .place-card{
+    grid-template-columns:1fr;
   }
 
-  .room-container,
-  .cab-grid {
-    grid-template-columns: 1fr !important;
-    width: 100%;
-    padding: 0 15px;
+  .place-images{
+    grid-template-columns:1fr;
   }
-
-  .room-card,
-  .cab-card {
-    width: 100%;
-    margin: 0 auto 20px;
-  }
-
-  .room-card img {
-    height: 160px;
-  }
-
-  .booking-form,
-  .person-box {
-    width: 90%;
-    margin: 30px auto;
-    padding: 25px;
-  }
-
-  .section-title,
-  .page-title,
-  .cab-section h2 {
-    font-size: 28px;
-  }
-
-  .place-card {
-    width: 95%;
-    margin: 20px auto;
-  }
-
-  .place-images {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .place-images img {
-    height: 180px;
-  }
-
-  input,
-  select,
-  textarea,
-  button {
-    font-size: 14px;
-  }
-}
-.cab-section {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.cab-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
 }

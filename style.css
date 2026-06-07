@@ -166,6 +166,21 @@ footer {
   padding: 22px;
 }
 
+@media (max-width: 768px) {
+  header {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 8px;
+  }
 
  .hero {
   height: 90vh;
@@ -428,7 +443,19 @@ th, td {
   border: 1px solid rgba(255,255,255,0.3);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+@media(max-width:768px){
+  .hero {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
 
+  .timing-box {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 350px;
+  }
+}
 .package-section {
   background: #f8f9fa;
   text-align: center;
@@ -500,6 +527,11 @@ th, td {
   font-size: 17px;
 }
 
+@media(max-width:768px) {
+  .package-container {
+    grid-template-columns: 1fr;
+  }
+}
 .pricing-box{
   display:flex;
   justify-content:center;
@@ -693,61 +725,4 @@ font-size:18px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 14px 35px rgba(0,0,0,0.12);
-}
-@media (max-width: 768px) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  .room-container,
-  .cab-grid {
-    grid-template-columns: 1fr !important;
-    width: 100%;
-    padding: 0 15px;
-  }
-
-  .room-card,
-  .cab-card {
-    width: 100%;
-    margin: 0 auto 20px;
-  }
-
-  .room-card img {
-    height: 160px;
-  }
-
-  .booking-form,
-  .person-box {
-    width: 90%;
-    margin: 30px auto;
-    padding: 25px;
-  }
-
-  .section-title,
-  .page-title,
-  .cab-section h2 {
-    font-size: 28px;
-  }
-
-  .place-card {
-    width: 95%;
-    margin: 20px auto;
-  }
-
-  .place-images {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .place-images img {
-    height: 180px;
-  }
-
-  input,
-  select,
-  textarea,
-  button {
-    font-size: 14px;
-  }
 }

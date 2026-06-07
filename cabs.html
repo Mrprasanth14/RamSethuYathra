@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="fulsigh.css">
 
 <section class="cab-section">
@@ -35,7 +36,7 @@
         <option value="">Select Persons</option>
       </select>
 
-      <button onclick="continueBooking()">Continue Booking</button>
+      <button type="button" onclick="continueBooking()">Continue Booking</button>
     </div>
   </div>
   <div id="bookingForm" class="booking-form" style="display:none;">
@@ -57,7 +58,7 @@
   <option>Hotel Pickup</option>
 </select>
 
-  <textarea placeholder="Special Requirements"></textarea>
+ <textarea id="cabRequest" placeholder="Special Requirements"></textarea>
 
 <button type="button" onclick="sendWhatsApp()">Continue Booking</button>
 
