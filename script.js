@@ -5,31 +5,40 @@ function selectPackage(packageName) {
   });
 }
 
-document.getElementById("bookingForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+const bookingForm = document.getElementById("bookingForm");
 
-  const name = document.getElementById("name").value;
-  const mobile = document.getElementById("mobile").value;
-  const persons = document.getElementById("persons").value;
-  const date = document.getElementById("date").value;
-  const packageName = document.getElementById("package").value;
-  const message = document.getElementById("message").value;
+if (bookingForm) {
+  bookingForm.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  const ownerNumber = "918248465645";
+    const name = document.getElementById("name").value;
+    const mobile = document.getElementById("mobile").value;
+    const persons = document.getElementById("persons").value;
+    const date = document.getElementById("date").value;
+    const packageName = document.getElementById("package").value;
+    const message = document.getElementById("message").value;
 
-  const whatsappMessage =
-    `New Rameswaram Package Booking%0A%0A` +
-    `Name: ${name}%0A` +
-    `Mobile: ${mobile}%0A` +
-    `Persons: ${persons}%0A` +
-    `Date: ${date}%0A` +
-    `Package: ${packageName}%0A` +
-    `Message: ${message}`;
+    const ownerNumber = "918838170745";
 
-  window.open(`https://wa.me/${ownerNumber}?text=${whatsappMessage}`, "_blank");
-});
+    const whatsappMessage =
+      `New Rameswaram Package Booking\n\n` +
+      `Name: ${name}\n` +
+      `Mobile: ${mobile}\n` +
+      `Persons: ${persons}\n` +
+      `Date: ${date}\n` +
+      `Package: ${packageName}\n` +
+      `Message: ${message}`;
+
+    window.open(
+      `https://wa.me/${ownerNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+      "_blank"
+    );
+  });
+}
 window.onscroll = function () {
   const topBtn = document.getElementById("topBtn");
+
+  if (!topBtn) return;
 
   if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
     topBtn.style.display = "block";
@@ -37,13 +46,6 @@ window.onscroll = function () {
     topBtn.style.display = "none";
   }
 };
-
-function topFunction() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
 
 function showPersonBox(seats) {
   const personBox = document.getElementById("personBox");
@@ -61,7 +63,12 @@ function continueBooking() {
   const persons = document.getElementById("persons").value;
 
   if (persons === "") {
-    alert("Please select persons");
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Please select persons!",
+  confirmButtonColor: "#ff7a00"
+});
     return;
   }
 
@@ -81,7 +88,12 @@ function sendWhatsApp() {
   const pickup = document.getElementById("pickup").value;
 
   if (!name || !mobile || !date || !time || !pickup) {
-    alert("Please fill all details");
+    Swal.fire({
+  icon: "warning",
+  title: "Missing Details",
+  text: "Please fill all booking details",
+  confirmButtonColor: "#ff7a00"
+});
     return;
   }
 
@@ -149,6 +161,105 @@ function showTempleDetails() {
   } else {
     box.style.display = "none";
   }
+}
+function showTempleDetailsform() {
+  const persons = document.getElementById("templePersons").value;
+  const date = document.getElementById("templeDate").value;
+  const time = document.getElementById("templeTime").value;
+  const mobile = document.getElementById("templeMobile").value.trim();
+
+  if (persons === "" || date === "" || time === "" || mobile === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Incomplete Form",
+      text: "Please fill all required fields first",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Mobile Number",
+      text: "Enter valid 10 digit mobile number",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  const message =
+`🛕 Temple Booking Request
+
+👥 Persons: ${persons}
+📅 Date: ${date}
+⏰ Time: ${time}
+📞 Mobile: ${mobile}`;
+
+  window.open(
+    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
+function showWellDetailsform() {
+
+  const persons = document.getElementById("wellPersons").value;
+  const date = document.getElementById("wellDate").value;
+  const time = document.getElementById("wellTime").value;
+  const mobile = document.getElementById("wellMobile").value.trim();
+
+  if (!persons || !date || !time || !mobile) {
+    Swal.fire({
+      icon: "warning",
+      title: "Incomplete Form",
+      text: "Please fill all required fields first",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  const message =
+`🚿 22 Wells Booking Request
+
+👥 Persons: ${persons}
+📅 Date: ${date}
+⏰ Time: ${time}
+📞 Mobile: ${mobile}`;
+
+  window.open(
+    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+}
+function showPoojaDetailsform() {
+
+  const persons = document.getElementById("poojaPersons").value;
+  const date = document.getElementById("poojaDate").value;
+  const time = document.getElementById("poojaTime").value;
+  const mobile = document.getElementById("poojaMobile").value.trim();
+
+  if (!persons || !date || !time || !mobile) {
+    Swal.fire({
+      icon: "warning",
+      title: "Incomplete Form",
+      text: "Please fill all required fields first",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  const message =
+`🙏 Temple Poojai Booking Request
+
+👥 Persons: ${persons}
+📅 Date: ${date}
+⏰ Time: ${time}
+📞 Mobile: ${mobile}`;
+
+  window.open(
+    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
 function showWellDetails() {
   const box = document.getElementById("WellDetails");

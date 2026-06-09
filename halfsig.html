@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="hal.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
  <body>
 <section class="place-section">
@@ -26,25 +27,38 @@
   <div id="templeDetails" class="details-box" style="display:none;">
 
   <h3>🏛 Ramanathaswamy Temple Package</h3>
-  <label>How Many Persons?</label>
-  <select id="templePersons">
-    <option>1 Person</option>
-    <option>2 Persons</option>
-    <option>3 Persons</option>
-    <option>4 Persons</option>
-  </select>
 
-  <label>Date</label>
-  <input type="date">
+  <div class="details-form">
 
-  <label>Time</label>
-  <input type="time">
+    <div>
+      <label>How Many Persons?</label>
+      <select id="templePersons">
+  <option value="">Select Persons</option>
+  <option value="1">1 Person</option>
+  <option value="2">2 Persons</option>
+  <option value="3">3 Persons</option>
+  <option value="4">4 Persons</option>
+</select>
+    </div>
 
-  <label>Mobile Number</label>
-  <input type="tel" placeholder="Enter Mobile Number">
+    <div>
+      <label>Date</label>
+      <input type="date" id="templeDate">
+    </div>
 
-  <button>Book Now</button>
+    <div>
+      <label>Time</label>
+      <input type="time" id="templeTime">
+    </div>
 
+    <div>
+      <label>Mobile Number</label>
+      <input type="tel" id="templeMobile" maxlength="10" placeholder="Enter Mobile Number">
+    </div>
+    <button type="button" onclick="showTempleDetailsform()">Book Now</button>
+
+  </div>
+</div>
 </div>
 
 <div class="place-card well-card">
@@ -71,26 +85,40 @@
 </div>
 <div id="WellDetails" class="details-box" style="display:none;">
 
-  <h3>🏛 Holy Wells Package</h3>
-  <label>How Many Persons?</label>
-  <select id="templePersons">
-    <option>1 Person</option>
-    <option>2 Persons</option>
-    <option>3 Persons</option>
-    <option>4 Persons</option>
-  </select>
+  <h3>🏛 22 Wells Package</h3>
 
-  <label>Date</label>
-  <input type="date">
+  <div class="details-form">
 
-  <label>Time</label>
-  <input type="time">
+    <div>
+      <label>How Many Persons?</label>
+      <select id="wellPersons">
+  <option value="">Select Persons</option>
+  <option value="1">1 Person</option>
+  <option value="2">2 Persons</option>
+  <option value="3">3 Persons</option>
+  <option value="4">4 Persons</option>
+</select>
+    </div>
 
-  <label>Mobile Number</label>
-  <input type="tel" placeholder="Enter Mobile Number">
+    <div>
+      <label>Date</label>
+      <input type="date" id="wellDate">
+    </div>
 
-  <button>Book Now</button>
+    <div>
+      <label>Time</label>
+      <input type="time" id="wellTime">
+    </div>
 
+    <div>
+      <label>Mobile Number</label>
+<input type="tel" id="wellMobile"
+       maxlength="10"
+       placeholder="Enter Mobile Number">    </div>
+
+    <button type="button" onclick="showWellDetailsform()">Book Now</button>
+
+  </div>
 </div>
 <div class="place-card poojai-card">
 
@@ -115,27 +143,46 @@
   </div>
 </div>
 <div id="PoojaDetails" class="details-box" style="display:none;">
-
   <h3>🏛 Temple Poojai Package</h3>
-  <label>How Many Persons?</label>
-  <select id="templePersons">
-    <option>1 Person</option>
-    <option>2 Persons</option>
-    <option>3 Persons</option>
-    <option>4 Persons</option>
-  </select>
 
-  <label>Date</label>
-  <input type="date">
+  <div class="details-form">
 
-  <label>Time</label>
-  <input type="time">
+    <div>
+      <label>How Many Persons?</label>
+      <select id="poojaPersons">
+        <option value="">Select Persons</option>
+        <option value="1">1 Person</option>
+        <option value="2">2 Persons</option>
+        <option value="3">3 Persons</option>
+        <option value="4">4 Persons</option>
+      </select>
+    </div>
 
-  <label>Mobile Number</label>
-  <input type="tel" placeholder="Enter Mobile Number">
+    <div>
+      <label>Date</label>
+      <input type="date" id="poojaDate">
+    </div>
 
-  <button>Book Now</button>
+    <div>
+      <label>Time</label>
+      <input type="time" id="poojaTime">
+    </div>
 
+    <div>
+      <label>Mobile Number</label>
+      <input type="tel" id="poojaMobile"
+             maxlength="10"
+             placeholder="Enter Mobile Number">
+    </div>
+
+    <button type="button" onclick="showPoojaDetailsform()">
+      Book Now
+    </button>
+
+  </div>
+</div>
+
+  </div>
 </div>
 </section>
 <script src="script.js"></script>

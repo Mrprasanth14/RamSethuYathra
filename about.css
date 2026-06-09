@@ -1,0 +1,177 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+.about-hero{
+  min-height:70vh;
+  background:
+    linear-gradient(rgba(0,48,73,.65), rgba(0,0,0,.55)),
+    url("images/about-banner.jpg");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+}
+
+.about-overlay{
+  max-width:800px;
+  color:white;
+}
+
+.about-overlay span{
+  background:rgba(255,255,255,.2);
+  padding:10px 20px;
+  border-radius:30px;
+  display:inline-block;
+  margin-bottom:18px;
+}
+
+.about-overlay h1{
+  font-size:58px;
+  margin-bottom:18px;
+}
+
+.about-overlay p{
+  font-size:20px;
+  margin-bottom:30px;
+}
+
+.about-overlay a,
+.about-cta a{
+  display:inline-block;
+  background:#ff7a00;
+  color:white;
+  padding:15px 32px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.about-section{
+  max-width:1150px;
+  margin:70px auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:45px;
+  align-items:center;
+}
+
+.about-img img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  border-radius:28px;
+  box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.small-title{
+  color:#ff7a00;
+  font-weight:bold;
+}
+
+.about-text h2{
+  font-size:42px;
+  margin:15px 0;
+  line-height:1.2;
+}
+
+.about-text p{
+  color:#64748b;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.why-section{
+  padding:70px 8%;
+  background:linear-gradient(135deg,#fff7ed,#eef2ff);
+  text-align:center;
+}
+
+.why-section h2{
+  font-size:42px;
+  margin-bottom:40px;
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.why-card{
+  background:white;
+  padding:30px 22px;
+  border-radius:24px;
+  box-shadow:0 15px 35px rgba(0,0,0,.1);
+  transition:.3s;
+}
+
+.why-card:hover{
+  transform:translateY(-10px);
+}
+
+.icon{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.why-card h3{
+  margin-bottom:10px;
+}
+
+.why-card p{
+  color:#64748b;
+}
+
+.about-cta{
+  padding:80px 20px;
+  text-align:center;
+  background:#003049;
+  color:white;
+}
+
+.about-cta h2{
+  font-size:40px;
+  margin-bottom:25px;
+}
+
+@media(max-width:768px){
+  .about-overlay h1{
+    font-size:34px;
+  }
+
+  .about-overlay p{
+    font-size:16px;
+  }
+
+  .about-section{
+    grid-template-columns:1fr;
+    margin:40px auto;
+  }
+
+  .about-img img{
+    height:260px;
+  }
+
+  .about-text h2,
+  .why-section h2,
+  .about-cta h2{
+    font-size:28px;
+  }
+
+  .why-grid{
+    grid-template-columns:1fr;
+  }
+}
