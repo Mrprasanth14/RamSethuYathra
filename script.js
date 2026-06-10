@@ -29,11 +29,24 @@ if (bookingForm) {
       `Package: ${packageName}\n` +
       `Message: ${message}`;
 
+    openWhatsAppWithSuccess(message);
+  });
+}
+function openWhatsAppWithSuccess(message) {
+  Swal.fire({
+    icon: "success",
+    title: "Booking Confirmed",
+    text: "Redirecting to WhatsApp...",
+    timer: 1500,
+    showConfirmButton: false
+  });
+
+  setTimeout(() => {
     window.open(
-      `https://wa.me/${ownerNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+      `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
       "_blank"
     );
-  });
+  }, 1500);
 }
 window.onscroll = function () {
   const topBtn = document.getElementById("topBtn");
@@ -113,24 +126,45 @@ function sendWhatsApp() {
   const whatsappURL =
   `https://wa.me/918838170745?text=${encodeURIComponent(message)}`;
 
-  window.open(whatsappURL, "_blank");
+  openWhatsAppWithSuccess(message);
 }
 function sendRoomWhatsApp() {
+
   const room = document.querySelector('input[name="room"]:checked')?.value;
   const persons = document.getElementById("roomPersons").value;
   const checkin = document.getElementById("checkin").value;
   const checkout = document.getElementById("checkout").value;
-  const mobile = document.getElementById("roomMobile").value;
-  const email = document.getElementById("roomEmail").value;
-  const request = document.getElementById("request").value;
+  const mobile = document.getElementById("roomMobile").value.trim();
+  const email = document.getElementById("roomEmail").value.trim();
+  const request = document.getElementById("request").value.trim();
 
   if (!room) {
-    alert("Please select a room");
+    Swal.fire({
+      icon: "warning",
+      title: "Room Not Selected",
+      text: "Please select a room",
+      confirmButtonColor: "#ff7a00"
+    });
     return;
   }
 
   if (!persons || !checkin || !checkout || !mobile || !email) {
-    alert("Please fill all booking details");
+    Swal.fire({
+      icon: "warning",
+      title: "Incomplete Form",
+      text: "Please fill all booking details",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Mobile Number",
+      text: "Please enter a valid 10-digit mobile number",
+      confirmButtonColor: "#ff7a00"
+    });
     return;
   }
 
@@ -146,21 +180,9 @@ function sendRoomWhatsApp() {
 📞 Mobile: ${mobile}
 📧 Email: ${email}
 
-📝 Request: ${request}`;
+📝 Request: ${request || "No Special Request"}`;
 
-  const whatsappURL =
-    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`;
-
-  window.location.href = whatsappURL;
-}
-function showTempleDetails() {
-  const box = document.getElementById("templeDetails");
-
-  if (box.style.display === "none") {
-    box.style.display = "block";
-  } else {
-    box.style.display = "none";
-  }
+openWhatsAppWithSuccess(message);
 }
 function showTempleDetailsform() {
   const persons = document.getElementById("templePersons").value;
@@ -196,10 +218,7 @@ function showTempleDetailsform() {
 ⏰ Time: ${time}
 📞 Mobile: ${mobile}`;
 
-  window.open(
-    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+ openWhatsAppWithSuccess(message);
 }
 function showWellDetailsform() {
 
@@ -226,10 +245,7 @@ function showWellDetailsform() {
 ⏰ Time: ${time}
 📞 Mobile: ${mobile}`;
 
-  window.open(
-    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+  openWhatsAppWithSuccess(message);
 }
 function showPoojaDetailsform() {
 
@@ -256,10 +272,16 @@ function showPoojaDetailsform() {
 ⏰ Time: ${time}
 📞 Mobile: ${mobile}`;
 
-  window.open(
-    `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+ openWhatsAppWithSuccess(message);
+}
+function showTempleDetails() {
+  const box = document.getElementById("templeDetails");
+
+  if (box.style.display === "none") {
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
 }
 function showWellDetails() {
   const box = document.getElementById("WellDetails");
