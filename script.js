@@ -1,3 +1,5 @@
+import { db, collection, addDoc } from "./firebase.js";
+
 function selectPackage(packageName) {
   document.getElementById("package").value = packageName;
   document.getElementById("booking").scrollIntoView({
@@ -184,13 +186,36 @@ function sendRoomWhatsApp() {
 
 openWhatsAppWithSuccess(message);
 }
-function showTempleDetailsform() {
+async function showTempleDetailsform() {
   const persons = document.getElementById("templePersons").value;
   const date = document.getElementById("templeDate").value;
   const time = document.getElementById("templeTime").value;
   const mobile = document.getElementById("templeMobile").value.trim();
 
-  if (persons === "" || date === "" || time === "" || mobile === "") {
+  try {
+    await addDoc(collection(db, "templeBookings"), {
+      persons,
+      date,
+      time,
+      mobile,
+      service: "Temple Visit",
+      createdAt: new Date()
+    });
+
+    Swal.fire("Saved", "Booking saved in Firebase", "success");
+  } catch (error) {
+    console.error(error);
+    Swal.fire("Error", error.message, "error");
+  }
+}
+window.showTempleDetailsform = showTempleDetailsform;
+async function showWellDetailsform() {
+  const persons = document.getElementById("wellPersons").value;
+  const date = document.getElementById("wellDate").value;
+  const time = document.getElementById("wellTime").value;
+  const mobile = document.getElementById("wellMobile").value.trim();
+
+  if (!persons || !date || !time || !mobile) {
     Swal.fire({
       icon: "warning",
       title: "Incomplete Form",
@@ -211,33 +236,6 @@ function showTempleDetailsform() {
   }
 
   const message =
-`🛕 Temple Booking Request
-
-👥 Persons: ${persons}
-📅 Date: ${date}
-⏰ Time: ${time}
-📞 Mobile: ${mobile}`;
-
- openWhatsAppWithSuccess(message);
-}
-function showWellDetailsform() {
-
-  const persons = document.getElementById("wellPersons").value;
-  const date = document.getElementById("wellDate").value;
-  const time = document.getElementById("wellTime").value;
-  const mobile = document.getElementById("wellMobile").value.trim();
-
-  if (!persons || !date || !time || !mobile) {
-    Swal.fire({
-      icon: "warning",
-      title: "Incomplete Form",
-      text: "Please fill all required fields first",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
-
-  const message =
 `🚿 22 Wells Booking Request
 
 👥 Persons: ${persons}
@@ -245,10 +243,23 @@ function showWellDetailsform() {
 ⏰ Time: ${time}
 📞 Mobile: ${mobile}`;
 
-  openWhatsAppWithSuccess(message);
-}
-function showPoojaDetailsform() {
+  try {
+    await addDoc(collection(db, "wellBookings"), {
+      persons,
+      date,
+      time,
+      mobile,
+      service: "22 Holy Wells",
+      createdAt: new Date()
+    });
 
+    Swal.fire("Saved", "Booking saved in Firebase", "success");
+  } catch (error) {
+    console.error(error);
+    Swal.fire("Error", error.message, "error");
+  }
+}
+async function showPoojaDetailsform() {
   const persons = document.getElementById("poojaPersons").value;
   const date = document.getElementById("poojaDate").value;
   const time = document.getElementById("poojaTime").value;
@@ -264,6 +275,16 @@ function showPoojaDetailsform() {
     return;
   }
 
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Mobile Number",
+      text: "Enter valid 10 digit mobile number",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
   const message =
 `🙏 Temple Poojai Booking Request
 
@@ -272,15 +293,20 @@ function showPoojaDetailsform() {
 ⏰ Time: ${time}
 📞 Mobile: ${mobile}`;
 
- openWhatsAppWithSuccess(message);
-}
-function showTempleDetails() {
-  const box = document.getElementById("templeDetails");
+  try {
+    await addDoc(collection(db, "poojaBookings"), {
+      persons,
+      date,
+      time,
+      mobile,
+      service: "Temple Poojai",
+      createdAt: new Date()
+    });
 
-  if (box.style.display === "none") {
-    box.style.display = "block";
-  } else {
-    box.style.display = "none";
+    Swal.fire("Saved", "Booking saved in Firebase", "success");
+  } catch (error) {
+    console.error(error);
+    Swal.fire("Error", error.message, "error");
   }
 }
 function showWellDetails() {
@@ -301,3 +327,9 @@ function showPoojaDetails() {
     box.style.display = "none";
   }
 }
+window.showTempleDetails = showTempleDetails;
+window.showTempleDetailsform = showTempleDetailsform;
+window.showWellDetails = showWellDetails;
+window.showWellDetailsform = showWellDetailsform;
+window.showPoojaDetails = showPoojaDetails;
+window.showPoojaDetailsform = showPoojaDetailsform;

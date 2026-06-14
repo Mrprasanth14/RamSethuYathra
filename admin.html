@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel | RamSethuYatra</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+<header class="admin-header">
+  <h1>RamSethuYatra Admin Panel</h1>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<main class="admin-container">
+
+  <section class="booking-section">
+    <h2>🛕 Temple Bookings</h2>
+    <div id="templeData" class="booking-grid"></div>
+  </section>
+
+  <section class="booking-section">
+    <h2>💧 22 Wells Bookings</h2>
+    <div id="wellData" class="booking-grid"></div>
+  </section>
+
+  <section class="booking-section">
+    <h2>🪔 Poojai Bookings</h2>
+    <div id="poojaData" class="booking-grid"></div>
+  </section>
+
+  <section class="booking-section">
+    <h2>🏨 Room Bookings</h2>
+    <div id="roomData" class="booking-grid"></div>
+  </section>
+
+  <section class="booking-section">
+    <h2>🚖 Cab Bookings</h2>
+    <div id="cabData" class="booking-grid"></div>
+  </section>
+<script type="module" src="admin.js"></script>
+</main>

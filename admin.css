@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+}
+
+.admin-header {
+  background: linear-gradient(135deg, #ff7a00, #ff3d00);
+  color: white;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-header h1 {
+  margin: 0;
+}
+
+.logout-btn {
+  background: white;
+  color: #ff6b00;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-container {
+  padding: 35px;
+}
+
+.booking-section {
+  margin-bottom: 40px;
+}
+
+.booking-section h2 {
+  color: #003049;
+  margin-bottom: 20px;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.admin-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  border-left: 6px solid #ff7a00;
+}
+
+.admin-card p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.admin-card b {
+  color: #003049;
+}
+
+.empty-msg {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  color: #777;
+}
