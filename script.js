@@ -309,19 +309,30 @@ async function showPoojaDetailsform() {
     Swal.fire("Error", error.message, "error");
   }
 }
-function showWellDetails() {
-  const box = document.getElementById("WellDetails");
+function showTempleDetails() {
+  const box = document.getElementById("templeDetails");
 
-  if (box.style.display === "none") {
+  if (box.style.display === "none" || box.style.display === "") {
     box.style.display = "block";
   } else {
     box.style.display = "none";
   }
 }
+
+function showWellDetails() {
+  const box = document.getElementById("WellDetails");
+
+  if (box.style.display === "none" || box.style.display === "") {
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
+}
+
 function showPoojaDetails() {
   const box = document.getElementById("PoojaDetails");
 
-  if (box.style.display === "none") {
+  if (box.style.display === "none" || box.style.display === "") {
     box.style.display = "block";
   } else {
     box.style.display = "none";
