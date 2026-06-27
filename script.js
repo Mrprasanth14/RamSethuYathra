@@ -130,7 +130,7 @@ function sendWhatsApp() {
 
   openWhatsAppWithSuccess(message);
 }
-function sendRoomWhatsApp() {
+async function sendRoomWhatsApp() {
 
   const room = document.querySelector('input[name="room"]:checked')?.value;
   const persons = document.getElementById("roomPersons").value;
@@ -141,32 +141,17 @@ function sendRoomWhatsApp() {
   const request = document.getElementById("request").value.trim();
 
   if (!room) {
-    Swal.fire({
-      icon: "warning",
-      title: "Room Not Selected",
-      text: "Please select a room",
-      confirmButtonColor: "#ff7a00"
-    });
+    Swal.fire("Room Not Selected", "Please select a room", "warning");
     return;
   }
 
   if (!persons || !checkin || !checkout || !mobile || !email) {
-    Swal.fire({
-      icon: "warning",
-      title: "Incomplete Form",
-      text: "Please fill all booking details",
-      confirmButtonColor: "#ff7a00"
-    });
+    Swal.fire("Incomplete Form", "Please fill all booking details", "warning");
     return;
   }
 
   if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Mobile Number",
-      text: "Please enter a valid 10-digit mobile number",
-      confirmButtonColor: "#ff7a00"
-    });
+    Swal.fire("Invalid Mobile Number", "Please enter valid 10-digit mobile number", "error");
     return;
   }
 
@@ -184,31 +169,70 @@ function sendRoomWhatsApp() {
 
 📝 Request: ${request || "No Special Request"}`;
 
-openWhatsAppWithSuccess(message);
-}
-async function showTempleDetailsform() {
-  const persons = document.getElementById("templePersons").value;
-  const date = document.getElementById("templeDate").value;
-  const time = document.getElementById("templeTime").value;
-  const mobile = document.getElementById("templeMobile").value.trim();
-
   try {
-    await addDoc(collection(db, "templeBookings"), {
+    await addDoc(collection(db, "roomBookings"), {
+      room,
       persons,
-      date,
-      time,
+      checkin,
+      checkout,
       mobile,
-      service: "Temple Visit",
+      email,
+      request: request || "No Special Request",
+      service: "Room Booking",
       createdAt: new Date()
     });
 
-    Swal.fire("Saved", "Booking saved in Firebase", "success");
+   Swal.fire("Saved", "Room booking saved in Firebase", "success");
+
   } catch (error) {
     console.error(error);
     Swal.fire("Error", error.message, "error");
   }
 }
-window.showTempleDetailsform = showTempleDetailsform;
+async function showTempleDetailsform() {
+  const persons = document.getElementById("templePersons").value.trim();
+  const date = document.getElementById("templeDate").value;
+  const time = document.getElementById("templeTime").value;
+  const mobile = document.getElementById("templeMobile").value.trim();
+
+  if (!persons || !date || !time || !mobile) {
+    Swal.fire({
+      icon: "warning",
+      title: "Incomplete Form",
+      text: "Please fill all required fields first",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Mobile Number",
+      text: "Enter valid 10 digit mobile number",
+      confirmButtonColor: "#ff7a00"
+    });
+    return;
+  }
+
+try {
+  await addDoc(collection(db, "templeBookings"), {
+    persons,
+    date,
+    time,
+    mobile,
+    service: "Temple Visit",
+    bookingTime: new Date().toLocaleTimeString(),
+    createdAt: new Date()
+  });
+
+  Swal.fire("Saved", "Temple booking saved in Firebase", "success");
+
+} catch (error) {
+  console.error("Firebase Error:", error);
+  alert(error.message);
+}
+}
 async function showWellDetailsform() {
   const persons = document.getElementById("wellPersons").value;
   const date = document.getElementById("wellDate").value;
@@ -338,6 +362,10 @@ function showPoojaDetails() {
     box.style.display = "none";
   }
 }
+window.showPersonBox = showPersonBox;
+window.continueBooking = continueBooking;
+window.sendWhatsApp = sendWhatsApp;
+window.sendRoomWhatsApp = sendRoomWhatsApp;
 window.showTempleDetails = showTempleDetails;
 window.showTempleDetailsform = showTempleDetailsform;
 window.showWellDetails = showWellDetails;

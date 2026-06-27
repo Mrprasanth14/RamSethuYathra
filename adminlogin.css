@@ -1,0 +1,136 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff7a00,#ff3d00,#ff9a44);
+    overflow:hidden;
+}
+
+/* Glass Login Box */
+
+.login-box{
+    width:420px;
+    max-width:90%;
+    padding:40px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    text-align:center;
+}
+
+/* Heading */
+
+.login-box h2{
+    color:#fff;
+    font-size:32px;
+    margin-bottom:30px;
+    font-weight:700;
+}
+
+/* Input */
+
+.login-box input{
+    width:100%;
+    padding:15px;
+    margin-bottom:18px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,.9);
+    font-size:16px;
+    transition:.3s;
+}
+
+.login-box input:focus{
+    transform:scale(1.02);
+    box-shadow:0 0 15px rgba(255,255,255,.5);
+}
+
+/* Button */
+
+.login-box button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#fff;
+    color:#ff5a00;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-box button:hover{
+    background:#003049;
+    color:#fff;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+/* Placeholder */
+
+.login-box input::placeholder{
+    color:#777;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.login-box{
+    width:95%;
+    padding:30px 22px;
+}
+
+.login-box h2{
+    font-size:28px;
+}
+
+.login-box input{
+    padding:14px;
+    font-size:15px;
+}
+
+.login-box button{
+    padding:14px;
+    font-size:16px;
+}
+
+}
+
+/* Small Mobile */
+
+@media(max-width:480px){
+
+.login-box{
+    padding:25px 18px;
+}
+
+.login-box h2{
+    font-size:24px;
+}
+
+.login-box input{
+    padding:12px;
+}
+
+.login-box button{
+    padding:12px;
+}
+
+}

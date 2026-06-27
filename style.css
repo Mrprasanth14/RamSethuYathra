@@ -781,28 +781,3 @@ font-size:18px;
     width: 100%;
   }
 }
-
-.login-box,
-.admin-card {
-  max-width: 500px;
-  margin: 30px auto;
-  padding: 25px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.login-box input {
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-}
-
-.login-box button,
-.admin-card button {
-  background: #ff6b00;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
-}

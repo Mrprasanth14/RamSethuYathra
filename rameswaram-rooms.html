@@ -88,15 +88,7 @@ content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family
 <h3>Booking Details</h3>
 
 <label>How Many Persons?</label>
-<select id="roomPersons" required>
-    <option value="" selected disabled>Select Persons</option>
-    <option value="1">1 Person</option>
-    <option value="2">2 Persons</option>
-    <option value="3">3 Persons</option>
-    <option value="4">4 Persons</option>
-    <option value="5">5 Persons</option>
-    <option value="6">6 Persons</option>
-</select>
+   <input type="text" id="roomPersons">
 
 <label>Check In</label>
 <input type="date" id="checkin">
@@ -113,7 +105,9 @@ content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family
 <label>Special Request</label>
 <textarea id="request" placeholder="Any special requirements"></textarea>
 
-<button type="button" onclick="sendRoomWhatsApp()">Continue Booking</button>
+<button type="button" onclick="sendRoomWhatsApp()">
+  Continue Booking
+</button>
 
 </div>
 <div class="seo-content">
@@ -127,4 +121,4 @@ content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family
   </p>
 </div>
 </section>
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>

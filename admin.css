@@ -1,13 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f4f7fb;
+  overflow-x: hidden;
 }
 
 .admin-header {
   background: linear-gradient(135deg, #ff7a00, #ff3d00);
   color: white;
-  padding: 25px 40px;
+  padding: 18px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,48 +20,52 @@ body {
 
 .admin-header h1 {
   margin: 0;
+  font-size: 26px;
 }
 
 .logout-btn {
   background: white;
   color: #ff6b00;
   border: none;
-  padding: 12px 24px;
+  padding: 11px 24px;
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
 }
 
 .admin-container {
-  padding: 35px;
+  padding: 25px;
 }
 
 .booking-section {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .booking-section h2 {
   color: #003049;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  font-size: 24px;
 }
 
 .booking-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .admin-card {
   background: white;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-  border-left: 6px solid #ff7a00;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  border-left: 5px solid #ff7a00;
 }
 
 .admin-card p {
-  margin: 8px 0;
-  font-size: 16px;
+  margin: 7px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-word;
 }
 
 .admin-card b {
@@ -68,4 +77,48 @@ body {
   padding: 20px;
   border-radius: 15px;
   color: #777;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .admin-header {
+    padding: 15px 12px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .admin-header h1 {
+    font-size: 18px;
+  }
+
+  .logout-btn {
+    width: 160px;
+    padding: 9px;
+    font-size: 13px;
+  }
+
+  .admin-container {
+    padding: 12px;
+  }
+
+  .booking-section h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .booking-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admin-card {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .admin-card p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
 }
