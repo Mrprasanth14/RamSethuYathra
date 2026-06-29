@@ -263,7 +263,15 @@ try {
     createdAt: new Date()
   });
 
-  Swal.fire("Saved", "Temple booking saved in Firebase", "success");
+ Swal.fire({
+  icon: "success",
+  title: "Booking Successful!",
+  text: "Your room booking has been submitted successfully.",
+  confirmButtonText: "OK",
+  confirmButtonColor: "#ff7a00"
+}).then(() => {
+  location.reload();
+});
 
 } catch (error) {
   console.error("Firebase Error:", error);
@@ -314,7 +322,15 @@ async function showWellDetailsform() {
       createdAt: new Date()
     });
 
-    Swal.fire("Saved", "Booking saved in Firebase", "success");
+    Swal.fire({
+  icon: "success",
+  title: "Booking Successful!",
+  text: "Your room booking has been submitted successfully.",
+  confirmButtonText: "OK",
+  confirmButtonColor: "#ff7a00"
+}).then(() => {
+  location.reload();
+});
   } catch (error) {
     console.error(error);
     Swal.fire("Error", error.message, "error");
@@ -364,7 +380,15 @@ async function showPoojaDetailsform() {
       createdAt: new Date()
     });
 
-    Swal.fire("Saved", "Booking saved in Firebase", "success");
+    Swal.fire({
+  icon: "success",
+  title: "Booking Successful!",
+  text: "Your room booking has been submitted successfully.",
+  confirmButtonText: "OK",
+  confirmButtonColor: "#ff7a00"
+}).then(() => {
+  location.reload();
+});
   } catch (error) {
     console.error(error);
     Swal.fire("Error", error.message, "error");
