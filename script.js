@@ -92,43 +92,72 @@ function continueBooking() {
   document.getElementById("bookingForm")
     .scrollIntoView({ behavior: "smooth" });
 }
-function sendWhatsApp() {
+async function sendWhatsApp() {
 
   const cab = document.querySelector('input[name="cab"]:checked')?.value;
   const persons = document.getElementById("persons").value;
-  const name = document.getElementById("name").value;
-  const mobile = document.getElementById("mobile").value;
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
-  const pickup = document.getElementById("pickup").value;
+  const pickup = document.getElementById("pickup").value.trim();
 
-  if (!name || !mobile || !date || !time || !pickup) {
-    Swal.fire({
-  icon: "warning",
-  title: "Missing Details",
-  text: "Please fill all booking details",
-  confirmButtonColor: "#ff7a00"
-});
+  if (!cab) {
+    Swal.fire("Cab Not Selected", "Please select a cab", "warning");
+    return;
+  }
+
+  if (!persons || !name || !mobile || !date || !time || !pickup) {
+    Swal.fire("Incomplete Form", "Please fill all booking details", "warning");
+    return;
+  }
+
+  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    Swal.fire("Invalid Mobile Number", "Please enter valid 10-digit mobile number", "error");
     return;
   }
 
   const message =
-`🚖 New Booking Request
-
-👤 Name: ${name}
-📞 Mobile: ${mobile}
+`🚖 New Cab Booking Request
 
 🚗 Cab: ${cab} Seater
 👥 Persons: ${persons}
+
+👤 Name: ${name}
+📞 Mobile: ${mobile}
 
 📍 Pickup: ${pickup}
 📅 Date: ${date}
 ⏰ Time: ${time}`;
 
-  const whatsappURL =
-  `https://wa.me/918838170745?text=${encodeURIComponent(message)}`;
+  try {
+    await addDoc(collection(db, "cabBookings"), {
+      cab,
+      persons,
+      name,
+      mobile,
+      pickup,
+      date,
+      time,
+      service: "Cab Booking",
+      bookingTime: new Date().toLocaleTimeString(),
+      createdAt: new Date()
+    });
 
-  openWhatsAppWithSuccess(message);
+    Swal.fire({
+      icon: "success",
+      title: "Booking Successful!",
+      text: "Your cab booking has been submitted successfully.",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#ff7a00"
+    }).then(() => {
+      location.reload();
+    });
+
+  } catch (error) {
+    console.error(error);
+    Swal.fire("Error", error.message, "error");
+  }
 }
 async function sendRoomWhatsApp() {
 
@@ -182,7 +211,15 @@ async function sendRoomWhatsApp() {
       createdAt: new Date()
     });
 
-   Swal.fire("Saved", "Room booking saved in Firebase", "success");
+Swal.fire({
+  icon: "success",
+  title: "Booking Successful!",
+  text: "Your room booking has been submitted successfully.",
+  confirmButtonText: "OK",
+  confirmButtonColor: "#ff7a00"
+}).then(() => {
+  location.reload();
+});
 
   } catch (error) {
     console.error(error);
