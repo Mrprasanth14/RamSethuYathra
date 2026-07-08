@@ -30,6 +30,14 @@
     <a href="#food">Food</a>
     <a href="#booking">Booking</a> -->
   </nav>
+  <div class="language-menu">
+    🌐
+    <select onchange="changeLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="ta">தமிழ்</option>
+        <option value="hi">हिन्दी</option>
+    </select>
+</div>
 </header>
 
 <section id="home" class="hero">
@@ -68,17 +76,27 @@
   <div class="pricing-box">
 
     <div class="price-card">
-      <h3>Temple Package</h3>
-      <a href="ramanathaswamy-temple.html">
-<img src="images/21884748183348126.jpg"
-     alt="Rameswaram Temple Package">      </a>
-    </div>
+  <h3>Temple Package</h3>
+
+  <a href="ramanathaswamy-temple.html" class="package-link">
+    <img src="images/21884748183348126.jpg"
+         alt="Rameswaram Temple Package">
+
+    <button type="button" class="package-btn">
+      Click Here
+    </button>
+  </a>
+</div>
+    
     <div class="price-card">
       <h3>Cabs</h3>
       <a href="rameswaram-cab-service.html">
        
 <img src="images/RAMESWARAM.jpg"
      alt="Rameswaram Cab Service">
+     <button type="button" class="package-btn">
+      Click Here
+    </button>
       </a>
     </div>
     <div class="price-card">
@@ -86,6 +104,9 @@
       <a href="rameswaram-rooms.html">
        <img src="images/unnamed.webp"
      alt="Rameswaram Hotel Rooms">
+     <button type="button" class="package-btn">
+      Click Here
+    </button>
       </a>
     </div>
 
@@ -213,3 +234,14 @@
 <script type="module" src="script.js"></script>
 </body>
 </html>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: "en",
+    includedLanguages: "en,ta,hi",
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, "google_translate_element");
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

@@ -433,3 +433,4 @@ window.showWellDetails = showWellDetails;
 window.showWellDetailsform = showWellDetailsform;
 window.showPoojaDetails = showPoojaDetails;
 window.showPoojaDetailsform = showPoojaDetailsform;
+
