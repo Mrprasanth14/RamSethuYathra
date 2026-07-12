@@ -614,208 +614,6 @@ th, td {
     margin-top:10px;
 }
 
-.rooms-section{
-padding:50px;
-background:#f5f5f5;
-}
-
-.room-container{
-display:flex;
-gap:25px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.room-card{
-width:320px;
-background:#fff;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 10px 20px rgba(0,0,0,0.1);
-}
-
-.room-card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.room-details{
-padding:20px;
-text-align:center;
-}
-
-.booking-form{
-max-width:700px;
-margin:40px auto;
-background:#fff;
-padding:30px;
-border-radius:20px;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea{
-width:100%;
-padding:12px;
-margin-top:10px;
-margin-bottom:20px;
-}
-
-.book-btn{
-width:100%;
-padding:15px;
-background:#ff7b00;
-color:#fff;
-border:none;
-border-radius:10px;
-font-size:18px;
-}
-
-/* rooms */
-.section-title{
-    text-align:center;
-    font-size:42px;
-    color:#1e293b;
-    margin-bottom:10px;
-}
-
-.section-subtitle{
-    text-align:center;
-    color:#64748b;
-    margin-bottom:40px;
-}
-
-.room-features{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    margin:15px 0;
-    color:#555;
-}
-
-.room-card{
-    overflow:hidden;
-    transition:.4s;
-}
-
-.room-card:hover{
-    transform:translateY(-10px);
-}
-
-.book-btn{
-    width:100%;
-    background:#ff7a00;
-    color:white;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-.rooms-section{
-  min-height: 100vh;
-  padding: 60px 20px;
-  background:
-    /* linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), */
-    url('images/4011087171522283.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.room-container{
-  max-width: 1100px;
-  margin: 35px auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-.room-card{
-  background: white;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.12);
-  transition: 0.4s;
-}
-
-.room-card:hover{
-  transform: translateY(-10px) scale(1.02);
-  border-color: #ff7a00;
-}
-
-.room-card img{
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.booking-form{
-  max-width: 720px;
-  margin: 40px auto;
-  padding: 35px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.12);
-}
-/* FINAL MOBILE FIX */
-@media (max-width: 768px) {
-
-  html, body {
-    width: 100%;
-    overflow-x: hidden;
-  }
-
-  .rooms-section {
-    padding: 30px 15px !important;
-    background-attachment: scroll;
-  }
-
-  .section-title {
-    font-size: 28px !important;
-    line-height: 1.2;
-  }
-
-  .section-subtitle {
-    font-size: 14px;
-    margin-bottom: 25px;
-  }
-
-  .room-container {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 22px;
-    width: 100%;
-    margin: 25px auto;
-  }
-
-  .room-card {
-    width: 100% !important;
-    max-width: 360px;
-    margin: 0 auto;
-  }
-
-  .room-card img {
-    height: 180px !important;
-  }
-
-  .booking-form {
-    width: 100% !important;
-    max-width: 360px;
-    margin: 30px auto;
-    padding: 22px !important;
-  }
-
-  .booking-form input,
-  .booking-form select,
-  .booking-form textarea,
-  .booking-form button {
-    width: 100%;
-  }
-}
 
 /* ============================
    GOOGLE TRANSLATE
@@ -900,5 +698,453 @@ body{
 .goog-te-combo{
     width:150px;
 }
+
+}
+/* ===== Premium Section Title ===== */
+
+.gradient-title{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    margin:80px auto 50px;
+    padding:0 20px;
+}
+
+.gradient-title::before,
+.gradient-title::after{
+    content:"";
+    flex:1;
+    max-width:180px;
+    height:4px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#0a74b9,#00c6ff,#ff9800);
+}
+
+.gradient-title h2{
+    margin:0;
+    font-size:42px;
+    font-weight:800;
+    color:#083b66;
+    white-space:nowrap;
+    text-align:center;
+    letter-spacing:1px;
+    text-transform:capitalize;
+    position:relative;
+}
+
+.gradient-title h2::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:-12px;
+    width:70px;
+    height:5px;
+    border-radius:20px;
+    background:#ff9800;
+}
+
+@media(max-width:768px){
+
+.gradient-title{
+    gap:12px;
+    margin:60px auto 40px;
+}
+
+.gradient-title::before,
+.gradient-title::after{
+    max-width:60px;
+    height:3px;
+}
+
+.gradient-title h2{
+    font-size:28px;
+}
+
+.gradient-title h2::after{
+    width:50px;
+}
+
+}
+/* ===== Travel Tips ===== */
+
+.tips-container{
+    max-width:1200px;
+    margin:50px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.tip-card{
+
+    background:white;
+    border-radius:24px;
+    padding:35px 30px;
+
+    text-align:center;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.tip-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:6px;
+
+background:linear-gradient(90deg,#ff9800,#ff5722,#0a74b9);
+
+}
+
+.tip-card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+}
+
+.tip-icon{
+
+width:80px;
+height:80px;
+
+margin:auto;
+
+background:linear-gradient(135deg,#0a74b9,#13c2ff);
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+box-shadow:0 10px 25px rgba(10,116,185,.3);
+
+margin-bottom:20px;
+
+}
+
+.tip-icon i{
+
+font-size:34px;
+color:white;
+
+}
+
+.tip-card h3{
+
+font-size:24px;
+margin-bottom:15px;
+color:#063b66;
+
+}
+
+.tip-card p{
+
+font-size:16px;
+line-height:1.8;
+color:#555;
+
+}
+/* ===========================
+   Food Section
+=========================== */
+
+.food-container{
+
+    max-width:1200px;
+    margin:60px auto;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:35px;
+
+}
+
+.food-card{
+
+    background:#fff;
+    border-radius:25px;
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.food-card::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+top:0;
+
+width:100%;
+height:6px;
+
+background:linear-gradient(90deg,#0a74b9,#00c6ff,#ff9800);
+
+}
+
+.food-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 25px 50px rgba(0,0,0,.15);
+
+}
+
+.food-icon{
+
+width:85px;
+height:85px;
+
+margin:auto;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(135deg,#28a745,#5fd068);
+
+box-shadow:0 10px 30px rgba(40,167,69,.3);
+
+margin-bottom:20px;
+
+}
+
+.food-icon.nonveg{
+
+background:linear-gradient(135deg,#ff5722,#ff9800);
+
+box-shadow:0 10px 30px rgba(255,87,34,.3);
+
+}
+
+.food-icon i{
+
+font-size:34px;
+color:white;
+
+}
+
+.food-card h3{
+
+font-size:28px;
+color:#083b66;
+margin-bottom:15px;
+
+}
+
+.food-card p{
+
+color:#555;
+line-height:1.8;
+margin-bottom:20px;
+
+}
+
+.food-card ul{
+
+list-style:none;
+padding:0;
+margin:0;
+
+}
+
+.food-card li{
+
+padding:10px 0;
+color:#444;
+font-size:16px;
+
+}
+
+.food-card li i{
+
+color:#28a745;
+margin-right:10px;
+
+}
+
+@media(max-width:768px){
+
+.food-container{
+
+grid-template-columns:1fr;
+
+}
+
+.food-card{
+
+padding:30px 25px;
+
+}
+
+.food-card h3{
+
+font-size:24px;
+
+}
+
+}
+/* ==========================
+      Gallery Section
+===========================*/
+
+.gallery-grid{
+
+    max-width:1400px;
+    margin:60px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:28px;
+
+}
+
+.gallery-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:24px;
+
+    cursor:pointer;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+    transition:.4s;
+
+}
+
+.gallery-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 25px 55px rgba(0,0,0,.2);
+
+}
+
+.gallery-card img{
+
+width:100%;
+height:280px;
+
+object-fit:cover;
+
+transition:.6s;
+
+display:block;
+
+}
+
+.gallery-card:hover img{
+
+transform:scale(1.15);
+
+}
+
+.gallery-overlay{
+
+position:absolute;
+
+left:0;
+right:0;
+bottom:0;
+
+padding:25px;
+
+background:linear-gradient(
+to top,
+rgba(0,0,0,.85),
+rgba(0,0,0,.15),
+transparent);
+
+color:white;
+
+transform:translateY(100%);
+
+transition:.45s;
+
+}
+
+.gallery-card:hover .gallery-overlay{
+
+transform:translateY(0);
+
+}
+
+.gallery-overlay h3{
+
+font-size:26px;
+
+margin-bottom:8px;
+
+}
+
+.gallery-overlay p{
+
+font-size:16px;
+
+opacity:.9;
+
+margin-bottom:15px;
+
+}
+
+.gallery-overlay i{
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+background:#ff9800;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+.gallery-overlay i:hover{
+
+transform:rotate(20deg) scale(1.1);
 
 }

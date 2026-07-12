@@ -1,0 +1,148 @@
+/* ===== Rooms Page ===== */
+
+.rooms-section{
+    padding:80px 8%;
+    background:#f7f9fc;
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    color:#083b66;
+    font-weight:800;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:#666;
+    margin-top:12px;
+    margin-bottom:50px;
+    font-size:18px;
+}
+
+.room-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    margin-bottom:60px;
+}
+
+.room-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.room-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.room-card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.room-details{
+    padding:25px;
+}
+
+.room-details h3{
+    color:#083b66;
+    margin-bottom:18px;
+}
+
+.room-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.room-features span{
+    background:#eef6ff;
+    color:#0a5d8f;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.room-details label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.booking-form{
+    max-width:650px;
+    margin:60px auto;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.booking-form h3{
+    text-align:center;
+    color:#083b66;
+    margin-bottom:25px;
+}
+
+.booking-form label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.booking-form input,
+.booking-form textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.booking-form textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.booking-form button{
+    width:100%;
+    margin-top:25px;
+    padding:15px;
+    background:#0a5d8f;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.booking-form button:hover{
+    background:#083b66;
+}
+
+.seo-content{
+    margin-top:70px;
+    background:#fff;
+    padding:35px;
+    border-radius:18px;
+}
+
+.seo-content h2{
+    color:#083b66;
+    margin-bottom:15px;
+}
+
+.seo-content p{
+    line-height:1.8;
+    color:#555;
+}

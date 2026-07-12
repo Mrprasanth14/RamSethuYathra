@@ -15,7 +15,7 @@
   <meta name="author" content="RamSethuYatra">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="fulsigh.css">
+  <!-- <link rel="stylesheet" href="fulsigh.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -69,7 +69,9 @@
 </section>
 
 <section id="booking">
-  <h2>Book Your Package</h2>
+  <div class="gradient-title">
+    <h2>Book Your Package</h2>
+</div>
 
   <div class="pricing-box">
 
@@ -113,16 +115,53 @@
 
 
 <section id="tips">
-  <h2>Travel Tips</h2>
-  <div class="cards">
-    <div class="card">Visit temple early morning to avoid crowd.</div>
-    <div class="card">Carry water bottle during Dhanushkodi trip.</div>
-    <div class="card">Best time to visit: October to March.</div>
-  </div>
+
+<div class="gradient-title">
+    <h2>Travel Tips</h2>
+</div>
+
+<div class="tips-container">
+
+    <div class="tip-card">
+        <div class="tip-icon">
+            <i class="fa-solid fa-temple"></i>
+        </div>
+
+        <h3>Temple Darshan</h3>
+
+        <p>Visit the temple before <strong>7:00 AM</strong> to avoid long queues and enjoy a peaceful darshan.</p>
+    </div>
+
+    <div class="tip-card">
+        <div class="tip-icon">
+            <i class="fa-solid fa-bottle-water"></i>
+        </div>
+
+        <h3>Stay Hydrated</h3>
+
+        <p>Carry a water bottle while visiting Dhanushkodi, especially during summer.</p>
+    </div>
+
+    <div class="tip-card">
+        <div class="tip-icon">
+            <i class="fa-solid fa-calendar-days"></i>
+        </div>
+
+        <h3>Best Season</h3>
+
+        <p>October to March offers pleasant weather for sightseeing and temple visits.</p>
+    </div>
+
+</div>
+
+</section>
 </section>
 
 <section id="food">
-  <h2>Food & Dinner</h2>
+ <div class="gradient-title">
+    <h2>Food & Dinner</h2>
+</div>
+
 
   <div class="cards">
     <div class="card">
@@ -137,38 +176,122 @@
   </div>
 </section>
 <section id="gallery">
-  <h2>Rameswaram Gallery</h2>
-  <div class="gallery">
 
-    <img src="images/Agnitheertham Rameswaram, mandir theertham, Agni theertham in Rameswaram.jpg"
-         alt="Agni Theertham Rameswaram">
+    <div class="gradient-title">
+        <h2>Rameswaram Gallery</h2>
+    </div>
 
-    <img src="images/Dhanuskodi - Rameshwaram.jpg"
-         alt="Dhanushkodi Beach Rameswaram">
+    <div class="gallery-grid">
 
-    <img src="images/APJ Abdul Kalam, Museum(Former President of India) RAMESHWARAM.jpg"
-         alt="APJ Abdul Kalam Memorial Rameswaram">
+        <!-- Agni Theertham -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/Agnitheertham Rameswaram, mandir theertham, Agni theertham in Rameswaram.jpg"
+                alt="Agni Theertham Rameswaram">
 
-    <img src="images/Sri Ramanathaswamy Temple.jpg"
-         alt="Ramanathaswamy Temple Rameswaram">
+            <div class="gallery-overlay">
+                <h3>Agni Theertham</h3>
+                <p>Holy Sea Bath</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
 
-    <img src="images/Pamban Bridge.jpg"
-         alt="Pamban Bridge Rameswaram">
+        <!-- Dhanushkodi -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/Dhanuskodi - Rameshwaram.jpg"
+                alt="Dhanushkodi Beach Rameswaram">
 
-    <img src="images/pamban1.jpg"
-         alt="Pamban Railway Bridge Rameswaram">
+            <div class="gallery-overlay">
+                <h3>Dhanushkodi</h3>
+                <p>Ghost Town</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
 
-    <img src="images/RAMESWARAM.jpg"
-         alt="Rameswaram Tourist Place">
+        <!-- APJ Memorial -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/APJ Abdul Kalam, Museum(Former President of India) RAMESHWARAM.jpg"
+                alt="APJ Abdul Kalam Memorial Rameswaram">
 
-    <img src="images/Jada Theertham, rameswaram _ _Jada_ maguda _theertham_ siva temple _ Dhanuskodi.jpg"
-         alt="Jada Theertham Rameswaram">
+            <div class="gallery-overlay">
+                <h3>APJ Abdul Kalam Memorial</h3>
+                <p>Former President Museum</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
 
-  </div>
+        <!-- Ramanathaswamy Temple -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/Sri Ramanathaswamy Temple.jpg"
+                alt="Ramanathaswamy Temple Rameswaram">
+
+            <div class="gallery-overlay">
+                <h3>Ramanathaswamy Temple</h3>
+                <p>Famous Jyotirlinga Temple</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
+
+        <!-- Pamban Bridge -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/Pamban Bridge.jpg"
+                alt="Pamban Bridge Rameswaram">
+
+            <div class="gallery-overlay">
+                <h3>Pamban Bridge</h3>
+                <p>India's Iconic Sea Bridge</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
+
+        <!-- Railway Bridge -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/pamban1.jpg"
+                alt="Pamban Railway Bridge Rameswaram">
+
+            <div class="gallery-overlay">
+                <h3>Pamban Railway Bridge</h3>
+                <p>Historic Engineering Wonder</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
+
+        <!-- Rameswaram -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/RAMESWARAM.jpg"
+                alt="Rameswaram Tourist Place">
+
+            <div class="gallery-overlay">
+                <h3>Rameswaram</h3>
+                <p>Sacred Island Destination</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
+
+        <!-- Jada Theertham -->
+        <div class="gallery-card" onclick="openImage(this.querySelector('img').src)">
+            <img src="images/Jada Theertham, rameswaram _ _Jada_ maguda _theertham_ siva temple _ Dhanuskodi.jpg"
+                alt="Jada Theertham Rameswaram">
+
+            <div class="gallery-overlay">
+                <h3>Jada Theertham</h3>
+                <p>Sacred Pilgrimage Spot</p>
+                <i class="fa-solid fa-expand"></i>
+            </div>
+        </div>
+
+    </div>
+
 </section>
 
+<!-- Full Screen Image Popup -->
+<div id="imagePopup" class="image-popup" onclick="closeImage()">
+    <img id="popupImage" alt="Gallery Image">
+</div>
+
 <section id="reviews">
-  <h2>Customer Reviews</h2>
+  <div class="gradient-title">
+    <h2>Customer Reviews</h2>
+</div>
   <div class="cards">
     <div class="card">
       <p>"Best Rameswaram trip package. Room and cab were good."</p>
@@ -182,7 +305,9 @@
 </section>
 
 <section id="faq">
-  <h2>FAQ</h2>
+  <div class="gradient-title">
+    <h2>Frequently Asked Questions</h2>
+</div>
   <div class="faq">
     <h3>Is hotel included?</h3>
     <p>Yes, hotel room is included based on selected package.</p>
@@ -196,7 +321,9 @@
 </section>
 
 <section id="map">
-  <h2>Find Us</h2>
+  <div class="gradient-title">
+    <h2>Find Us</h2>
+</div>
   <iframe 
     src="https://www.google.com/maps?q=Rameswaram,Tamil%20Nadu&output=embed"
     width="100%" 
@@ -211,7 +338,9 @@
 <!-- <button onclick="toggleDark()" class="dark-btn">🌙</button> -->
 <a href="tel:+918838170745" class="call-btn">Call Now</a>
 <section id="seo-content">
-  <h2>Rameswaram Tour Packages</h2>
+  <div class="gradient-title">
+    <h2>Rameswaram Tour Packages</h2>
+</div>
 
   <p>
     RamSethuYatra offers complete Rameswaram tour packages including
@@ -238,6 +367,14 @@ function googleTranslateElementInit() {
         includedLanguages: 'en,ta,hi',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
     }, 'google_translate_element');
+}
+function openImage(src) {
+    document.getElementById("popupImage").src = src;
+    document.getElementById("imagePopup").style.display = "flex";
+}
+
+function closeImage() {
+    document.getElementById("imagePopup").style.display = "none";
 }
 </script>
 
