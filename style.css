@@ -9,6 +9,12 @@ body {
   background: #f8f9fa;
   color: #222;
 }
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.45);
+}
 
 header {
   width: 100%;
@@ -173,9 +179,17 @@ footer {
     gap: 12px;
   }
 
-  nav {
-    text-align: center;
-  }
+ .right-menu{
+    display:flex;
+    align-items:center;
+    gap:15px;      /* Space between Admin and Language */
+}
+
+nav{
+    display:flex;
+    gap:30px;      /* Space between Home, About, Admin */
+    align-items:center;
+}
 
   nav a {
     display: inline-block;
@@ -803,21 +817,88 @@ font-size:18px;
   }
 }
 
+/* ============================
+   GOOGLE TRANSLATE
+============================ */
 
-.language-menu{
+.right-menu{
     display:flex;
     align-items:center;
-    gap:8px;
-    background:#fff;
-    padding:8px 12px;
-    border-radius:30px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    gap:20px;
 }
 
-.language-menu select{
-    border:none;
-    outline:none;
-    cursor:pointer;
+/* Translate Box */
+.translate-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    padding:8px 14px;
+    border-radius:30px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/* Globe icon */
+.translate-icon{
+    font-size:18px;
+    color:#0b3954;
+}
+
+/* Google widget */
+#google_translate_element{
+    display:flex;
+    align-items:center;
+}
+
+/* Hide Google logo ONLY */
+.goog-logo-link,
+.goog-te-gadget img{
+    display:none !important;
+}
+
+
+
+/* Language dropdown */
+.goog-te-combo{
+    background:transparent !important;
+    border:none !important;
+    outline:none !important;
     font-size:15px;
-    background:transparent;
+    font-weight:600;
+    color:#222;
+    cursor:pointer;
+    padding:4px;
+}
+
+/* Remove top banner */
+.goog-te-banner-frame.skiptranslate{
+    display:none !important;
+}
+
+iframe.goog-te-banner-frame{
+    display:none !important;
+}
+
+body{
+    top:0 !important;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+.right-menu{
+    width:100%;
+    flex-direction:column;
+    gap:12px;
+}
+
+.translate-box{
+    width:220px;
+    justify-content:center;
+}
+
+.goog-te-combo{
+    width:150px;
+}
+
 }

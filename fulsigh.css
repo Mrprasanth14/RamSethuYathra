@@ -120,6 +120,16 @@ button {
     width: 100%;
   }
 }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
 
+body {
+    top: 0 !important;
+}
+
+.skiptranslate iframe {
+    display: none !important;
+}
 
 

@@ -151,3 +151,14 @@
 .poojai-card{
   border-left:6px solid #f59e0b;
 }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.skiptranslate iframe {
+    display: none !important;
+}
