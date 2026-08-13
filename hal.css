@@ -162,3 +162,76 @@ body {
 .skiptranslate iframe {
     display: none !important;
 }
+/* =========================================
+   MOBILE TEXT / SECTION FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    section {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    section h2 {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 28px;
+        line-height: 1.25;
+        text-align: center;
+
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    #seo-content,
+    #faq {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #seo-content h2,
+    #faq h2 {
+        font-size: 27px;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    #seo-content p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .faq {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+    }
+}
+@media (max-width: 480px) {
+
+    section h2 {
+        font-size: 24px;
+        padding: 0 12px;
+    }
+
+    #seo-content h2,
+    #faq h2 {
+        font-size: 23px;
+    }
+
+    #seo-content p {
+        font-size: 14px;
+    }
+}
