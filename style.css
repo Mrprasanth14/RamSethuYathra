@@ -17,30 +17,47 @@ background:rgba(0,0,0,.45);
 }
 
 header {
-  width: 100%;
-  background: #003049;
-  color: white;
-  padding: 18px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    width: 100%;
+    background: #003049;
+    color: white;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 0;
 }
 
+.translate-box {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
 .hero {
  height: 90vh;
   position: relative;
@@ -266,23 +283,28 @@ nav{
   z-index: 999;
 }
 .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  background: #003049;
-  color: white;
-  text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    background: #003049;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
 }
 
 .stats div {
-  padding: 25px;
+    padding: 10px;
 }
 
 .stats h2 {
-  color: #f77f00;
-  font-size: 36px;
+    color: #f77f00;
+    font-size: 28px;
+    margin: 5px 0;
 }
 
+.stats p {
+    margin: 5px 0;
+}
 table {
   width: 100%;
   max-width: 900px;
@@ -1236,5 +1258,79 @@ transform:rotate(20deg) scale(1.1);
 
     #seo-content p {
         font-size: 14px;
+    }
+}
+@media (max-width: 600px) {
+
+    header {
+        width: 100%;
+        padding: 6px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+
+    .logo {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .right-menu {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 11px;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .translate-box {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .translate-icon {
+        font-size: 11px;
+    }
+
+    #google_translate_element {
+        transform: scale(0.75);
+        transform-origin: right center;
+    }
+}
+@media (max-width: 600px) {
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        padding: 8px 3px;
+    }
+
+    .stats div {
+        padding: 3px 1px;
+    }
+
+    .stats h2 {
+        font-size: 20px;
+        margin: 2px 0;
+    }
+
+    .stats p {
+        font-size: 11px;
+        margin: 2px 0;
+        white-space: nowrap;
     }
 }
