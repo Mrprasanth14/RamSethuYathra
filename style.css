@@ -1264,35 +1264,46 @@ transform:rotate(20deg) scale(1.1);
 
     header {
         width: 100%;
-        padding: 6px 8px;
+        padding: 6px 5px;
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         box-sizing: border-box;
+        min-height: 42px;
     }
 
     .logo {
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: bold;
         white-space: nowrap;
+        margin: 0;
+        padding: 0;
     }
 
     .right-menu {
         display: flex;
+        flex-direction: row;
         align-items: center;
-        gap: 5px;
-        flex: 1;
         justify-content: flex-end;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
     }
 
     nav {
         display: flex;
+        flex-direction: row;
         align-items: center;
         gap: 5px;
+        margin: 0;
+        padding: 0;
     }
 
     nav a {
-        font-size: 11px;
+        font-size: 10px;
         margin: 0;
+        padding: 0;
         white-space: nowrap;
     }
 
@@ -1300,15 +1311,17 @@ transform:rotate(20deg) scale(1.1);
         display: flex;
         align-items: center;
         margin: 0;
+        padding: 0;
     }
 
     .translate-icon {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     #google_translate_element {
-        transform: scale(0.75);
-        transform-origin: right center;
+        transform: scale(0.65);
+        transform-origin: left center;
+        width: 110px;
     }
 }
 @media (max-width: 600px) {
