@@ -47,12 +47,38 @@
 
         </nav>
 
-        <div class="translate-box">
-            <span class="translate-icon">🌐</span>
-            <div id="google_translate_element"></div>
+      <div class="translate-box">
+
+    <button type="button" id="languageBtn" class="language-btn">
+        🌐
+    </button>
+
+    <div id="languageMenu" class="language-menu">
+
+        <div class="language-title">
+            Select Language
         </div>
 
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
+
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
+
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
+
     </div>
+
+</div>
+
+<!-- Hidden Google Translate engine -->
+<div id="google_translate_element"></div>
+
+</div>
 
 </header>
 
@@ -375,17 +401,20 @@
 <footer>
   <p>© 2026 Rameswaram TripMate | Contact: +91 9876543210</p>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="module" src="script.js"></script>
 </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+<script type="module" src="script.js"></script>
 <script>
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
         includedLanguages: 'en,ta,hi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        autoDisplay: false
     }, 'google_translate_element');
 }
+
 function openImage(src) {
     document.getElementById("popupImage").src = src;
     document.getElementById("imagePopup").style.display = "flex";
@@ -397,4 +426,3 @@ function closeImage() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</html>

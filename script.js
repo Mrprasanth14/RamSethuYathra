@@ -336,6 +336,93 @@ async function showWellDetailsform() {
     Swal.fire("Error", error.message, "error");
   }
 }
+document.addEventListener("DOMContentLoaded", function () {
+
+    const languageBtn = document.getElementById("languageBtn");
+    const languageMenu = document.getElementById("languageMenu");
+
+    /* =========================
+       OPEN / CLOSE LANGUAGE MENU
+    ========================= */
+
+    languageBtn.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle("open");
+
+    });
+
+
+    /* =========================
+       CHANGE LANGUAGE
+    ========================= */
+
+    const languageButtons =
+        languageMenu.querySelectorAll("button[data-lang]");
+
+    languageButtons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+            const language =
+                this.getAttribute("data-lang");
+
+            changeGoogleLanguage(language);
+
+            languageMenu.classList.remove("open");
+
+        });
+
+    });
+
+
+    /* =========================
+       CLOSE WHEN CLICK OUTSIDE
+    ========================= */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !languageBtn.contains(event.target) &&
+            !languageMenu.contains(event.target)
+        ) {
+
+            languageMenu.classList.remove("open");
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   GOOGLE TRANSLATE
+========================================================= */
+
+function changeGoogleLanguage(language) {
+
+    const googleSelect =
+        document.querySelector(".goog-te-combo");
+
+    if (!googleSelect) {
+
+        console.log(
+            "Google Translate is not ready yet."
+        );
+
+        return;
+    }
+
+    googleSelect.value = language;
+
+    googleSelect.dispatchEvent(
+        new Event("change")
+    );
+}
 async function showPoojaDetailsform() {
   const persons = document.getElementById("poojaPersons").value;
   const date = document.getElementById("poojaDate").value;

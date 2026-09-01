@@ -1170,51 +1170,217 @@ transition:.3s;
 transform:rotate(20deg) scale(1.1);
 
 }
+/* =====================================================
+   MOBILE HEADER + LANGUAGE MENU
+===================================================== */
+
+@media (max-width: 600px) {
+
+    header {
+        width: 100%;
+        min-height: 58px;
+        padding: 8px 10px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 5px;
+    }
+
+    /* Website name */
+    .logo {
+        font-size: 15px;
+        font-weight: 700;
+
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Home / About / Admin / Language */
+    .right-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+
+        width: auto;
+        gap: 5px;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navigation */
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 3px;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        font-size: 10px;
+        font-weight: 600;
+
+        margin: 0;
+        padding: 2px;
+
+        white-space: nowrap;
+    }
+
+    /* Language */
+    .translate-box {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .language-btn {
+        width: 42px;
+        height: 38px;
+
+        padding: 0;
+        margin: 0;
+
+        border: none;
+        border-radius: 50%;
+
+        background: white;
+        color: #003049;
+
+        font-size: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+    }
+
+    /* Language dropdown */
+    .language-menu {
+        position: absolute;
+
+        top: 46px;
+        right: 0;
+
+        width: 150px;
+
+        background: white;
+        border-radius: 12px;
+
+        padding: 6px;
+
+        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
+        z-index: 99999;
+
+        display: none;
+    }
+
+    .language-menu.active {
+        display: block;
+    }
+
+    .language-title {
+        padding: 9px;
+        font-size: 13px;
+        font-weight: bold;
+
+        color: #222;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .language-menu button {
+        width: 100%;
+
+        padding: 9px;
+
+        background: white;
+        color: #222;
+
+        border: none;
+        border-radius: 7px;
+
+        font-size: 13px;
+        text-align: left;
+
+        cursor: pointer;
+    }
+
+    .language-menu button:hover {
+        background: #f1f1f1;
+    }
+
+    /* Hide Google's original selector */
+    #google_translate_element {
+        position: absolute;
+
+        width: 1px;
+        height: 1px;
+
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    header {
+        padding: 7px 8px;
+    }
+
+    .logo {
+        font-size: 13px;
+    }
+
+    .right-menu {
+        gap: 3px;
+    }
+
+    nav {
+        gap: 1px;
+    }
+
+    nav a {
+        font-size: 9px;
+        padding: 2px 1px;
+    }
+
+    .language-btn {
+        width: 38px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .language-menu {
+        top: 43px;
+        right: 0;
+        width: 145px;
+    }
+}
 /* =========================================
    MOBILE GALLERY
 ========================================= */
 
-@media (max-width: 768px) {
 
-    .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        padding: 10px;
-    }
-
-    .gallery-card {
-        width: 100%;
-        height: 180px;
-        border-radius: 14px;
-        overflow: hidden;
-    }
-
-    .gallery-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .gallery-overlay {
-        padding: 10px;
-        justify-content: flex-end;
-    }
-
-    .gallery-overlay h3 {
-        font-size: 14px;
-        margin: 0 0 3px;
-    }
-
-    .gallery-overlay p {
-        font-size: 11px;
-        margin: 0;
-    }
-
-    .gallery-overlay i {
-        font-size: 14px;
-        margin-top: 5px;
-    }
-}
 @media (max-width: 480px) {
 
     .gallery-grid {
@@ -1260,171 +1426,38 @@ transform:rotate(20deg) scale(1.1);
         font-size: 14px;
     }
 }
-@media (max-width: 600px) {
+
+@media (max-width: 480px) {
 
     header {
-        width: 100% !important;
-        height: 50px !important;
-        min-height: 50px !important;
-
-        padding: 0 10px !important;
-        margin: 0 !important;
-
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-
-        flex-wrap: nowrap !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
+        padding: 0 12px;
+        gap: 5px;
     }
-
-    /* =========================
-       LOGO
-    ========================= */
 
     .logo {
-        font-size: 13px !important;
-        font-weight: 700 !important;
-
-        white-space: nowrap !important;
-        flex-shrink: 0 !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
+        font-size: 17px;
     }
-
-
-    /* =========================
-       RIGHT MENU
-    ========================= */
 
     .right-menu {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-
-        flex-wrap: nowrap !important;
-
-        gap: 7px !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        flex-shrink: 0 !important;
+        gap: 7px;
     }
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
 
     nav {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-
-        flex-wrap: nowrap !important;
-
-        gap: 7px !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        flex-shrink: 0 !important;
+        gap: 6px;
     }
-
 
     nav a {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        text-decoration: none !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        font-size: 0 !important;
-
-        white-space: nowrap !important;
+        font-size: 13px;
     }
 
-
-    /* Hide text on mobile */
-
-    .desktop-text {
-        display: none !important;
-    }
-
-
-    /* Show icons */
-
-    .mobile-icon {
-        display: inline-block !important;
-
-        font-size: 16px !important;
-
-        line-height: 1 !important;
-
-        width: 18px !important;
-        height: 20px !important;
-
-        text-align: center !important;
-    }
-
-
-    /* =========================
-       GOOGLE TRANSLATE
-    ========================= */
-
-    .translate-box {
-        width: 32px !important;
-        max-width: 32px !important;
-        height: 30px !important;
-
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-
-        overflow: hidden !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        flex-shrink: 0 !important;
-    }
-
-
-    .translate-icon {
-        display: block !important;
-
-        font-size: 16px !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        position: relative;
-        z-index: 2;
-    }
-
-
-    #google_translate_element {
-        position: absolute !important;
-
-        width: 120px !important;
-        height: 30px !important;
-
-        transform: scale(0.45) !important;
-        transform-origin: center !important;
-
-        opacity: 0 !important;
-
-        pointer-events: none !important;
+    .language-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
     }
 
 }
+
 @media (max-width: 600px) {
     .stats {
         display: grid;
@@ -1447,4 +1480,703 @@ transform:rotate(20deg) scale(1.1);
         margin: 2px 0;
         white-space: nowrap;
     }
+}
+/* =========================================================
+   RAMSETHUYATRA HEADER + LANGUAGE
+========================================================= */
+
+header {
+    width: 100%;
+    height: 85px;
+    background: #003049;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    position: relative;
+    z-index: 1000;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* =========================
+   RIGHT MENU
+========================= */
+
+.right-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+nav a:hover {
+    color: #f77f00;
+}
+
+/* Desktop text */
+
+.desktop-text {
+    display: inline;
+}
+
+/* Mobile icons hidden on desktop */
+
+.mobile-icon {
+    display: none;
+}
+
+/* =========================
+   LANGUAGE CONTAINER
+========================= */
+
+.translate-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================
+   GLOBE BUTTON
+========================= */
+
+.language-btn {
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #003049;
+
+    font-size: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+
+    transition: .25s;
+}
+
+.language-btn:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   LANGUAGE MENU
+========================= */
+
+.language-menu {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 190px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 10px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+
+    display: none;
+
+    z-index: 999999;
+}
+
+/* JavaScript adds OPEN */
+
+.language-menu.open {
+    display: block;
+}
+
+/* =========================
+   LANGUAGE TITLE
+========================= */
+
+.language-title {
+    font-size: 15px;
+    font-weight: bold;
+
+    color: #222;
+
+    padding: 10px;
+
+    border-bottom: 1px solid #eee;
+
+    margin-bottom: 5px;
+}
+
+/* =========================
+   LANGUAGE BUTTONS
+========================= */
+
+.language-menu button {
+    width: 100%;
+
+    background: white;
+    color: #222;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 11px;
+
+    text-align: left;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin: 3px 0;
+}
+
+.language-menu button:hover {
+    background: #f1f5f8;
+    color: #003049;
+}
+
+/* =========================
+   HIDE GOOGLE TRANSLATE UI
+========================= */
+
+#google_translate_element {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-logo-link,
+.goog-te-gadget-icon,
+.goog-te-gadget img {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* =========================================================
+   MOBILE HEADER
+========================================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 85px;
+
+        padding: 0 20px;
+
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+
+        overflow: visible;
+    }
+
+    /* Logo */
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+
+        white-space: nowrap;
+
+        flex-shrink: 0;
+    }
+
+    /* Right side */
+
+    .right-menu {
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 12px;
+
+        width: auto;
+
+        flex-shrink: 0;
+    }
+
+    /* Navigation */
+
+    nav {
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 16px;
+
+        margin: 0;
+        padding: 0;
+
+        white-space: nowrap;
+    }
+
+    /* Show text on mobile */
+
+    .desktop-text {
+        display: inline;
+    }
+
+    /* Hide emoji icons on mobile */
+
+    .mobile-icon {
+        display: none;
+    }
+
+    /* Globe */
+
+    .language-btn {
+        width: 58px;
+        height: 58px;
+
+        font-size: 27px;
+
+        flex-shrink: 0;
+    }
+
+    /* Language popup */
+
+    .language-menu {
+        top: calc(100% + 8px);
+
+        right: 0;
+
+        width: 175px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    header {
+        height: 85px;
+
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .right-menu {
+        gap: 7px;
+    }
+
+    nav {
+        gap: 6px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .language-btn {
+        width: 52px;
+        height: 52px;
+
+        font-size: 24px;
+    }
+
+    .language-menu {
+        width: 165px;
+
+        top: calc(100% + 8px);
+        right: 0;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    header {
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .right-menu {
+        gap: 4px;
+    }
+
+    nav {
+        gap: 3px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .language-btn {
+        width: 45px;
+        height: 45px;
+
+        font-size: 21px;
+    }
+
+    .language-menu {
+        width: 155px;
+    }
+}
+/* ================================
+   SMALLER LANGUAGE BUTTON
+================================ */
+
+.language-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+}
+
+/* Smaller white language container */
+.translate-box {
+    padding: 5px;
+    border-radius: 30px;
+}
+
+/* Smaller dropdown */
+.language-menu {
+    width: 160px;
+    top: calc(100% + 8px);
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .language-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .translate-box {
+        padding: 0;
+    }
+
+    .language-menu {
+        width: 160px;
+    }
+}
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 480px) {
+
+    .language-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .language-menu {
+        width: 150px;
+    }
+}
+.translate-box {
+    background: white;
+    padding: 5px;
+    border-radius: 50px;
+    width: auto;
+    height: auto;
+}
+
+.language-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+}
+/* =========================================
+   TAMIL / LONG TRANSLATION MOBILE FIX
+========================================= */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Section titles */
+.gradient-title {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.gradient-title h2 {
+    white-space: normal !important;
+    max-width: 100%;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-align: center;
+}
+
+/* Normal section headings */
+section h2 {
+    max-width: 100%;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Card headings */
+.card h3,
+.price-card h3,
+.package-card h3,
+.tip-card h3,
+.food-card h3,
+.gallery-overlay h3 {
+    max-width: 100%;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Paragraphs */
+.card p,
+.price-card p,
+.package-card li,
+.tip-card p,
+.food-card p,
+.food-card li {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Buttons - translated text should fit */
+button,
+.btn,
+.package-btn,
+.call-btn,
+.whatsapp-btn {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* =========================================
+   MOBILE TAMIL FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+    .gradient-title {
+        display: flex;
+        width: 100%;
+        padding: 0 10px;
+        gap: 10px;
+        margin: 50px auto 35px;
+    }
+
+    .gradient-title::before,
+    .gradient-title::after {
+        flex: 1;
+        min-width: 15px;
+        max-width: 50px;
+    }
+
+    .gradient-title h2 {
+        font-size: 25px;
+        line-height: 1.5;
+        white-space: normal !important;
+        max-width: 75%;
+    }
+
+    section h2 {
+        font-size: 25px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    .card h3,
+    .price-card h3,
+    .package-card h3,
+    .tip-card h3,
+    .food-card h3 {
+        line-height: 1.5;
+    }
+
+    .card p,
+    .tip-card p,
+    .food-card p {
+        line-height: 1.8;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .gradient-title {
+        gap: 7px;
+        padding: 0 8px;
+    }
+
+    .gradient-title h2 {
+        font-size: 21px;
+        line-height: 1.5;
+        max-width: 80%;
+    }
+
+    .gradient-title::before,
+    .gradient-title::after {
+        height: 3px;
+        max-width: 35px;
+    }
+
+    section h2 {
+        font-size: 22px;
+        line-height: 1.5;
+    }
+
+    .card h3,
+    .price-card h3,
+    .package-card h3,
+    .tip-card h3,
+    .food-card h3 {
+        font-size: 21px;
+        line-height: 1.5;
+    }
+
+    button,
+    .btn,
+    .package-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+/* =========================================
+   HIDE GOOGLE TRANSLATE TOP BANNER
+========================================= */
+
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+/* Hide Google Translate floating elements */
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+.goog-te-menu-frame {
+    display: none !important;
+}
+
+/* Hide Google Translate branding */
+.goog-logo-link,
+.goog-te-gadget-icon,
+.goog-te-gadget img {
+    display: none !important;
+}
+
+/* Hide the hidden Google Translate container */
+#google_translate_element {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Prevent Google from adding spacing */
+html {
+    margin-top: 0 !important;
+}
+
+body {
+    margin-top: 0 !important;
+}
+iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+iframe.skiptranslate {
+    display: none !important;
 }
