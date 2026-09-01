@@ -122,6 +122,23 @@ body {
     line-height: 1.5;
   }
 }
+.delete-btn {
+    margin-top: 15px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #dc3545;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #b02a37;
+    transform: translateY(-1px);
+}
 /* =========================================
    MOBILE TEXT / SECTION FIX
 ========================================= */

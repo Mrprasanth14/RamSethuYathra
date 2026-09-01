@@ -1,11 +1,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 
 import {
-  getFirestore
+    getFirestore,
+    collection,
+    addDoc
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 import {
-  getAuth
+    getAuth
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,9 +20,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
 const auth = getAuth(app);
 
 
-export { db, auth };
+// Export everything needed by your website
+export {
+    db,
+    auth,
+    collection,
+    addDoc
+};

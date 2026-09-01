@@ -1263,66 +1263,167 @@ transform:rotate(20deg) scale(1.1);
 @media (max-width: 600px) {
 
     header {
-        width: 100%;
-        padding: 6px 5px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        box-sizing: border-box;
-        min-height: 42px;
+        width: 100% !important;
+        height: 50px !important;
+        min-height: 50px !important;
+
+        padding: 0 10px !important;
+        margin: 0 !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        flex-wrap: nowrap !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
     }
+
+    /* =========================
+       LOGO
+    ========================= */
 
     .logo {
-        font-size: 13px;
-        font-weight: bold;
-        white-space: nowrap;
-        margin: 0;
-        padding: 0;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
     }
+
+
+    /* =========================
+       RIGHT MENU
+    ========================= */
 
     .right-menu {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 4px;
-        margin: 0;
-        padding: 0;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+
+        flex-wrap: nowrap !important;
+
+        gap: 7px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        flex-shrink: 0 !important;
     }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
 
     nav {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 5px;
-        margin: 0;
-        padding: 0;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+
+        flex-wrap: nowrap !important;
+
+        gap: 7px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        flex-shrink: 0 !important;
     }
+
 
     nav a {
-        font-size: 10px;
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        text-decoration: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        font-size: 0 !important;
+
+        white-space: nowrap !important;
     }
+
+
+    /* Hide text on mobile */
+
+    .desktop-text {
+        display: none !important;
+    }
+
+
+    /* Show icons */
+
+    .mobile-icon {
+        display: inline-block !important;
+
+        font-size: 16px !important;
+
+        line-height: 1 !important;
+
+        width: 18px !important;
+        height: 20px !important;
+
+        text-align: center !important;
+    }
+
+
+    /* =========================
+       GOOGLE TRANSLATE
+    ========================= */
 
     .translate-box {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        padding: 0;
+        width: 32px !important;
+        max-width: 32px !important;
+        height: 30px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        overflow: hidden !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        flex-shrink: 0 !important;
     }
+
 
     .translate-icon {
-        font-size: 10px;
+        display: block !important;
+
+        font-size: 16px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        position: relative;
+        z-index: 2;
     }
 
+
     #google_translate_element {
-        transform: scale(0.65);
-        transform-origin: left center;
-        width: 110px;
+        position: absolute !important;
+
+        width: 120px !important;
+        height: 30px !important;
+
+        transform: scale(0.45) !important;
+        transform-origin: center !important;
+
+        opacity: 0 !important;
+
+        pointer-events: none !important;
     }
+
 }
 @media (max-width: 600px) {
     .stats {

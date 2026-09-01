@@ -1,123 +1,226 @@
 import { db, auth } from "./firebase.js";
 
 import {
-  collection,
-  getDocs
+    collection,
+    getDocs,
+    deleteDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 import {
-  onAuthStateChanged,
-  signOut
+    onAuthStateChanged,
+    signOut
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-// Check Firebase login
+// ===============================
+// CHECK FIREBASE LOGIN
+// ===============================
+
 onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log("Authenticated admin:", user.email);
-    } else {
+
+    if (!user) {
         console.log("No authenticated user");
         window.location.href = "admin-login.html";
+        return;
     }
 
-  console.log("Admin authenticated:", user.email);
+    console.log("Authenticated admin:", user.email);
 
-  loadBookings("templeBookings", "templeData");
-  loadBookings("wellBookings", "wellData");
-  loadBookings("poojaBookings", "poojaData");
-  loadBookings("roomBookings", "roomData");
-  loadBookings("cabBookings", "cabData");
+    loadBookings("templeBookings", "templeData");
+    loadBookings("wellBookings", "wellData");
+    loadBookings("poojaBookings", "poojaData");
+    loadBookings("roomBookings", "roomData");
+    loadBookings("cabBookings", "cabData");
 });
 
 
+// ===============================
+// LOAD BOOKINGS
+// ===============================
+
 async function loadBookings(collectionName, divId) {
 
-  const box = document.getElementById(divId);
+    const box = document.getElementById(divId);
 
-  if (!box) return;
+    if (!box) return;
 
-  box.innerHTML = "Loading...";
+    box.innerHTML = "Loading...";
 
-  try {
+    try {
 
-    const querySnapshot =
-      await getDocs(collection(db, collectionName));
+        const querySnapshot =
+            await getDocs(collection(db, collectionName));
 
-    if (querySnapshot.empty) {
+        if (querySnapshot.empty) {
 
-      box.innerHTML =
-        `<div class="empty-msg">No bookings found</div>`;
+            box.innerHTML =
+                `<div class="empty-msg">No bookings found</div>`;
 
-      return;
+            return;
+        }
+
+        box.innerHTML = "";
+
+        querySnapshot.forEach((bookingDoc) => {
+
+            const data = bookingDoc.data();
+
+            // Firebase document ID
+            const bookingId = bookingDoc.id;
+
+            box.innerHTML += `
+
+                <div class="admin-card">
+
+                    <p>
+                        <b>Service:</b>
+                        ${data.service || collectionName}
+                    </p>
+
+                    <p>
+                        <b>Persons:</b>
+                        ${data.persons || "-"}
+                    </p>
+
+                    <p>
+                        <b>Date:</b>
+                        ${data.date || "-"}
+                    </p>
+
+                    <p>
+                        <b>Time:</b>
+                        ${data.time || "-"}
+                    </p>
+
+                    <p>
+                        <b>Mobile:</b>
+                        ${data.mobile || "-"}
+                    </p>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteBooking('${collectionName}', '${bookingId}')">
+                        🗑️ Delete Booking
+                    </button>
+
+                </div>
+
+            `;
+        });
+
+    } catch (error) {
+
+        console.error(
+            `Error loading ${collectionName}:`,
+            error
+        );
+
+        box.innerHTML =
+            `<div class="empty-msg">
+                Unable to load bookings
+            </div>`;
     }
-
-    box.innerHTML = "";
-
-    querySnapshot.forEach((doc) => {
-
-      const data = doc.data();
-
-      box.innerHTML += `
-        <div class="admin-card">
-
-          <p>
-            <b>Service:</b>
-            ${data.service || collectionName}
-          </p>
-
-          <p>
-            <b>Persons:</b>
-            ${data.persons || "-"}
-          </p>
-
-          <p>
-            <b>Date:</b>
-            ${data.date || "-"}
-          </p>
-
-          <p>
-            <b>Time:</b>
-            ${data.time || "-"}
-          </p>
-
-          <p>
-            <b>Mobile:</b>
-            ${data.mobile || "-"}
-          </p>
-
-        </div>
-      `;
-    });
-
-  } catch (error) {
-
-    console.error(
-      `Error loading ${collectionName}:`,
-      error
-    );
-
-    box.innerHTML =
-      `<div class="empty-msg">
-        Unable to load bookings
-      </div>`;
-  }
 }
 
 
-// Logout
+// ===============================
+// DELETE BOOKING
+// ===============================
+
+async function deleteBooking(collectionName, bookingId) {
+
+    const result = await Swal.fire({
+        icon: "warning",
+        title: "Delete Booking?",
+        text: "This booking will be permanently removed from your records.",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#555",
+        reverseButtons: true
+    });
+
+    if (!result.isConfirmed) {
+        return;
+    }
+
+    try {
+
+        await deleteDoc(
+            doc(db, collectionName, bookingId)
+        );
+
+        // Success message
+        await Swal.fire({
+            icon: "success",
+            title: "Booking Deleted ✨",
+            text: "The booking has been successfully removed.",
+            confirmButtonText: "Done",
+            confirmButtonColor: "#ff7a00",
+            timer: 2000,
+            timerProgressBar: true
+        });
+
+        // Reload the correct section
+        let divId;
+
+        if (collectionName === "templeBookings") {
+            divId = "templeData";
+
+        } else if (collectionName === "wellBookings") {
+            divId = "wellData";
+
+        } else if (collectionName === "poojaBookings") {
+            divId = "poojaData";
+
+        } else if (collectionName === "roomBookings") {
+            divId = "roomData";
+
+        } else if (collectionName === "cabBookings") {
+            divId = "cabData";
+        }
+
+        loadBookings(collectionName, divId);
+
+    } catch (error) {
+
+        console.error("Delete booking error:", error);
+
+        // Error message
+        Swal.fire({
+            icon: "error",
+            title: "Delete Failed",
+            text: "We couldn't remove this booking. Please try again.",
+            confirmButtonText: "Close",
+            confirmButtonColor: "#d33"
+        });
+    }
+}
+
+
+// Make deleteBooking available to HTML onclick
+window.deleteBooking = deleteBooking;
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
 async function logout() {
 
-  try {
+    try {
 
-    await signOut(auth);
+        await signOut(auth);
 
-    window.location.href = "admin-login.html";
+        window.location.href = "admin-login.html";
 
-  } catch (error) {
+    } catch (error) {
 
-    console.error("Logout error:", error);
+        console.error("Logout error:", error);
 
-  }
+    }
 }
 
 window.logout = logout;
