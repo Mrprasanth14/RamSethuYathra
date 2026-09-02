@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Complete Your Booking | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="booking.css">
+
+</head>
+
+
+<body>
+
+
+<header class="booking-header">
+
+    <a href="index.html">
+        ← RamSethuYatra
+    </a>
+
+    <h1>Complete Your Booking</h1>
+
+</header>
+
+
+
+<main class="booking-container">
+
+
+    <!-- BOOKING SUMMARY -->
+
+    <section class="booking-summary">
+
+        <h2>Booking Summary</h2>
+
+
+        <div class="summary-row">
+
+            <span>Package</span>
+
+            <strong id="packageName">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>Persons</span>
+
+            <strong id="personCount">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="summary-total">
+
+            <span>Total Package</span>
+
+            <strong id="totalAmount">
+                ₹0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <section class="booking-form">
+
+        <h2>Customer Details</h2>
+
+
+        <form id="bookingForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerMobile"
+                    placeholder="Enter mobile number"
+                    maxlength="10"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Travel Date
+                </label>
+
+                <input
+                    type="date"
+                    id="travelDate"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Pickup Time
+                </label>
+
+                <input
+                    type="time"
+                    id="pickupTime"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Pickup Location
+                </label>
+
+                <input
+                    type="text"
+                    id="pickupLocation"
+                    placeholder="Hotel / Railway Station / Bus Stand"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Special Request
+                </label>
+
+                <textarea
+                    id="specialRequest"
+                    placeholder="Any special requirements?"
+                ></textarea>
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="confirm-btn"
+            >
+                Confirm Booking
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+const params =
+    new URLSearchParams(window.location.search);
+
+
+const packageType =
+    params.get("package");
+
+const persons =
+    params.get("persons");
+
+const price =
+    params.get("price");
+
+
+const packageNames = {
+
+    normal: "Normal Package",
+
+    medium: "Medium Package",
+
+    premium: "Premium Package"
+
+};
+
+
+document.getElementById("packageName")
+    .textContent =
+    packageNames[packageType] || "Package";
+
+
+document.getElementById("personCount")
+    .textContent =
+    persons + " Persons";
+
+
+document.getElementById("totalAmount")
+    .textContent =
+    "₹" + Number(price).toLocaleString("en-IN");
+
+
+
+document.getElementById("bookingForm")
+    .addEventListener("submit", async function(e) {
+
+        e.preventDefault();
+
+
+        const name =
+            document.getElementById("customerName")
+                .value.trim();
+
+        const mobile =
+            document.getElementById("customerMobile")
+                .value.trim();
+
+        const date =
+            document.getElementById("travelDate")
+                .value;
+
+        const time =
+            document.getElementById("pickupTime")
+                .value;
+
+        const pickup =
+            document.getElementById("pickupLocation")
+                .value.trim();
+
+        const request =
+            document.getElementById("specialRequest")
+                .value.trim();
+
+
+        // Basic mobile validation
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+
+            alert("Please enter a valid 10-digit mobile number.");
+
+            return;
+        }
+
+
+        // Check package information
+
+        if (!packageType || !persons || !price) {
+
+            alert("Package information is missing.");
+
+            return;
+        }
+
+
+        // Disable button while saving
+
+        const button =
+            document.querySelector(".confirm-btn");
+
+        button.disabled = true;
+
+        button.textContent = "Saving Booking...";
+
+
+        try {
+
+            const bookingData = {
+
+                bookingType: "package",
+
+                package: packageType,
+
+                packageName:
+                    packageNames[packageType],
+
+                persons: Number(persons),
+
+                totalPrice: Number(price),
+
+                customerName: name,
+
+                customerMobile: mobile,
+
+                travelDate: date,
+
+                pickupTime: time,
+
+                pickupLocation: pickup,
+
+                specialRequest: request,
+
+                status: "pending",
+
+                createdAt: serverTimestamp()
+
+            };
+
+
+            // Save to Firebase
+
+            const docRef = await addDoc(
+                collection(db, "packageBookings"),
+                bookingData
+            );
+
+
+            console.log(
+                "Booking saved:",
+                docRef.id
+            );
+
+
+            alert(
+                "Booking confirmed successfully!\n\n" +
+                "Booking ID: " +
+                docRef.id
+            );
+
+
+            // Go to success page
+
+            window.location.href =
+                "booking-success.html?id=" +
+                docRef.id;
+
+
+        } catch (error) {
+
+            console.error(
+                "Booking error:",
+                error
+            );
+
+            alert(
+                "Unable to save booking.\n\n" +
+                error.message
+            );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "Confirm Booking";
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>

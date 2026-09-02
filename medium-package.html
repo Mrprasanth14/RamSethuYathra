@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medium Package | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="package.css">
+</head>
+
+<body>
+
+<header class="package-header">
+
+    <a href="index.html" class="back-btn">
+        ← Back
+    </a>
+
+    <h1>Medium Package</h1>
+
+</header>
+
+
+<main class="package-container">
+
+    <div class="package-image">
+
+        <img
+            src="images/medium-package.jpg"
+            alt="Medium Package"
+        >
+
+    </div>
+
+
+    <div class="package-info">
+
+        <span class="package-label">
+            MEDIUM PACKAGE
+        </span>
+
+        <h2>
+            Rameswaram Medium Tour Package
+        </h2>
+
+        <p class="description">
+            A comfortable package with a better room,
+            more sightseeing and dinner included.
+        </p>
+
+
+        <h3>Package Includes</h3>
+
+        <div class="included-list">
+
+            <div>🛏️ Medium Room</div>
+
+            <div>🚕 Cab Transportation</div>
+
+            <div>🛕 Ramanathaswamy Temple</div>
+
+            <div>🌊 Agni Theertham</div>
+
+            <div>🌉 Pamban Bridge</div>
+
+            <div>🏛️ Abdul Kalam Memorial</div>
+
+            <div>📍 More Sightseeing Places</div>
+
+            <div>🍽️ Dinner Included</div>
+
+        </div>
+
+
+        <div class="persons-box">
+
+            <label for="persons">
+                Number of Persons
+            </label>
+
+            <select id="persons">
+
+                <option value="2">2 Persons</option>
+                <option value="3">3 Persons</option>
+                <option value="4">4 Persons</option>
+                <option value="5" selected>5 Persons</option>
+                <option value="6">6 Persons</option>
+                <option value="7">7 Persons</option>
+                <option value="8">8 Persons</option>
+                <option value="9">9 Persons</option>
+                <option value="10">10 Persons</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="total-box">
+
+            <span>Total Package</span>
+
+            <h4 id="totalPrice">₹9,500</h4>
+
+            <p id="priceFor">
+                For 5 Persons
+            </p>
+
+        </div>
+
+
+        <button
+            class="continue-btn"
+            onclick="continueBooking()"
+        >
+            Continue Booking →
+        </button>
+
+    </div>
+
+</main>
+
+
+<script>
+
+const prices = {
+
+    2: 5500,
+    3: 6500,
+    4: 8000,
+    5: 9500,
+    6: 10800,
+    7: 12000,
+    8: 13500,
+    9: 14800,
+    10: 16000
+
+};
+
+
+const persons = document.getElementById("persons");
+const totalPrice = document.getElementById("totalPrice");
+const priceFor = document.getElementById("priceFor");
+
+
+persons.addEventListener("change", function () {
+
+    const count = Number(this.value);
+
+    const price = prices[count];
+
+    totalPrice.textContent =
+        "₹" + price.toLocaleString("en-IN");
+
+    priceFor.textContent =
+        "For " + count + " Persons";
+
+});
+
+
+function continueBooking() {
+
+    const count = Number(persons.value);
+    const price = prices[count];
+
+    window.location.href =
+        "booking.html?package=medium&persons="
+        + count
+        + "&price="
+        + price;
+
+}
+
+</script>
+
+</body>
+</html>

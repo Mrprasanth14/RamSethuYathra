@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Normal Package | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="package.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="package-header">
+
+        <a href="index.html" class="back-btn">
+            ← Back
+        </a>
+
+        <h1>Normal Package</h1>
+
+    </header>
+
+
+    <!-- PACKAGE -->
+
+    <main class="package-container">
+
+        <div class="package-image">
+
+            <img
+                src="images/normal-package.jpg"
+                alt="Normal Package"
+            >
+
+        </div>
+
+
+        <div class="package-info">
+
+            <span class="package-label">
+                NORMAL PACKAGE
+            </span>
+
+            <h2>
+                Rameswaram Normal Tour Package
+            </h2>
+
+            <p class="description">
+                A comfortable and affordable Rameswaram
+                sightseeing package for families and groups.
+            </p>
+
+
+            <!-- INCLUDED -->
+
+            <h3>Package Includes</h3>
+
+            <div class="included-list">
+
+                <div>🛏️ Normal Room</div>
+
+                <div>🚕 Cab Transportation</div>
+
+                <div>🛕 Ramanathaswamy Temple</div>
+
+                <div>🌊 Agni Theertham</div>
+
+                <div>🌉 Pamban Bridge</div>
+
+                <div>📍 Selected Sightseeing Places</div>
+
+            </div>
+
+
+            <!-- PERSONS -->
+
+            <div class="persons-box">
+
+                <label for="persons">
+                    Number of Persons
+                </label>
+
+                <select id="persons">
+
+                    <option value="2">2 Persons</option>
+                    <option value="3">3 Persons</option>
+                    <option value="4">4 Persons</option>
+                    <option value="5" selected>5 Persons</option>
+                    <option value="6">6 Persons</option>
+                    <option value="7">7 Persons</option>
+                    <option value="8">8 Persons</option>
+                    <option value="9">9 Persons</option>
+                    <option value="10">10 Persons</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="total-box">
+
+                <span>Total Package</span>
+
+                <h4 id="totalPrice">
+                    ₹7,000
+                </h4>
+
+                <p id="priceFor">
+                    For 5 Persons
+                </p>
+
+            </div>
+
+
+            <button
+                class="continue-btn"
+                onclick="continueBooking()"
+            >
+                Continue Booking →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const prices = {
+
+            2: 4000,
+            3: 4800,
+            4: 5900,
+            5: 7000,
+            6: 8200,
+            7: 9300,
+            8: 10500,
+            9: 11600,
+            10: 12700
+
+        };
+
+
+        const persons = document.getElementById("persons");
+
+        const totalPrice =
+            document.getElementById("totalPrice");
+
+        const priceFor =
+            document.getElementById("priceFor");
+
+
+        persons.addEventListener("change", function () {
+
+            const count = Number(this.value);
+
+            const price = prices[count];
+
+            totalPrice.textContent =
+                "₹" + price.toLocaleString("en-IN");
+
+            priceFor.textContent =
+                "For " + count + " Persons";
+
+        });
+
+
+        function continueBooking() {
+
+            const count = persons.value;
+
+            const price = prices[count];
+
+            window.location.href =
+                "booking.html?package=normal&persons="
+                + count
+                + "&price="
+                + price;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -28,24 +28,32 @@
 
     <div class="right-menu">
 
-        <nav>
+       <nav>
+    <a href="index.html">
+        <span class="desktop-text">Home</span>
+        <span class="mobile-icon">🏠</span>
+    </a>
 
-            <a href="index.html">
-                <span class="desktop-text">Home</span>
-                <span class="mobile-icon">🏠</span>
-            </a>
+    <a href="about.html">
+        <span class="desktop-text">About</span>
+        <span class="mobile-icon">ℹ️</span>
+    </a>
 
-            <a href="about.html">
-                <span class="desktop-text">About</span>
-                <span class="mobile-icon">ℹ️</span>
-            </a>
+    <a href="#packages">
+        <span class="desktop-text">Packages</span>
+        <span class="mobile-icon">🧳</span>
+    </a>
 
-            <a href="admin-login.html">
-                <span class="desktop-text">Admin</span>
-                <span class="mobile-icon">🔐</span>
-            </a>
+    <a href="#contact">
+        <span class="desktop-text">Contact</span>
+        <span class="mobile-icon">📞</span>
+    </a>
 
-        </nav>
+    <a href="admin-login.html">
+        <span class="desktop-text">Admin</span>
+        <span class="mobile-icon">🔐</span>
+    </a>
+</nav>
 
       <div class="translate-box">
 
@@ -114,7 +122,7 @@
 
 <section id="booking">
   <div class="gradient-title">
-    <h2>Book Your Package</h2>
+    <h2>Book Your</h2>
 </div>
 
   <div class="pricing-box">
@@ -157,7 +165,137 @@
   </div>
 </section>
 
+<section id="packages" class="package-section">
 
+    <div class="section-title">
+        <h2>Book Your Package</h2>
+        <div class="title-line"></div>
+    </div>
+
+    <div class="package-grid">
+
+        <!-- NORMAL PACKAGE -->
+        <div class="package-card normal-package">
+
+            <div class="package-badge">
+                NORMAL
+            </div>
+
+            <h3>Normal Package</h3>
+
+            <img
+                src="images/normal-package.jpg"
+                alt="Normal Tour Package"
+            >
+
+            <div class="package-details">
+
+                <p>🛏️ Normal Room</p>
+                <p>🛕 Few Sightseeing Places</p>
+                <p>🚕 Cab Included</p>
+
+            </div>
+
+            <div class="package-price">
+
+                <span>Total Package</span>
+
+                <h4>₹7,000</h4>
+
+                <p>For 5 Persons</p>
+
+            </div>
+
+            <button onclick="openPackage('normal')">
+                View Package
+            </button>
+
+        </div>
+
+
+        <!-- MEDIUM PACKAGE -->
+        <div class="package-card medium-package">
+
+            <div class="package-badge">
+                MEDIUM
+            </div>
+
+            <h3>Medium Package</h3>
+
+            <img
+                src="images/medium-package.jpg"
+                alt="Medium Tour Package"
+            >
+
+            <div class="package-details">
+
+                <p>🛏️ Medium Room</p>
+                <p>🛕 More Sightseeing Places</p>
+                <p>🚕 Cab Included</p>
+                <p>🍽️ Dinner Included</p>
+
+            </div>
+
+            <div class="package-price">
+
+                <span>Total Package</span>
+
+                <h4>₹9,500</h4>
+
+                <p>For 5 Persons</p>
+
+            </div>
+
+            <button onclick="openPackage('medium')">
+                View Package
+            </button>
+
+        </div>
+
+
+        <!-- PREMIUM PACKAGE -->
+        <div class="package-card premium-package">
+
+            <div class="package-badge">
+                PREMIUM
+            </div>
+
+            <h3>Premium Package</h3>
+
+            <img
+                src="images/premium-package.jpg"
+                alt="Premium Tour Package"
+            >
+
+            <div class="package-details">
+
+                <p>🛏️ Premium Room</p>
+                <p>🛕 Full Sightseeing</p>
+                <p>🚕 Premium Cab</p>
+                <p>🍽️ Meals Included</p>
+                <p>✨ Premium Services</p>
+
+            </div>
+
+            <div class="package-price">
+
+                <span>Total Package</span>
+
+                <h4>₹13,000</h4>
+
+                <p>For 5 Persons</p>
+
+            </div>
+
+            <button onclick="openPackage('premium')">
+                View Package
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 <section id="tips">
 
 <div class="gradient-title">
@@ -198,7 +336,6 @@
 
 </div>
 
-</section>
 </section>
 
 <section id="food">
@@ -401,12 +538,25 @@
 <footer>
   <p>© 2026 Rameswaram TripMate | Contact: +91 9876543210</p>
 </footer>
-</body>
-</html>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 <script type="module" src="script.js"></script>
 <script>
+function openPackage(packageType) {
+
+    if (packageType === "normal") {
+        window.location.href = "normal-package.html";
+    }
+
+    else if (packageType === "medium") {
+        window.location.href = "medium-package.html";
+    }
+
+    else if (packageType === "premium") {
+        window.location.href = "premium-package.html";
+    }
+
+}
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
@@ -426,3 +576,5 @@ function closeImage() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

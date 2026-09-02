@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Login | RamSethuYatra</title>
-  <link rel="stylesheet" href="adminlogin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="adminlogin.css">
 </head>
+
 <body>
 
 <div class="login-box">
+
     <h2>🔐 Admin Login</h2>
 
-    <input type="email" id="adminEmail" placeholder="Enter Admin Email">
+    <form id="adminLoginForm">
 
-    <input type="password" id="adminPassword" placeholder="Enter Password">
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="Enter Admin Email"
+            required
+        >
 
-    <button onclick="adminLogin()">Login</button>
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Enter Password"
+            required
+        >
+
+        <button type="submit">Login</button>
+
+    </form>
+
 </div>
 
 <script type="module" src="admin-login.js"></script>
+
 </body>
 </html>

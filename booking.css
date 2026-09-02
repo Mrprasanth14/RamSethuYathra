@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #073b67;
+}
+
+
+/* HEADER */
+
+.booking-header {
+    background: white;
+    padding: 25px 7%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.booking-header a {
+    text-decoration: none;
+    color: #073b67;
+    font-weight: bold;
+}
+
+.booking-header h1 {
+    font-size: 32px;
+}
+
+
+/* CONTAINER */
+
+.booking-container {
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 20px;
+}
+
+
+/* SUMMARY */
+
+.booking-summary {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.booking-summary h2 {
+    margin-bottom: 20px;
+}
+
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: #f5f7fa;
+}
+
+
+.summary-total strong {
+    font-size: 30px;
+    color: #e85d04;
+}
+
+
+/* FORM */
+
+.booking-form {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+}
+
+.booking-form h2 {
+    margin-bottom: 25px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 16px;
+}
+
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+.confirm-btn {
+    width: 100%;
+    padding: 16px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #073b67;
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.confirm-btn:hover {
+    background: #ff9d00;
+    color: #111;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .booking-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .booking-header h1 {
+        font-size: 25px;
+    }
+
+    .booking-container {
+        margin: 20px auto;
+    }
+
+}

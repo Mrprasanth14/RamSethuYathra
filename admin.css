@@ -212,3 +212,207 @@ body {
         font-size: 14px;
     }
 }
+/* =========================================
+   PACKAGE BOOKINGS
+========================================= */
+
+.package-card {
+    border-left: 5px solid #ff7a00;
+}
+
+
+.package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.package-header h3 {
+    margin: 0;
+    color: #003049;
+    font-size: 20px;
+}
+
+
+.package-header hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+
+/* STATUS */
+
+.status-pending,
+.status-confirmed,
+.status-cancelled {
+
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+.status-pending {
+
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+
+.status-confirmed {
+
+    background: #d1e7dd;
+
+    color: #0f5132;
+}
+
+
+.status-cancelled {
+
+    background: #f8d7da;
+
+    color: #842029;
+}
+
+
+/* PACKAGE PRICE */
+
+.package-price {
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    background: #f4f7fb;
+
+    border-radius: 10px;
+
+    color: #003049;
+
+    font-size: 16px;
+}
+
+
+.package-price strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 24px;
+
+    color: #ff7a00;
+}
+
+
+/* ACTION BUTTONS */
+
+.package-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 16px;
+}
+
+
+.confirm-btn,
+.cancel-btn {
+
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.confirm-btn {
+
+    background: #198754;
+}
+
+
+.confirm-btn:hover {
+
+    background: #146c43;
+
+    transform: translateY(-1px);
+}
+
+
+.cancel-btn {
+
+    background: #dc3545;
+}
+
+
+.cancel-btn:hover {
+
+    background: #b02a37;
+
+    transform: translateY(-1px);
+}
+
+
+.package-actions .delete-btn {
+
+    margin-top: 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .package-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .package-header h3 {
+
+        font-size: 18px;
+    }
+
+
+    .package-actions {
+
+        flex-direction: column;
+    }
+
+
+    .confirm-btn,
+    .cancel-btn,
+    .package-actions .delete-btn {
+
+        width: 100%;
+    }
+
+}

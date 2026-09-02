@@ -1,33 +1,81 @@
 import { auth } from "./firebase.js";
 
 import {
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-async function adminLogin() {
 
-  const email = document.getElementById("adminEmail").value.trim();
-  const password = document.getElementById("adminPassword").value;
+document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
 
-  if (!email || !password) {
-    alert("Please enter email and password");
-    return;
-  }
+    e.preventDefault();
 
-  try {
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value;
 
-    await signInWithEmailAndPassword(auth, email, password);
+    // Admin email
+    const ADMIN_EMAIL = "ramsethuyatra2026@gmail.com";
 
-    console.log("Admin login successful");
+    // Check email before Firebase login
+    if (email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
 
-    window.location.href = "admin.html";
+        alert("Access denied. Admin account only.");
 
-  } catch (error) {
+        return;
+    }
 
-    console.error("Firebase Login Error:", error);
+    try {
 
-    alert(error.message);
-  }
-}
+        const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
-window.adminLogin = adminLogin;
+        const user = userCredential.user;
+
+        // console.log("Admin logged in:", user.email);
+
+        // Double-check admin email
+        if (user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+
+            await auth.signOut();
+
+            alert("Access denied. Admin account only.");
+
+            return;
+        }
+
+        // Login successful
+        window.location.href = "admin.html";
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        if (error.code === "auth/invalid-credential") {
+
+            alert("Incorrect email or password.");
+
+        } else if (error.code === "auth/user-not-found") {
+
+            alert("Admin account not found.");
+
+        } else if (error.code === "auth/wrong-password") {
+
+            alert("Incorrect password.");
+
+        } else if (error.code === "auth/invalid-email") {
+
+            alert("Invalid email address.");
+
+        } else if (error.code === "auth/too-many-requests") {
+
+            alert("Too many login attempts. Please try again later.");
+
+        } else {
+
+            alert("Login failed: " + error.message);
+        }
+    }
+
+});

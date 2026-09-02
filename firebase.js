@@ -2,8 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebas
 
 import {
     getFirestore,
-    collection,
-    addDoc
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 import {
@@ -30,6 +28,4 @@ const auth = getAuth(app);
 export {
     db,
     auth,
-    collection,
-    addDoc
 };
