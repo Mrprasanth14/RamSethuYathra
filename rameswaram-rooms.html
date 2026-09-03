@@ -1,136 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rameswaram Rooms & Hotel Booking | RamSethuYatra</title>
+    <title>Rameswaram Rooms & Hotel Booking | RamSethuYatra</title>
 
-<meta name="description"
-content="Book comfortable AC rooms and family hotel stays in Rameswaram. Standard, Family and Premium rooms with WiFi, hot water and travel assistance.">
+    <meta name="description"
+        content="Book comfortable AC rooms and family hotel stays in Rameswaram. Standard, Family and Premium rooms with WiFi, hot water and travel assistance.">
 
-<meta name="keywords"
-content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family room Rameswaram, premium room Rameswaram, hotel near Ramanathaswamy Temple, Rameswaram accommodation">
+    <meta name="keywords"
+        content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family room Rameswaram, premium room Rameswaram, hotel near Ramanathaswamy Temple, Rameswaram accommodation">
 
-<link rel="stylesheet" href="rooms.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="rooms.css">
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<section class="rooms-section">
-<h1 class="section-title">Rameswaram Rooms & Hotel Booking</h1>
-<p class="section-subtitle">Comfortable rooms for your Ram Sethu Yatra</p>
 
-<div class="room-container">
+<body>
 
-<!-- Room Card 1 -->
-<div class="room-card">
-    <img src="images/4011087171522283.jpg"
-     alt="Standard AC Room in Rameswaram">
+<!-- ================= HEADER ================= -->
 
-    <div class="room-details">
-        <h3>Standard Room</h3>
-        <div class="room-features">
-  <span>🛏️ AC Room</span>
-  <span>📶 Free WiFi</span>
-  <span>🚿 Hot Water</span>
-</div>
-        <!-- <p>₹2,500 / Night</p> -->
+<header class="rooms-header">
 
-        <label>
-            <input type="radio" name="room" value="Standard Room">
-            Select Room
-        </label>
+    <a href="index.html" class="logo">
+        RamSethu<span>Yatra</span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="totalpackage.html">Packages</a>
+        <a href="ramanathaswamy-temple.html">Temple</a>
+        <a href="cab.html">Cab</a>
+    </nav>
+
+    <div id="google_translate_element"></div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="rooms-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="rooms-hero-content">
+
+        <span class="hero-badge">
+            🏨 COMFORTABLE STAYS
+        </span>
+
+        <h1>
+            Stay Comfortably in
+            <span>Rameswaram</span>
+        </h1>
+
+        <p>
+            Choose a comfortable room for your Ram Sethu Yatra.
+            Relax, refresh and continue your spiritual journey.
+        </p>
+
+        <a href="#rooms" class="hero-button">
+            Explore Rooms ↓
+        </a>
+
     </div>
-</div>
 
-<!-- Room Card 2 -->
-<div class="room-card">
-    <img src="images/_Elegant living room with a blend of modern and….jpg"
-     alt="Family Room Hotel in Rameswaram">
-
-    <div class="room-details">
-        <h3>Family Room</h3>
-        <div class="room-features">
-  <span>🛏️ AC Room</span>
-  <span>📶 Free WiFi</span>
-  <span>🚿 Hot Water</span>
-</div>
-        <!-- <p>₹4,500 / Night</p> -->
-
-        <label>
-            <input type="radio" name="room" value="Family Room">
-            Select Room
-        </label>
-    </div>
-</div>
-
-<!-- Room Card 3 -->
-<div class="room-card">
-    <img src="images/Modern blue theme bedroom with soft lighting and….jpg"
-     alt="Premium Room Rameswaram Hotel">
-
-    <div class="room-details">
-        <h3>Premium Room</h3>
-        <div class="room-features">
-  <span>🛏️ AC Room</span>
-  <span>📶 Free WiFi</span>
-  <span>🚿 Hot Water</span>
-</div>
-        <!-- <p>₹6,500 / Night</p> -->
-
-        <label>
-            <input type="radio" name="room" value="Premium Room">
-            Select Room
-        </label>
-    </div>
-</div>
-
-</div>
-
-<div class="booking-form">
-<h3>Booking Details</h3>
-
-<label>How Many Persons?</label>
-   <input type="text" id="roomPersons">
-
-<label>Check In</label>
-<input type="date" id="checkin">
-
-<label>Check Out</label>
-<input type="date" id="checkout">
-
-<label>Mobile Number</label>
-<input type="tel" id="roomMobile" placeholder="Enter Mobile Number">
-
-<label>Email</label>
-<input type="email" id="roomEmail" placeholder="Enter Email">
-
-<label>Special Request</label>
-<textarea id="request" placeholder="Any special requirements"></textarea>
-
-<button type="button" onclick="sendRoomWhatsApp()">
-  Continue Booking
-</button>
-
-</div>
-<div class="seo-content">
-  <h2>Best Rooms in Rameswaram</h2>
-
-  <p>
-    RamSethuYatra offers affordable room booking in Rameswaram with
-    Standard Rooms, Family Rooms and Premium Rooms. All rooms include
-    AC, WiFi, hot water and comfortable accommodation for pilgrims
-    visiting Ramanathaswamy Temple and Dhanushkodi.
-  </p>
-</div>
 </section>
+
+
+<!-- ================= ROOMS ================= -->
+
+<section class="rooms-section" id="rooms">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            🏨 OUR ROOMS
+        </span>
+
+        <h2>
+            Choose Your Perfect Stay
+        </h2>
+
+        <p>
+            Comfortable accommodation for families, couples and pilgrims
+            visiting Rameswaram.
+        </p>
+
+    </div>
+
+
+    <div class="room-container">
+
+
+        <!-- ================= STANDARD ================= -->
+
+        <label class="room-card">
+
+            <input
+                type="radio"
+                name="room"
+                value="Standard Room"
+            >
+
+            <div class="room-image">
+
+                <img
+                    src="images/4011087171522283.jpg"
+                    alt="Standard AC Room in Rameswaram"
+                >
+
+                <span class="room-badge">
+                    STANDARD
+                </span>
+
+                <span class="select-indicator">
+                    ✓
+                </span>
+
+            </div>
+
+            <div class="room-details">
+
+                <div class="room-title-row">
+
+                    <h3>Standard Room</h3>
+
+                    <span class="room-rating">
+                        ★ 4.5
+                    </span>
+
+                </div>
+
+                <p class="room-description">
+                    A comfortable and affordable room for pilgrims
+                    and small families.
+                </p>
+
+                <div class="room-features">
+
+                    <span>❄️ AC Room</span>
+                    <span>📶 Free WiFi</span>
+                    <span>🚿 Hot Water</span>
+                    <span>🛏️ Comfortable Bed</span>
+
+                </div>
+
+                <div class="room-bottom">
+
+                    <div>
+                        <small>Perfect for</small>
+                        <strong>Couples & Small Families</strong>
+                    </div>
+
+                    <span class="choose-text">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+
+        <!-- ================= FAMILY ================= -->
+
+        <label class="room-card">
+
+            <input
+                type="radio"
+                name="room"
+                value="Family Room"
+            >
+
+            <div class="room-image">
+
+                <img
+                    src="images/_Elegant living room with a blend of modern and….jpg"
+                    alt="Family Room Hotel in Rameswaram"
+                >
+
+                <span class="room-badge family">
+                    FAMILY
+                </span>
+
+                <span class="select-indicator">
+                    ✓
+                </span>
+
+            </div>
+
+            <div class="room-details">
+
+                <div class="room-title-row">
+
+                    <h3>Family Room</h3>
+
+                    <span class="room-rating">
+                        ★ 4.7
+                    </span>
+
+                </div>
+
+                <p class="room-description">
+                    Spacious accommodation designed for families
+                    travelling together.
+                </p>
+
+                <div class="room-features">
+
+                    <span>❄️ AC Room</span>
+                    <span>📶 Free WiFi</span>
+                    <span>🚿 Hot Water</span>
+                    <span>👨‍👩‍👧 Family Space</span>
+
+                </div>
+
+                <div class="room-bottom">
+
+                    <div>
+                        <small>Perfect for</small>
+                        <strong>Families & Groups</strong>
+                    </div>
+
+                    <span class="choose-text">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </label>
+
+
+
+        <!-- ================= PREMIUM ================= -->
+
+        <label class="room-card premium-room">
+
+            <input
+                type="radio"
+                name="room"
+                value="Premium Room"
+            >
+
+            <div class="room-image">
+
+                <img
+                    src="images/Modern blue theme bedroom with soft lighting and….jpg"
+                    alt="Premium Room Rameswaram Hotel"
+                >
+
+                <span class="room-badge premium">
+                    PREMIUM
+                </span>
+
+                <span class="select-indicator">
+                    ✓
+                </span>
+
+            </div>
+
+            <div class="room-details">
+
+                <div class="room-title-row">
+
+                    <h3>Premium Room</h3>
+
+                    <span class="room-rating">
+                        ★ 4.9
+                    </span>
+
+                </div>
+
+                <p class="room-description">
+                    A premium and relaxing stay for guests looking
+                    for extra comfort.
+                </p>
+
+                <div class="room-features">
+
+                    <span>❄️ Premium AC</span>
+                    <span>📶 Free WiFi</span>
+                    <span>🚿 Hot Water</span>
+                    <span>✨ Premium Comfort</span>
+
+                </div>
+
+                <div class="room-bottom">
+
+                    <div>
+                        <small>Perfect for</small>
+                        <strong>Premium Family Stay</strong>
+                    </div>
+
+                    <span class="choose-text">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </label>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BOOKING FORM ================= -->
+
+<section class="booking-section">
+
+    <div class="booking-container">
+
+        <div class="booking-heading">
+
+            <span class="section-tag">
+                📋 BOOK YOUR STAY
+            </span>
+
+            <h2>
+                Complete Your Room Booking
+            </h2>
+
+            <p>
+                Select your room above and provide your travel details.
+            </p>
+
+        </div>
+
+
+        <div class="booking-form">
+
+            <div class="selected-room-box">
+
+                <span>Selected Room</span>
+
+                <strong id="selectedRoomText">
+                    Please select a room above
+                </strong>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        👥 Number of Persons
+                    </label>
+
+                    <input
+                        type="number"
+                        id="roomPersons"
+                        min="1"
+                        placeholder="Enter number of persons"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        📱 Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="roomMobile"
+                        maxlength="10"
+                        placeholder="Enter 10 digit mobile number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        📅 Check In
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkin"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        📅 Check Out
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkout"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        📧 Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="roomEmail"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        📝 Special Request
+                    </label>
+
+                    <textarea
+                        id="request"
+                        placeholder="Any special requirements..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="booking-button"
+                onclick="sendRoomWhatsApp()"
+            >
+
+                Continue Booking
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= WHY CHOOSE ================= -->
+
+<section class="why-section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            ✨ WHY RAMSETHUYATRA
+        </span>
+
+        <h2>
+            More Than Just a Room
+        </h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                🏨
+            </div>
+
+            <h3>Comfortable Stay</h3>
+
+            <p>
+                Relax in clean and comfortable accommodation
+                after your Rameswaram journey.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                📍
+            </div>
+
+            <h3>Travel Assistance</h3>
+
+            <p>
+                Easily combine your room booking with
+                sightseeing and cab services.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                🙏
+            </div>
+
+            <h3>Pilgrim Friendly</h3>
+
+            <p>
+                Convenient accommodation for visitors
+                coming to Ramanathaswamy Temple.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                💬
+            </div>
+
+            <h3>Easy Booking</h3>
+
+            <p>
+                Simple booking process with quick confirmation
+                through WhatsApp.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SEO CONTENT ================= -->
+
+<section class="seo-content">
+
+    <h2>
+        Best Rooms in Rameswaram
+    </h2>
+
+    <p>
+        RamSethuYatra provides comfortable room booking in Rameswaram
+        for pilgrims, families and travellers. Choose from Standard,
+        Family and Premium rooms according to your requirements.
+        Rooms are suitable for visitors travelling to Ramanathaswamy
+        Temple, Dhanushkodi and other important destinations in
+        Rameswaram.
+    </p>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        RamSethu<span>Yatra</span>
+    </div>
+
+    <p>
+        Your trusted travel companion for Rameswaram.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="index.html">Home</a>
+        <a href="totalpackage.html">Packages</a>
+        <a href="cab.html">Cab Booking</a>
+        <a href="ramanathaswamy-temple.html">Temple</a>
+
+    </div>
+
+    <p class="copyright">
+        © 2026 RamSethuYatra. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- ================= SCRIPTS ================= -->
+
 <script type="module" src="script.js"></script>
 <script type="module" src="firebase.js"></script>
+
+
 <script>
+
 function googleTranslateElementInit() {
+
     new google.translate.TranslateElement({
+
         pageLanguage: 'en',
+
         includedLanguages: 'en,ta,hi',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+
+        layout:
+            google.translate.TranslateElement.InlineLayout.SIMPLE
+
     }, 'google_translate_element');
+
 }
+
+
+/* ================= ROOM SELECTION ================= */
+
+document.querySelectorAll('input[name="room"]').forEach(function(room) {
+
+    room.addEventListener('change', function() {
+
+        document.getElementById("selectedRoomText").textContent =
+            this.value;
+
+    });
+
+});
+
+
+/* ================= DATE VALIDATION ================= */
+
+const today = new Date().toISOString().split("T")[0];
+
+document.getElementById("checkin").min = today;
+document.getElementById("checkout").min = today;
+
+
+document.getElementById("checkin").addEventListener("change", function() {
+
+    document.getElementById("checkout").min = this.value;
+
+});
+
 </script>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</body>
+</html>

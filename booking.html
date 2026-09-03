@@ -14,11 +14,16 @@
 
     <link rel="stylesheet" href="booking.css">
 
+
 </head>
 
 
 <body>
 
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header class="booking-header">
 
@@ -26,11 +31,17 @@
         ← RamSethuYatra
     </a>
 
-    <h1>Complete Your Booking</h1>
+    <h1>
+        Complete Your Booking
+    </h1>
 
 </header>
 
 
+
+<!-- =========================================
+     MAIN BOOKING
+========================================= -->
 
 <main class="booking-container">
 
@@ -39,12 +50,16 @@
 
     <section class="booking-summary">
 
-        <h2>Booking Summary</h2>
+        <h2>
+            Booking Summary
+        </h2>
 
 
         <div class="summary-row">
 
-            <span>Package</span>
+            <span>
+                Package
+            </span>
 
             <strong id="packageName">
                 -
@@ -55,7 +70,9 @@
 
         <div class="summary-row">
 
-            <span>Persons</span>
+            <span>
+                Persons
+            </span>
 
             <strong id="personCount">
                 -
@@ -66,7 +83,9 @@
 
         <div class="summary-total">
 
-            <span>Total Package</span>
+            <span>
+                Total Package
+            </span>
 
             <strong id="totalAmount">
                 ₹0
@@ -82,11 +101,15 @@
 
     <section class="booking-form">
 
-        <h2>Customer Details</h2>
+        <h2>
+            Customer Details
+        </h2>
 
 
         <form id="bookingForm">
 
+
+            <!-- NAME -->
 
             <div class="form-group">
 
@@ -104,6 +127,8 @@
             </div>
 
 
+
+            <!-- MOBILE -->
 
             <div class="form-group">
 
@@ -123,6 +148,8 @@
 
 
 
+            <!-- DATE -->
+
             <div class="form-group">
 
                 <label>
@@ -139,6 +166,8 @@
 
 
 
+            <!-- TIME -->
+
             <div class="form-group">
 
                 <label>
@@ -154,6 +183,8 @@
             </div>
 
 
+
+            <!-- PICKUP -->
 
             <div class="form-group">
 
@@ -172,6 +203,8 @@
 
 
 
+            <!-- SPECIAL REQUEST -->
+
             <div class="form-group">
 
                 <label>
@@ -186,6 +219,8 @@
             </div>
 
 
+
+            <!-- CONFIRM -->
 
             <button
                 type="submit"
@@ -204,6 +239,94 @@
 
 
 
+<!-- =========================================
+     CUSTOM POPUP
+========================================= -->
+
+<div
+    id="customModal"
+    class="custom-modal"
+>
+
+
+    <div class="custom-modal-box">
+
+
+        <button
+            class="popup-close"
+            id="popupClose"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <!-- ICON -->
+
+        <div
+            id="popupIcon"
+            class="popup-icon success"
+        >
+            ✓
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h2 id="popupTitle">
+            Booking Confirmed!
+        </h2>
+
+
+        <!-- MESSAGE -->
+
+        <p
+            id="popupMessage"
+            class="popup-message"
+        >
+            Your RamSethuYatra trip has been successfully booked.
+        </p>
+
+
+        <!-- BOOKING ID -->
+
+        <div
+            id="bookingIdContainer"
+            class="booking-id-box"
+        >
+
+            <span>
+                Booking ID
+            </span>
+
+            <strong id="popupBookingId">
+                -
+            </strong>
+
+        </div>
+
+
+        <!-- BUTTON -->
+
+        <button
+            id="popupButton"
+            class="popup-button"
+            type="button"
+        >
+            Continue
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     FIREBASE BOOKING
+========================================= -->
+
 <script type="module">
 
 import { db } from "./firebase.js";
@@ -214,6 +337,12 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
+
+
+/* =========================================
+   URL PARAMETERS
+========================================= */
+
 const params =
     new URLSearchParams(window.location.search);
 
@@ -221,12 +350,19 @@ const params =
 const packageType =
     params.get("package");
 
+
 const persons =
     params.get("persons");
+
 
 const price =
     params.get("price");
 
+
+
+/* =========================================
+   PACKAGE NAMES
+========================================= */
 
 const packageNames = {
 
@@ -239,6 +375,11 @@ const packageNames = {
 };
 
 
+
+/* =========================================
+   DISPLAY PACKAGE INFORMATION
+========================================= */
+
 document.getElementById("packageName")
     .textContent =
     packageNames[packageType] || "Package";
@@ -246,162 +387,490 @@ document.getElementById("packageName")
 
 document.getElementById("personCount")
     .textContent =
-    persons + " Persons";
+    persons
+        ? persons + " Persons"
+        : "-";
 
 
 document.getElementById("totalAmount")
     .textContent =
-    "₹" + Number(price).toLocaleString("en-IN");
+    price
+        ? "₹" + Number(price).toLocaleString("en-IN")
+        : "₹0";
 
 
+
+/* =========================================
+   CUSTOM POPUP ELEMENTS
+========================================= */
+
+const customModal =
+    document.getElementById("customModal");
+
+
+const popupIcon =
+    document.getElementById("popupIcon");
+
+
+const popupTitle =
+    document.getElementById("popupTitle");
+
+
+const popupMessage =
+    document.getElementById("popupMessage");
+
+
+const popupBookingId =
+    document.getElementById("popupBookingId");
+
+
+const bookingIdContainer =
+    document.getElementById("bookingIdContainer");
+
+
+const popupButton =
+    document.getElementById("popupButton");
+
+
+const popupClose =
+    document.getElementById("popupClose");
+
+
+
+/* =========================================
+   SHOW CUSTOM POPUP
+========================================= */
+
+function showPopup(
+    type,
+    title,
+    message,
+    bookingId = null,
+    buttonText = "OK",
+    callback = null
+) {
+
+    /* Remove old icon classes */
+
+    popupIcon.classList.remove(
+        "success",
+        "error",
+        "warning"
+    );
+
+
+    /* Add current icon type */
+
+    popupIcon.classList.add(type);
+
+
+    /* Set icon */
+
+    if (type === "success") {
+
+        popupIcon.textContent = "✓";
+
+    }
+
+    else if (type === "error") {
+
+        popupIcon.textContent = "!";
+
+    }
+
+    else {
+
+        popupIcon.textContent = "!";
+
+    }
+
+
+    /* Set text */
+
+    popupTitle.textContent =
+        title;
+
+
+    popupMessage.textContent =
+        message;
+
+
+    /* Booking ID */
+
+    if (bookingId) {
+
+        bookingIdContainer.style.display =
+            "block";
+
+        popupBookingId.textContent =
+            bookingId;
+
+    }
+
+    else {
+
+        bookingIdContainer.style.display =
+            "none";
+
+        popupBookingId.textContent =
+            "";
+
+    }
+
+
+    /* Button */
+
+    popupButton.textContent =
+        buttonText;
+
+
+    /* Save callback */
+
+    popupButton.onclick = function() {
+
+        closePopup();
+
+        if (callback) {
+            callback();
+        }
+
+    };
+
+
+    /* Show */
+
+    customModal.classList.add("show");
+
+}
+
+
+
+/* =========================================
+   CLOSE POPUP
+========================================= */
+
+function closePopup() {
+
+    customModal.classList.remove("show");
+
+}
+
+
+popupClose.addEventListener(
+    "click",
+    closePopup
+);
+
+
+
+/* =========================================
+   CLOSE WHEN CLICKING OUTSIDE
+========================================= */
+
+customModal.addEventListener(
+    "click",
+    function(e) {
+
+        if (e.target === customModal) {
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   BOOKING FORM
+========================================= */
 
 document.getElementById("bookingForm")
-    .addEventListener("submit", async function(e) {
+    .addEventListener(
+        "submit",
+        async function(e) {
 
-        e.preventDefault();
-
-
-        const name =
-            document.getElementById("customerName")
-                .value.trim();
-
-        const mobile =
-            document.getElementById("customerMobile")
-                .value.trim();
-
-        const date =
-            document.getElementById("travelDate")
-                .value;
-
-        const time =
-            document.getElementById("pickupTime")
-                .value;
-
-        const pickup =
-            document.getElementById("pickupLocation")
-                .value.trim();
-
-        const request =
-            document.getElementById("specialRequest")
-                .value.trim();
+            e.preventDefault();
 
 
-        // Basic mobile validation
+            /* CUSTOMER NAME */
 
-        if (!/^[0-9]{10}$/.test(mobile)) {
-
-            alert("Please enter a valid 10-digit mobile number.");
-
-            return;
-        }
-
-
-        // Check package information
-
-        if (!packageType || !persons || !price) {
-
-            alert("Package information is missing.");
-
-            return;
-        }
+            const name =
+                document
+                    .getElementById("customerName")
+                    .value
+                    .trim();
 
 
-        // Disable button while saving
+            /* MOBILE */
 
-        const button =
-            document.querySelector(".confirm-btn");
-
-        button.disabled = true;
-
-        button.textContent = "Saving Booking...";
-
-
-        try {
-
-            const bookingData = {
-
-                bookingType: "package",
-
-                package: packageType,
-
-                packageName:
-                    packageNames[packageType],
-
-                persons: Number(persons),
-
-                totalPrice: Number(price),
-
-                customerName: name,
-
-                customerMobile: mobile,
-
-                travelDate: date,
-
-                pickupTime: time,
-
-                pickupLocation: pickup,
-
-                specialRequest: request,
-
-                status: "pending",
-
-                createdAt: serverTimestamp()
-
-            };
+            const mobile =
+                document
+                    .getElementById("customerMobile")
+                    .value
+                    .trim();
 
 
-            // Save to Firebase
+            /* DATE */
 
-            const docRef = await addDoc(
-                collection(db, "packageBookings"),
-                bookingData
-            );
-
-
-            console.log(
-                "Booking saved:",
-                docRef.id
-            );
+            const date =
+                document
+                    .getElementById("travelDate")
+                    .value;
 
 
-            alert(
-                "Booking confirmed successfully!\n\n" +
-                "Booking ID: " +
-                docRef.id
-            );
+            /* TIME */
+
+            const time =
+                document
+                    .getElementById("pickupTime")
+                    .value;
 
 
-            // Go to success page
+            /* PICKUP */
 
-            window.location.href =
-                "booking-success.html?id=" +
-                docRef.id;
-
-
-        } catch (error) {
-
-            console.error(
-                "Booking error:",
-                error
-            );
-
-            alert(
-                "Unable to save booking.\n\n" +
-                error.message
-            );
+            const pickup =
+                document
+                    .getElementById("pickupLocation")
+                    .value
+                    .trim();
 
 
-            button.disabled = false;
+            /* SPECIAL REQUEST */
+
+            const request =
+                document
+                    .getElementById("specialRequest")
+                    .value
+                    .trim();
+
+
+
+            /* =================================
+               MOBILE VALIDATION
+            ================================= */
+
+            if (!/^[0-9]{10}$/.test(mobile)) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Check Your Mobile Number",
+
+                    "Please enter a valid 10-digit mobile number.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               PACKAGE VALIDATION
+            ================================= */
+
+            if (
+                !packageType ||
+                !persons ||
+                !price
+            ) {
+
+                showPopup(
+
+                    "error",
+
+                    "Booking Information Missing",
+
+                    "We couldn't find the selected package details. Please return to the package page and try again.",
+
+                    null,
+
+                    "Go Back",
+
+                    function() {
+
+                        window.location.href =
+                            "totalpackage.html";
+
+                    }
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               DISABLE BUTTON
+            ================================= */
+
+            const button =
+                document.querySelector(
+                    ".confirm-btn"
+                );
+
+
+            button.disabled = true;
+
 
             button.textContent =
-                "Confirm Booking";
+                "Saving Booking...";
+
+
+
+            /* =================================
+               SAVE TO FIREBASE
+            ================================= */
+
+            try {
+
+                const bookingData = {
+
+                    bookingType: "package",
+
+                    package: packageType,
+
+                    packageName:
+                        packageNames[packageType],
+
+                    persons:
+                        Number(persons),
+
+                    totalPrice:
+                        Number(price),
+
+                    customerName:
+                        name,
+
+                    customerMobile:
+                        mobile,
+
+                    travelDate:
+                        date,
+
+                    pickupTime:
+                        time,
+
+                    pickupLocation:
+                        pickup,
+
+                    specialRequest:
+                        request,
+
+                    status:
+                        "pending",
+
+                    createdAt:
+                        serverTimestamp()
+
+                };
+
+
+
+                const docRef =
+                    await addDoc(
+
+                        collection(
+                            db,
+                            "packageBookings"
+                        ),
+
+                        bookingData
+
+                    );
+
+
+
+                console.log(
+                    "Booking saved:",
+                    docRef.id
+                );
+
+
+
+                /* =================================
+                   SUCCESS POPUP
+                ================================= */
+
+                showPopup(
+
+                    "success",
+
+                    "Booking Confirmed! 🎉",
+
+                    "Your RamSethuYatra trip has been successfully booked. Please save your Booking ID for future reference.",
+
+                    docRef.id,
+
+                    "View Booking",
+
+                    function() {
+
+                        window.location.href =
+                            "booking-success.html?id=" +
+                            encodeURIComponent(
+                                docRef.id
+                            );
+
+                    }
+
+                );
+
+
+
+            } catch (error) {
+
+                console.error(
+                    "Booking error:",
+                    error
+                );
+
+
+
+                /* =================================
+                   ERROR POPUP
+                ================================= */
+
+                showPopup(
+
+                    "error",
+
+                    "Booking Failed",
+
+                    "We couldn't save your booking right now. Please check your internet connection and try again.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Confirm Booking";
+
+            }
 
         }
-
-    });
+    );
 
 </script>
 
 
 </body>
+
 </html>

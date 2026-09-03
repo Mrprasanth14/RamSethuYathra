@@ -1,4 +1,10 @@
-import { db, collection, addDoc } from "./firebase.js";
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
 
 function selectPackage(packageName) {
   document.getElementById("package").value = packageName;
@@ -270,7 +276,7 @@ try {
   confirmButtonText: "OK",
   confirmButtonColor: "#ff7a00"
 }).then(() => {
-  location.reload();
+  window.location.href = "index.html";
 });
 
 } catch (error) {
@@ -329,22 +335,34 @@ async function showWellDetailsform() {
   confirmButtonText: "OK",
   confirmButtonColor: "#ff7a00"
 }).then(() => {
-  location.reload();
+  window.location.href = "index.html";
 });
   } catch (error) {
     console.error(error);
     Swal.fire("Error", error.message, "error");
   }
 }
+
+
+// ==========================================
+// LANGUAGE MENU
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    const languageBtn = document.getElementById("languageBtn");
-    const languageMenu = document.getElementById("languageMenu");
+    const languageBtn =
+        document.getElementById("languageBtn");
 
-    /* =========================
-       OPEN / CLOSE LANGUAGE MENU
-    ========================= */
+    const languageMenu =
+        document.getElementById("languageMenu");
 
+
+    if (!languageBtn || !languageMenu) {
+        return;
+    }
+
+
+    // OPEN / CLOSE LANGUAGE MENU
     languageBtn.addEventListener("click", function (event) {
 
         event.stopPropagation();
@@ -354,12 +372,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =========================
-       CHANGE LANGUAGE
-    ========================= */
-
+    // LANGUAGE BUTTONS
     const languageButtons =
         languageMenu.querySelectorAll("button[data-lang]");
+
 
     languageButtons.forEach(function (button) {
 
@@ -379,10 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =========================
-       CLOSE WHEN CLICK OUTSIDE
-    ========================= */
-
+    // CLOSE WHEN CLICKING OUTSIDE
     document.addEventListener("click", function (event) {
 
         if (
@@ -399,9 +412,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* =========================================================
-   GOOGLE TRANSLATE
-========================================================= */
+// ==========================================
+// GOOGLE TRANSLATE
+// ==========================================
 
 function changeGoogleLanguage(language) {
 
@@ -410,11 +423,10 @@ function changeGoogleLanguage(language) {
 
     if (!googleSelect) {
 
-        console.log(
-            "Google Translate is not ready yet."
-        );
+        console.log("Google Translate is not ready yet.");
 
         return;
+
     }
 
     googleSelect.value = language;
@@ -474,50 +486,121 @@ async function showPoojaDetailsform() {
   confirmButtonText: "OK",
   confirmButtonColor: "#ff7a00"
 }).then(() => {
-  location.reload();
+  window.location.href = "index.html";
 });
   } catch (error) {
     console.error(error);
     Swal.fire("Error", error.message, "error");
   }
 }
-function showTempleDetails() {
-  const box = document.getElementById("templeDetails");
+/// ==========================================
+// VIEW DETAILS
+// ==========================================
 
-  if (box.style.display === "none" || box.style.display === "") {
-    box.style.display = "block";
-  } else {
-    box.style.display = "none";
-  }
+function showDetails(id) {
+
+    const box = document.getElementById(id);
+
+    if (!box) {
+        console.error("Details box not found:", id);
+        return;
+    }
+
+    // Close all other boxes
+    document.querySelectorAll(".details-box").forEach(item => {
+        if (item.id !== id) {
+            item.classList.remove("active");
+        }
+    });
+
+    // Open selected box
+    box.classList.add("active");
+
+    // Scroll to the box
+    setTimeout(() => {
+        box.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
 }
+
+
+function showTempleDetails() {
+    showDetails("templeDetails");
+}
+
 
 function showWellDetails() {
-  const box = document.getElementById("WellDetails");
-
-  if (box.style.display === "none" || box.style.display === "") {
-    box.style.display = "block";
-  } else {
-    box.style.display = "none";
-  }
+    showDetails("WellDetails");
 }
+
 
 function showPoojaDetails() {
-  const box = document.getElementById("PoojaDetails");
-
-  if (box.style.display === "none" || box.style.display === "") {
-    box.style.display = "block";
-  } else {
-    box.style.display = "none";
-  }
+    showDetails("PoojaDetails");
 }
+
+
+function closeDetails(id) {
+
+    const box = document.getElementById(id);
+
+    if (box) {
+        box.classList.remove("active");
+    }
+}
+
+
+// Make HTML onclick functions available
+window.showTempleDetails = showTempleDetails;
+window.showWellDetails = showWellDetails;
+window.showPoojaDetails = showPoojaDetails;
+window.closeDetails = closeDetails;   
+window.closeDetails = closeDetails;
+// ==========================================
+// CLOSE BUTTONS
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const closeTempleBtn = document.getElementById("closeTempleBtn");
+    const closeWellBtn = document.getElementById("closeWellBtn");
+    const closePoojaBtn = document.getElementById("closePoojaBtn");
+
+    const templeBox = document.getElementById("templeDetails");
+    const wellBox = document.getElementById("WellDetails");
+    const poojaBox = document.getElementById("PoojaDetails");
+
+
+    if (closeTempleBtn) {
+        closeTempleBtn.addEventListener("click", function () {
+            templeBox?.classList.remove("active");
+        });
+    }
+
+
+    if (closeWellBtn) {
+        closeWellBtn.addEventListener("click", function () {
+            wellBox?.classList.remove("active");
+        });
+    }
+
+
+    if (closePoojaBtn) {
+        closePoojaBtn.addEventListener("click", function () {
+            poojaBox?.classList.remove("active");
+        });
+    }
+
+});
+// ==========================================
+// MAKE HTML FUNCTIONS AVAILABLE
+// ==========================================
+
 window.showPersonBox = showPersonBox;
 window.continueBooking = continueBooking;
+
 window.sendWhatsApp = sendWhatsApp;
 window.sendRoomWhatsApp = sendRoomWhatsApp;
-window.showTempleDetails = showTempleDetails;
-window.showTempleDetailsform = showTempleDetailsform;
-window.showWellDetails = showWellDetails;
-window.showWellDetailsform = showWellDetailsform;
-window.showPoojaDetails = showPoojaDetails;
-window.showPoojaDetailsform = showPoojaDetailsform;
+
 

@@ -1,0 +1,1379 @@
+/* =========================================================
+   RAMSETHUYATRA - PACKAGE PAGE CSS
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: #fffaf4;
+    color: #321b0d;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.package-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 76px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(255, 250, 244, 0.96);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(126, 75, 32, 0.12);
+}
+
+.package-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 22px;
+    font-weight: 800;
+    color: #4b260f;
+}
+
+.package-logo span {
+    background: linear-gradient(
+        90deg,
+        #7a3f12,
+        #d87918
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.package-nav {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.package-nav a {
+    position: relative;
+
+    color: #68452e;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.package-nav a:hover,
+.package-nav a.active {
+    color: #d66b13;
+}
+
+.package-nav a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -9px;
+
+    width: 100%;
+    height: 2px;
+
+    background: #d66b13;
+
+    border-radius: 10px;
+}
+
+.header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 22px;
+
+    border-radius: 30px;
+
+    background: #d66b13;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.header-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(214, 107, 19, 0.3);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.package-hero {
+    position: relative;
+
+    min-height: 560px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background-image:
+        url("images/Ramanathaswamy Temple in Rameshwaram!.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(37, 18, 7, 0.90),
+            rgba(64, 29, 8, 0.60),
+            rgba(37, 18, 7, 0.84)
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 900px;
+
+    padding: 40px 20px;
+}
+
+.hero-tag {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: #ffc16b;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.hero-content h1 {
+    color: #ffffff;
+
+    font-size: clamp(42px, 6vw, 76px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    margin-bottom: 22px;
+}
+
+.hero-content h1 span {
+    display: block;
+
+    color: #ffad4c;
+}
+
+.hero-content p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #f4dfca;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 32px;
+}
+
+.hero-primary,
+.hero-secondary {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 27px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.hero-primary {
+    background: #e47a1b;
+    color: #ffffff;
+}
+
+.hero-primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(228, 122, 27, 0.35);
+}
+
+.hero-secondary {
+    border: 1px solid rgba(255,255,255,0.5);
+
+    color: #ffffff;
+}
+
+.hero-secondary:hover {
+    background: #ffffff;
+    color: #6c3511;
+}
+
+
+/* =========================================================
+   PACKAGE SECTION
+   ========================================================= */
+
+.package-section {
+    padding: 100px 7%;
+}
+
+.section-heading {
+    max-width: 760px;
+
+    margin: 0 auto 60px;
+
+    text-align: center;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 14px;
+
+    color: #d76d16;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    color: #351b0c;
+
+    font-size: clamp(32px, 4vw, 48px);
+
+    line-height: 1.2;
+}
+
+.section-heading h2 span {
+    display: block;
+
+    color: #d56d17;
+}
+
+.section-heading p {
+    margin-top: 18px;
+
+    color: #806b5a;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PACKAGE GRID
+   ========================================================= */
+
+.package-grid {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 28px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   PACKAGE CARD
+   ========================================================= */
+
+.package-card {
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(118, 69, 27, 0.12);
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 15px 40px rgba(70, 35, 12, 0.08);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation: cardAppear 0.8s ease both;
+}
+
+.package-card:hover {
+    transform: translateY(-12px);
+
+    box-shadow:
+        0 25px 60px rgba(70, 35, 12, 0.16);
+}
+
+.normal-package {
+    animation-delay: 0.1s;
+}
+
+.medium-package {
+    animation-delay: 0.2s;
+}
+
+.premium-package {
+    animation-delay: 0.3s;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   PACKAGE TOP
+   ========================================================= */
+
+.package-top {
+    height: 65px;
+
+    padding: 0 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.package-badge {
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #fff0df;
+
+    color: #b85a12;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.package-number {
+    font-size: 30px;
+
+    font-weight: 800;
+
+    color: #eaded2;
+}
+
+
+/* =========================================================
+   POPULAR RIBBON
+   ========================================================= */
+
+.popular-ribbon {
+    position: absolute;
+
+    top: 24px;
+    right: -38px;
+
+    z-index: 5;
+
+    width: 150px;
+
+    padding: 7px 0;
+
+    text-align: center;
+
+    background: #d66b13;
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transform: rotate(45deg);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================================
+   PACKAGE IMAGE
+   ========================================================= */
+
+.package-image {
+    position: relative;
+
+    width: 100%;
+    height: 235px;
+
+    overflow: hidden;
+}
+
+.package-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease;
+}
+
+.package-card:hover .package-image img {
+    transform: scale(1.08);
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(30, 12, 3, 0.60),
+            transparent 60%
+        );
+}
+
+.image-label {
+    position: absolute;
+
+    left: 18px;
+    bottom: 18px;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.92);
+
+    color: #6c3511;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PACKAGE CONTENT
+   ========================================================= */
+
+.package-content {
+    padding: 26px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.package-title {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.package-small {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #c16a22;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.package-title h3 {
+    color: #321b0d;
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+.package-icon {
+    width: 43px;
+    height: 43px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff4e8;
+
+    font-size: 20px;
+}
+
+.package-description {
+    margin-top: 14px;
+
+    color: #806b5a;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.package-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px;
+
+    border-radius: 12px;
+
+    background: #fffaf5;
+
+    border: 1px solid #f4e6d8;
+
+    transition: 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateX(5px);
+
+    background: #fff4e8;
+}
+
+.feature > span {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    font-size: 17px;
+
+    box-shadow:
+        0 3px 10px rgba(70, 35, 12, 0.06);
+}
+
+.feature strong {
+    display: block;
+
+    color: #4b2b19;
+
+    font-size: 12px;
+}
+
+.feature small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #917b69;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PRICE
+   ========================================================= */
+
+.package-price {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eee0d3;
+}
+
+.package-price > div:first-child span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #927968;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.package-price h4 {
+    color: #d46311;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.persons {
+    min-width: 65px;
+
+    padding: 9px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    background: #fff3e5;
+}
+
+.persons strong {
+    display: block;
+
+    color: #8c4716;
+
+    font-size: 17px;
+}
+
+.persons span {
+    display: block;
+
+    color: #9b7659;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PACKAGE BUTTON
+   ========================================================= */
+
+.package-btn {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 14px 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: #3d200f;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.package-btn .arrow {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.12);
+
+    font-size: 17px;
+
+    transition: 0.3s ease;
+}
+
+.package-btn:hover {
+    background: #d66b13;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(214, 107, 19, 0.25);
+}
+
+.package-btn:hover .arrow {
+    transform: translateX(4px);
+
+    background: rgba(255,255,255,0.22);
+}
+
+
+/* =========================================================
+   UNIQUE PACKAGE COLORS
+   ========================================================= */
+
+/* NORMAL */
+
+.normal-package {
+    border-top: 4px solid #b87a45;
+}
+
+.normal-package .package-badge {
+    background: #f5eadf;
+    color: #9a5b28;
+}
+
+.normal-package .package-btn {
+    background: #6d4328;
+}
+
+
+/* MEDIUM */
+
+.medium-package {
+    border-top: 4px solid #d66b13;
+
+    box-shadow:
+        0 18px 50px rgba(214, 107, 19, 0.14);
+}
+
+.medium-package .package-badge {
+    background: #fff0df;
+    color: #c45e0d;
+}
+
+.medium-package .package-btn {
+    background: #d66b13;
+}
+
+
+/* PREMIUM */
+
+.premium-package {
+    border-top: 4px solid #8c5a24;
+}
+
+.premium-package .package-badge {
+    background: #f5ead1;
+    color: #80551d;
+}
+
+.premium-package .package-btn {
+    background: #4a2a12;
+}
+
+.premium-package .package-price h4 {
+    color: #9a631f;
+}
+
+
+/* =========================================================
+   BENEFITS SECTION
+   ========================================================= */
+
+.package-benefits {
+    padding: 100px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b1d0c,
+            #5b2c0f
+        );
+
+    color: white;
+}
+
+.benefit-heading {
+    max-width: 700px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+.benefit-heading > span {
+    color: #ffb45e;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.benefit-heading h2 {
+    margin-top: 12px;
+
+    color: white;
+
+    font-size: clamp(30px, 4vw, 46px);
+}
+
+.benefit-heading strong {
+    color: #ffad4c;
+}
+
+.benefit-grid {
+    max-width: 1150px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.benefit-card {
+    padding: 28px 22px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    border-radius: 20px;
+
+    transition: 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+
+    background: rgba(255,255,255,0.11);
+}
+
+.benefit-card > div {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 17px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(255,174,78,0.13);
+
+    font-size: 24px;
+}
+
+.benefit-card h3 {
+    color: white;
+
+    font-size: 16px;
+}
+
+.benefit-card p {
+    margin-top: 10px;
+
+    color: #d9c3ad;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.package-cta {
+    padding: 100px 7%;
+
+    text-align: center;
+
+    background: #fff6ed;
+}
+
+.cta-content {
+    max-width: 700px;
+
+    margin: auto;
+}
+
+.cta-content > span {
+    color: #d66b13;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.cta-content h2 {
+    margin-top: 13px;
+
+    color: #3b200f;
+
+    font-size: clamp(32px, 4vw, 50px);
+}
+
+.cta-content h2 strong {
+    color: #d66b13;
+}
+
+.cta-content p {
+    margin: 16px auto 28px;
+
+    max-width: 600px;
+
+    color: #806b5a;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.cta-content a {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 14px 27px;
+
+    border-radius: 30px;
+
+    background: #d66b13;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.cta-content a:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(214,107,19,0.25);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.package-footer {
+    padding: 55px 7% 25px;
+
+    text-align: center;
+
+    background: #291407;
+
+    color: white;
+}
+
+.footer-logo {
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color: #ffb45e;
+}
+
+.package-footer p {
+    margin-top: 10px;
+
+    color: #cbb5a1;
+
+    font-size: 12px;
+}
+
+.footer-links {
+    margin-top: 22px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #dfc8b2;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffb45e;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    color: #927e6d;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .package-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .package-card:last-child {
+        grid-column: 1 / -1;
+
+        max-width: 500px;
+
+        width: 100%;
+
+        margin: auto;
+    }
+
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .package-header {
+        height: auto;
+
+        min-height: 70px;
+
+        padding: 14px 5%;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .package-logo {
+        font-size: 18px;
+    }
+
+    .package-nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 22px;
+
+        padding-top: 5px;
+    }
+
+    .package-nav a {
+        font-size: 12px;
+    }
+
+    .header-btn {
+        padding: 9px 16px;
+
+        font-size: 11px;
+    }
+
+
+    /* HERO */
+
+    .package-hero {
+        min-height: 500px;
+
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        padding: 30px 18px;
+    }
+
+    .hero-content h1 {
+        font-size: 43px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .hero-primary,
+    .hero-secondary {
+        width: 200px;
+    }
+
+
+    /* PACKAGES */
+
+    .package-section {
+        padding: 70px 5%;
+    }
+
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .section-heading p {
+        font-size: 13px;
+    }
+
+    .package-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .package-card:last-child {
+        grid-column: auto;
+
+        max-width: none;
+    }
+
+    .package-image {
+        height: 220px;
+    }
+
+    .package-content {
+        padding: 22px;
+    }
+
+    .package-title h3 {
+        font-size: 22px;
+    }
+
+    .package-price h4 {
+        font-size: 27px;
+    }
+
+
+    /* BENEFITS */
+
+    .package-benefits {
+        padding: 70px 5%;
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .benefit-card {
+        padding: 22px 14px;
+    }
+
+    .benefit-card h3 {
+        font-size: 14px;
+    }
+
+    .benefit-card p {
+        font-size: 11px;
+    }
+
+
+    /* CTA */
+
+    .package-cta {
+        padding: 70px 5%;
+    }
+
+
+    /* FOOTER */
+
+    .package-footer {
+        padding: 45px 5% 22px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .package-nav {
+        gap: 15px;
+    }
+
+    .package-nav a {
+        font-size: 11px;
+    }
+
+    .hero-content h1 {
+        font-size: 37px;
+    }
+
+    .package-image {
+        height: 200px;
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .popular-ribbon {
+        top: 22px;
+        right: -43px;
+    }
+
+}
