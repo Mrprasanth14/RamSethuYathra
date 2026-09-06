@@ -3707,7 +3707,125 @@ summary i {
 
     }
 
-}       
+}      
+/* =========================================
+   MAIN NAVIGATION
+========================================= */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+
+/* All navigation links */
+
+.main-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    text-decoration: none;
+
+    color: #4c6375;
+
+    font-weight: 600;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Hover */
+
+.main-nav a:hover {
+    color: #ff7a00;
+    background: #f4f8fb;
+}
+
+
+/* Active */
+
+.main-nav a.active {
+    color: #064d80;
+    background: #edf5fb;
+}
+
+
+/* =========================================
+   LOGOUT BUTTON
+========================================= */
+
+.main-nav .nav-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #4c6375;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.main-nav .nav-logout:hover {
+    background: #f4f8fb;
+    color: #ff7a00;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .main-nav {
+        gap: 2px;
+    }
+
+    .main-nav a,
+    .main-nav .nav-logout {
+        padding: 10px 9px;
+        font-size: 14px;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+} 
 /* ================================
    HIDE GOOGLE TRANSLATE TOP BAR
    ================================ */

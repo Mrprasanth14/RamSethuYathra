@@ -68,43 +68,70 @@
 
 
         <!-- NAVIGATION -->
+<nav class="main-nav">
 
-        <nav class="main-nav">
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
 
-            <a href="index.html" class="active">
-                <i class="fa-solid fa-house"></i>
-                Home
-            </a>
+    <a href="totalpackage.html">
+        <i class="fa-solid fa-suitcase-rolling"></i>
+        Packages
+    </a>
 
-            <a href="totalpackage.html">
-                <i class="fa-solid fa-suitcase-rolling"></i>
-                Packages
-            </a>
+    <a href="ramanathaswamy-temple.html">
+        <i class="fa-solid fa-place-of-worship"></i>
+        Temple
+    </a>
 
-            <a href="ramanathaswamy-temple.html">
-                <i class="fa-solid fa-place-of-worship"></i>
-                Temple
-            </a>
+    <a href="rameswaram-cab-service.html">
+        <i class="fa-solid fa-car"></i>
+        Cabs
+    </a>
 
-            <a href="rameswaram-cab-service.html">
-                <i class="fa-solid fa-car"></i>
-                Cabs
-            </a>
+    <a href="rameswaram-rooms.html">
+        <i class="fa-solid fa-bed"></i>
+        Rooms
+    </a>
 
-            <a href="rameswaram-rooms.html">
-                <i class="fa-solid fa-bed"></i>
-                Rooms
-            </a>
-            <a href="customer-dashboard.html">
-                <i class="fa-solid fa-circle-info"></i>
-                MyBooking
-            </a>
-            <a href="about.html">
-                <i class="fa-solid fa-circle-info"></i>
-                About
-            </a>
+    <!-- ONLY LOGGED IN -->
+    <a
+        href="customer-dashboard.html"
+        id="myBookingNav"
+        class="logged-in-only"
+        style="display:none;"
+    >
+        <i class="fa-solid fa-book-open"></i>
+        My Bookings
+    </a>
 
-        </nav>
+    <!-- ONLY LOGGED OUT -->
+    <a
+        href="login.html"
+        id="loginNav"
+        class="logged-out-only"
+    >
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
+    </a>
+    <a href="about.html">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+    <!-- ONLY LOGGED IN -->
+    <button
+        type="button"
+        id="logoutNav"
+        class="logged-in-only nav-logout"
+        style="display:none;"
+    >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </button>
+
+</nav>
 
 
         <!-- LANGUAGE -->
@@ -2272,6 +2299,7 @@
     <i class="fa-solid fa-arrow-up"></i>
 
 </button>
+</body>
 
 
 
@@ -2302,7 +2330,106 @@ function googleTranslateElementInit() {
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<script type="module">
 
+    import { auth } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+
+    const myBookingNav =
+        document.getElementById("myBookingNav");
+
+    const loginNav =
+        document.getElementById("loginNav");
+
+    const signupNav =
+        document.getElementById("signupNav");
+
+    const logoutNav =
+        document.getElementById("logoutNav");
+
+
+    /*
+    =====================================
+    CHECK LOGIN STATUS
+    =====================================
+    */
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (user) {
+
+            // ============================
+            // USER IS LOGGED IN
+            // ============================
+
+            myBookingNav.style.display = "flex";
+
+            logoutNav.style.display = "flex";
+
+            loginNav.style.display = "none";
+
+            signupNav.style.display = "none";
+
+
+            console.log(
+                "Logged in user:",
+                user.uid
+            );
+
+        } else {
+
+            // ============================
+            // USER IS NOT LOGGED IN
+            // ============================
+
+            myBookingNav.style.display = "none";
+
+            logoutNav.style.display = "none";
+
+            loginNav.style.display = "flex";
+
+            signupNav.style.display = "flex";
+
+        }
+
+    });
+
+
+    /*
+    =====================================
+    LOGOUT
+    =====================================
+    */
+
+    logoutNav.addEventListener("click", async () => {
+
+        try {
+
+            await signOut(auth);
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            console.error(
+                "Logout Error:",
+                error
+            );
+
+            alert(
+                "Logout failed. Please try again."
+            );
+
+        }
+
+    });
+
+</script>
 
 <!-- =====================================================
      HOMEPAGE ANIMATION
@@ -2390,8 +2517,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-
-
-</body>
 
 </html>
