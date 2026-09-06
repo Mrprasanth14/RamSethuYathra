@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Dashboard | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<header class="dashboard-header">
+
+    <div class="logo">
+        RamSethuYatra
+    </div>
+    <div class="header-right">
+
+    <nav>
+        <a href="index.html" class="logout-btn">Home</a>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </nav>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <!-- WELCOME -->
+
+    <section class="welcome-section">
+
+        <div>
+            <span class="small-title">CUSTOMER DASHBOARD</span>
+
+            <h1>
+                Welcome,
+                <span id="customerName">Customer</span> 👋
+            </h1>
+
+            <p>
+                Manage your profile and view all your RamSethuYatra bookings.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section class="profile-card">
+
+        <div class="profile-icon">
+            👤
+        </div>
+
+        <div class="profile-info">
+
+            <h2 id="profileName">Customer</h2>
+
+            <p>
+                📧
+                <span id="profileEmail">Loading...</span>
+            </p>
+
+            <p>
+                📱
+                <span id="profilePhone">Loading...</span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📋
+            </div>
+
+            <div>
+                <span>Total Bookings</span>
+                <strong id="totalBookings">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <div>
+                <span>Pending</span>
+                <strong id="pendingBookings">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div>
+                <span>Confirmed</span>
+                <strong id="confirmedBookings">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKINGS -->
+
+    <section class="bookings-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="small-title">MY BOOKINGS</span>
+
+                <h2>Booking History</h2>
+            </div>
+
+        </div>
+
+
+        <div id="loadingMessage" class="loading-message">
+            Loading your bookings...
+        </div>
+
+
+        <div id="emptyMessage" class="empty-message" style="display:none;">
+
+            <div class="empty-icon">
+                📭
+            </div>
+
+            <h3>No Bookings Yet</h3>
+
+            <p>
+                You haven't made any bookings yet.
+            </p>
+
+            <a href="totalpackage.html">
+                Explore Packages
+            </a>
+
+        </div>
+
+
+        <div id="bookingsList" class="bookings-list"></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 RamSethuYatra. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+import {
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const customerName =
+    document.getElementById("customerName");
+
+const profileName =
+    document.getElementById("profileName");
+
+const profileEmail =
+    document.getElementById("profileEmail");
+
+const profilePhone =
+    document.getElementById("profilePhone");
+
+const totalBookings =
+    document.getElementById("totalBookings");
+
+const pendingBookings =
+    document.getElementById("pendingBookings");
+
+const confirmedBookings =
+    document.getElementById("confirmedBookings");
+
+const bookingsList =
+    document.getElementById("bookingsList");
+
+const loadingMessage =
+    document.getElementById("loadingMessage");
+
+const emptyMessage =
+    document.getElementById("emptyMessage");
+
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
+
+/* ==========================================
+   BOOKING COLLECTIONS
+========================================== */
+
+const bookingCollections = [
+
+    {
+        collection: "packageBookings",
+        type: "Package"
+    },
+
+    {
+        collection: "cabBookings",
+        type: "Cab"
+    },
+
+    {
+        collection: "roomBookings",
+        type: "Room"
+    },
+
+    {
+        collection: "templeBookings",
+        type: "Temple"
+    },
+
+    {
+        collection: "wellBookings",
+        type: "22 Holy Wells"
+    },
+
+    {
+        collection: "poojaBookings",
+        type: "Poojai"
+    }
+
+];
+
+
+/* ==========================================
+   AUTH CHECK
+========================================== */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href =
+            "login.html?redirect=customer-dashboard.html";
+
+        return;
+    }
+
+    console.log("Logged in user:", user.uid);
+
+    await loadCustomer(user);
+
+    await loadAllBookings(user.uid);
+
+});
+
+
+/* ==========================================
+   LOAD CUSTOMER PROFILE
+========================================== */
+
+async function loadCustomer(user) {
+
+    try {
+
+        const customerRef =
+            doc(db, "customers", user.uid);
+
+        const customerSnap =
+            await getDoc(customerRef);
+
+
+        if (customerSnap.exists()) {
+
+            const data =
+                customerSnap.data();
+
+            const name =
+                data.name ||
+                user.displayName ||
+                "Customer";
+
+            customerName.textContent =
+                name;
+
+            profileName.textContent =
+                name;
+
+            profileEmail.textContent =
+                data.email ||
+                user.email ||
+                "Not available";
+
+            profilePhone.textContent =
+                data.phone ||
+                "Not available";
+
+        } else {
+
+            const name =
+                user.displayName ||
+                "Customer";
+
+            customerName.textContent =
+                name;
+
+            profileName.textContent =
+                name;
+
+            profileEmail.textContent =
+                user.email ||
+                "Not available";
+
+            profilePhone.textContent =
+                "Not available";
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Profile Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   LOAD ALL BOOKINGS
+========================================== */
+
+async function loadAllBookings(userId) {
+
+    loadingMessage.style.display =
+        "block";
+
+    bookingsList.innerHTML = "";
+
+    let allBookings = [];
+
+
+    try {
+
+        for (const item of bookingCollections) {
+
+            try {
+
+                const bookingRef =
+                    collection(
+                        db,
+                        item.collection
+                    );
+
+                const bookingQuery =
+                    query(
+                        bookingRef,
+                        where(
+                            "userId",
+                            "==",
+                            userId
+                        )
+                    );
+
+                const snapshot =
+                    await getDocs(
+                        bookingQuery
+                    );
+
+
+                snapshot.forEach((docSnap) => {
+
+                    const data =
+                        docSnap.data();
+
+                    allBookings.push({
+
+                        id: docSnap.id,
+
+                        type: item.type,
+
+                        collection:
+                            item.collection,
+
+                        ...data
+
+                    });
+
+                });
+
+            } catch (error) {
+
+                console.error(
+                    "Error loading " +
+                    item.collection,
+                    error
+                );
+
+            }
+
+        }
+
+
+        loadingMessage.style.display =
+            "none";
+
+
+        /* SORT NEWEST FIRST */
+
+        allBookings.sort((a, b) => {
+
+            const dateA =
+                a.createdAt?.seconds ||
+                0;
+
+            const dateB =
+                b.createdAt?.seconds ||
+                0;
+
+            return dateB - dateA;
+
+        });
+
+
+        /* UPDATE STATS */
+
+        const total =
+            allBookings.length;
+
+        const pending =
+            allBookings.filter(
+                booking =>
+                    booking.status ===
+                    "pending"
+            ).length;
+
+        const confirmed =
+            allBookings.filter(
+                booking =>
+                    booking.status ===
+                    "confirmed"
+            ).length;
+
+
+        totalBookings.textContent =
+            total;
+
+        pendingBookings.textContent =
+            pending;
+
+        confirmedBookings.textContent =
+            confirmed;
+
+
+        /* EMPTY */
+
+        if (total === 0) {
+
+            emptyMessage.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        emptyMessage.style.display =
+            "none";
+
+
+        /* DISPLAY */
+
+        allBookings.forEach(
+            booking => {
+
+                bookingsList.innerHTML +=
+                    createBookingCard(
+                        booking
+                    );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Booking Loading Error:",
+            error
+        );
+
+        loadingMessage.style.display =
+            "none";
+
+        Swal.fire({
+            icon: "error",
+            title: "Unable to Load Bookings",
+            text: error.message,
+            confirmButtonColor:
+                "#ff7a00"
+        });
+
+    }
+
+}
+
+
+/* ==========================================
+   CREATE BOOKING CARD
+========================================== */
+
+function createBookingCard(booking) {
+
+    const status =
+        booking.status ||
+        "pending";
+
+
+    let statusClass =
+        "pending";
+
+    let statusText =
+        "Pending";
+
+
+    if (status === "confirmed") {
+
+        statusClass =
+            "confirmed";
+
+        statusText =
+            "Confirmed";
+
+    }
+
+
+    if (status === "cancelled") {
+
+        statusClass =
+            "cancelled";
+
+        statusText =
+            "Cancelled";
+
+    }
+
+
+    let details = "";
+
+
+    /* PACKAGE */
+
+    if (
+        booking.collection ===
+        "packageBookings"
+    ) {
+
+        details = `
+
+            <p>
+                📦
+                <strong>Package:</strong>
+                ${booking.packageName || booking.package || "-"}
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Travel Date:</strong>
+                ${booking.travelDate || "-"}
+            </p>
+
+            <p>
+                ⏰
+                <strong>Pickup Time:</strong>
+                ${booking.pickupTime || "-"}
+            </p>
+
+            <p>
+                📍
+                <strong>Pickup:</strong>
+                ${booking.pickupLocation || "-"}
+            </p>
+
+            <p>
+                💰
+                <strong>Total:</strong>
+                ₹${Number(
+                    booking.totalPrice || 0
+                ).toLocaleString("en-IN")}
+            </p>
+
+        `;
+
+    }
+
+
+    /* CAB */
+
+    else if (
+        booking.collection ===
+        "cabBookings"
+    ) {
+
+        details = `
+
+            <p>
+                🚕
+                <strong>Cab:</strong>
+                ${booking.cab || "-"} Seater
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Date:</strong>
+                ${booking.date || "-"}
+            </p>
+
+            <p>
+                ⏰
+                <strong>Time:</strong>
+                ${booking.time || "-"}
+            </p>
+
+            <p>
+                📍
+                <strong>Pickup:</strong>
+                ${booking.pickup || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    /* ROOM */
+
+    else if (
+        booking.collection ===
+        "roomBookings"
+    ) {
+
+        details = `
+
+            <p>
+                🛏️
+                <strong>Room:</strong>
+                ${booking.room || "-"}
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Check-in:</strong>
+                ${booking.checkin || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Check-out:</strong>
+                ${booking.checkout || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    /* TEMPLE */
+
+    else if (
+        booking.collection ===
+        "templeBookings"
+    ) {
+
+        details = `
+
+            <p>
+                🛕
+                <strong>Service:</strong>
+                Temple Visit
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Date:</strong>
+                ${booking.date || "-"}
+            </p>
+
+            <p>
+                ⏰
+                <strong>Time:</strong>
+                ${booking.time || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    /* HOLY WELLS */
+
+    else if (
+        booking.collection ===
+        "wellBookings"
+    ) {
+
+        details = `
+
+            <p>
+                🚿
+                <strong>Service:</strong>
+                22 Holy Wells
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Date:</strong>
+                ${booking.date || "-"}
+            </p>
+
+            <p>
+                ⏰
+                <strong>Time:</strong>
+                ${booking.time || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    /* POOJAI */
+
+    else if (
+        booking.collection ===
+        "poojaBookings"
+    ) {
+
+        details = `
+
+            <p>
+                🙏
+                <strong>Service:</strong>
+                Temple Poojai
+            </p>
+
+            <p>
+                👥
+                <strong>Persons:</strong>
+                ${booking.persons || "-"}
+            </p>
+
+            <p>
+                📅
+                <strong>Date:</strong>
+                ${booking.date || "-"}
+            </p>
+
+            <p>
+                ⏰
+                <strong>Time:</strong>
+                ${booking.time || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div class="booking-card">
+
+            <div class="booking-top">
+
+                <div>
+
+                    <span class="booking-type">
+                        ${booking.type}
+                    </span>
+
+                    <h3>
+                        ${booking.service ||
+                          booking.packageName ||
+                          booking.type +
+                          " Booking"}
+                    </h3>
+
+                </div>
+
+                <span class="status ${statusClass}">
+                    ${statusText}
+                </span>
+
+            </div>
+
+
+            <div class="booking-details">
+
+                ${details}
+
+            </div>
+
+
+            <div class="booking-footer">
+
+                <span>
+                    Booking ID:
+                    <strong>
+                        ${booking.id}
+                    </strong>
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+        const result =
+            await Swal.fire({
+
+                icon: "question",
+
+                title: "Logout?",
+
+                text:
+                    "Do you want to logout?",
+
+                showCancelButton: true,
+
+                confirmButtonText:
+                    "Yes, Logout",
+
+                cancelButtonText:
+                    "Cancel",
+
+                confirmButtonColor:
+                    "#ff7a00"
+
+            });
+
+
+        if (!result.isConfirmed)
+            return;
+
+
+        try {
+
+            await signOut(auth);
+
+            window.location.href =
+                "login.html";
+
+        } catch (error) {
+
+            console.error(error);
+
+            Swal.fire(
+                "Error",
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

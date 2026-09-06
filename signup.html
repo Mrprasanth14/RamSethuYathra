@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | RamSethuYatra</title>
+
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+                RamSethu<span>Yatra</span>
+            </div>
+
+            <div class="auth-heading">
+                <h1>Create Account</h1>
+                <p>Start your Rameswaram journey with us</p>
+            </div>
+
+            <form id="signupForm">
+
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Mobile Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your mobile number"
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="auth-btn" id="signupBtn">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                <p>
+                    Already have an account?
+                    <a href="login.html">Login</a>
+                </p>
+
+                <a href="index.html" class="home-link">
+                    ← Back to Website
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module">
+
+        import { auth, db } from "./firebase.js";
+
+        import {
+            createUserWithEmailAndPassword,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+        import {
+            doc,
+            setDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+
+        const signupForm = document.getElementById("signupForm");
+        const signupBtn = document.getElementById("signupBtn");
+
+
+        signupForm.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const phone =
+                document.getElementById("phone").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            // Validate mobile number
+
+            if (!/^[0-9]{10}$/.test(phone)) {
+
+                alert("Please enter a valid 10-digit mobile number.");
+
+                return;
+            }
+
+
+            // Check password
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return;
+            }
+
+
+            signupBtn.disabled = true;
+
+            signupBtn.textContent = "Creating Account...";
+
+
+            try {
+
+                // Create Firebase Authentication account
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user = userCredential.user;
+
+
+                // Update Firebase user's display name
+
+                await updateProfile(user, {
+                    displayName: name
+                });
+
+
+                // Store customer information in Firestore
+
+                await setDoc(
+                    doc(db, "customers", user.uid),
+                    {
+                        uid: user.uid,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        createdAt: serverTimestamp()
+                    }
+                );
+
+
+                alert("Account created successfully!");
+
+
+                // Go to customer dashboard
+
+                window.location.href =
+                    "login.html";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                let message =
+                    "Unable to create account.";
+
+
+                if (error.code === "auth/email-already-in-use") {
+
+                    message =
+                        "This email is already registered.";
+
+                } else if (error.code === "auth/invalid-email") {
+
+                    message =
+                        "Please enter a valid email address.";
+
+                } else if (error.code === "auth/weak-password") {
+
+                    message =
+                        "Password must be at least 6 characters.";
+
+                } else if (error.code === "auth/network-request-failed") {
+
+                    message =
+                        "Network error. Please check your internet connection.";
+
+                }
+
+
+                alert(message);
+
+
+                signupBtn.disabled = false;
+
+                signupBtn.textContent =
+                    "Create Account";
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

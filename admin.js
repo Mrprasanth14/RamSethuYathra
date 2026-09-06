@@ -14,22 +14,36 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-// ===============================
+// ==========================================
 // ADMIN EMAIL
-// ===============================
+// ==========================================
 
 const ADMIN_EMAIL = "ramsethuyatra2026@gmail.com";
 
 
-// ===============================
-// CHECK FIREBASE LOGIN
-// ===============================
+// ==========================================
+// COLLECTION CONFIG
+// ==========================================
 
-onAuthStateChanged(auth, (user) => {
+const bookingSections = {
+
+    packageBookings: "packageData",
+    templeBookings: "templeData",
+    wellBookings: "wellData",
+    poojaBookings: "poojaData",
+    roomBookings: "roomData",
+    cabBookings: "cabData"
+
+};
+
+
+// ==========================================
+// CHECK ADMIN LOGIN
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
-
-        console.log("No authenticated user");
 
         window.location.href = "admin-login.html";
 
@@ -37,19 +51,17 @@ onAuthStateChanged(auth, (user) => {
     }
 
 
-    console.log("Authenticated user:", user.email);
+    console.log("Authenticated:", user.email);
 
 
-    // Extra admin protection on frontend
+    // Frontend protection
 
     if (
         !user.email ||
         user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()
     ) {
 
-        console.log("Access denied:", user.email);
-
-        signOut(auth);
+        await signOut(auth);
 
         Swal.fire({
             icon: "error",
@@ -69,9 +81,9 @@ onAuthStateChanged(auth, (user) => {
     console.log("Admin verified:", user.email);
 
 
-    // ===============================
-    // LOAD ALL BOOKINGS
-    // ===============================
+    // Load everything
+
+    loadPackageBookings();
 
     loadBookings("templeBookings", "templeData");
 
@@ -83,34 +95,36 @@ onAuthStateChanged(auth, (user) => {
 
     loadBookings("cabBookings", "cabData");
 
-    loadPackageBookings();
-
 });
 
 
-// ===============================
+// ==========================================
 // LOAD NORMAL BOOKINGS
-// ===============================
+// ==========================================
 
 async function loadBookings(collectionName, divId) {
 
-    const box = document.getElementById(divId);
+    const box =
+        document.getElementById(divId);
 
     if (!box) return;
 
 
-    box.innerHTML = "Loading...";
+    box.innerHTML =
+        `<div class="loading-msg">
+            Loading bookings...
+        </div>`;
 
 
     try {
 
-        const querySnapshot =
+        const snapshot =
             await getDocs(
                 collection(db, collectionName)
             );
 
 
-        if (querySnapshot.empty) {
+        if (snapshot.empty) {
 
             box.innerHTML =
                 `<div class="empty-msg">
@@ -124,53 +138,144 @@ async function loadBookings(collectionName, divId) {
         box.innerHTML = "";
 
 
-        querySnapshot.forEach((bookingDoc) => {
+        snapshot.forEach((bookingDoc) => {
 
-            const data = bookingDoc.data();
+            const data =
+                bookingDoc.data();
 
-            const bookingId = bookingDoc.id;
+            const bookingId =
+                bookingDoc.id;
+
+
+            const status =
+                data.status || "pending";
+
+
+            const statusClass =
+                getStatusClass(status);
 
 
             box.innerHTML += `
 
                 <div class="admin-card">
 
-                    <p>
-                        <b>Service:</b>
-                        ${data.service || collectionName}
-                    </p>
+                    <div class="admin-card-header">
+
+                        <div>
+
+                            <span class="booking-type">
+                                ${data.service || collectionName}
+                            </span>
+
+                            <h3>
+                                ${data.name || "Customer Booking"}
+                            </h3>
+
+                        </div>
+
+                        <span class="${statusClass}">
+                            ${status.toUpperCase()}
+                        </span>
+
+                    </div>
+
+
+                    <hr>
+
 
                     <p>
-                        <b>Persons:</b>
+                        <b>👤 Customer:</b>
+                        ${data.name || data.customerName || "-"}
+                    </p>
+
+
+                    <p>
+                        <b>📧 Email:</b>
+                        ${data.customerEmail || data.email || "-"}
+                    </p>
+
+
+                    <p>
+                        <b>📱 Mobile:</b>
+                        ${data.mobile || data.customerMobile || "-"}
+                    </p>
+
+
+                    <p>
+                        <b>👥 Persons:</b>
                         ${data.persons || "-"}
                     </p>
 
+
                     <p>
-                        <b>Date:</b>
+                        <b>📅 Date:</b>
                         ${data.date || "-"}
                     </p>
 
+
                     <p>
-                        <b>Time:</b>
+                        <b>⏰ Time:</b>
                         ${data.time || "-"}
                     </p>
 
-                    <p>
-                        <b>Mobile:</b>
-                        ${data.mobile || "-"}
-                    </p>
+
+                    ${renderExtraDetails(
+                        collectionName,
+                        data
+                    )}
 
 
-                    <button
-                        class="delete-btn"
-                        onclick="deleteBooking(
-                            '${collectionName}',
-                            '${bookingId}'
-                        )">
+                    <div class="booking-id">
 
-                        🗑️ Delete Booking
+                        <b>Booking ID:</b>
 
-                    </button>
+                        <span>
+                            ${bookingId}
+                        </span>
+
+                    </div>
+
+
+                    <div class="package-actions">
+
+                        <button
+                            class="confirm-btn"
+                            onclick="updateBookingStatus(
+                                '${collectionName}',
+                                '${bookingId}',
+                                'confirmed'
+                            )">
+
+                            ✅ Confirm
+
+                        </button>
+
+
+                        <button
+                            class="cancel-btn"
+                            onclick="updateBookingStatus(
+                                '${collectionName}',
+                                '${bookingId}',
+                                'cancelled'
+                            )">
+
+                            ❌ Cancel
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteBooking(
+                                '${collectionName}',
+                                '${bookingId}'
+                            )">
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -189,37 +294,126 @@ async function loadBookings(collectionName, divId) {
 
         box.innerHTML =
             `<div class="empty-msg">
-                Unable to load bookings
+
+                Unable to load bookings.
+
+                <br><br>
+
+                ${error.message}
+
             </div>`;
     }
+
 }
 
 
-// ======================================================
+// ==========================================
+// EXTRA BOOKING DETAILS
+// ==========================================
+
+function renderExtraDetails(
+    collectionName,
+    data
+) {
+
+    if (collectionName === "cabBookings") {
+
+        return `
+
+            <p>
+                <b>🚖 Cab:</b>
+                ${data.cab || "-"} Seater
+            </p>
+
+            <p>
+                <b>📍 Pickup:</b>
+                ${data.pickup || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    if (collectionName === "roomBookings") {
+
+        return `
+
+            <p>
+                <b>🏨 Room:</b>
+                ${data.room || "-"}
+            </p>
+
+            <p>
+                <b>📅 Check-in:</b>
+                ${data.checkin || "-"}
+            </p>
+
+            <p>
+                <b>📅 Check-out:</b>
+                ${data.checkout || "-"}
+            </p>
+
+            <p>
+                <b>📝 Request:</b>
+                ${data.request || "None"}
+            </p>
+
+        `;
+
+    }
+
+
+    if (
+        collectionName === "templeBookings" ||
+        collectionName === "wellBookings" ||
+        collectionName === "poojaBookings"
+    ) {
+
+        return `
+
+            <p>
+                <b>🛕 Service:</b>
+                ${data.service || "-"}
+            </p>
+
+        `;
+
+    }
+
+
+    return "";
+
+}
+
+
+// ==========================================
 // LOAD PACKAGE BOOKINGS
-// ======================================================
+// ==========================================
 
 async function loadPackageBookings() {
 
     const box =
         document.getElementById("packageData");
 
-
     if (!box) return;
 
 
-    box.innerHTML = "Loading package bookings...";
+    box.innerHTML =
+        `<div class="loading-msg">
+            Loading package bookings...
+        </div>`;
 
 
     try {
 
-        const querySnapshot =
+        const snapshot =
             await getDocs(
                 collection(db, "packageBookings")
             );
 
 
-        if (querySnapshot.empty) {
+        if (snapshot.empty) {
 
             box.innerHTML =
                 `<div class="empty-msg">
@@ -233,14 +427,14 @@ async function loadPackageBookings() {
         box.innerHTML = "";
 
 
-        querySnapshot.forEach((bookingDoc) => {
+        snapshot.forEach((bookingDoc) => {
 
-            const data = bookingDoc.data();
+            const data =
+                bookingDoc.data();
 
-            const bookingId = bookingDoc.id;
+            const bookingId =
+                bookingDoc.id;
 
-
-            // Package information
 
             const packageName =
                 data.packageName ||
@@ -248,47 +442,39 @@ async function loadPackageBookings() {
                 "Package";
 
 
-            const persons =
-                data.persons || "-";
-
-
             const totalPrice =
-                Number(data.totalPrice || 0);
+                Number(
+                    data.totalPrice || 0
+                );
 
 
             const status =
-                data.status || "pending";
+                data.status ||
+                "pending";
 
 
-            // Status class
-
-            let statusClass =
-                "status-pending";
-
-
-            if (status === "confirmed") {
-
-                statusClass =
-                    "status-confirmed";
-
-            } else if (status === "cancelled") {
-
-                statusClass =
-                    "status-cancelled";
-
-            }
+            const statusClass =
+                getStatusClass(status);
 
 
             box.innerHTML += `
 
                 <div class="admin-card package-card">
 
+                    <div class="admin-card-header">
 
-                    <div class="package-header">
+                        <div>
 
-                        <h3>
-                            🧳 ${packageName}
-                        </h3>
+                            <span class="booking-type">
+                                PACKAGE BOOKING
+                            </span>
+
+                            <h3>
+                                🧳 ${packageName}
+                            </h3>
+
+                        </div>
+
 
                         <span class="${statusClass}">
                             ${status.toUpperCase()}
@@ -307,14 +493,20 @@ async function loadPackageBookings() {
 
 
                     <p>
+                        <b>📧 Email:</b>
+                        ${data.customerEmail || "-"}
+                    </p>
+
+
+                    <p>
                         <b>📱 Mobile:</b>
                         ${data.customerMobile || "-"}
                     </p>
 
 
                     <p>
-                        <b>👨‍👩‍👧 Persons:</b>
-                        ${persons}
+                        <b>👥 Persons:</b>
+                        ${data.persons || "-"}
                     </p>
 
 
@@ -353,12 +545,23 @@ async function loadPackageBookings() {
                     </div>
 
 
-                    <div class="package-actions">
+                    <div class="booking-id">
 
+                        <b>Booking ID:</b>
+
+                        <span>
+                            ${bookingId}
+                        </span>
+
+                    </div>
+
+
+                    <div class="package-actions">
 
                         <button
                             class="confirm-btn"
-                            onclick="updatePackageStatus(
+                            onclick="updateBookingStatus(
+                                'packageBookings',
                                 '${bookingId}',
                                 'confirmed'
                             )">
@@ -370,7 +573,8 @@ async function loadPackageBookings() {
 
                         <button
                             class="cancel-btn"
-                            onclick="updatePackageStatus(
+                            onclick="updateBookingStatus(
+                                'packageBookings',
                                 '${bookingId}',
                                 'cancelled'
                             )">
@@ -391,9 +595,7 @@ async function loadPackageBookings() {
 
                         </button>
 
-
                     </div>
-
 
                 </div>
 
@@ -405,7 +607,7 @@ async function loadPackageBookings() {
     } catch (error) {
 
         console.error(
-            "Error loading package bookings:",
+            "Package loading error:",
             error
         );
 
@@ -417,58 +619,86 @@ async function loadPackageBookings() {
                 ${error.message}
             </div>`;
     }
+
 }
 
 
-// ======================================================
-// UPDATE PACKAGE STATUS
-// ======================================================
+// ==========================================
+// STATUS CLASS
+// ==========================================
 
-async function updatePackageStatus(
+function getStatusClass(status) {
+
+    if (status === "confirmed") {
+
+        return "status-confirmed";
+
+    }
+
+    if (status === "cancelled") {
+
+        return "status-cancelled";
+
+    }
+
+    return "status-pending";
+
+}
+
+
+// ==========================================
+// UPDATE ANY BOOKING STATUS
+// ==========================================
+
+async function updateBookingStatus(
+    collectionName,
     bookingId,
     newStatus
 ) {
 
-    const actionText =
+    const action =
         newStatus === "confirmed"
             ? "confirm"
             : "cancel";
 
 
-    const result = await Swal.fire({
+    const result =
+        await Swal.fire({
 
-        icon:
-            newStatus === "confirmed"
-                ? "question"
-                : "warning",
+            icon:
+                newStatus === "confirmed"
+                    ? "question"
+                    : "warning",
 
-        title:
-            newStatus === "confirmed"
-                ? "Confirm Booking?"
-                : "Cancel Booking?",
+            title:
+                newStatus === "confirmed"
+                    ? "Confirm Booking?"
+                    : "Cancel Booking?",
 
-        text:
-            `Are you sure you want to ${actionText} this package booking?`,
+            text:
+                `Are you sure you want to ${action} this booking?`,
 
-        showCancelButton: true,
+            showCancelButton: true,
 
-        confirmButtonText:
-            newStatus === "confirmed"
-                ? "Yes, Confirm"
-                : "Yes, Cancel",
+            confirmButtonText:
+                newStatus === "confirmed"
+                    ? "Yes, Confirm"
+                    : "Yes, Cancel",
 
-        cancelButtonText: "Go Back",
+            cancelButtonText:
+                "Go Back",
 
-        confirmButtonColor:
-            newStatus === "confirmed"
-                ? "#198754"
-                : "#dc3545",
+            confirmButtonColor:
+                newStatus === "confirmed"
+                    ? "#198754"
+                    : "#dc3545",
 
-        cancelButtonColor: "#555",
+            cancelButtonColor:
+                "#555",
 
-        reverseButtons: true
+            reverseButtons: true
 
-    });
+        });
 
 
     if (!result.isConfirmed) {
@@ -479,14 +709,17 @@ async function updatePackageStatus(
     try {
 
         await updateDoc(
+
             doc(
                 db,
-                "packageBookings",
+                collectionName,
                 bookingId
             ),
+
             {
                 status: newStatus
             }
+
         );
 
 
@@ -501,10 +734,11 @@ async function updatePackageStatus(
 
             text:
                 newStatus === "confirmed"
-                    ? "The package booking has been confirmed."
-                    : "The package booking has been cancelled.",
+                    ? "The booking has been confirmed."
+                    : "The booking has been cancelled.",
 
-            confirmButtonColor: "#ff7a00",
+            confirmButtonColor:
+                "#ff7a00",
 
             timer: 1800,
 
@@ -513,9 +747,25 @@ async function updatePackageStatus(
         });
 
 
-        // Reload packages
+        // Refresh correct section
 
-        loadPackageBookings();
+        if (
+            collectionName ===
+            "packageBookings"
+        ) {
+
+            loadPackageBookings();
+
+        } else {
+
+            loadBookings(
+                collectionName,
+                bookingSections[
+                    collectionName
+                ]
+            );
+
+        }
 
 
     } catch (error) {
@@ -532,48 +782,53 @@ async function updatePackageStatus(
 
             title: "Update Failed",
 
-            text:
-                error.message,
+            text: error.message,
 
             confirmButtonColor: "#d33"
 
         });
 
     }
+
 }
 
 
-// ======================================================
+// ==========================================
 // DELETE BOOKING
-// ======================================================
+// ==========================================
 
 async function deleteBooking(
     collectionName,
     bookingId
 ) {
 
-    const result = await Swal.fire({
+    const result =
+        await Swal.fire({
 
-        icon: "warning",
+            icon: "warning",
 
-        title: "Delete Booking?",
+            title: "Delete Booking?",
 
-        text:
-            "This booking will be permanently removed from your records.",
+            text:
+                "This booking will be permanently removed from your records.",
 
-        showCancelButton: true,
+            showCancelButton: true,
 
-        confirmButtonText: "Yes, Delete",
+            confirmButtonText:
+                "Yes, Delete",
 
-        cancelButtonText: "Cancel",
+            cancelButtonText:
+                "Cancel",
 
-        confirmButtonColor: "#d33",
+            confirmButtonColor:
+                "#d33",
 
-        cancelButtonColor: "#555",
+            cancelButtonColor:
+                "#555",
 
-        reverseButtons: true
+            reverseButtons: true
 
-    });
+        });
 
 
     if (!result.isConfirmed) {
@@ -584,11 +839,13 @@ async function deleteBooking(
     try {
 
         await deleteDoc(
+
             doc(
                 db,
                 collectionName,
                 bookingId
             )
+
         );
 
 
@@ -596,59 +853,42 @@ async function deleteBooking(
 
             icon: "success",
 
-            title: "Booking Deleted ✨",
+            title:
+                "Booking Deleted ✨",
 
             text:
                 "The booking has been successfully removed.",
 
-            confirmButtonText: "Done",
+            confirmButtonText:
+                "Done",
 
-            confirmButtonColor: "#ff7a00",
+            confirmButtonColor:
+                "#ff7a00",
 
-            timer: 2000,
+            timer: 1800,
 
             timerProgressBar: true
 
         });
 
 
-        // Find correct section
-
-        let divId;
-
-
-        if (collectionName === "templeBookings") {
-
-            divId = "templeData";
-
-        } else if (collectionName === "wellBookings") {
-
-            divId = "wellData";
-
-        } else if (collectionName === "poojaBookings") {
-
-            divId = "poojaData";
-
-        } else if (collectionName === "roomBookings") {
-
-            divId = "roomData";
-
-        } else if (collectionName === "cabBookings") {
-
-            divId = "cabData";
-
-        } else if (collectionName === "packageBookings") {
+        if (
+            collectionName ===
+            "packageBookings"
+        ) {
 
             loadPackageBookings();
 
-            return;
+        } else {
+
+            loadBookings(
+                collectionName,
+                bookingSections[
+                    collectionName
+                ]
+            );
+
         }
-
-
-        loadBookings(
-            collectionName,
-            divId
-        );
 
 
     } catch (error) {
@@ -666,21 +906,21 @@ async function deleteBooking(
             title: "Delete Failed",
 
             text:
-                "We couldn't remove this booking. Please try again.",
+                error.message,
 
-            confirmButtonText: "Close",
-
-            confirmButtonColor: "#d33"
+            confirmButtonColor:
+                "#d33"
 
         });
 
     }
+
 }
 
 
-// ======================================================
+// ==========================================
 // LOGOUT
-// ======================================================
+// ==========================================
 
 async function logout() {
 
@@ -699,18 +939,19 @@ async function logout() {
         );
 
     }
+
 }
 
 
-// ======================================================
-// MAKE FUNCTIONS AVAILABLE TO HTML
-// ======================================================
+// ==========================================
+// HTML ACCESS
+// ==========================================
+
+window.updateBookingStatus =
+    updateBookingStatus;
 
 window.deleteBooking =
     deleteBooking;
-
-window.updatePackageStatus =
-    updatePackageStatus;
 
 window.logout =
     logout;

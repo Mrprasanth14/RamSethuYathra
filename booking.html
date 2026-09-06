@@ -14,7 +14,6 @@
 
     <link rel="stylesheet" href="booking.css">
 
-
 </head>
 
 
@@ -113,7 +112,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="customerName">
                     Full Name
                 </label>
 
@@ -132,7 +131,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="customerMobile">
                     Mobile Number
                 </label>
 
@@ -141,6 +140,7 @@
                     id="customerMobile"
                     placeholder="Enter mobile number"
                     maxlength="10"
+                    inputmode="numeric"
                     required
                 >
 
@@ -152,7 +152,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="travelDate">
                     Travel Date
                 </label>
 
@@ -170,7 +170,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="pickupTime">
                     Pickup Time
                 </label>
 
@@ -188,7 +188,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="pickupLocation">
                     Pickup Location
                 </label>
 
@@ -207,7 +207,7 @@
 
             <div class="form-group">
 
-                <label>
+                <label for="specialRequest">
                     Special Request
                 </label>
 
@@ -248,7 +248,6 @@
     class="custom-modal"
 >
 
-
     <div class="custom-modal-box">
 
 
@@ -261,8 +260,6 @@
         </button>
 
 
-        <!-- ICON -->
-
         <div
             id="popupIcon"
             class="popup-icon success"
@@ -271,14 +268,10 @@
         </div>
 
 
-        <!-- TITLE -->
-
         <h2 id="popupTitle">
             Booking Confirmed!
         </h2>
 
-
-        <!-- MESSAGE -->
 
         <p
             id="popupMessage"
@@ -287,8 +280,6 @@
             Your RamSethuYatra trip has been successfully booked.
         </p>
 
-
-        <!-- BOOKING ID -->
 
         <div
             id="bookingIdContainer"
@@ -305,8 +296,6 @@
 
         </div>
 
-
-        <!-- BUTTON -->
 
         <button
             id="popupButton"
@@ -329,7 +318,11 @@
 
 <script type="module">
 
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 import {
     collection,
@@ -346,17 +339,23 @@ import {
 const params =
     new URLSearchParams(window.location.search);
 
-
 const packageType =
     params.get("package");
-
 
 const persons =
     params.get("persons");
 
 
-const price =
-    params.get("price");
+/*
+IMPORTANT:
+
+We intentionally DO NOT use:
+
+params.get("price")
+
+The price is calculated below from
+our trusted package price table.
+*/
 
 
 
@@ -377,60 +376,178 @@ const packageNames = {
 
 
 /* =========================================
-   DISPLAY PACKAGE INFORMATION
+   PACKAGE PRICES
 ========================================= */
 
-document.getElementById("packageName")
-    .textContent =
-    packageNames[packageType] || "Package";
+const packagePrices = {
 
+    normal: {
 
-document.getElementById("personCount")
-    .textContent =
-    persons
-        ? persons + " Persons"
-        : "-";
+        2: 4000,
+        3: 4800,
+        4: 5900,
+        5: 7000,
+        6: 8200,
+        7: 9300,
+        8: 10500,
+        9: 11600,
+        10: 12700
 
+    },
 
-document.getElementById("totalAmount")
-    .textContent =
-    price
-        ? "₹" + Number(price).toLocaleString("en-IN")
-        : "₹0";
+    medium: {
+
+        2: 5500,
+        3: 6500,
+        4: 8000,
+        5: 9500,
+        6: 10800,
+        7: 12000,
+        8: 13500,
+        9: 14800,
+        10: 16000
+
+    },
+
+    premium: {
+
+        2: 7500,
+        3: 9000,
+        4: 11000,
+        5: 13000,
+        6: 14800,
+        7: 16500,
+        8: 18200,
+        9: 20000,
+        10: 22000
+
+    }
+
+};
 
 
 
 /* =========================================
-   CUSTOM POPUP ELEMENTS
+   CALCULATE TRUSTED PRICE
+========================================= */
+
+function getPackagePrice(packageName, personCount) {
+
+    if (!packagePrices[packageName]) {
+
+        return null;
+
+    }
+
+    if (!packagePrices[packageName][personCount]) {
+
+        return null;
+
+    }
+
+    return packagePrices[packageName][personCount];
+
+}
+
+
+
+/* =========================================
+   VALIDATE PACKAGE INFORMATION
+========================================= */
+
+const personNumber =
+    Number(persons);
+
+const totalPrice =
+    getPackagePrice(
+        packageType,
+        personNumber
+    );
+
+
+/*
+If somebody manually changes the URL,
+for example:
+
+?package=premium&persons=5&price=1
+
+the price parameter is completely ignored.
+
+The website calculates:
+
+premium + 5 persons = ₹13,000
+*/
+
+
+
+/* =========================================
+   DISPLAY PACKAGE INFORMATION
+========================================= */
+
+if (
+    packageNames[packageType] &&
+    totalPrice !== null
+) {
+
+    document.getElementById("packageName")
+        .textContent =
+        packageNames[packageType];
+
+
+    document.getElementById("personCount")
+        .textContent =
+        personNumber + " Persons";
+
+
+    document.getElementById("totalAmount")
+        .textContent =
+        "₹" +
+        totalPrice.toLocaleString("en-IN");
+
+} else {
+
+    document.getElementById("packageName")
+        .textContent =
+        "Invalid Package";
+
+
+    document.getElementById("personCount")
+        .textContent =
+        "-";
+
+
+    document.getElementById("totalAmount")
+        .textContent =
+        "₹0";
+
+}
+
+
+
+/* =========================================
+   POPUP ELEMENTS
 ========================================= */
 
 const customModal =
     document.getElementById("customModal");
 
-
 const popupIcon =
     document.getElementById("popupIcon");
-
 
 const popupTitle =
     document.getElementById("popupTitle");
 
-
 const popupMessage =
     document.getElementById("popupMessage");
-
 
 const popupBookingId =
     document.getElementById("popupBookingId");
 
-
 const bookingIdContainer =
     document.getElementById("bookingIdContainer");
 
-
 const popupButton =
     document.getElementById("popupButton");
-
 
 const popupClose =
     document.getElementById("popupClose");
@@ -438,7 +555,7 @@ const popupClose =
 
 
 /* =========================================
-   SHOW CUSTOM POPUP
+   SHOW POPUP
 ========================================= */
 
 function showPopup(
@@ -450,52 +567,32 @@ function showPopup(
     callback = null
 ) {
 
-    /* Remove old icon classes */
-
     popupIcon.classList.remove(
         "success",
         "error",
         "warning"
     );
 
-
-    /* Add current icon type */
-
     popupIcon.classList.add(type);
 
-
-    /* Set icon */
 
     if (type === "success") {
 
         popupIcon.textContent = "✓";
 
-    }
-
-    else if (type === "error") {
+    } else {
 
         popupIcon.textContent = "!";
 
     }
 
-    else {
-
-        popupIcon.textContent = "!";
-
-    }
-
-
-    /* Set text */
 
     popupTitle.textContent =
         title;
 
-
     popupMessage.textContent =
         message;
 
-
-    /* Booking ID */
 
     if (bookingId) {
 
@@ -505,9 +602,7 @@ function showPopup(
         popupBookingId.textContent =
             bookingId;
 
-    }
-
-    else {
+    } else {
 
         bookingIdContainer.style.display =
             "none";
@@ -518,26 +613,23 @@ function showPopup(
     }
 
 
-    /* Button */
-
     popupButton.textContent =
         buttonText;
 
 
-    /* Save callback */
+    popupButton.onclick =
+        function() {
 
-    popupButton.onclick = function() {
+            closePopup();
 
-        closePopup();
+            if (callback) {
 
-        if (callback) {
-            callback();
-        }
+                callback();
 
-    };
+            }
 
+        };
 
-    /* Show */
 
     customModal.classList.add("show");
 
@@ -562,11 +654,6 @@ popupClose.addEventListener(
 );
 
 
-
-/* =========================================
-   CLOSE WHEN CLICKING OUTSIDE
-========================================= */
-
 customModal.addEventListener(
     "click",
     function(e) {
@@ -574,6 +661,69 @@ customModal.addEventListener(
         if (e.target === customModal) {
 
             closePopup();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   CUSTOMER LOGIN
+========================================= */
+
+let currentUser = null;
+
+
+onAuthStateChanged(
+    auth,
+    (user) => {
+
+        if (!user) {
+
+            const currentPage =
+                window.location.pathname.split("/").pop()
+                + window.location.search;
+
+
+            window.location.href =
+                "login.html?redirect=" +
+                encodeURIComponent(currentPage);
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        console.log(
+            "Customer logged in:",
+            user.uid
+        );
+
+
+        /*
+        Automatically fill customer name
+        from Firebase Authentication.
+        */
+
+        const nameInput =
+            document.getElementById(
+                "customerName"
+            );
+
+
+        if (
+            user.displayName &&
+            !nameInput.value
+        ) {
+
+            nameInput.value =
+                user.displayName;
 
         }
 
@@ -594,76 +744,34 @@ document.getElementById("bookingForm")
             e.preventDefault();
 
 
-            /* CUSTOMER NAME */
-
-            const name =
-                document
-                    .getElementById("customerName")
-                    .value
-                    .trim();
-
-
-            /* MOBILE */
-
-            const mobile =
-                document
-                    .getElementById("customerMobile")
-                    .value
-                    .trim();
-
-
-            /* DATE */
-
-            const date =
-                document
-                    .getElementById("travelDate")
-                    .value;
-
-
-            /* TIME */
-
-            const time =
-                document
-                    .getElementById("pickupTime")
-                    .value;
-
-
-            /* PICKUP */
-
-            const pickup =
-                document
-                    .getElementById("pickupLocation")
-                    .value
-                    .trim();
-
-
-            /* SPECIAL REQUEST */
-
-            const request =
-                document
-                    .getElementById("specialRequest")
-                    .value
-                    .trim();
-
-
-
             /* =================================
-               MOBILE VALIDATION
+               LOGIN CHECK
             ================================= */
 
-            if (!/^[0-9]{10}$/.test(mobile)) {
+            if (!currentUser) {
 
                 showPopup(
 
                     "warning",
 
-                    "Check Your Mobile Number",
+                    "Login Required",
 
-                    "Please enter a valid 10-digit mobile number.",
+                    "Please login to your RamSethuYatra account before making a booking.",
 
                     null,
 
-                    "Try Again"
+                    "Login",
+
+                    function() {
+
+                        window.location.href =
+                            "login.html?redirect=" +
+                            encodeURIComponent(
+                                window.location.pathname +
+                                window.location.search
+                            );
+
+                    }
 
                 );
 
@@ -678,18 +786,20 @@ document.getElementById("bookingForm")
             ================================= */
 
             if (
-                !packageType ||
-                !persons ||
-                !price
+                !packageNames[packageType] ||
+                totalPrice === null ||
+                !Number.isInteger(personNumber) ||
+                personNumber < 2 ||
+                personNumber > 10
             ) {
 
                 showPopup(
 
                     "error",
 
-                    "Booking Information Missing",
+                    "Invalid Package",
 
-                    "We couldn't find the selected package details. Please return to the package page and try again.",
+                    "The selected package information is invalid. Please return to the package page and select your package again.",
 
                     null,
 
@@ -711,6 +821,218 @@ document.getElementById("bookingForm")
 
 
             /* =================================
+               CUSTOMER NAME
+            ================================= */
+
+            const name =
+                document
+                    .getElementById(
+                        "customerName"
+                    )
+                    .value
+                    .trim();
+
+
+
+            /* =================================
+               MOBILE
+            ================================= */
+
+            const mobile =
+                document
+                    .getElementById(
+                        "customerMobile"
+                    )
+                    .value
+                    .trim();
+
+
+
+            /* =================================
+               DATE
+            ================================= */
+
+            const date =
+                document
+                    .getElementById(
+                        "travelDate"
+                    )
+                    .value;
+
+
+
+            /* =================================
+               TIME
+            ================================= */
+
+            const time =
+                document
+                    .getElementById(
+                        "pickupTime"
+                    )
+                    .value;
+
+
+
+            /* =================================
+               PICKUP
+            ================================= */
+
+            const pickup =
+                document
+                    .getElementById(
+                        "pickupLocation"
+                    )
+                    .value
+                    .trim();
+
+
+
+            /* =================================
+               SPECIAL REQUEST
+            ================================= */
+
+            const request =
+                document
+                    .getElementById(
+                        "specialRequest"
+                    )
+                    .value
+                    .trim();
+
+
+
+            /* =================================
+               NAME VALIDATION
+            ================================= */
+
+            if (name.length < 2) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Invalid Name",
+
+                    "Please enter your full name.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               MOBILE VALIDATION
+            ================================= */
+
+            if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Check Your Mobile Number",
+
+                    "Please enter a valid 10-digit Indian mobile number.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               DATE VALIDATION
+            ================================= */
+
+            if (!date) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Travel Date Required",
+
+                    "Please select your travel date.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               TIME VALIDATION
+            ================================= */
+
+            if (!time) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Pickup Time Required",
+
+                    "Please select your pickup time.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
+               PICKUP VALIDATION
+            ================================= */
+
+            if (pickup.length < 2) {
+
+                showPopup(
+
+                    "warning",
+
+                    "Pickup Location Required",
+
+                    "Please enter your pickup location.",
+
+                    null,
+
+                    "Try Again"
+
+                );
+
+                return;
+
+            }
+
+
+
+            /* =================================
                DISABLE BUTTON
             ================================= */
 
@@ -720,7 +1042,8 @@ document.getElementById("bookingForm")
                 );
 
 
-            button.disabled = true;
+            button.disabled =
+                true;
 
 
             button.textContent =
@@ -729,25 +1052,33 @@ document.getElementById("bookingForm")
 
 
             /* =================================
-               SAVE TO FIREBASE
+               FIREBASE BOOKING DATA
             ================================= */
 
             try {
 
                 const bookingData = {
 
-                    bookingType: "package",
+                    userId:
+                        currentUser.uid,
 
-                    package: packageType,
+                    customerEmail:
+                        currentUser.email || "",
+
+                    bookingType:
+                        "package",
+
+                    package:
+                        packageType,
 
                     packageName:
                         packageNames[packageType],
 
                     persons:
-                        Number(persons),
+                        personNumber,
 
                     totalPrice:
-                        Number(price),
+                        totalPrice,
 
                     customerName:
                         name,
@@ -776,7 +1107,6 @@ document.getElementById("bookingForm")
                 };
 
 
-
                 const docRef =
                     await addDoc(
 
@@ -790,16 +1120,14 @@ document.getElementById("bookingForm")
                     );
 
 
-
                 console.log(
                     "Booking saved:",
                     docRef.id
                 );
 
 
-
                 /* =================================
-                   SUCCESS POPUP
+                   SUCCESS
                 ================================= */
 
                 showPopup(
@@ -827,7 +1155,6 @@ document.getElementById("bookingForm")
                 );
 
 
-
             } catch (error) {
 
                 console.error(
@@ -835,11 +1162,6 @@ document.getElementById("bookingForm")
                     error
                 );
 
-
-
-                /* =================================
-                   ERROR POPUP
-                ================================= */
 
                 showPopup(
 

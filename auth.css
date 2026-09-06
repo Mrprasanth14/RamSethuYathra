@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        linear-gradient(
+            rgba(35, 20, 10, 0.75),
+            rgba(35, 20, 10, 0.75)
+        ),
+        url("images/Ramanathaswamy Temple in Rameshwaram!.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    min-height: 100vh;
+}
+
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 22px;
+
+    padding: 38px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+
+    animation: cardAppear 0.5s ease;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.auth-logo {
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    color: #4b270f;
+
+    margin-bottom: 25px;
+}
+
+
+.auth-logo span {
+    color: #c58b25;
+}
+
+
+.auth-heading {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.auth-heading h1 {
+    font-size: 28px;
+
+    color: #2f1b0d;
+
+    margin-bottom: 8px;
+}
+
+
+.auth-heading p {
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+
+.input-group label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #3d291b;
+
+    margin-bottom: 7px;
+}
+
+
+.input-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.input-group input:focus {
+    border-color: #c58b25;
+
+    box-shadow:
+        0 0 0 3px rgba(197, 139, 37, 0.12);
+}
+
+
+.auth-btn {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c58b25,
+            #e0ad4f
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 5px;
+}
+
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(197, 139, 37, 0.3);
+}
+
+
+.auth-btn:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+.auth-footer {
+    text-align: center;
+
+    margin-top: 25px;
+}
+
+
+.auth-footer p {
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+.auth-footer a {
+    color: #b57917;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+.home-link {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    font-size: 14px;
+}
+
+
+@media (max-width: 500px) {
+
+    .auth-card {
+        padding: 28px 20px;
+
+        border-radius: 18px;
+    }
+
+    .auth-logo {
+        font-size: 26px;
+    }
+
+    .auth-heading h1 {
+        font-size: 24px;
+    }
+
+}
