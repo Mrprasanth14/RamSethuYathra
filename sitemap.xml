@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/about.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/contact.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/totalpackage.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/normal-package.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/medium-package.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/premium-package.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/cab.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/rooms.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/terms.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/privacy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://YOUR-DOMAIN.com/refund-cancellation.html</loc>
+    </url>
+
+</urlset>

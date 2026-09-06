@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin.html
+Disallow: /customer-dashboard.html
+Disallow: /booking.html
+Disallow: /login.html
+Disallow: /signup.html
+
+Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
