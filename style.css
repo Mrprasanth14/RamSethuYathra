@@ -3761,43 +3761,53 @@ summary i {
 }
 
 
-/* =========================================
-   LOGOUT BUTTON
-========================================= */
+/* =========================================================
+   NAV LOGOUT BUTTON
+========================================================= */
 
 .main-nav .nav-logout {
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    gap: 8px;
+
+    gap: 7px;
+
+    padding: 10px 13px;
 
     border: none;
+
     outline: none;
+
+    border-radius: 12px;
 
     background: transparent;
 
-    color: #4c6375;
+    color: #496174;
 
     font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
 
-    padding: 12px 14px;
+    font-size: 14px;
 
-    border-radius: 12px;
+    font-weight: 650;
 
     white-space: nowrap;
 
     cursor: pointer;
 
-    transition: all 0.25s ease;
+    transition: var(--transition);
+
 }
 
 .main-nav .nav-logout:hover {
-    background: #f4f8fb;
-    color: #ff7a00;
-}
 
+    color: var(--primary);
+
+    background: var(--light-blue);
+
+}
 
 /* =========================================
    MOBILE
@@ -3813,16 +3823,6 @@ summary i {
     .main-nav .nav-logout {
         padding: 10px 9px;
         font-size: 14px;
-    }
-
-}
-
-
-@media (max-width: 800px) {
-
-    .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
     }
 
 } 

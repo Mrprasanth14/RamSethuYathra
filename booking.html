@@ -309,7 +309,7 @@
     </div>
 
 </div>
-
+</body>
 
 
 <!-- =========================================
@@ -1189,10 +1189,26 @@ document.getElementById("bookingForm")
 
         }
     );
+    
 
 </script>
+<script type="module">
+
+    import {
+        requireLogin
+    } from "./auth-guard.js";
 
 
-</body>
+    const user =
+        await requireLogin();
+
+
+    if (!user) {
+        throw new Error(
+            "Login required for booking."
+        );
+    }
+
+</script>
 
 </html>
