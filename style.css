@@ -3166,6 +3166,31 @@ summary i {
     }
 
 }
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: #f4f8fb;
+    color: #064d80;
+
+    font-size: 18px;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.mobile-menu-btn:hover {
+    background: #edf5fb;
+    color: #ff7a00;
+}
 
 
 /* =========================================================
@@ -3174,49 +3199,93 @@ summary i {
 
 @media (max-width: 850px) {
 
-
     .header-inner {
-
         min-height: 68px;
-
-        flex-wrap: wrap;
-
         padding: 9px 0;
 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        flex-wrap: nowrap;
+
+        position: relative;
     }
 
-
+    /* Hide normal navbar on phone */
     .main-nav {
+        display: none;
+    }
 
-        order: 3;
+    /* Show navbar when hamburger is clicked */
+    .main-nav.mobile-open {
+        display: flex;
+
+        position: absolute;
+
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
 
         width: 100%;
 
-        overflow-x: auto;
+        flex-direction: column;
+        align-items: stretch;
 
-        padding-bottom: 3px;
+        gap: 4px;
 
-        scrollbar-width: none;
+        padding: 10px;
 
+        background: #ffffff;
+
+        border: 1px solid #e5ebf0;
+        border-radius: 16px;
+
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14);
+
+        z-index: 9999;
+
+        box-sizing: border-box;
+    }
+
+    .main-nav a,
+    .main-nav .nav-logout {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: flex-start;
+
+        gap: 9px;
+
+        padding: 11px 14px;
+
+        min-height: 45px;
+
+        font-size: 14px;
+
+        box-sizing: border-box;
+
+        border-radius: 10px;
+
+        white-space: nowrap;
+    }
+
+    .main-nav a i,
+    .main-nav .nav-logout i {
+        display: inline-flex;
+
+        width: 22px;
+
+        justify-content: center;
     }
 
 
-    .main-nav::-webkit-scrollbar {
-
-        display: none;
-
-    }
-
-
-    .main-nav a {
-
-        flex: 0 0 auto;
-
-    }
-
+    /* Your existing page responsive code continues below */
 
     .hero {
-
         min-height: 760px;
 
         padding:
@@ -3224,9 +3293,7 @@ summary i {
             190px;
 
         align-items: flex-start;
-
     }
-
 
     .timing-card {
 
@@ -3241,7 +3308,6 @@ summary i {
 
     }
 
-
     .service-grid,
     .package-preview-grid {
 
@@ -3252,7 +3318,6 @@ summary i {
 
     }
 
-
     .steps-grid {
 
         grid-template-columns:
@@ -3261,7 +3326,6 @@ summary i {
         gap: 28px;
 
     }
-
 
     .step-line {
 
@@ -3273,7 +3337,6 @@ summary i {
 
     }
 
-
     .review-grid {
 
         grid-template-columns:
@@ -3283,17 +3346,17 @@ summary i {
 
     }
 
-
     .footer-inner {
 
         grid-template-columns:
             repeat(2, 1fr);
 
     }
-
+    .mobile-menu-btn {
+    display: flex;
 }
 
-
+}
 /* =========================================================
    RESPONSIVE - 600px
 ========================================================= */
@@ -3331,20 +3394,6 @@ summary i {
         width: 38px;
 
         height: 38px;
-
-    }
-
-
-    .main-nav a {
-
-        font-size: 11px;
-
-    }
-
-
-    .main-nav a i {
-
-        display: none;
 
     }
 
@@ -3708,57 +3757,6 @@ summary i {
     }
 
 }      
-/* =========================================
-   MAIN NAVIGATION
-========================================= */
-
-.main-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: nowrap;
-}
-
-
-/* All navigation links */
-
-.main-nav a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    text-decoration: none;
-
-    color: #4c6375;
-
-    font-weight: 600;
-
-    padding: 12px 14px;
-
-    border-radius: 12px;
-
-    white-space: nowrap;
-
-    transition: all 0.25s ease;
-}
-
-
-/* Hover */
-
-.main-nav a:hover {
-    color: #ff7a00;
-    background: #f4f8fb;
-}
-
-
-/* Active */
-
-.main-nav a.active {
-    color: #064d80;
-    background: #edf5fb;
-}
 
 
 /* =========================================================

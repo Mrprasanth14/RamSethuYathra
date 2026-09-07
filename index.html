@@ -146,7 +146,12 @@
             >
                 <i class="fa-solid fa-globe"></i>
             </button>
+            <button type="button"
+                class="mobile-menu-btn"
+                id="mobileMenuBtn">
+              <i class="fa-solid fa-bars"></i>
 
+          </button>
 
             <div
                 id="languageMenu"
@@ -2398,7 +2403,34 @@ function googleTranslateElementInit() {
         }
 
     });
+document.addEventListener("DOMContentLoaded", function () {
 
+    const menuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.querySelector(".main-nav");
+
+    if (!menuBtn || !mainNav) return;
+
+    menuBtn.addEventListener("click", function () {
+
+        mainNav.classList.toggle("mobile-open");
+
+        const icon = menuBtn.querySelector("i");
+
+        if (mainNav.classList.contains("mobile-open")) {
+
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+});
 
     /*
     =====================================

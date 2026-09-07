@@ -8,6 +8,7 @@
     <title>Customer Login | RamSethuYatra</title>
 
     <link rel="stylesheet" href="auth.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -248,7 +249,15 @@
                 }
 
 
-                alert(message);
+                   Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: message,
+        confirmButtonText: "Try Again",
+        confirmButtonColor: "#ff7a00",
+        background: "#ffffff",
+        color: "#333333"
+    });
 
 
                 loginBtn.disabled = false;
