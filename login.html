@@ -8,7 +8,7 @@
     <title>Customer Login | RamSethuYatra</title>
 
     <link rel="stylesheet" href="auth.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 </head>
 
 <body>
@@ -109,9 +109,11 @@
         import { auth } from "./firebase.js";
 
         import {
-            signInWithEmailAndPassword,
-            sendPasswordResetEmail
-        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    setPersistence,
+    browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
         const loginForm =
@@ -154,10 +156,12 @@
 
             try {
 
+                await setPersistence(auth, browserLocalPersistence);
+
                 await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+                auth,
+                email,
+                password
                 );
 
 

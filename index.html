@@ -36,6 +36,7 @@
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </head>
 
@@ -111,6 +112,7 @@
         href="login.html"
         id="loginNav"
         class="logged-out-only"
+        hidden
     >
         <i class="fa-solid fa-right-to-bracket"></i>
         Login
@@ -2307,9 +2309,6 @@
     <i class="fa-solid fa-arrow-up"></i>
 
 </button>
-</body>
-
-
 
 <!-- =====================================================
      EXISTING WEBSITE SCRIPT
@@ -2336,142 +2335,186 @@ function googleTranslateElementInit() {
 }
 </script>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <script type="module">
 
-    import { auth } from "./firebase.js";
+import { auth } from "./firebase.js";
 
-    import {
-        onAuthStateChanged,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-
-    const myBookingNav =
-        document.getElementById("myBookingNav");
-
-    const loginNav =
-        document.getElementById("loginNav");
-
-    const signupNav =
-        document.getElementById("signupNav");
-
-    const logoutNav =
-        document.getElementById("logoutNav");
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-    /*
-    =====================================
-    CHECK LOGIN STATUS
-    =====================================
-    */
+const myBookingNav =
+    document.getElementById("myBookingNav");
 
-    onAuthStateChanged(auth, (user) => {
+const loginNav =
+    document.getElementById("loginNav");
 
-        if (user) {
+const signupNav =
+    document.getElementById("signupNav");
 
-            // ============================
-            // USER IS LOGGED IN
-            // ============================
+const logoutNav =
+    document.getElementById("logoutNav");
 
-            myBookingNav.style.display = "flex";
+const menuBtn =
+    document.getElementById("mobileMenuBtn");
 
-            logoutNav.style.display = "flex";
+const mainNav =
+    document.querySelector(".main-nav");
 
+
+
+/* =========================================================
+   FIREBASE LOGIN STATUS
+   ========================================================= */
+
+onAuthStateChanged(auth, (user) => {
+
+    console.log(
+        "Firebase Auth User:",
+        user
+    );
+
+    if (user) {
+
+        console.log(
+            "CUSTOMER LOGGED IN:",
+            user.email
+        );
+
+        /* Logged in */
+
+        if (myBookingNav) {
+            myBookingNav.style.display = "";
+        }
+
+        if (logoutNav) {
+            logoutNav.style.display = "";
+        }
+
+        if (loginNav) {
             loginNav.style.display = "none";
+        }
 
+        if (signupNav) {
             signupNav.style.display = "none";
+        }
 
+    } else {
 
-            console.log(
-                "Logged in user:",
-                user.uid
-            );
+        console.log(
+            "CUSTOMER NOT LOGGED IN"
+        );
 
-        } else {
+        /* Logged out */
 
-            // ============================
-            // USER IS NOT LOGGED IN
-            // ============================
-
+        if (myBookingNav) {
             myBookingNav.style.display = "none";
+        }
 
+        if (logoutNav) {
             logoutNav.style.display = "none";
-
-            loginNav.style.display = "flex";
-
-            signupNav.style.display = "flex";
-
         }
 
-    });
-document.addEventListener("DOMContentLoaded", function () {
-
-    const menuBtn =
-        document.getElementById("mobileMenuBtn");
-
-    const mainNav =
-        document.querySelector(".main-nav");
-
-
-    if (!menuBtn || !mainNav) return;
-
-
-    menuBtn.addEventListener("click", function () {
-
-        mainNav.classList.toggle("mobile-open");
-
-
-        const icon =
-            menuBtn.querySelector("i");
-
-
-        if (
-            mainNav.classList.contains("mobile-open")
-        ) {
-
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
-
-        } else {
-
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-
+        if (loginNav) {
+            loginNav.style.display = "";
         }
 
-    });
+        if (signupNav) {
+            signupNav.style.display = "";
+        }
+
+    }
 
 });
-    /*
-    =====================================
-    LOGOUT
-    =====================================
-    */
 
-    logoutNav.addEventListener("click", async () => {
 
-        try {
 
-            await signOut(auth);
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
-            window.location.href = "index.html";
+if (menuBtn && mainNav) {
 
-        } catch (error) {
+    menuBtn.addEventListener(
+        "click",
+        () => {
 
-            console.error(
-                "Logout Error:",
-                error
+            mainNav.classList.toggle(
+                "mobile-open"
             );
 
-            alert(
-                "Logout failed. Please try again."
-            );
+            const icon =
+                menuBtn.querySelector("i");
+
+            if (
+                mainNav.classList.contains(
+                    "mobile-open"
+                )
+            ) {
+
+                icon.classList.remove(
+                    "fa-bars"
+                );
+
+                icon.classList.add(
+                    "fa-xmark"
+                );
+
+            } else {
+
+                icon.classList.remove(
+                    "fa-xmark"
+                );
+
+                icon.classList.add(
+                    "fa-bars"
+                );
+
+            }
 
         }
+    );
 
-    });
+}
+
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+if (logoutNav) {
+
+    logoutNav.addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "index.html";
+
+            } catch (error) {
+
+                console.error(
+                    "Logout Error:",
+                    error
+                );
+
+                alert(
+                    "Logout failed. Please try again."
+                );
+
+            }
+
+        }
+    );
+
+}
 
 </script>
 
@@ -2561,5 +2604,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-
+</body>
 </html>

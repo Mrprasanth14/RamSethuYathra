@@ -5,6 +5,7 @@ import {
     getDocs,
     deleteDoc,
     updateDoc,
+    getDoc,
     doc
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
@@ -644,6 +645,115 @@ function getStatusClass(status) {
     return "status-pending";
 
 }
+// ==========================================
+// WHATSAPP BOOKING CONFIRMATION
+// ==========================================
+
+function sendBookingConfirmationWhatsApp(
+    data,
+    bookingId,
+    collectionName
+) {
+
+    // Get customer mobile number
+    let mobile =
+        data.customerMobile ||
+        data.mobile ||
+        "";
+
+    mobile = String(mobile).trim();
+
+    if (!mobile) {
+        Swal.fire({
+            icon: "warning",
+            title: "WhatsApp Number Missing",
+            text: "This customer does not have a mobile number.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+    // Convert Indian number to international format
+    mobile = mobile.replace(/\D/g, "");
+
+    if (mobile.startsWith("0")) {
+        mobile = mobile.substring(1);
+    }
+
+    if (mobile.length === 10) {
+        mobile = "91" + mobile;
+    }
+
+    // Customer name
+    const customerName =
+        data.customerName ||
+        data.name ||
+        "Customer";
+
+    // Booking details
+    const packageName =
+        data.packageName ||
+        data.package ||
+        data.service ||
+        "Booking";
+
+    const persons =
+        data.persons ||
+        "-";
+
+    const travelDate =
+        data.travelDate ||
+        data.date ||
+        data.checkin ||
+        "-";
+
+    const pickupTime =
+        data.pickupTime ||
+        data.time ||
+        "-";
+
+    const pickupLocation =
+        data.pickupLocation ||
+        data.pickup ||
+        "-";
+
+    const totalPrice =
+        data.totalPrice
+            ? `₹${Number(data.totalPrice).toLocaleString("en-IN")}`
+            : "As discussed";
+
+    // Confirmation message
+    const message = `
+🎉 *Congratulations! Your RamSethuYatra booking has been confirmed!*
+
+Dear ${customerName},
+
+🙏 Your booking has been successfully confirmed.
+
+📦 *Booking:* ${packageName}
+👥 *Persons:* ${persons}
+📅 *Date:* ${travelDate}
+⏰ *Time:* ${pickupTime}
+📍 *Pickup:* ${pickupLocation}
+💰 *Amount:* ${totalPrice}
+
+🆔 *Booking ID:* ${bookingId}
+
+Thank you for choosing *RamSethuYatra*.
+
+🌴 We look forward to welcoming you to Rameswaram!
+
+🙏 Have a wonderful journey!
+`;
+
+    // WhatsApp Click-to-Chat
+    const whatsappURL =
+        `https://wa.me/${mobile}?text=${encodeURIComponent(message)}`;
+
+    // Open WhatsApp
+    window.open(whatsappURL, "_blank");
+}
 
 
 // ==========================================
@@ -708,20 +818,68 @@ async function updateBookingStatus(
 
     try {
 
-        await updateDoc(
+        // ==========================================
+        // GET BOOKING DATA BEFORE UPDATE
+        // ==========================================
 
+        const bookingReference =
             doc(
                 db,
                 collectionName,
                 bookingId
-            ),
+            );
 
+        const bookingSnapshot =
+            await getDoc(bookingReference);
+
+
+        if (!bookingSnapshot.exists()) {
+
+            throw new Error(
+                "Booking not found."
+            );
+
+        }
+
+
+        const bookingData =
+            bookingSnapshot.data();
+
+
+        // ==========================================
+        // UPDATE FIRESTORE STATUS
+        // ==========================================
+
+        await updateDoc(
+            bookingReference,
             {
                 status: newStatus
             }
-
         );
 
+
+        // ==========================================
+        // WHATSAPP CONFIRMATION
+        // ONLY WHEN CONFIRMED
+        // ==========================================
+
+        if (
+            newStatus === "confirmed" &&
+            bookingData.status !== "confirmed"
+        ) {
+
+            sendBookingConfirmationWhatsApp(
+                bookingData,
+                bookingId,
+                collectionName
+            );
+
+        }
+
+
+        // ==========================================
+        // SUCCESS MESSAGE
+        // ==========================================
 
         await Swal.fire({
 
@@ -734,7 +892,7 @@ async function updateBookingStatus(
 
             text:
                 newStatus === "confirmed"
-                    ? "The booking has been confirmed."
+                    ? "The booking has been confirmed and WhatsApp has been opened."
                     : "The booking has been cancelled.",
 
             confirmButtonColor:
@@ -747,7 +905,9 @@ async function updateBookingStatus(
         });
 
 
-        // Refresh correct section
+        // ==========================================
+        // REFRESH CORRECT SECTION
+        // ==========================================
 
         if (
             collectionName ===
