@@ -1,49 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel</title>
-  <link rel="stylesheet" href="admin.css">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RamSethuYatra Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
 
-<!-- <h1>Admin Panel</h1> -->
 <header class="admin-header">
-  <h1>RamSethuYatra Admin Panel</h1>
-  <button class="logout-btn" onclick="logout()">Logout</button>
+
+    <div>
+        <h1>RamSethuYatra</h1>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <button
+        class="logout-btn"
+        onclick="logout()"
+    >
+        Logout
+    </button>
+
 </header>
 
+
 <main class="admin-container">
-  <section class="booking-section">
-    <h2>🧳 Package Bookings</h2>
-    <div id="packageData" class="booking-grid"></div>
-</section>
 
-  <section class="booking-section">
-    <h2>🛕 Temple Bookings</h2>
-    <div id="templeData" class="booking-grid"></div>
-  </section>
 
-  <section class="booking-section">
-    <h2>💧 22 Wells Bookings</h2>
-    <div id="wellData" class="booking-grid"></div>
-  </section>
+    <!-- =========================================
+         DASHBOARD STATISTICS
+    ========================================== -->
 
-  <section class="booking-section">
-    <h2>🪔 Poojai Bookings</h2>
-    <div id="poojaData" class="booking-grid"></div>
-  </section>
+    <section class="dashboard-stats">
 
-  <section class="booking-section">
-    <h2>🏨 Room Bookings</h2>
-    <div id="roomData" class="booking-grid"></div>
-  </section>
+        <div class="stat-card">
+            <div class="stat-icon">📋</div>
 
-  <section class="booking-section">
-    <h2>🚖 Cab Bookings</h2>
-    <div id="cabData" class="booking-grid"></div>
-  </section>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="module" src="admin.js"></script>
+            <div>
+                <h3 id="totalBookings">0</h3>
+                <p>Total Bookings</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">⏳</div>
+
+            <div>
+                <h3 id="pendingBookings">0</h3>
+                <p>Pending</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">✅</div>
+
+            <div>
+                <h3 id="confirmedBookings">0</h3>
+                <p>Confirmed</p>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+
+            <div>
+                <h3 id="totalReviews">0</h3>
+                <p>Reviews</p>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         BOOKING TABS
+    ========================================== -->
+
+    <section class="admin-navigation">
+
+        <button
+            class="admin-tab active"
+            data-section="packageSection"
+        >
+            🧳 Package
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="templeSection"
+        >
+            🛕 Temple
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="wellSection"
+        >
+            💧 Wells
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="poojaSection"
+        >
+            🪔 Pooja
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="roomSection"
+        >
+            🏨 Rooms
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="cabSection"
+        >
+            🚖 Cabs
+        </button>
+
+        <button
+            class="admin-tab"
+            data-section="reviewSection"
+        >
+            ⭐ Reviews
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PACKAGE BOOKINGS
+    ========================================== -->
+
+    <section
+        id="packageSection"
+        class="admin-content active"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>🧳 Package Bookings</h2>
+                <p>Manage package bookings</p>
+            </div>
+
+        </div>
+
+        <div
+            id="packageData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         TEMPLE BOOKINGS
+    ========================================== -->
+
+    <section
+        id="templeSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>🛕 Temple Bookings</h2>
+                <p>Manage temple visit bookings</p>
+            </div>
+
+        </div>
+
+        <div
+            id="templeData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         22 WELLS BOOKINGS
+    ========================================== -->
+
+    <section
+        id="wellSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>💧 22 Wells Bookings</h2>
+                <p>Manage 22 Holy Wells bookings</p>
+            </div>
+
+        </div>
+
+        <div
+            id="wellData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         POOJAI BOOKINGS
+    ========================================== -->
+
+    <section
+        id="poojaSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>🪔 Poojai Bookings</h2>
+                <p>Manage temple poojai bookings</p>
+            </div>
+
+        </div>
+
+        <div
+            id="poojaData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         ROOM BOOKINGS
+    ========================================== -->
+
+    <section
+        id="roomSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>🏨 Room Bookings</h2>
+                <p>Manage room reservations</p>
+            </div>
+
+        </div>
+
+        <div
+            id="roomData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CAB BOOKINGS
+    ========================================== -->
+
+    <section
+        id="cabSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>🚖 Cab Bookings</h2>
+                <p>Manage cab reservations</p>
+            </div>
+
+        </div>
+
+        <div
+            id="cabData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CUSTOMER REVIEWS
+    ========================================== -->
+
+    <section
+        id="reviewSection"
+        class="admin-content"
+    >
+
+        <div class="content-header">
+
+            <div>
+                <h2>⭐ Customer Reviews</h2>
+                <p>Approve or remove customer reviews</p>
+            </div>
+
+        </div>
+
+        <div
+            id="reviewData"
+            class="booking-grid"
+        ></div>
+
+    </section>
+
+
 </main>
+
+<script type="module" src="admin.js"></script>
+
+
+<!-- TAB CONTROL -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const tabs =
+        document.querySelectorAll(".admin-tab");
+
+    const sections =
+        document.querySelectorAll(".admin-content");
+
+
+    tabs.forEach(function (tab) {
+
+        tab.addEventListener("click", function () {
+
+            const target =
+                this.getAttribute("data-section");
+
+
+            // Remove active from all tabs
+
+            tabs.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+            // Hide all sections
+
+            sections.forEach(function (section) {
+
+                section.classList.remove("active");
+
+            });
+
+
+            // Activate selected tab
+
+            this.classList.add("active");
+
+
+            // Show selected section
+
+            const selectedSection =
+                document.getElementById(target);
+
+            if (selectedSection) {
+
+                selectedSection.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

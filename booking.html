@@ -1192,23 +1192,4 @@ document.getElementById("bookingForm")
     
 
 </script>
-<script type="module">
-
-    import {
-        requireLogin
-    } from "./auth-guard.js";
-
-
-    const user =
-        await requireLogin();
-
-
-    if (!user) {
-        throw new Error(
-            "Login required for booking."
-        );
-    }
-
-</script>
-
 </html>

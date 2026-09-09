@@ -6,7 +6,9 @@ import {
     deleteDoc,
     updateDoc,
     getDoc,
-    doc
+    doc,
+    query,
+    orderBy
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 import {
@@ -95,6 +97,12 @@ onAuthStateChanged(auth, async (user) => {
     loadBookings("roomBookings", "roomData");
 
     loadBookings("cabBookings", "cabData");
+
+     // ⭐ Reviews
+    loadReviews();
+
+    // 📊 Dashboard numbers
+    loadDashboardStats();
 
 });
 
@@ -1101,6 +1109,438 @@ async function logout() {
     }
 
 }
+// ==========================================
+// 📊 ADMIN DASHBOARD STATISTICS
+// ==========================================
+
+async function loadDashboardStats() {
+
+    try {
+
+        const bookingCollections = [
+            "packageBookings",
+            "templeBookings",
+            "wellBookings",
+            "poojaBookings",
+            "roomBookings",
+            "cabBookings"
+        ];
+
+        let totalBookings = 0;
+        let pendingBookings = 0;
+        let confirmedBookings = 0;
+
+        for (const collectionName of bookingCollections) {
+
+            const snapshot = await getDocs(
+                collection(db, collectionName)
+            );
+
+            snapshot.forEach((bookingDoc) => {
+
+                totalBookings++;
+
+                const data = bookingDoc.data();
+
+                const status = String(
+                    data.status || ""
+                ).toLowerCase();
+
+                if (status === "pending") {
+                    pendingBookings++;
+                }
+
+                if (status === "confirmed") {
+                    confirmedBookings++;
+                }
+
+            });
+        }
+
+        // Reviews count
+        const reviewsSnapshot = await getDocs(
+            collection(db, "reviews")
+        );
+
+        const totalReviews = reviewsSnapshot.size;
+
+        // Display numbers
+        const totalElement =
+            document.getElementById("totalBookings");
+
+        const pendingElement =
+            document.getElementById("pendingBookings");
+
+        const confirmedElement =
+            document.getElementById("confirmedBookings");
+
+        const reviewsElement =
+            document.getElementById("totalReviews");
+
+        if (totalElement) {
+            totalElement.textContent = totalBookings;
+        }
+
+        if (pendingElement) {
+            pendingElement.textContent = pendingBookings;
+        }
+
+        if (confirmedElement) {
+            confirmedElement.textContent = confirmedBookings;
+        }
+
+        if (reviewsElement) {
+            reviewsElement.textContent = totalReviews;
+        }
+
+        console.log("Dashboard statistics:", {
+            totalBookings,
+            pendingBookings,
+            confirmedBookings,
+            totalReviews
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Dashboard Statistics Error:",
+            error
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// ⭐ LOAD CUSTOMER REVIEWS
+// ==========================================
+
+async function loadReviews() {
+
+    const reviewData =
+        document.getElementById("reviewData");
+
+    if (!reviewData) {
+        console.error("reviewData element not found");
+        return;
+    }
+
+    reviewData.innerHTML =
+        "<p>Loading reviews...</p>";
+
+    try {
+
+        const reviewsSnapshot = await getDocs(
+            query(
+                collection(db, "reviews"),
+                orderBy("createdAt", "desc")
+            )
+        );
+
+        reviewData.innerHTML = "";
+
+        if (reviewsSnapshot.empty) {
+
+            reviewData.innerHTML = `
+                <p class="review-note">
+                    No customer reviews found.
+                </p>
+            `;
+
+            return;
+        }
+
+        reviewsSnapshot.forEach((reviewDoc) => {
+
+            const data = reviewDoc.data();
+
+            const name = data.name || "Customer";
+            const email = data.email || "";
+            const service = data.service || "Service";
+            const rating = Number(data.rating) || 0;
+            const review = data.review || "";
+            const approved = data.approved === true;
+
+            const stars =
+                "★".repeat(rating) +
+                "☆".repeat(5 - rating);
+
+            const card =
+                document.createElement("div");
+
+            card.className = "admin-card";
+
+            card.innerHTML = `
+
+                <div class="admin-card-header">
+
+                    <div>
+                        <span class="booking-type">
+                            CUSTOMER REVIEW
+                        </span>
+
+                        <h3>
+                            ${escapeAdminHtml(name)}
+                        </h3>
+                    </div>
+
+                    <span class="${
+                        approved
+                            ? "status-confirmed"
+                            : "status-pending"
+                    }">
+                        ${
+                            approved
+                                ? "APPROVED"
+                                : "PENDING"
+                        }
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <p>
+                    <b>📧 Email:</b>
+                    ${escapeAdminHtml(email)}
+                </p>
+
+                <p>
+                    <b>🛕 Service:</b>
+                    ${escapeAdminHtml(service)}
+                </p>
+
+                <p class="review-stars">
+                    ${stars}
+                </p>
+
+                <p>
+                    <b>💬 Review:</b><br>
+                    ${escapeAdminHtml(review)}
+                </p>
+
+                <div class="package-actions">
+
+                    ${
+                        approved
+                            ? `
+                                <button
+                                    class="cancel-btn"
+                                    onclick="
+                                        setReviewApproval(
+                                            '${reviewDoc.id}',
+                                            false
+                                        )
+                                    "
+                                >
+                                    👁️ Hide
+                                </button>
+                            `
+                            : `
+                                <button
+                                    class="confirm-btn"
+                                    onclick="
+                                        setReviewApproval(
+                                            '${reviewDoc.id}',
+                                            true
+                                        )
+                                    "
+                                >
+                                    ✅ Approve
+                                </button>
+                            `
+                    }
+
+                    <button
+                        class="delete-btn"
+                        onclick="
+                            deleteReview(
+                                '${reviewDoc.id}'
+                            )
+                        "
+                    >
+                        🗑️ Delete
+                    </button>
+
+                </div>
+            `;
+
+            reviewData.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Load Reviews Error:",
+            error
+        );
+
+        reviewData.innerHTML = `
+            <div class="empty-msg">
+                Unable to load reviews.
+                <br><br>
+                ${error.message}
+            </div>
+        `;
+
+    }
+
+}
+
+
+// ==========================================
+// 🔒 ESCAPE REVIEW HTML
+// ==========================================
+
+function escapeAdminHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+// ==========================================
+// ⭐ APPROVE / HIDE REVIEW
+// ==========================================
+
+async function setReviewApproval(
+    reviewId,
+    approved
+) {
+
+    try {
+
+        await updateDoc(
+            doc(db, "reviews", reviewId),
+            {
+                approved: approved
+            }
+        );
+
+        await Swal.fire({
+
+            icon: "success",
+
+            title:
+                approved
+                    ? "Review Approved"
+                    : "Review Hidden",
+
+            text:
+                approved
+                    ? "The review is now visible on the website."
+                    : "The review has been hidden.",
+
+            confirmButtonColor: "#ff7a00",
+
+            timer: 1800,
+
+            timerProgressBar: true
+
+        });
+
+        loadReviews();
+
+        loadDashboardStats();
+
+    } catch (error) {
+
+        console.error(
+            "Review Approval Error:",
+            error
+        );
+
+        Swal.fire(
+            "Error",
+            error.message,
+            "error"
+        );
+
+    }
+}
+
+
+// ==========================================
+// 🗑️ DELETE REVIEW
+// ==========================================
+
+async function deleteReview(reviewId) {
+
+    const result = await Swal.fire({
+
+        icon: "warning",
+
+        title: "Delete Review?",
+
+        text:
+            "This review will be permanently deleted.",
+
+        showCancelButton: true,
+
+        confirmButtonText: "Yes, Delete",
+
+        cancelButtonText: "Cancel",
+
+        confirmButtonColor: "#d33",
+
+        cancelButtonColor: "#555",
+
+        reverseButtons: true
+
+    });
+
+    if (!result.isConfirmed) {
+        return;
+    }
+
+    try {
+
+        await deleteDoc(
+            doc(db, "reviews", reviewId)
+        );
+
+        await Swal.fire({
+
+            icon: "success",
+
+            title: "Review Deleted",
+
+            text:
+                "The review has been successfully removed.",
+
+            confirmButtonColor: "#ff7a00",
+
+            timer: 1800,
+
+            timerProgressBar: true
+
+        });
+
+        loadReviews();
+
+        loadDashboardStats();
+
+    } catch (error) {
+
+        console.error(
+            "Delete Review Error:",
+            error
+        );
+
+        Swal.fire(
+            "Error",
+            error.message,
+            "error"
+        );
+
+    }
+}
 
 
 // ==========================================
@@ -1115,3 +1555,9 @@ window.deleteBooking =
 
 window.logout =
     logout;
+
+window.setReviewApproval =
+    setReviewApproval;
+
+window.deleteReview =
+    deleteReview;

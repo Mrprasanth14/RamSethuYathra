@@ -673,7 +673,7 @@
             <div class="service-image">
 
                 <img
-                    src="images/rooms.jpg"
+                    src="images/Modern blue theme bedroom with soft lighting and….jpg"
                     alt="Rameswaram hotel room"
                     loading="lazy"
                 >
@@ -1686,133 +1686,74 @@
      REVIEWS
 ===================================================== -->
 
-<section
-    id="reviews"
-    class="section reviews-section"
->
+<!-- ⭐ CUSTOMER REVIEWS -->
+<section id="reviews" class="reviews-section">
 
-    <div class="section-heading reveal">
+    <h2>⭐ Customer Reviews</h2>
 
-        <span>
-            TRAVELER FEEDBACK
-        </span>
-
-        <h2>
-            What Our
-            <strong>Visitors Say</strong>
-        </h2>
-
-    </div>
-
-
-    <div class="review-grid">
-
-
-        <article class="review-card reveal">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Best Rameswaram trip package.
-                Room and cab were good."
-            </p>
-
-            <div class="review-person">
-
-                <div class="review-avatar">
-                    A
-                </div>
-
-                <div>
-                    <strong>
-                        Arun
-                    </strong>
-
-                    <span>
-                        Traveler
-                    </span>
-                </div>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="review-card reveal">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "Very useful for a family trip.
-                Everything was arranged properly."
-            </p>
-
-            <div class="review-person">
-
-                <div class="review-avatar">
-                    P
-                </div>
-
-                <div>
-                    <strong>
-                        Priya
-                    </strong>
-
-                    <span>
-                        Traveler
-                    </span>
-                </div>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="review-card reveal">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "A convenient way to plan temple visits
-                and sightseeing around Rameswaram."
-            </p>
-
-            <div class="review-person">
-
-                <div class="review-avatar">
-                    R
-                </div>
-
-                <div>
-                    <strong>
-                        Rameswaram Visitor
-                    </strong>
-
-                    <span>
-                        Traveler
-                    </span>
-                </div>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-    <p class="review-note">
-        * Replace sample reviews with verified customer reviews
-        when you collect them.
+    <p class="review-subtitle">
+        See what our customers say about RamSethuYatra
     </p>
+
+    <!-- Approved reviews will appear here -->
+    <div id="reviewGrid" class="review-grid"></div>
+
+    <!-- Write Review -->
+    <div class="review-form-card">
+
+        <h3>Write Your Review</h3>
+
+        <form id="reviewForm">
+
+            <label for="reviewService">Service</label>
+
+            <select id="reviewService" required>
+                <option value="">Select Service</option>
+                <option value="Tour Package">Tour Package</option>
+                <option value="Cab Booking">Cab Booking</option>
+                <option value="Room Booking">Room Booking</option>
+                <option value="Temple Service">Temple Service</option>
+                <option value="22 Holy Wells">22 Holy Wells</option>
+                <option value="Poojai Service">Poojai Service</option>
+                <option value="Overall Experience">Overall Experience</option>
+            </select>
+
+            <label>Rating</label>
+
+            <div class="star-picker" id="starPicker">
+                <button type="button" data-rating="1">★</button>
+                <button type="button" data-rating="2">★</button>
+                <button type="button" data-rating="3">★</button>
+                <button type="button" data-rating="4">★</button>
+                <button type="button" data-rating="5">★</button>
+            </div>
+
+            <input
+                type="hidden"
+                id="reviewRating"
+                value="0"
+            >
+
+            <label for="reviewText">Your Review</label>
+
+            <textarea
+                id="reviewText"
+                maxlength="500"
+                placeholder="Write your experience..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Submit Review
+            </button>
+
+        </form>
+
+        <p id="reviewLoginMessage" style="display:none;">
+            Please login to write a review.
+        </p>
+
+    </div>
 
 </section>
 

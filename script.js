@@ -1,10 +1,16 @@
-import { db, auth } from "./firebase.js";
-
 import {
     collection,
-    addDoc
+    addDoc,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    where,
+    orderBy,
+    limit,
+    setDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
 function getCurrentUser() {
   const user = auth.currentUser;
 
@@ -764,3 +770,350 @@ translateObserver.observe(document.documentElement, {
     subtree: true,
     attributes: true
 });
+// ==========================================
+// ⭐ CUSTOMER REVIEW SYSTEM
+// ==========================================
+
+let selectedRating = 0;
+let currentReviewUser = null;
+
+
+// ------------------------------------------
+// STAR RATING
+// ------------------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const stars = document.querySelectorAll("#starPicker button");
+    const ratingInput = document.getElementById("reviewRating");
+
+    stars.forEach(star => {
+
+        star.addEventListener("click", () => {
+
+            selectedRating = Number(star.dataset.rating);
+
+            ratingInput.value = selectedRating;
+
+            stars.forEach(item => {
+
+                const rating = Number(item.dataset.rating);
+
+                item.style.color =
+                    rating <= selectedRating ? "#f77f00" : "#ccc";
+
+            });
+
+        });
+
+    });
+
+});
+// ------------------------------------------
+// CHECK LOGIN STATUS
+// ------------------------------------------
+
+auth.onAuthStateChanged(async (user) => {
+
+    currentReviewUser = user;
+
+    const form = document.getElementById("reviewForm");
+    const loginMessage =
+        document.getElementById("reviewLoginMessage");
+
+    if (!form || !loginMessage) return;
+
+    if (user) {
+
+        form.style.display = "block";
+        loginMessage.style.display = "none";
+
+        console.log("Review user:", user.email);
+
+    } else {
+
+        form.style.display = "none";
+        loginMessage.style.display = "block";
+
+    }
+
+    loadApprovedReviews();
+});
+// ------------------------------------------
+// SUBMIT REVIEW
+// ------------------------------------------
+
+const reviewForm = document.getElementById("reviewForm");
+
+if (reviewForm) {
+
+    reviewForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        if (!currentReviewUser) {
+
+            Swal.fire(
+                "Login Required",
+                "Please login before writing a review.",
+                "warning"
+            );
+
+            return;
+        }
+
+        const service =
+            document.getElementById("reviewService").value;
+
+        const review =
+            document.getElementById("reviewText").value.trim();
+
+        const rating =
+            Number(document.getElementById("reviewRating").value);
+
+        if (!service) {
+
+            Swal.fire(
+                "Select Service",
+                "Please select a service.",
+                "warning"
+            );
+
+            return;
+        }
+
+        if (rating < 1 || rating > 5) {
+
+            Swal.fire(
+                "Select Rating",
+                "Please select a star rating.",
+                "warning"
+            );
+
+            return;
+        }
+
+        if (review.length < 5) {
+
+            Swal.fire(
+                "Review Too Short",
+                "Please write at least 5 characters.",
+                "warning"
+            );
+
+            return;
+        }
+
+        try {
+
+            const reviewRef =
+                doc(db, "reviews", currentReviewUser.uid);
+
+            const existingReview =
+                await getDoc(reviewRef);
+
+            if (existingReview.exists()) {
+
+                Swal.fire(
+                    "Already Submitted",
+                    "You have already submitted a review.",
+                    "info"
+                );
+
+                return;
+            }
+
+            await setDoc(reviewRef, {
+
+                userId: currentReviewUser.uid,
+
+                name:
+                    currentReviewUser.displayName ||
+                    currentReviewUser.email?.split("@")[0] ||
+                    "Customer",
+
+                email:
+                    currentReviewUser.email || "",
+
+                rating: rating,
+
+                review: review,
+
+                service: service,
+
+                approved: false,
+
+                createdAt: serverTimestamp()
+
+            });
+
+            Swal.fire(
+                "Review Submitted!",
+                "Your review is waiting for admin approval.",
+                "success"
+            );
+
+            reviewForm.reset();
+
+            selectedRating = 0;
+
+            document.getElementById("reviewRating").value = 0;
+
+            document
+                .querySelectorAll("#starPicker button")
+                .forEach(star => {
+                    star.style.color = "#ccc";
+                });
+
+        } catch (error) {
+
+            console.error("Review Error:", error);
+
+            Swal.fire(
+                "Error",
+                error.message,
+                "error"
+            );
+
+        }
+
+    });
+
+}
+// ==========================================
+// ⭐ LOAD APPROVED REVIEWS
+// ==========================================
+
+async function loadApprovedReviews() {
+
+    const reviewGrid =
+        document.getElementById("reviewGrid");
+
+    if (!reviewGrid) return;
+
+    reviewGrid.innerHTML =
+        "<p>Loading reviews...</p>";
+
+    try {
+
+        const reviewsQuery = query(
+            collection(db, "reviews"),
+
+            where(
+                "approved",
+                "==",
+                true
+            ),
+
+            orderBy(
+                "createdAt",
+                "desc"
+            ),
+
+            limit(12)
+        );
+
+        const snapshot =
+            await getDocs(reviewsQuery);
+
+        reviewGrid.innerHTML = "";
+
+        if (snapshot.empty) {
+
+            reviewGrid.innerHTML = `
+                <p class="review-note">
+                    No customer reviews yet.
+                    Be the first to share your experience!
+                </p>
+            `;
+
+            return;
+        }
+
+        snapshot.forEach((reviewDoc) => {
+
+            const data = reviewDoc.data();
+
+            const name =
+                data.name || "Customer";
+
+            const rating =
+                Number(data.rating) || 0;
+
+            const service =
+                data.service || "Service";
+
+            const review =
+                data.review || "";
+
+            const stars =
+                "★".repeat(rating) +
+                "☆".repeat(5 - rating);
+
+            const firstLetter =
+                name.charAt(0).toUpperCase();
+
+            const card =
+                document.createElement("div");
+
+            card.className = "review-card";
+
+            card.innerHTML = `
+                <div class="review-person">
+
+                    <div class="review-avatar">
+                        ${firstLetter}
+                    </div>
+
+                    <div>
+                        <strong>
+                            ${escapeReviewHtml(name)}
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="stars">
+                    ${stars}
+                </div>
+
+                <span class="review-service">
+                    ${escapeReviewHtml(service)}
+                </span>
+
+                <p>
+                    ${escapeReviewHtml(review)}
+                </p>
+            `;
+
+            reviewGrid.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Load Reviews Error:",
+            error
+        );
+
+        reviewGrid.innerHTML = `
+            <p class="review-note">
+                Reviews could not be loaded.
+            </p>
+        `;
+    }
+}
+// ==========================================
+// 🔐 PROTECT REVIEW TEXT
+// ==========================================
+
+function escapeReviewHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}

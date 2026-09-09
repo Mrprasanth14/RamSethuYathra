@@ -132,7 +132,7 @@
                     <h3>Standard Room</h3>
 
                     <span class="room-rating">
-                        ★ 4.5
+                       Comfortable Stay
                     </span>
 
                 </div>
@@ -204,7 +204,7 @@
                     <h3>Family Room</h3>
 
                     <span class="room-rating">
-                        ★ 4.7
+                      Family Friendly
                     </span>
 
                 </div>
@@ -276,7 +276,7 @@
                     <h3>Premium Room</h3>
 
                     <span class="room-rating">
-                        ★ 4.9
+                       Premium Comfort
                     </span>
 
                 </div>
@@ -366,6 +366,7 @@
                         type="number"
                         id="roomPersons"
                         min="1"
+                        required
                         placeholder="Enter number of persons"
                     >
 
@@ -378,12 +379,14 @@
                         📱 Mobile Number
                     </label>
 
-                    <input
-                        type="tel"
-                        id="roomMobile"
-                        maxlength="10"
-                        placeholder="Enter 10 digit mobile number"
-                    >
+                   <input
+                     type="tel"
+                     id="roomMobile"
+                     maxlength="10"
+                     pattern="[0-9]{10}"
+                    required
+                   placeholder="Enter 10 digit mobile number"
+                   >
 
                 </div>
 
@@ -397,6 +400,7 @@
                     <input
                         type="date"
                         id="checkin"
+                        required
                     >
 
                 </div>
@@ -411,6 +415,7 @@
                     <input
                         type="date"
                         id="checkout"
+                        required
                     >
 
                 </div>
@@ -425,6 +430,7 @@
                     <input
                         type="email"
                         id="roomEmail"
+                        required
                         placeholder="Enter your email"
                     >
 
@@ -591,7 +597,7 @@
 
         <a href="index.html">Home</a>
         <a href="totalpackage.html">Packages</a>
-        <a href="cab.html">Cab Booking</a>
+        <a href="rameswaram-cab-service.html">Cab Booking</a>
         <a href="ramanathaswamy-temple.html">Temple</a>
 
     </div>

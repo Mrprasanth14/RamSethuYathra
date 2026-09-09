@@ -4628,3 +4628,324 @@ body {
     }
 
 }
+/* ==========================================
+   ⭐ CUSTOMER REVIEWS
+========================================== */
+
+.reviews-section {
+    padding: 60px 25px;
+    background: #f5f7fa;
+    text-align: center;
+}
+
+.reviews-section h2 {
+    margin-bottom: 10px;
+    color: #003049;
+    font-size: 32px;
+}
+
+.review-subtitle {
+    color: #555;
+    margin-bottom: 35px;
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   REVIEW GRID
+========================================== */
+
+.review-grid {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(280px, 1fr)
+    );
+
+    gap: 25px;
+}
+
+
+/* ==========================================
+   REVIEW CARD
+========================================== */
+
+.review-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+
+    text-align: left;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #eee;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   REVIEW PERSON
+========================================== */
+
+.review-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+.review-avatar {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #003049;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.review-person strong {
+    color: #003049;
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   STARS
+========================================== */
+
+.stars {
+    color: #f77f00;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================
+   REVIEW TEXT
+========================================== */
+
+.review-card p {
+    color: #444;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.review-service {
+    display: inline-block;
+
+    background: #fff3e8;
+    color: #f77f00;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   WRITE REVIEW CARD
+========================================== */
+
+.review-form-card {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    text-align: left;
+}
+
+.review-form-card h3 {
+    color: #003049;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+#reviewForm label {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 7px;
+
+    color: #003049;
+
+    font-weight: bold;
+}
+
+#reviewService,
+#reviewText {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+}
+
+#reviewService:focus,
+#reviewText:focus {
+    outline: none;
+
+    border-color: #f77f00;
+}
+
+#reviewText {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+/* ==========================================
+   STAR PICKER
+========================================== */
+
+.star-picker {
+    display: flex;
+    gap: 5px;
+
+    margin: 8px 0;
+}
+
+.star-picker button {
+    border: none;
+
+    background: transparent;
+
+    font-size: 32px;
+
+    color: #ccc;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    transition: 0.2s;
+}
+
+.star-picker button:hover {
+    transform: scale(1.15);
+}
+
+
+/* ==========================================
+   SUBMIT BUTTON
+========================================== */
+
+#reviewForm button[type="submit"] {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f77f00;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#reviewForm button[type="submit"]:hover {
+    background: #d96500;
+}
+
+
+/* ==========================================
+   LOGIN MESSAGE
+========================================== */
+
+#reviewLoginMessage {
+    text-align: center;
+
+    padding: 15px;
+
+    background: #fff3e8;
+
+    border-radius: 8px;
+
+    color: #003049;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .reviews-section {
+        padding: 40px 15px;
+    }
+
+    .reviews-section h2 {
+        font-size: 26px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-form-card {
+        padding: 20px;
+    }
+
+    .star-picker button {
+        font-size: 28px;
+    }
+}
