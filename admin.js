@@ -38,6 +38,18 @@ const bookingSections = {
     cabBookings: "cabData"
 
 };
+// ==========================================
+// 🔎 ADMIN BOOKING FILTERS
+// ==========================================
+
+let activeFilters = {
+    search: "",
+    status: "all",
+    date: "",
+    sort: "newest"
+};
+
+const allBookings = {};
 
 
 // ==========================================
@@ -131,8 +143,7 @@ async function loadBookings(collectionName, divId) {
             await getDocs(
                 collection(db, collectionName)
             );
-
-
+            
         if (snapshot.empty) {
 
             box.innerHTML =
@@ -1143,7 +1154,7 @@ async function loadDashboardStats() {
                 const data = bookingDoc.data();
 
                 const status = String(
-                    data.status || ""
+                    data.status || "pending"
                 ).toLowerCase();
 
                 if (status === "pending") {
@@ -1210,8 +1221,6 @@ async function loadDashboardStats() {
     }
 
 }
-
-
 // ==========================================
 // ⭐ LOAD CUSTOMER REVIEWS
 // ==========================================
@@ -1389,7 +1398,6 @@ async function loadReviews() {
 
 }
 
-
 // ==========================================
 // 🔒 ESCAPE REVIEW HTML
 // ==========================================
@@ -1561,3 +1569,709 @@ window.setReviewApproval =
 
 window.deleteReview =
     deleteReview;
+
+   // ==========================================
+// 🔎 ADMIN BOOKING FILTER SYSTEM
+// ==========================================
+
+const filterSearch =
+    document.getElementById("customerSearch");
+
+const filterStatus =
+    document.getElementById("statusFilter");
+
+const filterDate =
+    document.getElementById("dateFilter");
+
+const filterSort =
+    document.getElementById("sortFilter");
+
+const clearFilters =
+    document.getElementById("clearFilters");
+
+
+// ==========================================
+// FILTER EVENTS
+// ==========================================
+
+if (filterSearch) {
+
+    filterSearch.addEventListener("input", () => {
+
+        activeFilters.search =
+            filterSearch.value.toLowerCase().trim();
+
+        applyBookingFilters();
+
+    });
+
+}
+
+
+if (filterStatus) {
+
+    filterStatus.addEventListener("change", () => {
+
+        activeFilters.status =
+            filterStatus.value;
+
+        applyBookingFilters();
+
+    });
+
+}
+
+
+if (filterDate) {
+
+    filterDate.addEventListener("change", () => {
+
+        activeFilters.date =
+            filterDate.value;
+
+        applyBookingFilters();
+
+    });
+
+}
+
+
+if (filterSort) {
+
+    filterSort.addEventListener("change", () => {
+
+        activeFilters.sort =
+            filterSort.value;
+
+        applyBookingFilters();
+
+    });
+
+}
+
+
+if (clearFilters) {
+
+    clearFilters.addEventListener("click", () => {
+
+        activeFilters = {
+            search: "",
+            status: "all",
+            date: "",
+            sort: "newest"
+        };
+
+        if (filterSearch)
+            filterSearch.value = "";
+
+        if (filterStatus)
+            filterStatus.value = "all";
+
+        if (filterDate)
+            filterDate.value = "";
+
+        if (filterSort)
+            filterSort.value = "newest";
+
+        reloadAllBookingSections();
+
+    });
+
+}
+
+
+// ==========================================
+// APPLY FILTERS
+// ==========================================
+
+async function applyBookingFilters() {
+
+    const collections = [
+        "packageBookings",
+        "templeBookings",
+        "wellBookings",
+        "poojaBookings",
+        "roomBookings",
+        "cabBookings"
+    ];
+
+    for (const collectionName of collections) {
+
+        const divId =
+            bookingSections[collectionName];
+
+        if (!divId) continue;
+
+        await filterCollection(
+            collectionName,
+            divId
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// FILTER ONE COLLECTION
+// ==========================================
+
+async function filterCollection(
+    collectionName,
+    divId
+) {
+
+    const box =
+        document.getElementById(divId);
+
+    if (!box) return;
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, collectionName)
+            );
+
+        let bookings = [];
+
+        snapshot.forEach((bookingDoc) => {
+
+            bookings.push({
+                id: bookingDoc.id,
+                data: bookingDoc.data()
+            });
+
+        });
+
+
+        // ======================================
+        // SEARCH
+        // ======================================
+
+        if (activeFilters.search) {
+
+            bookings = bookings.filter(
+                booking => {
+
+                    const data =
+                        booking.data;
+
+                    const text = [
+
+                        data.name,
+                        data.customerName,
+                        data.email,
+                        data.customerEmail,
+                        data.mobile,
+                        data.customerMobile,
+                        data.service,
+                        data.package,
+                        data.packageName
+
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+                    return text.includes(
+                        activeFilters.search
+                    );
+
+                }
+            );
+
+        }
+
+
+        // ======================================
+        // STATUS
+        // ======================================
+
+        if (
+            activeFilters.status !== "all"
+        ) {
+
+            bookings = bookings.filter(
+                booking => {
+
+                    const status =
+                        String(
+                            booking.data.status ||
+                            "pending"
+                        ).toLowerCase();
+
+                    return status ===
+                        activeFilters.status;
+
+                }
+            );
+
+        }
+
+
+        // ======================================
+        // DATE
+        // ======================================
+
+        if (activeFilters.date) {
+
+            bookings = bookings.filter(
+                booking => {
+
+                    const data =
+                        booking.data;
+
+                    const date =
+                        data.travelDate ||
+                        data.date ||
+                        data.checkin ||
+                        "";
+
+                    return String(date) ===
+                        activeFilters.date;
+
+                }
+            );
+
+        }
+
+
+        // ======================================
+        // SORT
+        // ======================================
+
+        bookings.sort((a, b) => {
+
+            const dateA =
+                getBookingDate(a.data);
+
+            const dateB =
+                getBookingDate(b.data);
+
+            if (
+                activeFilters.sort ===
+                "oldest"
+            ) {
+
+                return dateA - dateB;
+
+            }
+
+            return dateB - dateA;
+
+        });
+
+
+        // ======================================
+        // DISPLAY
+        // ======================================
+
+        if (bookings.length === 0) {
+
+            box.innerHTML = `
+                <div class="empty-msg">
+                    No bookings match your filters.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        box.innerHTML = "";
+
+        bookings.forEach(booking => {
+
+            renderFilteredBookingCard(
+                collectionName,
+                booking.id,
+                booking.data,
+                box
+            );
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Filter error:",
+            error
+        );
+
+        box.innerHTML = `
+            <div class="empty-msg">
+                Unable to filter bookings.
+                <br><br>
+                ${error.message}
+            </div>
+        `;
+
+    }
+
+}
+
+
+// ==========================================
+// GET BOOKING DATE
+// ==========================================
+
+function getBookingDate(data) {
+
+    const value =
+        data.travelDate ||
+        data.date ||
+        data.checkin ||
+        data.createdAt;
+
+    if (!value) {
+        return 0;
+    }
+
+    // Firebase Timestamp
+    if (
+        typeof value === "object" &&
+        typeof value.toDate === "function"
+    ) {
+
+        return value.toDate().getTime();
+
+    }
+
+    const timestamp =
+        new Date(value).getTime();
+
+    return isNaN(timestamp)
+        ? 0
+        : timestamp;
+
+}
+
+
+// ==========================================
+// RENDER FILTERED BOOKING CARD
+// ==========================================
+
+function renderFilteredBookingCard(
+    collectionName,
+    bookingId,
+    data,
+    box
+) {
+
+    const status =
+        String(
+            data.status || "pending"
+        ).toLowerCase();
+
+    const statusClass =
+        getStatusClass(status);
+
+
+    // PACKAGE BOOKING
+    if (
+        collectionName ===
+        "packageBookings"
+    ) {
+
+        const packageName =
+            data.packageName ||
+            data.package ||
+            "Package";
+
+        const totalPrice =
+            Number(
+                data.totalPrice || 0
+            );
+
+
+        box.innerHTML += `
+
+            <div class="admin-card package-card">
+
+                <div class="admin-card-header">
+
+                    <div>
+
+                        <span class="booking-type">
+                            PACKAGE BOOKING
+                        </span>
+
+                        <h3>
+                            🧳 ${packageName}
+                        </h3>
+
+                    </div>
+
+                    <span class="${statusClass}">
+                        ${status.toUpperCase()}
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <p>
+                    <b>👤 Customer:</b>
+                    ${data.customerName || "-"}
+                </p>
+
+                <p>
+                    <b>📧 Email:</b>
+                    ${data.customerEmail || "-"}
+                </p>
+
+                <p>
+                    <b>📱 Mobile:</b>
+                    ${data.customerMobile || "-"}
+                </p>
+
+                <p>
+                    <b>👥 Persons:</b>
+                    ${data.persons || "-"}
+                </p>
+
+                <p>
+                    <b>📅 Travel Date:</b>
+                    ${data.travelDate || "-"}
+                </p>
+
+                <p>
+                    <b>⏰ Pickup Time:</b>
+                    ${data.pickupTime || "-"}
+                </p>
+
+                <p>
+                    <b>📍 Pickup Location:</b>
+                    ${data.pickupLocation || "-"}
+                </p>
+
+                <p>
+                    <b>📝 Special Request:</b>
+                    ${data.specialRequest || "None"}
+                </p>
+
+                <div class="package-price">
+
+                    Total Package:
+
+                    <strong>
+                        ₹${totalPrice.toLocaleString("en-IN")}
+                    </strong>
+
+                </div>
+
+                <div class="booking-id">
+
+                    <b>Booking ID:</b>
+
+                    <span>
+                        ${bookingId}
+                    </span>
+
+                </div>
+
+                <div class="package-actions">
+
+                    <button
+                        class="confirm-btn"
+                        onclick="updateBookingStatus(
+                            'packageBookings',
+                            '${bookingId}',
+                            'confirmed'
+                        )">
+                        ✅ Confirm
+                    </button>
+
+                    <button
+                        class="cancel-btn"
+                        onclick="updateBookingStatus(
+                            'packageBookings',
+                            '${bookingId}',
+                            'cancelled'
+                        )">
+                        ❌ Cancel
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteBooking(
+                            'packageBookings',
+                            '${bookingId}'
+                        )">
+                        🗑️ Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    // ======================================
+    // NORMAL BOOKINGS
+    // ======================================
+
+    box.innerHTML += `
+
+        <div class="admin-card">
+
+            <div class="admin-card-header">
+
+                <div>
+
+                    <span class="booking-type">
+                        ${data.service || collectionName}
+                    </span>
+
+                    <h3>
+                        ${data.name ||
+                        data.customerName ||
+                        "Customer Booking"}
+                    </h3>
+
+                </div>
+
+                <span class="${statusClass}">
+                    ${status.toUpperCase()}
+                </span>
+
+            </div>
+
+            <hr>
+
+            <p>
+                <b>👤 Customer:</b>
+                ${data.name ||
+                data.customerName ||
+                "-"}
+            </p>
+
+            <p>
+                <b>📧 Email:</b>
+                ${data.customerEmail ||
+                data.email ||
+                "-"}
+            </p>
+
+            <p>
+                <b>📱 Mobile:</b>
+                ${data.mobile ||
+                data.customerMobile ||
+                "-"}
+            </p>
+
+            <p>
+                <b>👥 Persons:</b>
+                ${data.persons || "-"}
+            </p>
+
+            <p>
+                <b>📅 Date:</b>
+                ${data.date ||
+                data.travelDate ||
+                data.checkin ||
+                "-"}
+            </p>
+
+            <p>
+                <b>⏰ Time:</b>
+                ${data.time ||
+                data.pickupTime ||
+                "-"}
+            </p>
+
+            ${renderExtraDetails(
+                collectionName,
+                data
+            )}
+
+            <div class="booking-id">
+
+                <b>Booking ID:</b>
+
+                <span>
+                    ${bookingId}
+                </span>
+
+            </div>
+
+            <div class="package-actions">
+
+                <button
+                    class="confirm-btn"
+                    onclick="updateBookingStatus(
+                        '${collectionName}',
+                        '${bookingId}',
+                        'confirmed'
+                    )">
+                    ✅ Confirm
+                </button>
+
+                <button
+                    class="cancel-btn"
+                    onclick="updateBookingStatus(
+                        '${collectionName}',
+                        '${bookingId}',
+                        'cancelled'
+                    )">
+                    ❌ Cancel
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteBooking(
+                        '${collectionName}',
+                        '${bookingId}'
+                    )">
+                    🗑️ Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+// ==========================================
+// RELOAD ALL BOOKINGS
+// ==========================================
+
+function reloadAllBookingSections() {
+
+    loadPackageBookings();
+
+    loadBookings(
+        "templeBookings",
+        "templeData"
+    );
+
+    loadBookings(
+        "wellBookings",
+        "wellData"
+    );
+
+    loadBookings(
+        "poojaBookings",
+        "poojaData"
+    );
+
+    loadBookings(
+        "roomBookings",
+        "roomData"
+    );
+
+    loadBookings(
+        "cabBookings",
+        "cabData"
+    );
+
+}

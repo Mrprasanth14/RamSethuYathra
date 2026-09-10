@@ -697,3 +697,62 @@ body {
     }
 
 }
+/* =========================================
+   BOOKING FILTERS
+========================================= */
+
+.booking-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.booking-filters input,
+.booking-filters select {
+    padding: 11px 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+}
+
+#customerSearch {
+    flex: 1;
+    min-width: 250px;
+}
+
+#clearFilters {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #003049;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#clearFilters:hover {
+    background: #ff7a00;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .booking-filters {
+        flex-direction: column;
+    }
+
+    .booking-filters input,
+    .booking-filters select,
+    #clearFilters {
+        width: 100%;
+    }
+
+}

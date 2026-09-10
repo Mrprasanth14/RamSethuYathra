@@ -1255,7 +1255,13 @@ a {
     .hero-secondary {
         width: 200px;
     }
-
+.price-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #777;
+    font-weight: 500;
+}
 
     /* PACKAGES */
 

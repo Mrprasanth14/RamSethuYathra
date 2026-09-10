@@ -1,3 +1,4 @@
+import { db, auth } from "./firebase.js";
 import {
     collection,
     addDoc,
@@ -11,6 +12,11 @@ import {
     setDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
 function getCurrentUser() {
   const user = auth.currentUser;
 
@@ -813,7 +819,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // CHECK LOGIN STATUS
 // ------------------------------------------
 
-auth.onAuthStateChanged(async (user) => {
+auth.onAuthStateChanged(auth,async (user) => {
 
     currentReviewUser = user;
 
@@ -997,21 +1003,10 @@ async function loadApprovedReviews() {
     try {
 
         const reviewsQuery = query(
-            collection(db, "reviews"),
-
-            where(
-                "approved",
-                "==",
-                true
-            ),
-
-            orderBy(
-                "createdAt",
-                "desc"
-            ),
-
-            limit(12)
-        );
+    collection(db, "reviews"),
+    where("approved", "==", true),
+    limit(12)
+);
 
         const snapshot =
             await getDocs(reviewsQuery);
