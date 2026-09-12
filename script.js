@@ -450,73 +450,145 @@ try {
 }
 }
 async function showPoojaDetailsform() {
-  const persons = document.getElementById("poojaPersons").value;
-  const date = document.getElementById("poojaDate").value;
-  const time = document.getElementById("poojaTime").value;
-  const mobile = document.getElementById("poojaMobile").value.trim();
 
-  if (!persons || !date || !time || !mobile) {
-    Swal.fire({
-      icon: "warning",
-      title: "Incomplete Form",
-      text: "Please fill all required fields first",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
+    const persons =
+        document.getElementById("poojaPersons").value.trim();
 
-  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Mobile Number",
-      text: "Enter valid 10 digit mobile number",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
+    const date =
+        document.getElementById("poojaDate").value;
 
-  const message =
-`🙏 Temple Poojai Booking Request
+    const time =
+        document.getElementById("poojaTime").value;
 
-👥 Persons: ${persons}
-📅 Date: ${date}
-⏰ Time: ${time}
-📞 Mobile: ${mobile}`;
+    const mobile =
+        document.getElementById("poojaMobile").value.trim();
 
-  const user = getCurrentUser();
-if (!user) return;
+    const poojaType =
+        document.getElementById("poojaType").value;
 
-try {
 
-  await addDoc(collection(db, "poojaBookings"), {
+    // ==============================
+    // VALIDATE FORM
+    // ==============================
 
-    userId: user.uid,
-    customerEmail: user.email || "",
+    if (!persons || !date || !time || !mobile || !poojaType) {
 
-    persons,
-    date,
-    time,
-    mobile,
+        Swal.fire({
+            icon: "warning",
+            title: "Incomplete Details",
+            text: "Please fill all booking details.",
+            confirmButtonColor: "#ff7a00"
+        });
 
-    service: "Temple Poojai",
-    status: "pending",
+        return;
+    }
 
-    createdAt: new Date()
-  });
 
-    Swal.fire({
-  icon: "success",
-  title: "Booking Successful!",
-  text: "Your room booking has been submitted successfully.",
-  confirmButtonText: "OK",
-  confirmButtonColor: "#ff7a00"
-}).then(() => {
-  window.location.href = "index.html";
-});
-  } catch (error) {
-    console.error(error);
-    Swal.fire("Error", error.message, "error");
-  }
+    // ==============================
+    // VALIDATE MOBILE
+    // ==============================
+
+    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Invalid Mobile Number",
+            text: "Please enter a valid 10-digit mobile number.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+
+    // ==============================
+    // GET LOGGED-IN USER
+    // ==============================
+
+    const user = getCurrentUser();
+
+    if (!user) {
+        return;
+    }
+
+
+    // ==============================
+    // SAVE TO FIRESTORE
+    // ==============================
+
+    try {
+
+        await addDoc(
+            collection(db, "poojaBookings"),
+            {
+
+                userId: user.uid,
+
+                customerEmail:
+                    user.email || "",
+
+                persons:
+                    Number(persons),
+
+                date:
+                    date,
+
+                time:
+                    time,
+
+                mobile:
+                    mobile,
+
+                poojaType:
+                    poojaType,
+
+                service:
+                    "Temple Poojai",
+
+                status:
+                    "pending",
+
+                bookingTime:
+                    new Date().toLocaleString(),
+
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+
+
+        // ==============================
+        // SUCCESS
+        // ==============================
+
+        Swal.fire({
+            icon: "success",
+            title: "Booking Submitted!",
+            text: "Your Pooja booking request has been submitted successfully.",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#ff7a00"
+        }).then(() => {
+
+            closeDetails("PoojaDetails");
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Pooja booking error:",
+            error
+        );
+
+        Swal.fire({
+            icon: "error",
+            title: "Booking Failed",
+            text: error.message,
+            confirmButtonColor: "#ff7a00"
+        });
+
+    }
 }
 
 // ==========================================
@@ -819,7 +891,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // CHECK LOGIN STATUS
 // ------------------------------------------
 
-auth.onAuthStateChanged(auth,async (user) => {
+onAuthStateChanged(auth, async (user) => {
 
     currentReviewUser = user;
 

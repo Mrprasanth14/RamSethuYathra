@@ -5,32 +5,34 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Rameswaram Cab Service | Taxi Booking | RamSethuYatra
-    </title>
+    <meta name="description"
+          content="Book comfortable cab services in Rameswaram for temple visits, sightseeing, railway station transfers and local travel with RamSethuYatra.">
 
-    <meta
-        name="description"
-        content="Book Rameswaram cab service, taxi booking, family travel cabs, 4 seater, 7 seater and traveller vans for sightseeing and temple visits."
-    >
+    <meta name="keywords"
+          content="Rameswaram cab service, Rameswaram taxi, Rameswaram sightseeing cab, Rameswaram temple cab, cab booking">
 
-    <meta
-        name="keywords"
-        content="Rameswaram cab service, Rameswaram taxi booking, Rameswaram traveller van, Rameswaram sightseeing cab, Dhanushkodi cab service, Ramanathaswamy Temple taxi, family cab Rameswaram"
-    >
+    <meta name="author"
+          content="RamSethuYatra">
 
-    <link
-        rel="stylesheet"
-        href="fulsigh.css"
-    >
+    <title>Rameswaram Cab Service | RamSethuYatra</title>
 
-    <!-- SweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Main Cab CSS -->
+    <link rel="stylesheet"
+          href="cab.css">
+
+
+    <!-- Shared Website Theme -->
+    <link rel="stylesheet"
+          href="site-theme.css">
+
+
+    <!-- Firebase -->
+    <script type="module"
+            src="firebase.js"></script>
 
 </head>
 
@@ -40,63 +42,276 @@
 
 <!-- =====================================================
      HEADER
-===================================================== -->
+     ===================================================== -->
 
-<header class="cab-header">
+<header class="main-header">
 
-    <a
-        href="index.html"
-        class="back-home"
-    >
-        ← RamSethuYatra
-    </a>
+    <div class="header-container">
 
 
-    <!-- <div class="translate-box">
+        <!-- LOGO -->
 
-        <div id="google_translate_element"></div>
+        <a href="index.html"
+           class="brand">
 
-    </div> -->
+            <div class="brand-icon">
+                ॐ
+            </div>
+
+            <div class="brand-name">
+                <span>Ram</span>
+                <span>Sethu</span>
+                <span>Yatra</span>
+            </div>
+
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open menu">
+
+            ☰
+
+        </button>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav"
+             id="mainNav">
+
+            <a href="index.html">
+                <span>⌂</span>
+                Home
+            </a>
+
+            <a href="about.html">
+                <span>●</span>
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                <span>▣</span>
+                Packages
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                <span>♜</span>
+                Temple
+            </a>
+
+            <a href="rameswaram-cab-service.html"
+               class="active">
+                <span>🚕</span>
+                Cab
+            </a>
+
+            <a href="contact.html">
+                <span>☎</span>
+                Contact
+            </a>
+
+            <a href="customer-dashboard.html">
+                <span>▣</span>
+                My Booking
+            </a>
+
+            <a href="#"
+               id="logoutBtn">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </nav>
+
+
+        <!-- LANGUAGE -->
+
+        <button class="language-button"
+                type="button"
+                aria-label="Language">
+
+            🌐
+
+        </button>
+
+    </div>
 
 </header>
 
 
 
 <!-- =====================================================
-     HERO
-===================================================== -->
+     HERO SECTION
+     ===================================================== -->
 
 <section class="cab-hero">
 
-    <div class="hero-overlay"></div>
+
+    <div class="cab-hero-overlay"></div>
 
 
-    <div class="hero-content">
+    <div class="cab-hero-content">
 
-        <span class="hero-tag">
-            🚕 Rameswaram Travel Service
-        </span>
+
+        <div class="hero-label">
+
+            <span></span>
+
+            RAMESWARAM CAB SERVICE
+
+        </div>
 
 
         <h1>
-            Explore Rameswaram
-            <br>
-            With Comfortable Travel
+
+            Travel around Rameswaram
+
+            <strong>
+                with comfort.
+            </strong>
+
         </h1>
 
 
         <p>
-            Choose the right cab for your family,
-            sightseeing trip or group journey.
+
+            Comfortable and convenient cab services
+            for temple visits, sightseeing, railway
+            station transfers and your complete
+            Rameswaram journey.
+
         </p>
 
 
-        <a
-            href="#cab-selection"
-            class="hero-btn"
-        >
-            Choose Your Cab ↓
-        </a>
+        <div class="hero-buttons">
+
+
+            <a href="#cab-booking"
+               class="hero-primary-btn">
+
+                Book a Cab
+
+                <span>
+                    ↓
+                </span>
+
+            </a>
+
+
+            <a href="tel:+918838170745"
+               class="hero-secondary-btn">
+
+                Need Help?
+
+                <span>
+                    ☎
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- HERO FEATURE STRIP -->
+
+    <div class="hero-feature-box">
+
+
+        <div class="hero-feature">
+
+            <div class="feature-icon">
+                🚕
+            </div>
+
+            <div>
+
+                <h3>
+                    Comfortable Cabs
+                </h3>
+
+                <p>
+                    Travel with ease
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-feature">
+
+            <div class="feature-icon">
+                📍
+            </div>
+
+            <div>
+
+                <h3>
+                    Local Sightseeing
+                </h3>
+
+                <p>
+                    Explore Rameswaram
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-feature">
+
+            <div class="feature-icon">
+                🛕
+            </div>
+
+            <div>
+
+                <h3>
+                    Temple Visits
+                </h3>
+
+                <p>
+                    Sacred experiences
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="hero-feature">
+
+            <div class="feature-icon">
+                🧳
+            </div>
+
+            <div>
+
+                <h3>
+                    Pickup & Drop
+                </h3>
+
+                <p>
+                    Easy travel support
+                </p>
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -105,677 +320,1371 @@
 
 
 <!-- =====================================================
-     CAB SECTION
-===================================================== -->
+     INTRODUCTION
+     ===================================================== -->
 
-<main
-    id="cab-selection"
-    class="cab-section"
->
+<section class="cab-intro section-space">
 
-
-    <!-- SECTION TITLE -->
 
     <div class="section-heading">
 
-        <span>
-            ✨ RamSethuYatra Cab Service
-        </span>
-
+        <div class="small-label">
+            TRAVEL WITH EASE
+        </div>
 
         <h2>
-            Choose Your Travel Vehicle
+            Your journey around
+            <span>Rameswaram</span>
         </h2>
 
-
         <p>
-            Select a vehicle according to your group size
-            and continue your booking.
+
+            Explore the spiritual and scenic beauty
+            of Rameswaram with a comfortable cab
+            and reliable local transportation.
+
         </p>
 
     </div>
 
 
-
-    <!-- =================================================
-         CAB CARDS
-    ================================================== -->
-
-    <div class="cab-grid">
+    <div class="intro-grid">
 
 
-        <!-- 4 SEATER -->
+        <div class="intro-image">
 
-        <label class="cab-card">
+            <img src="images/Pamban Bridge.jpg"
+                 alt="Pamban Bridge Rameswaram"
+                 loading="lazy">
 
-            <input
-                type="radio"
-                name="cab"
-                value="4"
-                onclick="showPersonBox(4)"
-            >
+        </div>
 
 
-            <div class="cab-image small-cab">
-                🚗
+        <div class="intro-content">
+
+            <h3>
+                Reliable local travel for every journey
+            </h3>
+
+            <p>
+
+                Whether you are visiting the
+                Ramanathaswamy Temple, exploring
+                Pamban Bridge, visiting Agni Theertham
+                or travelling around the island,
+                our cab service helps make your trip
+                simple and comfortable.
+
+            </p>
+
+
+            <div class="intro-points">
+
+
+                <div class="intro-point">
+
+                    <div>
+                        ✓
+                    </div>
+
+                    <span>
+                        Comfortable transportation
+                    </span>
+
+                </div>
+
+
+                <div class="intro-point">
+
+                    <div>
+                        ✓
+                    </div>
+
+                    <span>
+                        Local sightseeing support
+                    </span>
+
+                </div>
+
+
+                <div class="intro-point">
+
+                    <div>
+                        ✓
+                    </div>
+
+                    <span>
+                        Temple visit transportation
+                    </span>
+
+                </div>
+
+
+                <div class="intro-point">
+
+                    <div>
+                        ✓
+                    </div>
+
+                    <span>
+                        Pickup and drop facilities
+                    </span>
+
+                </div>
+
+
             </div>
 
 
-            <div class="cab-content">
+        </div>
 
-                <span class="cab-badge">
-                    SMALL FAMILY
-                </span>
+    </div>
 
+</section>
+
+
+
+<!-- =====================================================
+     CAB OPTIONS
+     ===================================================== -->
+
+<section class="cab-options section-space">
+
+
+    <div class="section-heading center">
+
+        <div class="small-label">
+            CHOOSE YOUR RIDE
+        </div>
+
+        <h2>
+            Comfortable rides for
+            <span>every group</span>
+        </h2>
+
+        <p>
+
+            Select a vehicle according to your
+            group size and travel requirements.
+
+        </p>
+
+    </div>
+
+
+    <div class="cab-cards">
+
+
+        <!-- CAB 1 -->
+
+        <div class="cab-card">
+
+            <div class="cab-card-image">
+
+                <img src="images/Ram.jpg"
+                     alt="Car cab service in Rameswaram"
+                     loading="lazy">
+
+            </div>
+
+
+            <div class="cab-card-content">
+
+                <div class="cab-card-label">
+                    SMALL GROUP
+                </div>
 
                 <h3>
-                    4 Seater
+                    Sedan
                 </h3>
 
-
                 <p>
-                    Comfortable choice for couples
+                    Comfortable option for couples
                     and small families.
                 </p>
 
 
-                <div class="cab-features">
+                <ul>
+
+                    <li>
+                        ✓ Up to 4 passengers
+                    </li>
+
+                    <li>
+                        ✓ Air-conditioned
+                    </li>
+
+                    <li>
+                        ✓ Local sightseeing
+                    </li>
+
+                    <li>
+                        ✓ Temple transportation
+                    </li>
+
+                </ul>
+
+
+                <label class="cab-select-option">
+
+                    <input type="radio"
+                           name="cab"
+                           value="Sedan">
 
                     <span>
-                        👥 Up to 4
+                        Select Sedan
                     </span>
 
-                    <span>
-                        ❄️ Comfortable
-                    </span>
-
-                    <span>
-                        🛕 Sightseeing
-                    </span>
-
-                </div>
-
-
-                <div class="select-cab">
-                    Select Cab
-                </div>
-
-            </div>
-
-        </label>
-
-
-
-        <!-- 7 SEATER -->
-
-        <label class="cab-card featured-cab">
-
-            <div class="popular-badge">
-                ⭐ POPULAR
-            </div>
-
-
-            <input
-                type="radio"
-                name="cab"
-                value="7"
-                onclick="showPersonBox(7)"
-            >
-
-
-            <div class="cab-image family-cab">
-                🚙
-            </div>
-
-
-            <div class="cab-content">
-
-                <span class="cab-badge blue">
-                    FAMILY TRAVEL
-                </span>
-
-
-                <h3>
-                    7 Seater
-                </h3>
-
-
-                <p>
-                    A spacious option for families
-                    and medium-sized groups.
-                </p>
-
-
-                <div class="cab-features">
-
-                    <span>
-                        👥 Up to 7
-                    </span>
-
-                    <span>
-                        ❄️ Comfortable
-                    </span>
-
-                    <span>
-                        🛕 Sightseeing
-                    </span>
-
-                </div>
-
-
-                <div class="select-cab">
-                    Select Cab
-                </div>
-
-            </div>
-
-        </label>
-
-
-
-        <!-- TRAVELLER -->
-
-        <label class="cab-card">
-
-            <input
-                type="radio"
-                name="cab"
-                value="20"
-                onclick="showPersonBox(20)"
-            >
-
-
-            <div class="cab-image traveller-cab">
-                🚌
-            </div>
-
-
-            <div class="cab-content">
-
-                <span class="cab-badge purple">
-                    GROUP TRAVEL
-                </span>
-
-
-                <h3>
-                    Van / Traveller
-                </h3>
-
-
-                <p>
-                    Ideal for large groups,
-                    family tours and group trips.
-                </p>
-
-
-                <div class="cab-features">
-
-                    <span>
-                        👥 Up to 20
-                    </span>
-
-                    <span>
-                        🧳 More Space
-                    </span>
-
-                    <span>
-                        🛕 Full Tour
-                    </span>
-
-                </div>
-
-
-                <div class="select-cab">
-                    Select Cab
-                </div>
-
-            </div>
-
-        </label>
-
-    </div>
-
-
-
-    <!-- =================================================
-         PERSON SELECTION
-    ================================================== -->
-
-    <div
-        id="personBox"
-        class="person-box"
-    >
-
-        <div class="person-header">
-
-            <div>
-
-                <span>
-                    STEP 1
-                </span>
-
-                <h3>
-                    How Many Persons?
-                </h3>
-
-                <p>
-                    Select the number of people travelling.
-                </p>
-
-            </div>
-
-            <div class="step-icon">
-                👥
-            </div>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <div class="input-wrapper">
-
-                <label>
-                    Number of Persons
                 </label>
 
-                <select id="persons">
+            </div>
 
-                    <option value="">
-                        Select Persons
-                    </option>
+        </div>
 
-                </select>
+
+
+        <!-- CAB 2 -->
+
+        <div class="cab-card popular">
+
+            <div class="popular-badge">
+                POPULAR
+            </div>
+
+
+            <div class="cab-card-image">
+
+                <img src="images/Rameswaram agnitheertham.jpg"
+                     alt="Rameswaram sightseeing cab"
+                     loading="lazy">
 
             </div>
 
 
-            <button
-                type="button"
-                onclick="continueBooking()"
-                class="continue-btn"
-            >
-                Continue Booking →
-            </button>
+            <div class="cab-card-content">
+
+                <div class="cab-card-label">
+                    FAMILY TRAVEL
+                </div>
+
+                <h3>
+                    SUV
+                </h3>
+
+                <p>
+                    More space and comfort for
+                    families and small groups.
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        ✓ Up to 6 passengers
+                    </li>
+
+                    <li>
+                        ✓ Spacious interior
+                    </li>
+
+                    <li>
+                        ✓ Air-conditioned
+                    </li>
+
+                    <li>
+                        ✓ Sightseeing support
+                    </li>
+
+                </ul>
+
+
+                <label class="cab-select-option">
+
+                    <input type="radio"
+                           name="cab"
+                           value="SUV">
+
+                    <span>
+                        Select SUV
+                    </span>
+
+                </label>
+
+            </div>
 
         </div>
 
+
+
+        <!-- CAB 3 -->
+
+        <div class="cab-card">
+
+            <div class="cab-card-image">
+
+                <img src="images/beautiful-beach.jpg"
+                     alt="Large group cab service"
+                     loading="lazy">
+
+            </div>
+
+
+            <div class="cab-card-content">
+
+                <div class="cab-card-label">
+                    GROUP TRAVEL
+                </div>
+
+                <h3>
+                    Traveller
+                </h3>
+
+                <p>
+                    Ideal for larger families and
+                    group sightseeing.
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        ✓ Larger seating capacity
+                    </li>
+
+                    <li>
+                        ✓ Comfortable travel
+                    </li>
+
+                    <li>
+                        ✓ Group sightseeing
+                    </li>
+
+                    <li>
+                        ✓ Flexible pickup
+                    </li>
+
+                </ul>
+
+
+                <label class="cab-select-option">
+
+                    <input type="radio"
+                           name="cab"
+                           value="Traveller">
+
+                    <span>
+                        Select Traveller
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
     </div>
 
+</section>
 
 
-    <!-- =================================================
-         BOOKING FORM
-    ================================================== -->
 
-    <div
-        id="bookingForm"
-        class="booking-form"
-        style="display:none;"
-    >
+<!-- =====================================================
+     BOOKING SECTION
+     ===================================================== -->
 
-        <div class="booking-heading">
+<section class="cab-booking-section section-space"
+         id="cab-booking">
 
-            <span>
-                STEP 2
-            </span>
+
+    <div class="booking-wrapper">
+
+
+        <!-- LEFT -->
+
+        <div class="booking-info">
+
+            <div class="small-label">
+                CAB BOOKING
+            </div>
 
             <h2>
-                Booking Details
+                Plan your
+                <span>Rameswaram ride.</span>
             </h2>
 
             <p>
-                Enter your details and travel information.
+
+                Fill in your travel details and
+                submit your booking request.
+                Our team can contact you to
+                confirm the journey.
+
             </p>
 
-        </div>
+
+            <div class="booking-benefits">
 
 
-        <div class="booking-grid">
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    Comfortable vehicles
+
+                </div>
 
 
-            <!-- NAME -->
+                <div>
 
-            <div class="input-group">
+                    <span>
+                        ✓
+                    </span>
 
-                <label>
-                    👤 Full Name
-                </label>
+                    Local travel support
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your full name"
-                    required
-                >
+                </div>
+
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    Temple and sightseeing trips
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    Easy booking process
+
+                </div>
+
 
             </div>
 
 
+            <div class="booking-contact">
 
-            <!-- MOBILE -->
+                <span>
+                    Need help?
+                </span>
 
-            <div class="input-group">
-
-                <label>
-                    📱 Mobile Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="mobile"
-                    maxlength="10"
-                    placeholder="10 digit mobile number"
-                    required
-                >
-
-            </div>
-
-
-
-            <!-- DATE -->
-
-            <div class="input-group">
-
-                <label>
-                    📅 Travel Date
-                </label>
-
-                <input
-                    type="date"
-                    id="date"
-                    required
-                >
-
-            </div>
-
-
-
-            <!-- TIME -->
-
-            <div class="input-group">
-
-                <label>
-                    ⏰ Pickup Time
-                </label>
-
-                <input
-                    type="time"
-                    id="time"
-                    required
-                >
-
-            </div>
-
-
-
-            <!-- PICKUP -->
-
-            <div class="input-group full-width">
-
-                <label>
-                    📍 Pickup Location
-                </label>
-
-                <select id="pickup">
-
-                    <option value="">
-                        Select Pickup Location
-                    </option>
-
-                    <option>
-                        Rameswaram Bus Stand
-                    </option>
-
-                    <option>
-                        Rameswaram Railway Station
-                    </option>
-
-                    <option>
-                        Hotel Pickup
-                    </option>
-
-                    <option>
-                        Other Location
-                    </option>
-
-                </select>
-
-            </div>
-
-
-
-            <!-- REQUEST -->
-
-            <div class="input-group full-width">
-
-                <label>
-                    📝 Special Requirements
-                </label>
-
-                <textarea
-                    id="cabRequest"
-                    placeholder="Any special requirements?"
-                ></textarea>
+                <a href="tel:+918838170745">
+                    +91 8838170745
+                </a>
 
             </div>
 
         </div>
 
 
-        <button
-            type="button"
-            onclick="sendWhatsApp()"
-            class="booking-btn"
-        >
-            🚕 Confirm Cab Booking
-        </button>
+
+        <!-- FORM -->
+
+        <div class="booking-card">
+
+
+            <form id="cabBookingForm"
+                  onsubmit="event.preventDefault(); sendWhatsApp();">
+
+
+                <div class="form-title">
+
+                    <h3>
+                        Cab booking details
+                    </h3>
+
+                    <p>
+                        Enter your travel information
+                    </p>
+
+                </div>
+
+
+                <!-- SELECTED CAB -->
+
+                <div class="selected-cab-box">
+
+                    <span>
+                        Selected vehicle
+                    </span>
+
+                    <strong id="selectedCabText">
+                        Select a vehicle above
+                    </strong>
+
+                </div>
+
+
+                <!-- PERSONS -->
+
+                <div class="form-group">
+
+                    <label for="persons">
+                        Number of Persons
+                    </label>
+
+                    <select id="persons"
+                            required>
+
+                        <option value="">
+                            Select persons
+                        </option>
+
+                        <option value="1">
+                            1 Person
+                        </option>
+
+                        <option value="2">
+                            2 Persons
+                        </option>
+
+                        <option value="3">
+                            3 Persons
+                        </option>
+
+                        <option value="4">
+                            4 Persons
+                        </option>
+
+                        <option value="5">
+                            5 Persons
+                        </option>
+
+                        <option value="6">
+                            6 Persons
+                        </option>
+
+                        <option value="7">
+                            7 Persons
+                        </option>
+
+                        <option value="8">
+                            8 Persons
+                        </option>
+
+                        <option value="9">
+                            9 Persons
+                        </option>
+
+                        <option value="10">
+                            10 Persons
+                        </option>
+
+                        <option value="11">
+                            11 Persons
+                        </option>
+
+                        <option value="12">
+                            12 Persons
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input type="text"
+                           id="name"
+                           placeholder="Enter your name"
+                           required>
+
+                </div>
+
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input type="tel"
+                           id="mobile"
+                           placeholder="10-digit mobile number"
+                           maxlength="10"
+                           inputmode="numeric"
+                           required>
+
+                </div>
+
+
+
+                <!-- DATE + TIME -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Travel Date
+                        </label>
+
+                        <input type="date"
+                               id="date"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="time">
+                            Travel Time
+                        </label>
+
+                        <input type="time"
+                               id="time"
+                               required>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PICKUP -->
+
+                <div class="form-group">
+
+                    <label for="pickup">
+                        Pickup Location
+                    </label>
+
+                    <input type="text"
+                           id="pickup"
+                           placeholder="Example: Rameswaram Railway Station"
+                           required>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button type="submit"
+                        class="booking-submit">
+
+                    Request Cab Booking
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+                <p class="booking-note">
+
+                    You must be logged in to submit
+                    a booking request.
+
+                </p>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SIGHTSEEING
+     ===================================================== -->
+
+<section class="sightseeing section-space">
+
+
+    <div class="section-heading center">
+
+        <div class="small-label">
+            EXPLORE RAMESWARAM
+        </div>
+
+        <h2>
+            Places worth
+            <span>visiting</span>
+        </h2>
+
+        <p>
+            Travel comfortably between the
+            island's important spiritual and
+            scenic destinations.
+        </p>
 
     </div>
 
 
+    <div class="destination-grid">
 
-    <!-- =================================================
-         WHY CHOOSE US
-    ================================================== -->
 
-    <section class="why-section">
+        <div class="destination-card">
 
-        <div class="section-heading">
+            <img src="images/Sri Ramanathaswamy Temple.jpg"
+                 alt="Ramanathaswamy Temple"
+                 loading="lazy">
 
-            <span>
-                💛 Why RamSethuYatra?
-            </span>
+            <div class="destination-overlay">
+
+                <span>
+                    SACRED PLACE
+                </span>
+
+                <h3>
+                    Ramanathaswamy Temple
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="destination-card">
+
+            <img src="images/Agni Theertham.jpg"
+                 alt="Agni Theertham"
+                 loading="lazy">
+
+            <div class="destination-overlay">
+
+                <span>
+                    HOLY WATER
+                </span>
+
+                <h3>
+                    Agni Theertham
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="destination-card">
+
+            <img src="images/Pamban Bridge.jpg"
+                 alt="Pamban Bridge"
+                 loading="lazy">
+
+            <div class="destination-overlay">
+
+                <span>
+                    LANDMARK
+                </span>
+
+                <h3>
+                    Pamban Bridge
+                </h3>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="destination-card">
+
+            <img src="images/beautiful-beach.jpg"
+                 alt="Rameswaram beach"
+                 loading="lazy">
+
+            <div class="destination-overlay">
+
+                <span>
+                    COASTAL ESCAPE
+                </span>
+
+                <h3>
+                    Rameswaram Beaches
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY CHOOSE US
+     ===================================================== -->
+
+<section class="why-cab section-space">
+
+
+    <div class="why-grid">
+
+
+        <div class="why-image">
+
+            <img src="images/Ram.jpg"
+                 alt="Rameswaram travel"
+                 loading="lazy">
+
+        </div>
+
+
+        <div class="why-content">
+
+            <div class="small-label">
+                WHY RAMSETHUYATRA
+            </div>
 
             <h2>
-                Travel With Confidence
+                More than just
+                <span>a ride.</span>
             </h2>
 
+            <p>
+
+                Your Rameswaram journey should be
+                comfortable from the moment you
+                arrive. We make local transportation
+                simple so you can spend more time
+                enjoying the destination.
+
+            </p>
+
+
+            <div class="why-list">
+
+
+                <div class="why-item">
+
+                    <div class="why-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Local Travel
+                        </h3>
+
+                        <p>
+                            Convenient transportation
+                            around Rameswaram.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <div class="why-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Flexible Trips
+                        </h3>
+
+                        <p>
+                            Suitable for temple visits,
+                            sightseeing and transfers.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="why-item">
+
+                    <div class="why-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Easy Booking
+                        </h3>
+
+                        <p>
+                            Submit your travel details
+                            and request your cab.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
 
 
-        <div class="why-grid">
+    </div>
+
+</section>
 
 
-            <div class="why-card">
 
-                <div>
-                    🚕
-                </div>
+<!-- =====================================================
+     CTA
+     ===================================================== -->
 
-                <h3>
-                    Comfortable Vehicles
-                </h3>
-
-                <p>
-                    Choose a vehicle suitable
-                    for your group size.
-                </p>
-
-            </div>
+<section class="cab-cta">
 
 
-            <div class="why-card">
-
-                <div>
-                    🛕
-                </div>
-
-                <h3>
-                    Rameswaram Sightseeing
-                </h3>
-
-                <p>
-                    Convenient travel for temples,
-                    beaches and sightseeing.
-                </p>
-
-            </div>
+    <div class="cta-overlay"></div>
 
 
-            <div class="why-card">
+    <div class="cta-content">
 
-                <div>
-                    👨‍👩‍👧‍👦
-                </div>
-
-                <h3>
-                    Family Friendly
-                </h3>
-
-                <p>
-                    Comfortable options for families
-                    and groups.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div>
-                    📱
-                </div>
-
-                <h3>
-                    Easy Booking
-                </h3>
-
-                <p>
-                    Select your vehicle and submit
-                    your travel details easily.
-                </p>
-
-            </div>
-
+        <div class="small-label">
+            READY TO TRAVEL?
         </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         SEO CONTENT
-    ================================================== -->
-
-    <section class="seo-content">
-
-        <span>
-            RAMESWARAM TAXI SERVICE
-        </span>
 
         <h2>
-            Rameswaram Cab & Taxi Booking
+            Your Rameswaram
+            journey starts here.
         </h2>
 
-
         <p>
-            RamSethuYatra provides cab and taxi booking
-            services for visitors travelling around Rameswaram.
-            Choose from 4-seater cars, 7-seater vehicles and
-            traveller vans according to your group size.
+            Book your cab and explore the
+            sacred island with comfort.
         </p>
 
 
-        <p>
-            Our cab service can be used for Ramanathaswamy
-            Temple visits, Dhanushkodi trips, Pamban Bridge,
-            Abdul Kalam Memorial and other Rameswaram
-            sightseeing destinations.
-        </p>
+        <div class="cta-buttons">
 
-    </section>
+            <a href="#cab-booking"
+               class="cta-primary">
+
+                Book a Cab
+
+            </a>
 
 
-</main>
+            <a href="tel:+918838170745"
+               class="cta-secondary">
+
+                Call Us
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 
 <!-- =====================================================
      FOOTER
-===================================================== -->
+     ===================================================== -->
 
-<footer class="cab-footer">
+<footer class="site-footer">
 
-    <h3>
-        RamSethuYatra
-    </h3>
 
-    <p>
-        Your trusted travel companion in Rameswaram.
-    </p>
+    <div class="footer-container">
 
-    <p class="copyright">
-        © 2026 RamSethuYatra. All rights reserved.
-    </p>
+
+        <div class="footer-brand">
+
+            <a href="index.html"
+               class="brand footer-logo">
+
+                <div class="brand-icon">
+                    ॐ
+                </div>
+
+                <div class="brand-name">
+
+                    <span>
+                        Ram
+                    </span>
+
+                    <span>
+                        Sethu
+                    </span>
+
+                    <span>
+                        Yatra
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <p>
+
+                Comfortable travel and
+                memorable experiences in
+                sacred Rameswaram.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                Services
+            </h3>
+
+            <a href="rameswaram-cab-service.html">
+                Cab Service
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="totalpackage.html">
+                Tour Packages
+            </a>
+
+            <a href="customer-dashboard.html">
+                My Booking
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                Contact
+            </h3>
+
+            <a href="tel:+918838170745">
+                +91 8838170745
+            </a>
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+                ramsethuyatra@gmail.com
+            </a>
+
+            <span>
+                Rameswaram,
+                Tamil Nadu, India
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 RamSethuYatra.
+            All Rights Reserved.
+        </p>
+
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation & Refund
+            </a>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
 
 <!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+     FLOATING WHATSAPP
+     ===================================================== -->
 
-<script
-    type="module"
-    src="script.js"
-></script>
+<a href="https://wa.me/918838170745"
+   class="floating-whatsapp"
+   target="_blank"
+   rel="noopener noreferrer">
 
-<script
-    type="module"
-    src="firebase.js"
-></script>
+    <span>
+        ◉
+    </span>
+
+    WhatsApp
+
+</a>
 
 
 
 <!-- =====================================================
-     GOOGLE TRANSLATE
-===================================================== -->
+     FLOATING CALL
+     ===================================================== -->
+
+<a href="tel:+918838170745"
+   class="floating-call">
+
+    <span>
+        ☎
+    </span>
+
+    Call
+
+</a>
+<script src="script.js"></script>
+
+
+
+<!-- =====================================================
+     CAB PAGE JAVASCRIPT
+     ===================================================== -->
 
 <script>
 
-function googleTranslateElementInit() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    new google.translate.TranslateElement({
 
-        pageLanguage: "en",
+    /* ==========================================
+       MOBILE MENU
+       ========================================== */
 
-        includedLanguages: "en,ta,hi",
+    const menuToggle =
+        document.getElementById("menuToggle");
 
-        layout:
-            google.translate.TranslateElement.InlineLayout.SIMPLE
+    const mainNav =
+        document.getElementById("mainNav");
 
-    }, "google_translate_element");
 
-}
+    if (menuToggle && mainNav) {
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                mainNav.classList.toggle("show");
+
+            }
+        );
+
+
+        const navLinks =
+            mainNav.querySelectorAll("a");
+
+
+        navLinks.forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    mainNav.classList.remove("show");
+
+                }
+            );
+
+        });
+
+    }
+
+
+
+    /* ==========================================
+       CAB SELECTION
+       ========================================== */
+
+    const cabRadios =
+        document.querySelectorAll(
+            'input[name="cab"]'
+        );
+
+
+    const selectedCabText =
+        document.getElementById(
+            "selectedCabText"
+        );
+
+
+    cabRadios.forEach(function (radio) {
+
+        radio.addEventListener(
+            "change",
+            function () {
+
+                if (selectedCabText) {
+
+                    selectedCabText.textContent =
+                        this.value;
+
+                }
+
+            }
+        );
+
+    });
+
+
+
+    /* ==========================================
+       DATE MINIMUM
+       ========================================== */
+
+    const dateInput =
+        document.getElementById("date");
+
+
+    if (dateInput) {
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        dateInput.min = today;
+
+    }
+
+
+
+    /* ==========================================
+       MOBILE NUMBER
+       ========================================== */
+
+    const mobileInput =
+        document.getElementById("mobile");
+
+
+    if (mobileInput) {
+
+        mobileInput.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 10);
+
+            }
+        );
+
+    }
+
+
+
+    /* ==========================================
+       SCROLL REVEAL
+       ========================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".cab-card, .destination-card, .why-item, .intro-grid"
+        );
+
+
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach(function (element) {
+
+        element.classList.add("reveal");
+
+        observer.observe(element);
+
+    });
+
+
+});
 
 </script>
-
-
-<script
-    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-></script>
 
 
 </body>

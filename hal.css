@@ -1,6 +1,40 @@
-/* =========================
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --navy: #003049;
+    --navy-dark: #001f31;
+    --orange: #f77f00;
+    --orange-dark: #d96800;
+    --gold: #fcbf49;
+
+    --cream: #fffaf4;
+    --cream-dark: #f4eadf;
+
+    --white: #ffffff;
+
+    --text: #1f2933;
+    --muted: #667085;
+    --border: rgba(0, 48, 73, 0.12);
+
+    --shadow:
+        0 18px 50px rgba(0, 48, 73, 0.10);
+
+    --shadow-heavy:
+        0 25px 70px rgba(0, 48, 73, 0.16);
+
+    --radius: 24px;
+}
+
+
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
     margin: 0;
@@ -15,29 +49,53 @@ html {
 
 
 body {
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
 
-    background:
-        linear-gradient(
-            135deg,
-            #fffaf0,
-            #fff
-        );
+    font-family: "DM Sans", Arial, sans-serif;
 
-    color: #292929;
+    background: var(--cream);
+
+    color: var(--text);
 
     line-height: 1.6;
+
+    overflow-x: hidden;
 }
 
 
-/* =========================
-   HEADER
-========================= */
+img {
 
-.temple-header {
+    display: block;
+
+    width: 100%;
+
+    max-width: 100%;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button,
+input,
+select {
+
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
 
     position: sticky;
 
@@ -45,7 +103,25 @@ body {
 
     z-index: 1000;
 
-    height: 70px;
+    width: 100%;
+
+    background:
+        rgba(0, 48, 73, 0.97);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+.header-inner {
+
+    width: min(1200px, 92%);
+
+    min-height: 76px;
+
+    margin: auto;
 
     display: flex;
 
@@ -53,60 +129,55 @@ body {
 
     justify-content: space-between;
 
-    padding: 0 6%;
-
-    background:
-        rgba(255,255,255,0.96);
-
-    backdrop-filter: blur(15px);
-
-    border-bottom:
-        1px solid rgba(180,120,30,0.15);
-
-    box-shadow:
-        0 5px 25px rgba(0,0,0,0.06);
+    gap: 25px;
 }
 
 
-.back-home {
+/* LOGO */
 
-    text-decoration: none;
+.site-logo {
 
-    color: #8b4b00;
+    display: flex;
 
-    font-weight: 700;
+    flex-direction: column;
 
-    font-size: 17px;
+    justify-content: center;
 
-    transition: 0.3s;
+    line-height: 0.78;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: white;
+
+    min-width: 82px;
 }
 
 
-.back-home:hover {
-
-    color: #d28b00;
-
-    transform: translateX(-4px);
+.site-logo span:nth-child(1) {
+    color: white;
 }
 
 
-.translate-box {
-
-    max-width: 150px;
-
-    overflow: hidden;
+.site-logo span:nth-child(2) {
+    color: var(--gold);
 }
 
 
-/* =========================
-   HERO
-========================= */
+.site-logo span:nth-child(3) {
+    color: var(--orange);
+}
 
-.temple-hero {
 
-    position: relative;
+/* NAV */
 
-    min-height: 520px;
+.main-nav {
 
     display: flex;
 
@@ -114,14 +185,177 @@ body {
 
     justify-content: center;
 
-    text-align: center;
+    gap: 6px;
 
-    background-image:
-        url("images/Ramanathaswamy Temple in Rameshwaram!.jpg");
+    flex: 1;
+}
 
-    background-size: cover;
 
-    background-position: center;
+.main-nav a {
+
+    color: rgba(255,255,255,0.86);
+
+    padding: 10px 13px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+
+.main-nav a:hover {
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    transform: translateY(-1px);
+}
+
+
+.main-nav a.active {
+
+    color: white;
+
+    background:
+        rgba(247,127,0,0.18);
+}
+
+
+/* HEADER ACTIONS */
+
+.header-actions {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.language-btn,
+.menu-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: 1px solid
+        rgba(255,255,255,0.15);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 18px;
+}
+
+
+.language-btn:hover,
+.menu-btn:hover {
+
+    background:
+        rgba(255,255,255,0.15);
+}
+
+
+.menu-btn {
+    display: none;
+}
+
+
+/* LANGUAGE */
+
+.language-menu {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 52px;
+
+    width: 145px;
+
+    padding: 8px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-heavy);
+
+    display: none;
+
+    z-index: 1001;
+}
+
+
+.language-menu.open {
+    display: block;
+}
+
+
+.language-menu button {
+
+    width: 100%;
+
+    border: 0;
+
+    background: transparent;
+
+    text-align: left;
+
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+
+.language-menu button:hover {
+
+    background: var(--cream);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.temple-hero {
+
+    position: relative;
+
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        url("images/Sri Ramanathaswamy Temple.jpg")
+        center / cover no-repeat;
 
     overflow: hidden;
 }
@@ -135,10 +369,10 @@ body {
 
     background:
         linear-gradient(
-            135deg,
-            rgba(48,24,5,0.82),
-            rgba(130,71,10,0.48),
-            rgba(0,0,0,0.72)
+            90deg,
+            rgba(0, 25, 40, .88) 0%,
+            rgba(0, 48, 73, .70) 45%,
+            rgba(0, 48, 73, .20) 100%
         );
 }
 
@@ -149,115 +383,1021 @@ body {
 
     z-index: 2;
 
-    max-width: 850px;
+    width: min(1200px, 92%);
 
-    padding: 40px 20px;
+    margin: auto;
+
+    padding: 100px 0;
 
     color: white;
 
-    animation:
-        heroFade 1.2s ease;
+    max-width: 900px;
 }
 
 
 .hero-tag {
 
-    display: inline-block;
+    display: inline-flex;
 
-    padding: 8px 18px;
+    align-items: center;
 
-    border:
-        1px solid rgba(255,255,255,0.5);
+    gap: 7px;
 
-    border-radius: 50px;
+    padding: 8px 14px;
+
+    border-radius: 999px;
 
     background:
-        rgba(255,255,255,0.12);
+        rgba(255,255,255,.10);
 
-    backdrop-filter: blur(8px);
+    border:
+        1px solid rgba(255,255,255,.20);
 
-    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
 
-    font-size: 14px;
+    font-size: 13px;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    letter-spacing: .05em;
+
+    text-transform: uppercase;
 }
 
 
 .hero-content h1 {
 
-    font-size: clamp(38px, 6vw, 70px);
+    margin-top: 25px;
 
-    line-height: 1.08;
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
 
-    margin-bottom: 22px;
+    font-size:
+        clamp(44px, 6vw, 76px);
 
-    font-weight: 800;
+    line-height: 1.02;
 
-    text-shadow:
-        0 5px 25px rgba(0,0,0,0.5);
+    letter-spacing: -1.5px;
+
+    max-width: 800px;
 }
 
 
 .hero-content p {
 
+    margin-top: 25px;
+
     max-width: 650px;
 
-    margin: auto;
+    color:
+        rgba(255,255,255,.86);
 
     font-size: 18px;
 
-    color: #f7ead8;
+    line-height: 1.8;
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 32px;
 }
 
 
 .hero-btn {
 
-    display: inline-block;
+    display: inline-flex;
 
-    margin-top: 30px;
+    align-items: center;
 
-    padding: 14px 30px;
+    justify-content: center;
 
-    border-radius: 50px;
+    min-height: 52px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #d28b00,
-            #f2b632
-        );
+    padding: 0 23px;
+
+    border-radius: 12px;
+
+    background: var(--orange);
 
     color: white;
 
-    text-decoration: none;
-
     font-weight: 700;
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.3);
-
-    transition: 0.3s;
+    transition: .25s ease;
 }
 
 
 .hero-btn:hover {
 
-    transform: translateY(-4px);
+    background: var(--orange-dark);
 
-    box-shadow:
-        0 15px 35px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
 }
 
 
-@keyframes heroFade {
+.hero-btn.secondary {
+
+    background:
+        rgba(255,255,255,.10);
+
+    border:
+        1px solid rgba(255,255,255,.30);
+
+    backdrop-filter: blur(8px);
+}
+
+
+.hero-btn.secondary:hover {
+
+    background:
+        rgba(255,255,255,.18);
+}
+
+
+/* =========================================================
+   QUICK INFO
+========================================================= */
+
+.temple-quick-info {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(1100px, 90%);
+
+    margin: -55px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.quick-card {
+
+    min-height: 105px;
+
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.quick-card > span {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background:
+        #fff2df;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 22px;
+}
+
+
+.quick-card strong {
+
+    display: block;
+
+    color: var(--navy);
+
+    font-size: 15px;
+}
+
+
+.quick-card small {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.section-heading {
+
+    max-width: 760px;
+
+    margin-bottom: 45px;
+}
+
+
+.section-heading > span {
+
+    color: var(--orange);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+}
+
+
+.section-heading h2 {
+
+    margin-top: 10px;
+
+    color: var(--navy);
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(32px, 4vw, 52px);
+
+    line-height: 1.1;
+}
+
+
+.section-heading p {
+
+    margin-top: 15px;
+
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.temple-intro {
+
+    width: min(900px, 90%);
+
+    margin: 100px auto 70px;
+
+    text-align: center;
+}
+
+
+.temple-intro .section-label {
+
+    color: var(--orange);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: .15em;
+}
+
+
+.temple-intro h2 {
+
+    margin-top: 12px;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    color: var(--navy);
+
+    font-size:
+        clamp(34px, 5vw, 55px);
+
+    line-height: 1.12;
+}
+
+
+.temple-intro p {
+
+    max-width: 720px;
+
+    margin: 22px auto 0;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   TIMINGS
+========================================================= */
+
+.temple-timing-card {
+
+    width: min(1050px, 90%);
+
+    margin: 0 auto 100px;
+
+    padding: 35px 40px;
+
+    background: var(--navy);
+
+    color: white;
+
+    border-radius: 26px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 30px;
+
+    align-items: center;
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.temple-timing-card > div:first-child span {
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .13em;
+}
+
+
+.temple-timing-card h2 {
+
+    margin-top: 7px;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 35px;
+}
+
+
+.timing-hours {
+
+    display: grid;
+
+    grid-template-columns:
+        100px 1fr;
+
+    gap: 12px 20px;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border-radius: 16px;
+}
+
+
+.timing-hours strong {
+
+    color: var(--gold);
+
+    font-size: 13px;
+}
+
+
+.timing-hours b {
+
+    color: white;
+
+    font-size: 16px;
+}
+
+
+.temple-timing-card > p {
+
+    grid-column: 1 / -1;
+
+    padding-top: 10px;
+
+    border-top:
+        1px solid rgba(255,255,255,.10);
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   HIGHLIGHTS
+========================================================= */
+
+.temple-highlights {
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto 110px;
+}
+
+
+.highlight-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+.highlight-card {
+
+    overflow: hidden;
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.highlight-card:hover {
+
+    transform: translateY(-7px);
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.highlight-image {
+
+    height: 250px;
+
+    overflow: hidden;
+}
+
+
+.highlight-image img {
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .5s ease;
+}
+
+
+.highlight-card:hover
+.highlight-image img {
+
+    transform: scale(1.05);
+}
+
+
+.highlight-content {
+
+    padding: 25px;
+}
+
+
+.highlight-content > span {
+
+    color: var(--orange);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .12em;
+}
+
+
+.highlight-content h3 {
+
+    margin-top: 8px;
+
+    color: var(--navy);
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 25px;
+}
+
+
+.highlight-content p {
+
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   POOJAI SECTION
+========================================================= */
+
+.poojai-section {
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto 110px;
+
+    padding: 75px 0;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+.poojai-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.poojai-card {
+
+    position: relative;
+
+    padding: 27px;
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.poojai-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 120px;
+
+    right: -55px;
+
+    bottom: -60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(247,127,0,.08);
+
+    pointer-events: none;
+}
+
+
+.poojai-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.poojai-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.poojai-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        #fff2df;
+
+    font-size: 25px;
+}
+
+
+.poojai-number {
+
+    color:
+        rgba(0,48,73,.28);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .08em;
+}
+
+
+.poojai-category {
+
+    display: block;
+
+    margin-top: 24px;
+
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .12em;
+}
+
+
+.poojai-card h3 {
+
+    margin-top: 7px;
+
+    color: var(--navy);
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 25px;
+}
+
+
+.poojai-card > p {
+
+    margin-top: 10px;
+
+    min-height: 68px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+.poojai-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 22px;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+.poojai-bottom strong {
+
+    color: var(--navy);
+
+    font-size: 13px;
+}
+
+
+.poojai-bottom span {
+
+    color: var(--orange);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.pooja-book-small {
+
+    width: 100%;
+
+    margin-top: 16px;
+
+    min-height: 44px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: var(--navy);
+
+    color: white;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+}
+
+
+.pooja-book-small:hover {
+
+    background: var(--orange);
+
+    transform: translateY(-2px);
+}
+
+
+.poojai-note {
+
+    margin-top: 25px;
+
+    padding: 18px 20px;
+
+    border-radius: 14px;
+
+    background:
+        #fff3df;
+
+    border:
+        1px solid rgba(247,127,0,.15);
+
+    color:
+        #704000;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.poojai-note strong {
+
+    color: var(--orange-dark);
+}
+
+
+/* =========================================================
+   BOOKING OPTIONS
+========================================================= */
+
+.booking-options-section {
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto 80px;
+
+    padding: 70px 0;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+.booking-option-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.booking-option-card {
+
+    padding: 32px;
+
+    border-radius: 23px;
+
+    background: var(--navy);
+
+    color: white;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.booking-option-card:hover {
+
+    transform: translateY(-7px);
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.booking-option-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,.09);
+
+    font-size: 27px;
+
+    margin-bottom: 25px;
+}
+
+
+.booking-option-card > span {
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .13em;
+}
+
+
+.booking-option-card h3 {
+
+    margin-top: 8px;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 27px;
+
+    line-height: 1.15;
+}
+
+
+.booking-option-card p {
+
+    margin-top: 13px;
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size: 14px;
+
+    min-height: 68px;
+}
+
+
+.booking-option-card button {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 22px;
+
+    border: 1px solid
+        rgba(255,255,255,.16);
+
+    border-radius: 11px;
+
+    background: var(--orange);
+
+    color: white;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+}
+
+
+.booking-option-card button:hover {
+
+    background: var(--gold);
+
+    color: var(--navy);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   BOOKING FORM
+========================================================= */
+
+.details-box {
+
+    display: none;
+
+    width: min(1000px, 92%);
+
+    margin: 0 auto 80px;
+
+    padding: 35px;
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 25px;
+
+    box-shadow: var(--shadow-heavy);
+
+    animation:
+        bookingOpen .35s ease;
+}
+
+
+.details-box.active {
+
+    display: block;
+}
+
+
+@keyframes bookingOpen {
 
     from {
 
         opacity: 0;
 
         transform:
-            translateY(30px);
+            translateY(20px);
 
     }
 
@@ -273,449 +1413,144 @@ body {
 }
 
 
-/* =========================
-   SECTION
-========================= */
-
-.place-section {
-
-    width: min(1200px, 92%);
-
-    margin: auto;
-
-    padding: 80px 0;
-}
-
-
-.section-heading {
-
-    text-align: center;
-
-    margin-bottom: 50px;
-}
-
-
-.section-heading span {
-
-    color: #b46a00;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-
-.section-heading h2 {
-
-    font-size: clamp(30px, 5vw, 45px);
-
-    margin: 10px 0;
-
-    color: #3a250e;
-}
-
-
-.section-heading p {
-
-    color: #777;
-
-    max-width: 650px;
-
-    margin: auto;
-}
-
-
-/* =========================
-   SERVICE CARD
-========================= */
-
-.place-card {
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(300px, 1fr)
-        minmax(300px, 1fr);
-
-    gap: 40px;
-
-    align-items: center;
-
-    margin-bottom: 30px;
-
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 25px;
-
-    border:
-        1px solid rgba(190,130,30,0.15);
-
-    box-shadow:
-        0 15px 50px rgba(60,35,5,0.08);
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-
-    overflow: hidden;
-}
-
-
-.place-card:hover {
-
-    transform: translateY(-8px);
-
-    box-shadow:
-        0 25px 65px rgba(60,35,5,0.14);
-}
-
-
-/* =========================
-   IMAGES
-========================= */
-
-.place-images {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 12px;
-
-    min-height: 300px;
-}
-
-
-.place-images img {
-
-    width: 100%;
-
-    height: 100%;
-
-    min-height: 300px;
-
-    object-fit: cover;
-
-    border-radius: 18px;
-
-    transition:
-        transform 0.5s ease;
-}
-
-
-.place-images img:hover {
-
-    transform: scale(1.04);
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.place-content {
-
-    padding: 15px;
-}
-
-
-.tag {
-
-    display: inline-block;
-
-    padding: 7px 14px;
-
-    border-radius: 30px;
-
-    background: #fff1d6;
-
-    color: #9b5b00;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    margin-bottom: 15px;
-}
-
-
-.tag.well {
-
-    background: #e5f8ff;
-
-    color: #007394;
-}
-
-
-.tag.poojai {
-
-    background: #fff0e4;
-
-    color: #a84c00;
-}
-
-
-.place-content h3 {
-
-    font-size: 32px;
-
-    color: #3a250e;
-
-    margin-bottom: 12px;
-}
-
-
-.place-content p {
-
-    color: #666;
-
-    font-size: 16px;
-
-    margin-bottom: 20px;
-}
-
-
-.service-info {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-bottom: 25px;
-}
-
-
-.service-info span {
-
-    padding: 7px 12px;
-
-    border-radius: 8px;
-
-    background: #f8f8f8;
-
-    color: #555;
-
-    font-size: 13px;
-
-    border:
-        1px solid #eee;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-.details-btn {
-
-    border: none;
-
-    cursor: pointer;
-
-    padding: 13px 25px;
-
-    border-radius: 50px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #a85d00,
-            #e39a14
-        );
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    transition: 0.3s;
-
-    box-shadow:
-        0 8px 20px rgba(160,90,0,0.2);
-}
-
-
-.details-btn:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 28px rgba(160,90,0,0.3);
-}
-
-
-/* =========================
-   DETAILS BOX
-========================= */
-
-.details-box {
-
-    max-height: 0;
-
-    opacity: 0;
-
-    overflow: hidden;
-
-    transform:
-        translateY(-15px);
-
-    margin:
-        0 0 35px;
-
-    padding:
-        0 30px;
-
-    background: white;
-
-    border-radius: 22px;
-
-    border:
-        1px solid rgba(190,130,30,0.2);
-
-    box-shadow:
-        0 15px 45px rgba(50,30,0,0.08);
-
-    transition:
-        max-height 0.6s ease,
-        opacity 0.4s ease,
-        transform 0.5s ease,
-        padding 0.5s ease;
-}
-
-
-.details-box.active {
-
-    max-height: 1000px;
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-
-    padding:
-        30px;
-}
-
-
-/* =========================
-   DETAILS HEADER
-========================= */
-
 .details-header {
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: flex-start;
 
-    margin-bottom: 25px;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 25px;
+
+    border-bottom:
+        1px solid var(--border);
 }
 
 
 .small-label {
 
-    color: #b46a00;
+    color: var(--orange);
 
-    font-size: 12px;
+    font-size: 11px;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
+    letter-spacing: .12em;
 }
 
 
 .details-header h3 {
 
-    color: #3a250e;
+    margin-top: 7px;
 
-    font-size: 25px;
+    color: var(--navy);
 
-    margin-top: 4px;
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(25px, 4vw, 34px);
+
+    line-height: 1.15;
+}
+
+
+.details-header p {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 14px;
 }
 
 
 .close-btn {
 
-    width: 38px;
+    width: 42px;
 
-    height: 38px;
+    height: 42px;
 
-    border: none;
+    flex-shrink: 0;
 
-    border-radius: 50%;
+    border: 0;
 
-    background: #f6f6f6;
+    border-radius: 12px;
 
-    color: #555;
+    background:
+        #f3f4f6;
+
+    color: var(--navy);
 
     font-size: 25px;
 
-    cursor: pointer;
+    line-height: 1;
 
-    transition: 0.3s;
+    transition: .2s ease;
 }
 
 
 .close-btn:hover {
 
-    background: #eee;
+    background: var(--orange);
 
-    transform: rotate(90deg);
+    color: white;
 }
 
-
-/* =========================
-   FORM
-========================= */
 
 .details-grid {
 
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(2, 1fr);
 
     gap: 18px;
+
+    margin-top: 28px;
 }
 
 
 .detail-item {
 
-    display: flex;
+    padding: 19px;
 
-    flex-direction: column;
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    background:
+        #fffdf9;
 }
 
 
 .detail-item > span {
 
-    font-size: 22px;
+    display: block;
 
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+
+    font-size: 20px;
 }
 
 
 .detail-item label {
 
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--navy);
+
     font-size: 13px;
 
     font-weight: 700;
-
-    color: #555;
-
-    margin-bottom: 7px;
 }
 
 
@@ -723,235 +1558,1336 @@ body {
 
     width: 100%;
 
-    padding: 12px;
+    min-height: 47px;
+
+    padding: 0 13px;
 
     border:
-        1px solid #ddd;
+        1px solid #d9dee5;
 
     border-radius: 10px;
 
     outline: none;
 
-    font-size: 14px;
+    background: white;
 
-    background: #fff;
+    color: var(--text);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
 }
 
 
 .detail-item input:focus {
 
-    border-color: #d18a12;
+    border-color: var(--orange);
 
     box-shadow:
-        0 0 0 3px rgba(209,138,18,0.1);
+        0 0 0 3px
+        rgba(247,127,0,.10);
 }
 
 
-/* =========================
-   BOOK BUTTON
-========================= */
+/* =========================================================
+   POOJA SELECT
+========================================================= */
 
-.book-btn {
+.selected-pooja-box {
 
     margin-top: 25px;
 
-    padding: 14px 28px;
+    padding: 20px;
 
-    border: none;
-
-    border-radius: 50px;
+    border-radius: 15px;
 
     background:
-        linear-gradient(
-            135deg,
-            #a85d00,
-            #e39a14
-        );
+        #fff8ed;
+
+    border:
+        1px solid rgba(247,127,0,.14);
+}
+
+
+.selected-pooja-box label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--navy);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.selected-pooja-box select {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 0 14px;
+
+    border:
+        1px solid #d9dee5;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: var(--text);
+
+    outline: none;
+}
+
+
+.selected-pooja-box select:focus {
+
+    border-color: var(--orange);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(247,127,0,.10);
+}
+
+
+.booking-login-note {
+
+    margin-top: 22px;
+
+    padding: 13px 16px;
+
+    border-radius: 11px;
+
+    background:
+        #eef6fa;
+
+    color: var(--navy);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.book-btn {
+
+    width: 100%;
+
+    min-height: 53px;
+
+    margin-top: 20px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background: var(--orange);
 
     color: white;
 
-    font-weight: 700;
+    font-weight: 800;
 
-    font-size: 15px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+    transition: .25s ease;
 }
 
 
 .book-btn:hover {
 
-    transform: translateY(-3px);
+    background: var(--orange-dark);
+
+    transform: translateY(-2px);
 
     box-shadow:
-        0 10px 25px rgba(160,90,0,0.25);
+        0 10px 25px
+        rgba(247,127,0,.20);
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* =========================================================
+   VISIT GUIDE
+========================================================= */
 
-.temple-footer {
+.visit-guide {
 
-    text-align: center;
+    width: min(1200px, 92%);
 
-    padding: 45px 20px;
-
-    background:
-        #2d1b09;
-
-    color: white;
+    margin: 0 auto 110px;
 }
 
 
-.temple-footer h3 {
+.guide-grid {
 
-    font-size: 25px;
+    display: grid;
 
-    margin-bottom: 8px;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
 }
 
 
-.temple-footer p {
+.guide-card {
 
-    color: #d8c7ae;
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border:
+        1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+
+.guide-card > span {
+
+    color: var(--orange);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.guide-card h3 {
+
+    margin-top: 10px;
+
+    color: var(--navy);
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 24px;
+}
+
+
+.guide-card p {
+
+    margin-top: 9px;
+
+    color: var(--muted);
 
     font-size: 14px;
 }
 
 
-.temple-footer .copyright {
+/* =========================================================
+   GALLERY
+========================================================= */
 
-    margin-top: 18px;
+.temple-gallery {
 
-    font-size: 12px;
+    width: min(1200px, 92%);
 
-    color: #a99880;
+    margin: 0 auto 110px;
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+.gallery-grid {
 
-@media (max-width: 850px) {
+    display: grid;
 
-    .temple-header {
+    grid-template-columns:
+        1.25fr .8fr .8fr;
 
-        padding: 0 4%;
+    grid-template-rows:
+        240px 240px;
 
-        height: 62px;
+    gap: 14px;
+}
+
+
+.gallery-grid img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    transition:
+        transform .4s ease;
+
+    box-shadow: var(--shadow);
+}
+
+
+.gallery-grid img:hover {
+
+    transform: scale(1.015);
+}
+
+
+.gallery-grid img:first-child {
+
+    grid-row: 1 / 3;
+}
+
+
+.gallery-grid img:nth-child(4) {
+
+    grid-column: 2 / 4;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.temple-map {
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto 110px;
+}
+
+
+.map-frame {
+
+    width: 100%;
+
+    height: 450px;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    box-shadow: var(--shadow-heavy);
+
+    border:
+        1px solid var(--border);
+}
+
+
+.map-frame iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.temple-cta {
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto 90px;
+
+    padding: 55px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--navy-dark),
+            var(--navy)
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 35px;
+
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.temple-cta > div:first-child {
+
+    max-width: 650px;
+}
+
+
+.temple-cta > div:first-child > span {
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .13em;
+}
+
+
+.temple-cta h2 {
+
+    margin-top: 9px;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(30px, 4vw, 46px);
+
+    line-height: 1.1;
+}
+
+
+.temple-cta p {
+
+    margin-top: 13px;
+
+    color:
+        rgba(255,255,255,.67);
+
+    font-size: 15px;
+}
+
+
+.cta-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.cta-primary,
+.cta-secondary {
+
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+}
+
+
+.cta-primary {
+
+    background: var(--orange);
+
+    color: white;
+}
+
+
+.cta-primary:hover {
+
+    background: var(--gold);
+
+    color: var(--navy);
+}
+
+
+.cta-secondary {
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+
+.cta-secondary:hover {
+
+    background:
+        rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+
+    background: #001f31;
+
+    color: white;
+
+    padding-top: 65px;
+}
+
+
+.footer-main {
+
+    width: min(1200px, 92%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr 1.2fr;
+
+    gap: 45px;
+
+    padding-bottom: 50px;
+}
+
+
+.footer-brand h3 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 27px;
+}
+
+
+.footer-brand p {
+
+    max-width: 350px;
+
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size: 14px;
+}
+
+
+.footer-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.footer-links h4 {
+
+    margin-bottom: 8px;
+
+    color: var(--gold);
+
+    font-size: 13px;
+
+    letter-spacing: .06em;
+}
+
+
+.footer-links a,
+.footer-links span {
+
+    color:
+        rgba(255,255,255,.62);
+
+    font-size: 13px;
+
+    transition: color .2s ease;
+}
+
+
+.footer-links a:hover {
+
+    color: white;
+}
+
+
+.footer-bottom {
+
+    width: min(1200px, 92%);
+
+    margin: auto;
+
+    padding: 20px 0;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size: 12px;
+}
+
+
+.footer-bottom div {
+
+    display: flex;
+
+    gap: 18px;
+}
+
+
+.footer-bottom a:hover {
+
+    color: white;
+}
+
+
+/* =========================================================
+   FLOATING BUTTONS
+========================================================= */
+
+.floating-whatsapp,
+.floating-call {
+
+    position: fixed;
+
+    right: 20px;
+
+    width: 52px;
+
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: white;
+
+    z-index: 900;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.20);
+
+    font-size: 21px;
+
+    transition:
+        transform .25s ease;
+}
+
+
+.floating-whatsapp:hover,
+.floating-call:hover {
+
+    transform: scale(1.08);
+}
+
+
+.floating-whatsapp {
+
+    bottom: 82px;
+
+    background: #25d366;
+}
+
+
+.floating-call {
+
+    bottom: 20px;
+
+    background: var(--orange);
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-to-top {
+
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 148px;
+
+    width: 44px;
+
+    height: 44px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background: var(--navy);
+
+    color: white;
+
+    font-size: 20px;
+
+    display: grid;
+
+    place-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(10px);
+
+    transition: .25s ease;
+
+    z-index: 899;
+
+    box-shadow: var(--shadow);
+}
+
+
+.back-to-top.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .main-nav {
+
+        gap: 0;
     }
 
 
-    .back-home {
+    .main-nav a {
 
-        font-size: 14px;
+        padding:
+            9px 8px;
+
+        font-size: 12px;
     }
 
 
-    .temple-hero {
-
-        min-height: 470px;
-    }
-
-
-    .hero-content h1 {
-
-        font-size: 42px;
-    }
-
-
-    .hero-content p {
-
-        font-size: 16px;
-    }
-
-
-    .place-section {
-
-        width: 94%;
-
-        padding: 55px 0;
-    }
-
-
-    .place-card {
-
-        grid-template-columns: 1fr;
-
-        gap: 25px;
-
-        padding: 18px;
-
-        border-radius: 20px;
-    }
-
-
-    .place-images {
-
-        min-height: 230px;
-    }
-
-
-    .place-images img {
-
-        min-height: 230px;
-    }
-
-
-    .place-content h3 {
-
-        font-size: 27px;
-    }
-
-
-    .details-grid {
+    .temple-quick-info {
 
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-}
 
+    .highlight-grid,
+    .poojai-grid,
+    .booking-option-grid {
 
-@media (max-width: 550px) {
-
-    .translate-box {
-
-        max-width: 115px;
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
 
-    .temple-hero {
+    .footer-main {
 
-        min-height: 440px;
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .temple-cta {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .header-inner {
+
+        min-height: 68px;
+    }
+
+
+    .menu-btn {
+
+        display: grid;
+    }
+
+
+    .main-nav {
+
+        position: absolute;
+
+        top: 68px;
+
+        left: 0;
+
+        width: 100%;
+
+        padding: 12px;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        background:
+            rgba(0,31,49,.99);
+
+        border-top:
+            1px solid rgba(255,255,255,.08);
+
+        box-shadow:
+            0 15px 30px rgba(0,0,0,.20);
+    }
+
+
+    .main-nav.open {
+
+        display: flex;
+    }
+
+
+    .main-nav a {
+
+        width: 100%;
+
+        padding: 13px 15px;
+
+        font-size: 14px;
     }
 
 
     .hero-content {
 
-        padding: 25px 15px;
+        padding:
+            90px 0;
     }
 
 
     .hero-content h1 {
 
-        font-size: 34px;
+        font-size:
+            clamp(40px, 12vw, 58px);
+    }
+
+
+    .temple-timing-card {
+
+        grid-template-columns: 1fr;
+
+        padding: 28px;
+    }
+
+
+    .timing-hours {
+
+        grid-template-columns:
+            90px 1fr;
+    }
+
+
+    .temple-timing-card > p {
+
+        grid-column: auto;
+    }
+
+
+    .gallery-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            210px 180px 180px;
+    }
+
+
+    .gallery-grid img:first-child {
+
+        grid-row: auto;
+
+        grid-column: 1 / 3;
+    }
+
+
+    .gallery-grid img:nth-child(4) {
+
+        grid-column: auto;
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .header-inner {
+
+        width: 94%;
+    }
+
+
+    .site-logo {
+
+        font-size: 18px;
+    }
+
+
+    .language-btn,
+    .menu-btn {
+
+        width: 39px;
+
+        height: 39px;
+    }
+
+
+    .temple-hero {
+
+        min-height: 590px;
+    }
+
+
+    .hero-content {
+
+        width: 90%;
+
+        padding: 75px 0;
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 40px;
+
+        letter-spacing: -1px;
     }
 
 
     .hero-content p {
 
         font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .hero-btn {
+
+        width: 100%;
+    }
+
+
+    .temple-quick-info {
+
+        width: 92%;
+
+        margin-top: -35px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 9px;
+    }
+
+
+    .quick-card {
+
+        min-height: 85px;
+
+        padding: 13px;
+
+        gap: 9px;
+    }
+
+
+    .quick-card > span {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 17px;
+    }
+
+
+    .quick-card strong {
+
+        font-size: 12px;
+    }
+
+
+    .quick-card small {
+
+        font-size: 10px;
+    }
+
+
+    .temple-intro {
+
+        margin-top: 75px;
+
+        margin-bottom: 60px;
+    }
+
+
+    .temple-intro p {
+
+        font-size: 14px;
+    }
+
+
+    .temple-highlights,
+    .poojai-section,
+    .booking-options-section,
+    .visit-guide,
+    .temple-gallery,
+    .temple-map {
+
+        width: 92%;
+
+        margin-bottom: 75px;
     }
 
 
     .section-heading {
 
-        margin-bottom: 35px;
+        margin-bottom: 28px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 34px;
+    }
+
+
+    .highlight-grid,
+    .poojai-grid,
+    .booking-option-grid,
+    .guide-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .highlight-image {
+
+        height: 220px;
+    }
+
+
+    .poojai-card {
+
+        padding: 23px;
+    }
+
+
+    .poojai-card > p {
+
+        min-height: auto;
+    }
+
+
+    .booking-option-card {
+
+        padding: 25px;
+    }
+
+
+    .booking-option-card p {
+
+        min-height: auto;
+    }
+
+
+    .details-box {
+
+        width: 92%;
+
+        padding: 22px;
+
+        margin-bottom: 65px;
+
+        border-radius: 19px;
+    }
+
+
+    .details-header h3 {
+
+        font-size: 25px;
+    }
+
+
+    .details-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .detail-item {
+
+        padding: 15px;
+    }
+
+
+    .selected-pooja-box {
+
+        padding: 15px;
+    }
+
+
+    .map-frame {
+
+        height: 330px;
+
+        border-radius: 18px;
+    }
+
+
+    .temple-cta {
+
+        width: 92%;
+
+        padding: 32px 25px;
+
+        margin-bottom: 65px;
+    }
+
+
+    .cta-buttons {
+
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+
+    .cta-primary,
+    .cta-secondary {
+
+        width: 100%;
+    }
+
+
+    .footer-main {
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .footer-bottom {
+
+        width: 92%;
+    }
+
+
+    .floating-whatsapp,
+    .floating-call {
+
+        width: 47px;
+
+        height: 47px;
+
+        right: 14px;
+    }
+
+
+    .floating-whatsapp {
+
+        bottom: 72px;
+    }
+
+
+    .floating-call {
+
+        bottom: 16px;
+    }
+
+
+    .back-to-top {
+
+        right: 14px;
+
+        bottom: 128px;
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .temple-hero {
+
+        min-height: 560px;
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 35px;
+    }
+
+
+    .hero-content p {
+
+        font-size: 14px;
+    }
+
+
+    .temple-quick-info {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .quick-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        justify-content: center;
+
+        padding: 10px 6px;
+    }
+
+
+    .quick-card > div {
+
+        min-width: 0;
+    }
+
+
+    .quick-card small {
+
+        display: none;
+    }
+
+
+    .timing-hours {
+
+        grid-template-columns: 1fr;
+
+        gap: 4px;
+    }
+
+
+    .timing-hours b {
+
+        margin-bottom: 8px;
+    }
+
+
+    .details-header {
+
+        gap: 10px;
+    }
+
+
+    .details-header h3 {
+
+        font-size: 22px;
+    }
+
+
+    .close-btn {
+
+        width: 37px;
+
+        height: 37px;
+
+        font-size: 21px;
     }
 
 
@@ -961,57 +2897,24 @@ body {
     }
 
 
-    .place-images {
+    .gallery-grid {
 
         grid-template-columns: 1fr;
 
-        min-height: auto;
+        grid-template-rows:
+            repeat(4, 190px);
     }
 
 
-    .place-images img {
+    .gallery-grid img:first-child {
 
-        min-height: 200px;
-
-        max-height: 230px;
+        grid-column: auto;
     }
 
 
-    .details-box.active {
+    .gallery-grid img:nth-child(4) {
 
-        padding: 22px;
-
-        max-height: 850px;
+        grid-column: auto;
     }
 
-
-    .details-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .details-header h3 {
-
-        font-size: 20px;
-    }
-
-
-    .book-btn {
-
-        width: 100%;
-    }
-
-}
-.details-box {
-    display: none;
-    margin-top: 20px;
-    padding: 25px;
-    border-radius: 18px;
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-.details-box.active {
-    display: block !important;
 }

@@ -5,62 +5,106 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Contact Us | RamSethuYatra</title>
 
-    <meta
-        name="description"
-        content="Contact RamSethuYatra for Rameswaram tour packages, cab services, rooms, temple visits and travel assistance."
-    >
+    <meta name="description"
+          content="Contact RamSethuYatra for Rameswaram tour packages, cab services, rooms and pilgrimage travel assistance.">
+
+    <meta name="keywords"
+          content="Rameswaram travel, Rameswaram tour, Rameswaram cab, Rameswaram rooms, Ram Sethu Yatra">
+
+    <link rel="stylesheet" href="site-theme.css">
+    <link rel="stylesheet" href="contact.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        rel="stylesheet"
-        href="contact.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
 </head>
 
 
-<body class="contact-page">
+<body>
 
 
-<!-- ==============================
+<!-- =====================================================
      HEADER
-================================ -->
+     ===================================================== -->
 
-<header class="legal-header">
+<header class="main-header">
 
-    <div class="legal-header-inner">
+    <div class="header-container">
 
-        <a href="index.html" class="legal-logo">
+        <a href="index.html" class="brand">
 
-            <span class="legal-logo-icon">
-                <i class="fa-solid fa-om"></i>
-            </span>
-
-            <span>
-                Ram<span>SethuYatra</span>
-            </span>
+            <span>Ram</span>
+            <span>Sethu</span>
+            <span>Yatra</span>
 
         </a>
 
 
-        <a href="index.html" class="back-home">
+        <nav class="main-nav" id="mainNav">
 
-            <i class="fa-solid fa-arrow-left"></i>
+            <a href="index.html">
+                Home
+            </a>
 
-            Back to Home
+            <a href="about.html">
+                About
+            </a>
 
-        </a>
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="rameswaram-cab-service.html">
+                Cab
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="contact.html" class="active">
+                Contact
+            </a>
+
+            <a href="customer-dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <button
+                class="language-button"
+                id="languageButton"
+                type="button"
+                aria-label="Language">
+
+                🌐
+
+            </button>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu">
+
+                ☰
+
+            </button>
+
+        </div>
 
     </div>
 
@@ -68,140 +112,276 @@
 
 
 
-<!-- ==============================
-     CONTACT
-================================ -->
+<!-- =====================================================
+     HERO
+     ===================================================== -->
 
-<main class="legal-page">
+<main>
 
-    <div class="legal-container">
+<section class="contact-hero">
+
+    <div class="contact-hero-overlay"></div>
+
+    <div class="contact-hero-content">
+
+        <span class="eyebrow">
+            WE ARE HERE FOR YOU
+        </span>
+
+        <h1>
+            Let's plan your
+            <span>Rameswaram</span>
+            journey.
+        </h1>
+
+        <p>
+            Have a question about packages, cabs, rooms or
+            your pilgrimage plans? Our team is ready to help.
+        </p>
+
+    </div>
+
+</section>
 
 
-        <div class="legal-heading">
 
-            <span>GET IN TOUCH</span>
+<!-- =====================================================
+     CONTACT QUICK INFO
+     ===================================================== -->
 
-            <h1>Contact Us</h1>
+<section class="contact-info-section">
 
-            <p>
-                We're here to help you plan your Rameswaram
-                journey comfortably and safely.
-            </p>
-
-        </div>
+    <div class="contact-info-grid">
 
 
+        <!-- LOCATION -->
 
-        <!-- CONTACT CARDS -->
+        <a
+            class="contact-info-card"
+            href="https://www.google.com/maps/search/?api=1&query=Rameswaram%2C%20Tamil%20Nadu%2C%20India"
+            target="_blank"
+            rel="noopener">
 
-        <div class="contact-grid">
+            <div class="contact-icon">
+                📍
+            </div>
 
+            <div>
 
-            <!-- PHONE -->
+                <span>
+                    LOCATION
+                </span>
 
-            <div class="contact-card">
-
-                <div class="contact-icon">
-
-                    <i class="fa-solid fa-phone"></i>
-
-                </div>
-
-                <h2>Phone</h2>
+                <h3>
+                    Rameswaram
+                </h3>
 
                 <p>
-                    Call us for booking assistance and
-                    travel information.
+                    Tamil Nadu, India
                 </p>
-
-                <a href="tel:+918838170745">
-
-                    +91 8838170745
-
-                </a>
 
             </div>
 
+            <strong>
+                →
+            </strong>
+
+        </a>
+
+
+
+        <!-- PHONE -->
+
+        <a
+            class="contact-info-card"
+            href="tel:+918838170745">
+
+            <div class="contact-icon">
+                📞
+            </div>
+
+            <div>
+
+                <span>
+                    CALL US
+                </span>
+
+                <h3>
+                    +91 8838170745
+                </h3>
+
+                <p>
+                    Speak with our team
+                </p>
+
+            </div>
+
+            <strong>
+                →
+            </strong>
+
+        </a>
+
+
+
+        <!-- EMAIL -->
+
+        <a
+            class="contact-info-card"
+            href="mailto:ramsethuyatra@gmail.com">
+
+            <div class="contact-icon">
+                ✉️
+            </div>
+
+            <div>
+
+                <span>
+                    EMAIL US
+                </span>
+
+                <h3>
+                    ramsethuyatra@gmail.com
+                </h3>
+
+                <p>
+                    Send us your enquiry
+                </p>
+
+            </div>
+
+            <strong>
+                →
+            </strong>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN CONTACT SECTION
+     ===================================================== -->
+
+<section class="contact-main">
+
+    <div class="contact-main-grid">
+
+
+        <!-- =================================================
+             LEFT SIDE
+             ================================================= -->
+
+        <div class="contact-story">
+
+            <span class="section-label">
+                GET IN TOUCH
+            </span>
+
+            <h2>
+                Your questions,
+                <br>
+                <span>our guidance.</span>
+            </h2>
+
+            <p>
+                Whether you're planning a family pilgrimage,
+                looking for a comfortable stay, or need
+                transportation around Rameswaram, we're happy
+                to help you plan it smoothly.
+            </p>
 
 
             <!-- WHATSAPP -->
 
-            <div class="contact-card">
+            <a
+                href="https://wa.me/918838170745"
+                target="_blank"
+                rel="noopener"
+                class="whatsapp-card">
 
-                <div class="contact-icon whatsapp">
+                <div class="whatsapp-icon">
+                    💬
+                </div>
 
-                    <i class="fa-brands fa-whatsapp"></i>
+                <div>
+
+                    <small>
+                        FASTEST RESPONSE
+                    </small>
+
+                    <strong>
+                        Chat with us on WhatsApp
+                    </strong>
+
+                    <span>
+                        Usually the easiest way to reach us
+                    </span>
 
                 </div>
 
-                <h2>WhatsApp</h2>
+                <b>
+                    →
+                </b>
 
-                <p>
-                    Message us directly for quick
-                    booking assistance.
-                </p>
-
-                <a
-                    href="https://wa.me/918838170745"
-                    target="_blank"
-                    rel="noopener"
-                >
-
-                    Chat on WhatsApp
-
-                </a>
-
-            </div>
+            </a>
 
 
+            <!-- CONTACT POINTS -->
 
-            <!-- EMAIL -->
+            <div class="contact-points">
 
-            <div class="contact-card">
+                <div>
 
-                <div class="contact-icon email">
+                    <span>
+                        ✓
+                    </span>
 
-                    <i class="fa-solid fa-envelope"></i>
+                    <p>
+                        Rameswaram tour packages
+                    </p>
 
                 </div>
 
-                <h2>Email</h2>
+                <div>
 
-                <p>
-                    Send us your questions or booking
-                    requirements.
-                </p>
+                    <span>
+                        ✓
+                    </span>
 
-                <a href="mailto:ramsethuyatra@gmail.com">
-
-                    ramsethuyatra@gmail.com
-
-                </a>
-
-            </div>
-
-
-
-            <!-- LOCATION -->
-
-            <div class="contact-card">
-
-                <div class="contact-icon location">
-
-                    <i class="fa-solid fa-location-dot"></i>
+                    <p>
+                        Cab and local transportation
+                    </p>
 
                 </div>
 
-                <h2>Location</h2>
+                <div>
 
-                <p>
-                    We provide tourism and travel
-                    assistance in Rameswaram.
-                </p>
+                    <span>
+                        ✓
+                    </span>
 
-                <strong>
-                    Rameswaram, Tamil Nadu, India
-                </strong>
+                    <p>
+                        Room and stay assistance
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <p>
+                        Pilgrimage planning support
+                    </p>
+
+                </div>
 
             </div>
 
@@ -209,110 +389,740 @@
 
 
 
-        <!-- BUSINESS INFORMATION -->
+        <!-- =================================================
+             CONTACT FORM
+             ================================================= -->
 
-        <section class="contact-info">
+        <div class="contact-form-card">
+
+            <div class="form-heading">
+
+                <span>
+                    SEND AN ENQUIRY
+                </span>
+
+                <h2>
+                    How can we help?
+                </h2>
+
+                <p>
+                    Fill in your details and we'll get back
+                    to you.
+                </p>
+
+            </div>
+
+
+            <form
+                id="contactForm"
+                autocomplete="on">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="contactName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contactName"
+                        name="name"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                        maxlength="80"
+                        required>
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="contactMobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="contactMobile"
+                        name="mobile"
+                        placeholder="10-digit mobile number"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        maxlength="10"
+                        required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="contactEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="contactEmail"
+                        name="email"
+                        placeholder="your@email.com"
+                        autocomplete="email"
+                        maxlength="120"
+                        required>
+
+                </div>
+
+
+                <!-- SERVICE -->
+
+                <div class="form-group">
+
+                    <label for="contactService">
+                        What do you need help with?
+                    </label>
+
+                    <select
+                        id="contactService"
+                        name="service"
+                        required>
+
+                        <option value="">
+                            Select an option
+                        </option>
+
+                        <option value="Tour Package">
+                            Tour Package
+                        </option>
+
+                        <option value="Cab Service">
+                            Cab Service
+                        </option>
+
+                        <option value="Room Booking">
+                            Room Booking
+                        </option>
+
+                        <option value="Temple Visit">
+                            Temple Visit
+                        </option>
+
+                        <option value="Pooja">
+                            Pooja
+                        </option>
+
+                        <option value="General Enquiry">
+                            General Enquiry
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label for="contactMessage">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="5"
+                        maxlength="800"
+                        placeholder="Tell us how we can help..."
+                        required></textarea>
+
+                    <div class="character-count">
+                        <span id="messageCount">0</span>/800
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="contact-submit">
+
+                    <span>
+                        Send Enquiry
+                    </span>
+
+                    <strong>
+                        →
+                    </strong>
+
+                </button>
+
+
+                <p class="form-note">
+                    By submitting this form, you agree to be
+                    contacted regarding your enquiry.
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAP
+     ===================================================== -->
+
+<section class="map-section">
+
+    <div class="map-heading">
+
+        <div>
+
+            <span class="section-label">
+                FIND US
+            </span>
 
             <h2>
-
-                <i class="fa-solid fa-circle-info"></i>
-
-                Booking Assistance
-
+                Welcome to
+                <span>Rameswaram.</span>
             </h2>
 
-            <p>
-                For package bookings, cab services, room
-                bookings, temple visits or other travel
-                assistance, please contact us using the
-                details above.
-            </p>
+        </div>
+
+        <a
+            href="https://www.google.com/maps/search/?api=1&query=Rameswaram%2C%20Tamil%20Nadu%2C%20India"
+            target="_blank"
+            rel="noopener"
+            class="map-button">
+
+            Open in Google Maps
+            →
+
+        </a>
+
+    </div>
+
+
+    <div class="map-container">
+
+        <iframe
+            src="https://www.google.com/maps?q=Rameswaram%2C%20Tamil%20Nadu%2C%20India&output=embed"
+            title="Rameswaram map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FAQ / QUICK HELP
+     ===================================================== -->
+
+<section class="contact-help">
+
+    <div class="help-heading">
+
+        <span class="section-label">
+            QUICK HELP
+        </span>
+
+        <h2>
+            Before you reach out.
+        </h2>
+
+    </div>
+
+
+    <div class="help-grid">
+
+
+        <details>
+
+            <summary>
+                How can I book a tour package?
+                <span>+</span>
+            </summary>
 
             <p>
-                When contacting us about an existing
-                booking, please keep your booking details
-                available so we can assist you more quickly.
+                Visit our Packages page, choose the package
+                you prefer and continue to the booking page.
             </p>
 
-        </section>
+        </details>
 
 
+        <details>
 
-        <!-- IMPORTANT -->
-
-        <section class="contact-info">
-
-            <h2>
-
-                <i class="fa-solid fa-shield-halved"></i>
-
-                Customer Support
-
-            </h2>
+            <summary>
+                Can I contact you through WhatsApp?
+                <span>+</span>
+            </summary>
 
             <p>
-                RamSethuYatra is committed to providing
-                clear information about our services,
-                booking procedures and cancellation
-                policies.
+                Yes. WhatsApp is available for enquiries and
+                travel assistance.
             </p>
+
+        </details>
+
+
+        <details>
+
+            <summary>
+                Do you provide local cab services?
+                <span>+</span>
+            </summary>
 
             <p>
-                Please review our
-                <a href="terms.html">
-                    Terms & Conditions
-                </a>,
-                <a href="privacy.html">
-                    Privacy Policy
-                </a>
-                and
-                <a href="refund-cancellation.html">
-                    Cancellation & Refund Policy
-                </a>
-                before making a booking.
+                Yes. Our cab service page provides information
+                about transportation options around Rameswaram.
             </p>
 
-        </section>
+        </details>
+
+
+        <details>
+
+            <summary>
+                Can you help with rooms?
+                <span>+</span>
+            </summary>
+
+            <p>
+                Yes. Visit the Rooms page to explore available
+                stay options and submit a room enquiry.
+            </p>
+
+        </details>
 
 
     </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+     ===================================================== -->
+
+<section class="contact-cta">
+
+    <div class="cta-content">
+
+        <span>
+            READY TO BEGIN?
+        </span>
+
+        <h2>
+            Your Rameswaram
+            story awaits.
+        </h2>
+
+        <p>
+            Explore our packages and start planning your
+            journey today.
+        </p>
+
+        <div class="cta-buttons">
+
+            <a
+                href="totalpackage.html"
+                class="cta-primary">
+
+                Explore Packages
+                →
+
+            </a>
+
+            <a
+                href="customer-dashboard.html"
+                class="cta-secondary">
+
+                My Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
 
 
-<!-- ==============================
+<!-- =====================================================
      FOOTER
-================================ -->
+     ===================================================== -->
 
-<footer class="legal-footer">
+<footer class="site-footer">
 
-    <p>
-        © 2026 RamSethuYatra. All Rights Reserved.
-    </p>
+    <div class="footer-container">
 
-    <div>
 
-        <a href="terms.html">
-            Terms
-        </a>
+        <div class="footer-brand">
 
-        <a href="privacy.html">
-            Privacy
-        </a>
+            <a
+                href="index.html"
+                class="footer-logo">
 
-        <a href="refund-cancellation.html">
-            Refund Policy
-        </a>
+                RamSethuYatra
 
-        <a href="contact.html">
-            Contact
-        </a>
+            </a>
+
+            <p>
+                Your trusted companion for a meaningful
+                and memorable Rameswaram journey.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="rameswaram-cab-service.html">
+                Cab Service
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple
+            </a>
+
+            <a href="customer-dashboard.html">
+                Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Rameswaram,
+                Tamil Nadu, India
+            </p>
+
+            <a href="tel:+918838170745">
+                +91 8838170745
+            </a>
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+                ramsethuyatra@gmail.com
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 RamSethuYatra.
+            All Rights Reserved.
+        </p>
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation
+            </a>
+
+        </div>
 
     </div>
 
 </footer>
 
+
+
+<!-- =====================================================
+     FLOATING CONTACT BUTTONS
+     ===================================================== -->
+
+<a
+    href="https://wa.me/918838170745"
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp">
+
+    WhatsApp
+
+</a>
+
+
+<a
+    href="tel:+918838170745"
+    class="floating-call"
+    aria-label="Call RamSethuYatra">
+
+    Call
+
+</a>
+
+
+
+<!-- =====================================================
+     PAGE SCRIPT
+     ===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+
+    /* ==============================================
+       MOBILE MENU
+       ============================================== */
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+
+    if (menuToggle && mainNav) {
+
+        menuToggle.addEventListener("click", () => {
+
+            mainNav.classList.toggle("open");
+
+        });
+
+
+        mainNav.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                mainNav.classList.remove("open");
+
+            });
+
+        });
+
+    }
+
+
+
+    /* ==============================================
+       MOBILE NUMBER
+       ============================================== */
+
+    const mobileInput =
+        document.getElementById("contactMobile");
+
+
+    if (mobileInput) {
+
+        mobileInput.addEventListener("input", () => {
+
+            mobileInput.value =
+                mobileInput.value
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
+
+        });
+
+    }
+
+
+
+    /* ==============================================
+       MESSAGE COUNTER
+       ============================================== */
+
+    const message =
+        document.getElementById("contactMessage");
+
+    const messageCount =
+        document.getElementById("messageCount");
+
+
+    if (message && messageCount) {
+
+        message.addEventListener("input", () => {
+
+            messageCount.textContent =
+                message.value.length;
+
+        });
+
+    }
+
+
+
+    /* ==============================================
+       CONTACT FORM
+       ============================================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+
+    if (contactForm) {
+
+        contactForm.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("contactName")
+                    .value.trim();
+
+            const mobile =
+                document.getElementById("contactMobile")
+                    .value.trim();
+
+            const email =
+                document.getElementById("contactEmail")
+                    .value.trim();
+
+            const service =
+                document.getElementById("contactService")
+                    .value;
+
+            const messageText =
+                document.getElementById("contactMessage")
+                    .value.trim();
+
+
+            if (!name ||
+                !mobile ||
+                !email ||
+                !service ||
+                !messageText) {
+
+                alert(
+                    "Please fill in all the required fields."
+                );
+
+                return;
+
+            }
+
+
+            if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+                alert(
+                    "Please enter a valid 10-digit mobile number."
+                );
+
+                return;
+
+            }
+
+
+            const whatsappMessage =
+
+                `Hello RamSethuYatra,%0A%0A` +
+
+                `Name: ${encodeURIComponent(name)}%0A` +
+
+                `Mobile: ${encodeURIComponent(mobile)}%0A` +
+
+                `Email: ${encodeURIComponent(email)}%0A` +
+
+                `Service: ${encodeURIComponent(service)}%0A%0A` +
+
+                `Message:%0A` +
+
+                `${encodeURIComponent(messageText)}`;
+
+
+            const whatsappURL =
+                `https://wa.me/918838170745?text=${whatsappMessage}`;
+
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener"
+            );
+
+
+            contactForm.reset();
+
+            if (messageCount) {
+                messageCount.textContent = "0";
+            }
+
+        });
+
+    }
+
+});
+
+</script>
+
+
+<script src="site.js"></script>
 
 </body>
 

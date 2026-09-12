@@ -2,120 +2,506 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Create Account | RamSethuYatra</title>
 
-    <link rel="stylesheet" href="auth.css">
+    <meta
+        name="description"
+        content="Create your RamSethuYatra account and manage your Rameswaram travel bookings."
+    >
+
+    <link
+        rel="stylesheet"
+        href="auth.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
+    ></script>
+
 </head>
+
 
 <body>
 
-    <div class="auth-page">
+    <!-- =========================================
+         SIGNUP PAGE
+    ========================================== -->
 
-        <div class="auth-card">
+    <main class="auth-page">
 
-            <div class="auth-logo">
-                RamSethu<span>Yatra</span>
-            </div>
+        <div class="auth-wrapper">
 
-            <div class="auth-heading">
-                <h1>Create Account</h1>
-                <p>Start your Rameswaram journey with us</p>
-            </div>
 
-            <form id="signupForm">
+            <!-- =====================================
+                 LEFT SHOWCASE
+            ====================================== -->
 
-                <div class="input-group">
-                    <label for="name">Full Name</label>
+            <section class="auth-showcase">
 
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your full name"
-                        required
+                <div class="showcase-overlay"></div>
+
+
+                <div class="showcase-content">
+
+
+                    <!-- BRAND -->
+
+                    <a
+                        href="index.html"
+                        class="brand"
                     >
+
+                        <span>Ram</span>
+                        <span>Sethu</span>
+                        <span>Yatra</span>
+
+                    </a>
+
+
+                    <!-- SHOWCASE TEXT -->
+
+                    <div class="showcase-text">
+
+                        <span class="eyebrow">
+                            YOUR RAMESWARAM JOURNEY
+                        </span>
+
+
+                        <h2>
+                            Create your
+                            <br>
+                            journey account.
+                        </h2>
+
+
+                        <p>
+                            Create your RamSethuYatra account
+                            and keep your travel bookings,
+                            services and journey details
+                            together in one place.
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="showcase-features">
+
+
+                        <div class="showcase-feature">
+
+                            <span class="feature-icon">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Easy Booking
+                                </strong>
+
+                                <small>
+                                    Book your journey with ease
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="showcase-feature">
+
+                            <span class="feature-icon">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    One Account
+                                </strong>
+
+                                <small>
+                                    Manage all your bookings
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="showcase-feature">
+
+                            <span class="feature-icon">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Secure Access
+                                </strong>
+
+                                <small>
+                                    Your account is protected
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
                 </div>
 
-                <div class="input-group">
-                    <label for="phone">Mobile Number</label>
+            </section>
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="Enter your mobile number"
-                        maxlength="10"
-                        required
+
+            <!-- =====================================
+                 FORM AREA
+            ====================================== -->
+
+            <section class="auth-form-area">
+
+                <div class="auth-card">
+
+
+                    <!-- MOBILE BRAND -->
+
+                    <a
+                        href="index.html"
+                        class="mobile-brand"
                     >
+
+                        RamSethu<span>Yatra</span>
+
+                    </a>
+
+
+                    <!-- HEADING -->
+
+                    <div class="auth-heading">
+
+                        <span class="auth-label">
+                            CUSTOMER ACCOUNT
+                        </span>
+
+
+                        <h1>
+                            Create Account
+                        </h1>
+
+
+                        <p>
+                            Start your Rameswaram journey
+                            with us.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =================================
+                         SIGNUP FORM
+                    ================================== -->
+
+                    <form id="signupForm">
+
+
+                        <!-- FULL NAME -->
+
+                        <div class="input-group">
+
+                            <label for="name">
+                                Full Name
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    👤
+                                </span>
+
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your full name"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- MOBILE -->
+
+                        <div class="input-group">
+
+                            <label for="phone">
+                                Mobile Number
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    📱
+                                </span>
+
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    placeholder="Enter 10-digit mobile number"
+                                    maxlength="10"
+                                    inputmode="numeric"
+                                    autocomplete="tel"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="input-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ✉
+                                </span>
+
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="input-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                    minlength="6"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="passwordToggle"
+                                    aria-label="Show password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="input-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔐
+                                </span>
+
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    minlength="6"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="confirmPasswordToggle"
+                                    aria-label="Show confirm password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD NOTE -->
+
+                        <div class="password-note">
+
+                            <span>
+                                🔐
+                            </span>
+
+                            <p>
+                                Password must contain at least
+                                6 characters.
+                            </p>
+
+                        </div>
+
+
+                        <!-- CREATE BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="auth-btn"
+                            id="signupBtn"
+                        >
+
+                            <span class="btn-text">
+                                Create Account
+                            </span>
+
+                            <span class="btn-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                    <!-- DIVIDER -->
+
+                    <div class="auth-divider">
+
+                        <span>
+                            Already have an account?
+                        </span>
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <a
+                        href="login.html"
+                        class="create-account-btn"
+                    >
+
+                        Login to Your Account
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- HOME -->
+
+                    <a
+                        href="index.html"
+                        class="home-link"
+                    >
+                        ← Back to RamSethuYatra
+                    </a>
+
+
+                    <!-- SECURITY -->
+
+                    <div class="auth-security">
+
+                        <span class="security-icon">
+                            🔐
+                        </span>
+
+                        <span>
+                            Your account information is securely handled.
+                        </span>
+
+                    </div>
+
+
                 </div>
 
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Password</label>
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Create a password"
-                        minlength="6"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="confirmPassword">Confirm Password</label>
-
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        placeholder="Confirm your password"
-                        minlength="6"
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="auth-btn" id="signupBtn">
-                    Create Account
-                </button>
-
-            </form>
-
-            <div class="auth-footer">
-
-                <p>
-                    Already have an account?
-                    <a href="login.html">Login</a>
-                </p>
-
-                <!-- <a href="index.html" class="home-link">
-                    ← Back to Website
-                </a> -->
-
-            </div>
+            </section>
 
         </div>
 
-    </div>
+    </main>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
 
     <script type="module">
 
-        import { auth, db } from "./firebase.js";
+        import {
+            auth,
+            db
+        } from "./firebase.js";
+
 
         import {
             createUserWithEmailAndPassword,
             updateProfile
         } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
 
         import {
             doc,
@@ -124,142 +510,453 @@
         } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 
-        const signupForm = document.getElementById("signupForm");
-        const signupBtn = document.getElementById("signupBtn");
+        const signupForm =
+            document.getElementById(
+                "signupForm"
+            );
 
 
-        signupForm.addEventListener("submit", async (event) => {
-
-            event.preventDefault();
-
-            const name =
-                document.getElementById("name").value.trim();
-
-            const phone =
-                document.getElementById("phone").value.trim();
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            const confirmPassword =
-                document.getElementById("confirmPassword").value;
+        const signupBtn =
+            document.getElementById(
+                "signupBtn"
+            );
 
 
-            // Validate mobile number
-
-            if (!/^[0-9]{10}$/.test(phone)) {
-
-                alert("Please enter a valid 10-digit mobile number.");
-
-                return;
-            }
+        const password =
+            document.getElementById(
+                "password"
+            );
 
 
-            // Check password
-
-            if (password !== confirmPassword) {
-
-                alert("Passwords do not match.");
-
-                return;
-            }
+        const confirmPassword =
+            document.getElementById(
+                "confirmPassword"
+            );
 
 
-            signupBtn.disabled = true;
+        const passwordToggle =
+            document.getElementById(
+                "passwordToggle"
+            );
 
-            signupBtn.textContent = "Creating Account...";
+
+        const confirmPasswordToggle =
+            document.getElementById(
+                "confirmPasswordToggle"
+            );
 
 
-            try {
+        /* =========================================
+           PASSWORD SHOW / HIDE
+        ========================================== */
 
-                // Create Firebase Authentication account
+        passwordToggle.addEventListener(
+            "click",
+            () => {
 
-                const userCredential =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
+                if (
+                    password.type ===
+                    "password"
+                ) {
+
+                    password.type =
+                        "text";
+
+                    passwordToggle.textContent =
+                        "Hide";
+
+                    passwordToggle.setAttribute(
+                        "aria-label",
+                        "Hide password"
                     );
 
+                } else {
 
-                const user = userCredential.user;
+                    password.type =
+                        "password";
 
+                    passwordToggle.textContent =
+                        "Show";
 
-                // Update Firebase user's display name
-
-                await updateProfile(user, {
-                    displayName: name
-                });
-
-
-                // Store customer information in Firestore
-
-                await setDoc(
-                    doc(db, "customers", user.uid),
-                    {
-                        uid: user.uid,
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        createdAt: serverTimestamp()
-                    }
-                );
-
-
-                alert("Account created successfully!");
-
-
-                // Go to customer dashboard
-
-                window.location.href =
-                    "login.html";
-
-
-            } catch (error) {
-
-                console.error(error);
-
-
-                let message =
-                    "Unable to create account.";
-
-
-                if (error.code === "auth/email-already-in-use") {
-
-                    message =
-                        "This email is already registered.";
-
-                } else if (error.code === "auth/invalid-email") {
-
-                    message =
-                        "Please enter a valid email address.";
-
-                } else if (error.code === "auth/weak-password") {
-
-                    message =
-                        "Password must be at least 6 characters.";
-
-                } else if (error.code === "auth/network-request-failed") {
-
-                    message =
-                        "Network error. Please check your internet connection.";
+                    passwordToggle.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
 
                 }
 
-
-                alert(message);
-
-
-                signupBtn.disabled = false;
-
-                signupBtn.textContent =
-                    "Create Account";
             }
+        );
 
-        });
+
+        /* =========================================
+           CONFIRM PASSWORD SHOW / HIDE
+        ========================================== */
+
+        confirmPasswordToggle.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    confirmPassword.type ===
+                    "password"
+                ) {
+
+                    confirmPassword.type =
+                        "text";
+
+                    confirmPasswordToggle.textContent =
+                        "Hide";
+
+                    confirmPasswordToggle.setAttribute(
+                        "aria-label",
+                        "Hide confirm password"
+                    );
+
+                } else {
+
+                    confirmPassword.type =
+                        "password";
+
+                    confirmPasswordToggle.textContent =
+                        "Show";
+
+                    confirmPasswordToggle.setAttribute(
+                        "aria-label",
+                        "Show confirm password"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           MOBILE NUMBER
+        ========================================== */
+
+        document
+            .getElementById("phone")
+            .addEventListener(
+                "input",
+                function () {
+
+                    this.value =
+                        this.value
+                            .replace(/\D/g, "")
+                            .slice(0, 10);
+
+                }
+            );
+
+
+        /* =========================================
+           SIGNUP
+        ========================================== */
+
+        signupForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById("name")
+                        .value
+                        .trim();
+
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const passwordValue =
+                    password.value;
+
+
+                const confirmPasswordValue =
+                    confirmPassword.value;
+
+
+                /* =============================
+                   NAME
+                ============================== */
+
+                if (name.length < 2) {
+
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Invalid Name",
+                        text: "Please enter your full name.",
+                        confirmButtonColor: "#f77f00"
+                    });
+
+                    return;
+                }
+
+
+                /* =============================
+                   PHONE
+                ============================== */
+
+                if (
+                    !/^[0-9]{10}$/.test(phone)
+                ) {
+
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Invalid Mobile Number",
+                        text: "Please enter a valid 10-digit mobile number.",
+                        confirmButtonColor: "#f77f00"
+                    });
+
+                    return;
+                }
+
+
+                /* =============================
+                   PASSWORD
+                ============================== */
+
+                if (
+                    passwordValue.length < 6
+                ) {
+
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Weak Password",
+                        text: "Password must be at least 6 characters.",
+                        confirmButtonColor: "#f77f00"
+                    });
+
+                    return;
+                }
+
+
+                /* =============================
+                   CONFIRM PASSWORD
+                ============================== */
+
+                if (
+                    passwordValue !==
+                    confirmPasswordValue
+                ) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Passwords Don't Match",
+                        text: "Please make sure both passwords are the same.",
+                        confirmButtonColor: "#f77f00"
+                    });
+
+                    return;
+                }
+
+
+                /* =============================
+                   LOADING
+                ============================== */
+
+                signupBtn.disabled = true;
+
+                signupBtn.classList.add(
+                    "loading"
+                );
+
+                signupBtn.querySelector(
+                    ".btn-text"
+                ).textContent =
+                    "Creating Account...";
+
+
+                try {
+
+                    /* =========================
+                       FIREBASE AUTH
+                    ========================== */
+
+                    const userCredential =
+                        await createUserWithEmailAndPassword(
+                            auth,
+                            email,
+                            passwordValue
+                        );
+
+
+                    const user =
+                        userCredential.user;
+
+
+                    /* =========================
+                       DISPLAY NAME
+                    ========================== */
+
+                    await updateProfile(
+                        user,
+                        {
+                            displayName: name
+                        }
+                    );
+
+
+                    /* =========================
+                       FIRESTORE CUSTOMER
+                    ========================== */
+
+                    await setDoc(
+                        doc(
+                            db,
+                            "customers",
+                            user.uid
+                        ),
+                        {
+                            uid: user.uid,
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            createdAt:
+                                serverTimestamp()
+                        }
+                    );
+
+
+                    /* =========================
+                       SUCCESS
+                    ========================== */
+
+                    await Swal.fire({
+
+                        icon: "success",
+
+                        title:
+                            "Account Created!",
+
+                        text:
+                            "Your RamSethuYatra account has been created successfully.",
+
+                        confirmButtonText:
+                            "Go to Login",
+
+                        confirmButtonColor:
+                            "#f77f00"
+
+                    });
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Signup error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Unable to create account. Please try again.";
+
+
+                    if (
+                        error.code ===
+                        "auth/email-already-in-use"
+                    ) {
+
+                        message =
+                            "This email is already registered. Please login instead.";
+
+                    } else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        message =
+                            "Please enter a valid email address.";
+
+                    } else if (
+                        error.code ===
+                        "auth/weak-password"
+                    ) {
+
+                        message =
+                            "Password must be at least 6 characters.";
+
+                    } else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message =
+                            "Network error. Please check your internet connection.";
+
+                    } else if (
+                        error.code ===
+                        "auth/operation-not-allowed"
+                    ) {
+
+                        message =
+                            "Email/password authentication is not enabled in Firebase.";
+
+                    }
+
+
+                    Swal.fire({
+
+                        icon: "error",
+
+                        title:
+                            "Account Creation Failed",
+
+                        text: message,
+
+                        confirmButtonText:
+                            "Try Again",
+
+                        confirmButtonColor:
+                            "#f77f00",
+
+                        background:
+                            "#ffffff",
+
+                        color:
+                            "#243447"
+
+                    });
+
+
+                    signupBtn.disabled =
+                        false;
+
+
+                    signupBtn.classList.remove(
+                        "loading"
+                    );
+
+
+                    signupBtn.querySelector(
+                        ".btn-text"
+                    ).textContent =
+                        "Create Account";
+
+                }
+
+            }
+        );
 
     </script>
 

@@ -1,176 +1,807 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Booking Submitted | RamSethuYatra</title>
+    <title>Booking Confirmed | RamSethuYatra</title>
 
-    <style>
+    <meta name="description"
+          content="Your RamSethuYatra booking confirmation and booking details.">
 
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="site-theme.css">
+    <link rel="stylesheet" href="booking-success.css">
 
-        body {
-            margin: 0;
-            min-height: 100vh;
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            font-family: Arial, sans-serif;
-
-            background: #f5f7fa;
-        }
-
-        .success-box {
-            width: 90%;
-            max-width: 550px;
-
-            background: white;
-
-            padding: 50px 30px;
-
-            text-align: center;
-
-            border-radius: 25px;
-
-            box-shadow:
-                0 15px 40px
-                rgba(0,0,0,0.12);
-        }
-
-        .success-icon {
-            font-size: 70px;
-        }
-
-        h1 {
-            color: #073b67;
-            margin: 15px 0;
-        }
-
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .booking-id {
-            margin: 25px 0;
-
-            padding: 15px;
-
-            background: #f5f7fa;
-
-            border-radius: 10px;
-
-            word-break: break-all;
-        }
-
-        .home-btn {
-            display: inline-block;
-
-            padding: 14px 30px;
-
-            background: #073b67;
-
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 30px;
-
-            font-weight: bold;
-        }
-
-        .home-btn:hover {
-            background: #ff9d00;
-            color: #111;
-        }
-
-    </style>
-
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+          rel="stylesheet">
 </head>
-
 
 <body>
 
+<!-- ================= HEADER ================= -->
 
-<div class="success-box">
+<header class="main-header">
 
-    <div class="success-icon">
-        ✅
+    <div class="header-container">
+
+        <a href="index.html" class="brand">
+            <span>Ram</span>
+            <span>Sethu</span>
+            <span>Yatra</span>
+        </a>
+
+        <nav class="main-nav" id="mainNav">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html">About</a>
+
+            <a href="totalpackage.html">Packages</a>
+
+            <a href="rameswaram-cab-service.html">Cab</a>
+
+            <a href="rameswaram-rooms.html">Rooms</a>
+
+            <a href="contact.html">Contact</a>
+
+            <a href="customer-dashboard.html">
+                Dashboard
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                class="language-button"
+                id="languageButton"
+                type="button">
+                🌐
+            </button>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open menu">
+                ☰
+            </button>
+
+        </div>
+
     </div>
 
-    <h1>
-        Booking Submitted!
-    </h1>
-
-    <p>
-        Thank you for choosing
-        <strong>RamSethuYatra</strong>.
-    </p>
-
-    <p>
-        Your package booking has been
-        successfully submitted.
-    </p>
+</header>
 
 
-    <div class="booking-id">
+<!-- ================= SUCCESS HERO ================= -->
 
-        <strong>Booking ID</strong>
+<main class="success-page">
 
-        <br><br>
+    <section class="success-hero">
 
-        <span id="bookingId">
-            Loading...
-        </span>
+        <div class="success-glow"></div>
+
+        <div class="success-content">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <span class="success-label">
+                BOOKING RECEIVED
+            </span>
+
+            <h1>
+                Your journey<br>
+                starts here.
+            </h1>
+
+            <p>
+                Thank you for choosing RamSethuYatra.
+                Your booking request has been successfully
+                received.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOOKING TICKET ================= -->
+
+    <section class="confirmation-wrapper">
+
+        <div class="confirmation-ticket">
+
+            <!-- Ticket heading -->
+
+            <div class="ticket-header">
+
+                <div>
+
+                    <span class="ticket-label">
+                        RAMSETHUYATRA
+                    </span>
+
+                    <h2>
+                        Booking Confirmation
+                    </h2>
+
+                </div>
+
+                <div class="ticket-status">
+                    PENDING
+                </div>
+
+            </div>
+
+
+            <!-- Ticket divider -->
+
+            <div class="ticket-divider">
+
+                <span></span>
+                <i></i>
+                <span></span>
+
+            </div>
+
+
+            <!-- Booking reference -->
+
+            <div class="booking-reference">
+
+                <div>
+
+                    <small>
+                        BOOKING REFERENCE
+                    </small>
+
+                    <strong id="bookingReference">
+                        Loading...
+                    </strong>
+
+                </div>
+
+                <div class="reference-icon">
+                    🎫
+                </div>
+
+            </div>
+
+
+            <!-- Main booking details -->
+
+            <div class="booking-details-grid">
+
+                <div class="detail-box">
+
+                    <span class="detail-icon">
+                        📦
+                    </span>
+
+                    <small>
+                        SERVICE
+                    </small>
+
+                    <strong id="bookingService">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-icon">
+                        📅
+                    </span>
+
+                    <small>
+                        DATE
+                    </small>
+
+                    <strong id="bookingDate">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-icon">
+                        🕐
+                    </span>
+
+                    <small>
+                        TIME
+                    </small>
+
+                    <strong id="bookingTime">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span class="detail-icon">
+                        👥
+                    </span>
+
+                    <small>
+                        PERSONS
+                    </small>
+
+                    <strong id="bookingPersons">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Customer information -->
+
+            <div class="customer-section">
+
+                <div class="customer-heading">
+
+                    <span>
+                        CUSTOMER
+                    </span>
+
+                    <div></div>
+
+                </div>
+
+
+                <div class="customer-grid">
+
+                    <div>
+
+                        <small>
+                            EMAIL
+                        </small>
+
+                        <strong id="customerEmail">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            MOBILE
+                        </small>
+
+                        <strong id="customerMobile">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Extra information -->
+
+            <div
+                class="extra-information"
+                id="extraInformation"
+                style="display:none;">
+
+                <span>
+                    📍
+                </span>
+
+                <div>
+
+                    <small>
+                        ADDITIONAL INFORMATION
+                    </small>
+
+                    <strong id="bookingExtra">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Ticket bottom -->
+
+            <div class="ticket-divider bottom-divider">
+
+                <span></span>
+                <i></i>
+                <span></span>
+
+            </div>
+
+
+            <div class="ticket-footer">
+
+                <span>
+                    RamSethuYatra • Rameswaram
+                </span>
+
+                <span>
+                    2026
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= IMPORTANT MESSAGE ================= -->
+
+        <div class="confirmation-message">
+
+            <div class="message-icon">
+                ℹ
+            </div>
+
+            <div>
+
+                <strong>
+                    What happens next?
+                </strong>
+
+                <p>
+                    Our team will review your booking request
+                    and contact you to confirm the details.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= ACTIONS ================= -->
+
+        <div class="success-actions">
+
+            <a
+                href="customer-dashboard.html"
+                class="primary-button">
+
+                View My Bookings
+
+                <span>→</span>
+
+            </a>
+
+
+            <a
+                href="totalpackage.html"
+                class="secondary-button">
+
+                Explore More Packages
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="footer-logo">
+
+                RamSethuYatra
+
+            </a>
+
+            <p>
+                Your trusted companion for a meaningful
+                and memorable Rameswaram journey.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="rameswaram-cab-service.html">
+                Cab Service
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple
+            </a>
+
+            <a href="customer-dashboard.html">
+                Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Rameswaram,
+                Tamil Nadu, India
+            </p>
+
+            <a href="tel:+918838170745">
+                +91 8838170745
+            </a>
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+                ramsethuyatra@gmail.com
+            </a>
+
+        </div>
 
     </div>
 
 
-    <p>
-        Our team will contact you shortly
-        to confirm your booking.
-    </p>
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 RamSethuYatra.
+            All Rights Reserved.
+        </p>
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
 
 
-    <a
-        href="index.html"
-        class="home-btn"
-    >
-        Back to Home
-    </a>
+<!-- ================= FLOATING BUTTONS ================= -->
 
-</div>
+<a
+    href="https://wa.me/918838170745"
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp">
 
+    WhatsApp
+
+</a>
+
+
+<a
+    href="tel:+918838170745"
+    class="floating-call"
+    aria-label="Call RamSethuYatra">
+
+    Call
+
+</a>
+
+
+<!-- ================= SCRIPT ================= -->
 
 <script>
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+document.addEventListener("DOMContentLoaded", () => {
 
-const id =
-    params.get("id");
+    /*
+     * Read booking information passed through URL.
+     *
+     * Example:
+     * booking-success.html?
+     * package=normal&
+     * persons=5&
+     * price=7000
+     */
+
+    const params =
+        new URLSearchParams(window.location.search);
 
 
-document.getElementById("bookingId")
-    .textContent =
-    id || "Not available";
+    const service =
+        params.get("package") ||
+        params.get("service");
+
+
+    const persons =
+        params.get("persons");
+
+
+    const date =
+        params.get("date");
+
+
+    const time =
+        params.get("time");
+
+
+    const price =
+        params.get("price");
+
+
+    const mobile =
+        params.get("mobile");
+
+
+    /* -----------------------------------------
+       SERVICE
+       ----------------------------------------- */
+
+    const serviceElement =
+        document.getElementById("bookingService");
+
+
+    if (service) {
+
+        const serviceNames = {
+
+            normal:
+                "Rameswaram Normal Package",
+
+            medium:
+                "Rameswaram Medium Package",
+
+            premium:
+                "Rameswaram Premium Package",
+
+            cab:
+                "Cab Service",
+
+            room:
+                "Room Booking",
+
+            temple:
+                "Temple Booking",
+
+            well:
+                "Sacred Well Booking",
+
+            pooja:
+                "Pooja Booking"
+
+        };
+
+
+        serviceElement.textContent =
+            serviceNames[service.toLowerCase()] ||
+            service;
+
+    } else {
+
+        serviceElement.textContent =
+            "RamSethuYatra Booking";
+
+    }
+
+
+    /* -----------------------------------------
+       PERSONS
+       ----------------------------------------- */
+
+    document.getElementById(
+        "bookingPersons"
+    ).textContent =
+        persons
+            ? `${persons} ${persons == 1 ? "Person" : "Persons"}`
+            : "-";
+
+
+    /* -----------------------------------------
+       DATE
+       ----------------------------------------- */
+
+    document.getElementById(
+        "bookingDate"
+    ).textContent =
+        date || "To be confirmed";
+
+
+    /* -----------------------------------------
+       TIME
+       ----------------------------------------- */
+
+    document.getElementById(
+        "bookingTime"
+    ).textContent =
+        time || "To be confirmed";
+
+
+    /* -----------------------------------------
+       MOBILE
+       ----------------------------------------- */
+
+    document.getElementById(
+        "customerMobile"
+    ).textContent =
+        mobile || "Provided during booking";
+
+
+    /* -----------------------------------------
+       EMAIL
+       ----------------------------------------- */
+
+    const savedEmail =
+        localStorage.getItem("customerEmail");
+
+
+    document.getElementById(
+        "customerEmail"
+    ).textContent =
+        savedEmail || "Your registered email";
+
+
+    /* -----------------------------------------
+       BOOKING REFERENCE
+       ----------------------------------------- */
+
+    let reference =
+        localStorage.getItem(
+            "lastBookingReference"
+        );
+
+
+    if (!reference) {
+
+        const randomPart =
+            Math.random()
+                .toString(36)
+                .substring(2, 7)
+                .toUpperCase();
+
+
+        reference =
+            "RSY-" + randomPart;
+
+
+        localStorage.setItem(
+            "lastBookingReference",
+            reference
+        );
+
+    }
+
+
+    document.getElementById(
+        "bookingReference"
+    ).textContent =
+        reference;
+
+
+    /* -----------------------------------------
+       PRICE
+       ----------------------------------------- */
+
+    if (price) {
+
+        const extra =
+            document.getElementById(
+                "extraInformation"
+            );
+
+        const extraText =
+            document.getElementById(
+                "bookingExtra"
+            );
+
+        extra.style.display =
+            "flex";
+
+        extraText.textContent =
+            `Estimated booking amount: ₹${Number(price).toLocaleString("en-IN")}`;
+
+    }
+
+
+    /* -----------------------------------------
+       MOBILE MENU
+       ----------------------------------------- */
+
+    const menuToggle =
+        document.getElementById(
+            "menuToggle"
+        );
+
+    const mainNav =
+        document.getElementById(
+            "mainNav"
+        );
+
+
+    if (menuToggle && mainNav) {
+
+        menuToggle.addEventListener(
+            "click",
+            () => {
+
+                mainNav.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+    }
+
+});
 
 </script>
 
 
-</body>
+<script src="site.js"></script>
 
+</body>
 </html>

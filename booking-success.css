@@ -1,0 +1,2465 @@
+/* =========================================================
+   RAMSETHUYATRA
+   BOOKING SUCCESS PAGE
+   Premium Travel Confirmation Design
+========================================================= */
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --navy: #003049;
+    --navy-dark: #001f2e;
+    --navy-light: #0b4663;
+
+    --orange: #f77f00;
+    --orange-dark: #d96500;
+    --orange-light: #ff9f43;
+
+    --cream: #fffaf4;
+    --cream-dark: #f5ede3;
+
+    --white: #ffffff;
+
+    --text: #24323d;
+    --text-light: #66727c;
+    --muted: #8a959d;
+
+    --green: #168a52;
+    --green-bg: #eaf8f0;
+
+    --border: #e5ddd4;
+
+    --shadow-sm:
+        0 6px 20px rgba(0, 48, 73, 0.07);
+
+    --shadow:
+        0 15px 40px rgba(0, 48, 73, 0.10);
+
+    --shadow-lg:
+        0 25px 65px rgba(0, 48, 73, 0.15);
+
+    --radius: 18px;
+    --radius-lg: 28px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        "DM Sans",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffaf4 0%,
+            #fdf8f2 55%,
+            #f6eee5 100%
+        );
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.main-header {
+
+    width: 100%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(0, 31, 46, 0.97);
+
+    color: var(--white);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.13);
+
+}
+
+
+.header-container {
+
+    width:
+        min(1200px, 92%);
+
+    min-height:
+        74px;
+
+    margin:
+        0 auto;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        25px;
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    text-decoration:
+        none;
+
+    color:
+        var(--white);
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+    line-height:
+        0.95;
+
+    letter-spacing:
+        -0.3px;
+
+    min-width:
+        90px;
+
+}
+
+
+.brand span:first-child {
+
+    color:
+        var(--orange-light);
+
+}
+
+
+.brand span:nth-child(2) {
+
+    color:
+        var(--white);
+
+}
+
+
+.brand span:last-child {
+
+    color:
+        var(--orange-light);
+
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.main-nav {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+}
+
+
+.main-nav a {
+
+    color:
+        rgba(255, 255, 255, 0.85);
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    padding:
+        9px 11px;
+
+    border-radius:
+        8px;
+
+    transition:
+        0.25s ease;
+
+}
+
+
+.main-nav a:hover {
+
+    color:
+        var(--white);
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.header-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+.language-button,
+.menu-toggle {
+
+    width:
+        39px;
+
+    height:
+        39px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color:
+        var(--white);
+
+    cursor:
+        pointer;
+
+}
+
+
+.language-button {
+
+    font-size:
+        17px;
+
+}
+
+
+.menu-toggle {
+
+    display:
+        none;
+
+    font-size:
+        20px;
+
+}
+
+
+/* =========================================================
+   SUCCESS PAGE
+========================================================= */
+
+.success-page {
+
+    min-height:
+        100vh;
+
+}
+
+
+/* =========================================================
+   SUCCESS HERO
+========================================================= */
+
+.success-hero {
+
+    position:
+        relative;
+
+    min-height:
+        420px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--navy-dark),
+            var(--navy)
+        );
+
+    color:
+        var(--white);
+
+}
+
+
+/* orange glow */
+
+.success-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        420px;
+
+    height:
+        420px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(247, 127, 0, 0.12);
+
+    top:
+        -230px;
+
+    right:
+        -100px;
+
+}
+
+
+/* second glow */
+
+.success-hero::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        260px;
+
+    height:
+        260px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-radius:
+        50%;
+
+    bottom:
+        -150px;
+
+    left:
+        -70px;
+
+}
+
+
+/* =========================================================
+   SUCCESS GLOW
+========================================================= */
+
+.success-glow {
+
+    position:
+        absolute;
+
+    width:
+        180px;
+
+    height:
+        180px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(247, 127, 0, 0.10);
+
+    filter:
+        blur(30px);
+
+}
+
+
+/* =========================================================
+   SUCCESS CONTENT
+========================================================= */
+
+.success-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(650px, 90%);
+
+}
+
+
+.success-icon {
+
+    width:
+        76px;
+
+    height:
+        76px;
+
+    margin:
+        0 auto 20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--green);
+
+    color:
+        var(--white);
+
+    border:
+        6px solid
+        rgba(255, 255, 255, 0.13);
+
+    font-size:
+        37px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 12px 35px
+        rgba(22, 138, 82, 0.25);
+
+}
+
+
+.success-label {
+
+    display:
+        inline-block;
+
+    color:
+        var(--orange-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.4px;
+
+    margin-bottom:
+        11px;
+
+}
+
+
+.success-content h1 {
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(39px, 6vw, 64px);
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -1.5px;
+
+    margin-bottom:
+        17px;
+
+}
+
+
+.success-content p {
+
+    max-width:
+        540px;
+
+    margin:
+        0 auto;
+
+    color:
+        rgba(255, 255, 255, 0.76);
+
+    font-size:
+        15px;
+
+}
+
+
+/* =========================================================
+   CONFIRMATION WRAPPER
+========================================================= */
+
+.confirmation-wrapper {
+
+    width:
+        min(900px, 92%);
+
+    margin:
+        -65px auto 80px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+
+/* =========================================================
+   CONFIRMATION TICKET
+========================================================= */
+
+.confirmation-ticket {
+
+    position:
+        relative;
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        var(--shadow-lg);
+
+}
+
+
+/* top orange strip */
+
+.confirmation-ticket::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--orange),
+            var(--orange-light)
+        );
+
+}
+
+
+/* =========================================================
+   TICKET HEADER
+========================================================= */
+
+.ticket-header {
+
+    padding:
+        34px 38px 25px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+}
+
+
+.ticket-label {
+
+    display:
+        block;
+
+    color:
+        var(--orange);
+
+    font-size:
+        10px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
+    margin-bottom:
+        6px;
+
+}
+
+
+.ticket-header h2 {
+
+    color:
+        var(--navy);
+
+    font-size:
+        27px;
+
+    line-height:
+        1.2;
+
+}
+
+
+/* =========================================================
+   TICKET STATUS
+========================================================= */
+
+.ticket-status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        7px 13px;
+
+    border-radius:
+        20px;
+
+    background:
+        #fff4dc;
+
+    color:
+        #a76c00;
+
+    font-size:
+        10px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.8px;
+
+    white-space:
+        nowrap;
+
+}
+
+
+/* =========================================================
+   TICKET DIVIDER
+========================================================= */
+
+.ticket-divider {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        0;
+
+    width:
+        100%;
+
+    overflow:
+        hidden;
+
+}
+
+
+.ticket-divider span {
+
+    flex:
+        1;
+
+    height:
+        1px;
+
+    border-top:
+        1px dashed #d8cec4;
+
+}
+
+
+.ticket-divider i {
+
+    width:
+        24px;
+
+    height:
+        24px;
+
+    flex:
+        0 0 24px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--cream);
+
+    border:
+        1px solid #e1d8cf;
+
+}
+
+
+/* =========================================================
+   BOOKING REFERENCE
+========================================================= */
+
+.booking-reference {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        27px 38px;
+
+    background:
+        #fffdf9;
+
+}
+
+
+.booking-reference small,
+.customer-grid small,
+.detail-box small,
+.extra-information small {
+
+    display:
+        block;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.4px;
+
+    margin-bottom:
+        5px;
+
+}
+
+
+.booking-reference strong {
+
+    display:
+        block;
+
+    color:
+        var(--navy);
+
+    font-size:
+        17px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.4px;
+
+    word-break:
+        break-all;
+
+}
+
+
+.reference-icon {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    min-width:
+        48px;
+
+    border-radius:
+        13px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #fff0df;
+
+    font-size:
+        23px;
+
+}
+
+
+/* =========================================================
+   BOOKING DETAILS GRID
+========================================================= */
+
+.booking-details-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        0;
+
+    padding:
+        27px 38px;
+
+}
+
+
+.detail-box {
+
+    min-height:
+        115px;
+
+    padding:
+        8px 22px;
+
+    border-right:
+        1px solid var(--border);
+
+}
+
+
+.detail-box:first-child {
+
+    padding-left:
+        0;
+
+}
+
+
+.detail-box:last-child {
+
+    border-right:
+        none;
+
+}
+
+
+.detail-icon {
+
+    display:
+        block;
+
+    margin-bottom:
+        9px;
+
+    font-size:
+        20px;
+
+}
+
+
+.detail-box strong {
+
+    display:
+        block;
+
+    color:
+        var(--navy);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.4;
+
+    word-break:
+        break-word;
+
+}
+
+
+/* =========================================================
+   CUSTOMER SECTION
+========================================================= */
+
+.customer-section {
+
+    margin:
+        0 38px;
+
+    padding:
+        25px 0;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.customer-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.customer-heading span {
+
+    color:
+        var(--orange);
+
+    font-size:
+        10px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.7px;
+
+}
+
+
+.customer-heading div {
+
+    flex:
+        1;
+
+    height:
+        1px;
+
+    background:
+        var(--border);
+
+}
+
+
+.customer-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        25px;
+
+}
+
+
+.customer-grid strong {
+
+    display:
+        block;
+
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+
+    word-break:
+        break-word;
+
+}
+
+
+/* =========================================================
+   EXTRA INFORMATION
+========================================================= */
+
+.extra-information {
+
+    margin:
+        0 38px 25px;
+
+    padding:
+        16px 18px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        12px;
+
+    border:
+        1px solid #f0dfca;
+
+    border-radius:
+        12px;
+
+    background:
+        #fff8ee;
+
+}
+
+
+.extra-information > span {
+
+    font-size:
+        18px;
+
+}
+
+
+.extra-information strong {
+
+    display:
+        block;
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
+
+}
+
+
+/* =========================================================
+   BOTTOM DIVIDER
+========================================================= */
+
+.bottom-divider {
+
+    margin-top:
+        5px;
+
+}
+
+
+/* =========================================================
+   TICKET FOOTER
+========================================================= */
+
+.ticket-footer {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        18px 38px;
+
+    background:
+        #fffdf9;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+}
+
+
+/* =========================================================
+   CONFIRMATION MESSAGE
+========================================================= */
+
+.confirmation-message {
+
+    margin-top:
+        22px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        15px;
+
+    padding:
+        20px 23px;
+
+    border:
+        1px solid #dce9ee;
+
+    border-radius:
+        15px;
+
+    background:
+        #f6fbfd;
+
+    box-shadow:
+        var(--shadow-sm);
+
+}
+
+
+.message-icon {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    min-width:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        #e4f2f7;
+
+    color:
+        var(--navy);
+
+    font-weight:
+        900;
+
+}
+
+
+.confirmation-message strong {
+
+    display:
+        block;
+
+    color:
+        var(--navy);
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        3px;
+
+}
+
+
+.confirmation-message p {
+
+    color:
+        var(--text-light);
+
+    font-size:
+        12px;
+
+}
+
+
+/* =========================================================
+   SUCCESS ACTIONS
+========================================================= */
+
+.success-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    margin-top:
+        25px;
+
+}
+
+
+.primary-button,
+.secondary-button {
+
+    min-height:
+        48px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        0 20px;
+
+    border-radius:
+        11px;
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    transition:
+        0.25s ease;
+
+}
+
+
+.primary-button {
+
+    background:
+        var(--orange);
+
+    color:
+        var(--white);
+
+    box-shadow:
+        0 9px 22px
+        rgba(247, 127, 0, 0.20);
+
+}
+
+
+.primary-button:hover {
+
+    background:
+        var(--orange-dark);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.primary-button span {
+
+    font-size:
+        17px;
+
+}
+
+
+.secondary-button {
+
+    background:
+        var(--white);
+
+    color:
+        var(--navy);
+
+    border:
+        1px solid var(--border);
+
+}
+
+
+.secondary-button:hover {
+
+    border-color:
+        var(--orange);
+
+    color:
+        var(--orange);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+
+    background:
+        var(--navy-dark);
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+}
+
+
+.footer-container {
+
+    width:
+        min(1200px, 92%);
+
+    margin:
+        0 auto;
+
+    padding:
+        60px 0 45px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.6fr 1fr 1fr 1.2fr;
+
+    gap:
+        40px;
+
+}
+
+
+.footer-logo {
+
+    display:
+        inline-block;
+
+    color:
+        var(--white);
+
+    font-size:
+        20px;
+
+    font-weight:
+        900;
+
+    text-decoration:
+        none;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.footer-brand p {
+
+    max-width:
+        300px;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.7;
+
+}
+
+
+.footer-links,
+.footer-contact {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+}
+
+
+.footer-links h4,
+.footer-contact h4 {
+
+    color:
+        var(--white);
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        13px;
+
+}
+
+
+.footer-links a,
+.footer-contact a {
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    text-decoration:
+        none;
+
+    font-size:
+        12px;
+
+    margin-bottom:
+        7px;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.footer-links a:hover,
+.footer-contact a:hover {
+
+    color:
+        var(--orange-light);
+
+}
+
+
+.footer-contact p {
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        12px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+
+    width:
+        min(1200px, 92%);
+
+    margin:
+        0 auto;
+
+    padding:
+        20px 0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+}
+
+
+.footer-bottom p {
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    font-size:
+        10px;
+
+}
+
+
+.footer-bottom div {
+
+    display:
+        flex;
+
+    gap:
+        15px;
+
+}
+
+
+.footer-bottom a {
+
+    color:
+        rgba(255, 255, 255, 0.50);
+
+    text-decoration:
+        none;
+
+    font-size:
+        10px;
+
+}
+
+
+.footer-bottom a:hover {
+
+    color:
+        var(--orange-light);
+
+}
+
+
+/* =========================================================
+   FLOATING BUTTONS
+========================================================= */
+
+.floating-whatsapp,
+.floating-call {
+
+    position:
+        fixed;
+
+    right:
+        20px;
+
+    z-index:
+        900;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border-radius:
+        50%;
+
+    color:
+        var(--white);
+
+    text-decoration:
+        none;
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 8px 22px
+        rgba(0, 0, 0, 0.18);
+
+}
+
+
+.floating-whatsapp {
+
+    bottom:
+        80px;
+
+    background:
+        #168a52;
+
+}
+
+
+.floating-call {
+
+    bottom:
+        20px;
+
+    background:
+        var(--orange);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .main-nav {
+
+        gap:
+            0;
+
+    }
+
+
+    .main-nav a {
+
+        padding:
+            8px;
+
+        font-size:
+            12px;
+
+    }
+
+
+    .booking-details-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            20px;
+
+    }
+
+
+    .detail-box {
+
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid var(--border);
+
+        padding:
+            10px 15px 18px;
+
+    }
+
+
+    .detail-box:first-child {
+
+        padding-left:
+            15px;
+
+    }
+
+
+    .detail-box:nth-child(odd) {
+
+        border-right:
+            1px solid var(--border);
+
+    }
+
+
+    .detail-box:nth-last-child(-n+2) {
+
+        border-bottom:
+            none;
+
+    }
+
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .header-container {
+
+        min-height:
+            65px;
+
+        width:
+            calc(100% - 28px);
+
+    }
+
+
+    .brand {
+
+        font-size:
+            15px;
+
+        min-width:
+            65px;
+
+    }
+
+
+    .main-nav {
+
+        display:
+            none;
+
+        position:
+            absolute;
+
+        top:
+            65px;
+
+        left:
+            0;
+
+        right:
+            0;
+
+        padding:
+            15px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        background:
+            var(--navy-dark);
+
+        box-shadow:
+            0 15px 25px
+            rgba(0, 0, 0, 0.15);
+
+    }
+
+
+    .main-nav.open {
+
+        display:
+            flex;
+
+    }
+
+
+    .main-nav a {
+
+        padding:
+            12px 15px;
+
+        font-size:
+            13px;
+
+    }
+
+
+    .menu-toggle {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+    }
+
+
+    .language-button {
+
+        width:
+            36px;
+
+        height:
+            36px;
+
+    }
+
+
+    /* HERO */
+
+    .success-hero {
+
+        min-height:
+            380px;
+
+        padding:
+            70px 0 100px;
+
+    }
+
+
+    .success-content h1 {
+
+        font-size:
+            42px;
+
+    }
+
+
+    .success-content p {
+
+        font-size:
+            13px;
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .success-icon {
+
+        width:
+            66px;
+
+        height:
+            66px;
+
+        font-size:
+            30px;
+
+    }
+
+
+    /* WRAPPER */
+
+    .confirmation-wrapper {
+
+        width:
+            calc(100% - 24px);
+
+        margin-top:
+            -55px;
+
+        margin-bottom:
+            55px;
+
+    }
+
+
+    /* TICKET */
+
+    .ticket-header {
+
+        padding:
+            27px 20px 21px;
+
+    }
+
+
+    .ticket-header h2 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .ticket-label {
+
+        font-size:
+            9px;
+
+    }
+
+
+    .ticket-status {
+
+        font-size:
+            8px;
+
+        padding:
+            6px 9px;
+
+    }
+
+
+    /* REFERENCE */
+
+    .booking-reference {
+
+        padding:
+            21px 20px;
+
+    }
+
+
+    .booking-reference strong {
+
+        font-size:
+            14px;
+
+    }
+
+
+    /* DETAILS */
+
+    .booking-details-grid {
+
+        padding:
+            20px;
+
+        gap:
+            0;
+
+    }
+
+
+    .detail-box {
+
+        min-height:
+            105px;
+
+        padding:
+            9px 12px 16px;
+
+    }
+
+
+    .detail-box:first-child {
+
+        padding-left:
+            0;
+
+    }
+
+
+    .detail-box:nth-child(odd) {
+
+        border-right:
+            1px solid var(--border);
+
+    }
+
+
+    .detail-box:nth-child(even) {
+
+        padding-left:
+            18px;
+
+    }
+
+
+    .detail-box:nth-last-child(-n+2) {
+
+        border-bottom:
+            none;
+
+    }
+
+
+    .detail-icon {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .detail-box strong {
+
+        font-size:
+            12px;
+
+    }
+
+
+    /* CUSTOMER */
+
+    .customer-section {
+
+        margin:
+            0 20px;
+
+        padding:
+            21px 0;
+
+    }
+
+
+    .customer-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            16px;
+
+    }
+
+
+    .customer-grid strong {
+
+        font-size:
+            12px;
+
+    }
+
+
+    /* EXTRA */
+
+    .extra-information {
+
+        margin:
+            0 20px 20px;
+
+    }
+
+
+    /* FOOTER */
+
+    .ticket-footer {
+
+        padding:
+            15px 20px;
+
+        font-size:
+            9px;
+
+    }
+
+
+    /* MESSAGE */
+
+    .confirmation-message {
+
+        padding:
+            17px;
+
+    }
+
+
+    /* ACTIONS */
+
+    .success-actions {
+
+        flex-direction:
+            column;
+
+        width:
+            100%;
+
+    }
+
+
+    .primary-button,
+    .secondary-button {
+
+        width:
+            100%;
+
+    }
+
+
+    /* FOOTER */
+
+    .footer-container {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            30px;
+
+        padding:
+            45px 0 35px;
+
+    }
+
+
+    .footer-brand p {
+
+        max-width:
+            100%;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .success-content h1 {
+
+        font-size:
+            35px;
+
+    }
+
+
+    .success-label {
+
+        font-size:
+            9px;
+
+        letter-spacing:
+            1.7px;
+
+    }
+
+
+    .confirmation-wrapper {
+
+        width:
+            calc(100% - 18px);
+
+    }
+
+
+    .ticket-header {
+
+        align-items:
+            flex-start;
+
+        gap:
+            10px;
+
+    }
+
+
+    .ticket-header h2 {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .ticket-status {
+
+        font-size:
+            7px;
+
+    }
+
+
+    .booking-reference strong {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .reference-icon {
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+        min-width:
+            42px;
+
+        font-size:
+            19px;
+
+    }
+
+
+    .booking-details-grid {
+
+        padding:
+            17px;
+
+    }
+
+
+    .detail-box {
+
+        min-height:
+            100px;
+
+    }
+
+
+    .detail-box strong {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .floating-whatsapp,
+    .floating-call {
+
+        width:
+            43px;
+
+        height:
+            43px;
+
+        right:
+            13px;
+
+    }
+
+
+    .floating-whatsapp {
+
+        bottom:
+            68px;
+
+    }
+
+
+    .floating-call {
+
+        bottom:
+            15px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button,
+a {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+button:focus-visible,
+a:focus-visible {
+
+    outline:
+        3px solid
+        rgba(247, 127, 0, 0.35);
+
+    outline-offset:
+        3px;
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        transition:
+            none !important;
+
+    }
+
+}

@@ -1,0 +1,1530 @@
+/* =========================================================
+   RAMSETHUYATRA
+   CANCELLATION & REFUND POLICY
+   COMPLETE PAGE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #fffaf4;
+    color: #17212b;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   HEADER / NAVBAR
+   ========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    width: 100%;
+
+    background: #003049;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.site-header-inner {
+    width: min(1200px, 92%);
+
+    min-height: 76px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.site-logo {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.5px;
+}
+
+.site-logo span:nth-child(1) {
+    color: #ffffff;
+}
+
+.site-logo span:nth-child(2) {
+    color: #f77f00;
+}
+
+.site-logo span:nth-child(3) {
+    color: #ffffff;
+}
+
+
+/* ---------- NAV ---------- */
+
+.site-nav {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 5px;
+}
+
+.site-nav a {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 13px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    border-radius: 8px;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease;
+}
+
+.site-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    width: 0;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    background: #f77f00;
+
+    border-radius: 10px;
+
+    transition: width 0.25s ease;
+}
+
+.site-nav a:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.site-nav a:hover::after {
+    width: 22px;
+}
+
+
+/* ---------- DASHBOARD LINK ---------- */
+
+.site-nav .nav-dashboard {
+    margin-left: 5px;
+
+    background: #f77f00;
+
+    color: #ffffff;
+
+    border-radius: 50px;
+
+    padding: 10px 17px;
+}
+
+.site-nav .nav-dashboard::after {
+    display: none;
+}
+
+.site-nav .nav-dashboard:hover {
+    background: #e96f00;
+
+    color: #ffffff;
+}
+
+
+/* ---------- MOBILE MENU BUTTON ---------- */
+
+.mobile-menu-btn {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.policy-hero {
+    position: relative;
+
+    min-height: 450px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(0, 48, 73, 0.98),
+            rgba(0, 48, 73, 0.78)
+        ),
+        url("images/Ram.jpg") center/cover no-repeat;
+}
+
+.policy-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -130px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(247, 127, 0, 0.13);
+
+    filter: blur(5px);
+}
+
+.policy-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: 12%;
+    bottom: -160px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.policy-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1200px, 92%);
+
+    margin: 0 auto;
+
+    padding: 75px 0;
+}
+
+.eyebrow {
+    display: inline-block;
+
+    margin-bottom: 16px;
+
+    color: #f77f00;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.policy-hero h1 {
+    max-width: 850px;
+
+    margin-bottom: 22px;
+
+    color: #ffffff;
+
+    font-size: clamp(44px, 6vw, 78px);
+
+    line-height: 1.02;
+
+    letter-spacing: -2.5px;
+}
+
+.policy-hero p {
+    max-width: 650px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 16px;
+}
+
+.policy-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.policy-meta span {
+    display: inline-flex;
+
+    padding: 8px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    border-radius: 50px;
+
+    color: rgba(255, 255, 255, 0.80);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MAIN POLICY LAYOUT
+   ========================================================= */
+
+.refund-layout {
+    width: min(1200px, 92%);
+
+    margin: 75px auto;
+
+    display: grid;
+
+    grid-template-columns: 285px minmax(0, 1fr);
+
+    gap: 55px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.refund-sidebar {
+    position: sticky;
+
+    top: 105px;
+}
+
+.sidebar-card {
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #eadfd4;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 50px rgba(0, 48, 73, 0.07);
+}
+
+.sidebar-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #f77f00;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.7px;
+}
+
+.sidebar-card h3 {
+    margin-bottom: 10px;
+
+    color: #003049;
+
+    font-size: 21px;
+
+    line-height: 1.25;
+}
+
+.sidebar-card > p {
+    margin-bottom: 20px;
+
+    color: #7b8389;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   POLICY MENU
+   ========================================================= */
+
+.policy-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.policy-menu a {
+    position: relative;
+
+    display: block;
+
+    padding: 10px 12px 10px 15px;
+
+    color: #59636b;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.policy-menu a::before {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    top: 50%;
+
+    width: 3px;
+    height: 0;
+
+    transform: translateY(-50%);
+
+    background: #f77f00;
+
+    border-radius: 5px;
+
+    transition: height 0.25s ease;
+}
+
+.policy-menu a:hover {
+    color: #003049;
+
+    background: #fff4e8;
+
+    transform: translateX(3px);
+}
+
+.policy-menu a:hover::before {
+    height: 50%;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.refund-content {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   POLICY SECTION
+   ========================================================= */
+
+.refund-section {
+    display: grid;
+
+    grid-template-columns: 62px minmax(0, 1fr);
+
+    gap: 23px;
+
+    padding: 40px 0;
+
+    border-bottom: 1px solid #e9ded2;
+
+    scroll-margin-top: 100px;
+
+    opacity: 0;
+
+    transform: translateY(22px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.refund-section:first-child {
+    padding-top: 0;
+}
+
+.refund-section.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   SECTION NUMBER
+   ========================================================= */
+
+.section-number {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #003049;
+
+    color: #ffffff;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 20px rgba(0, 48, 73, 0.13);
+}
+
+
+/* =========================================================
+   SECTION CONTENT
+   ========================================================= */
+
+.section-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #f77f00;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.7px;
+}
+
+.section-content h2 {
+    margin-bottom: 15px;
+
+    color: #003049;
+
+    font-size: clamp(27px, 3vw, 35px);
+
+    line-height: 1.15;
+
+    letter-spacing: -0.6px;
+}
+
+.section-content p {
+    margin-bottom: 14px;
+
+    color: #59636c;
+
+    font-size: 14px;
+}
+
+.section-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   POLICY LIST
+   ========================================================= */
+
+.policy-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    margin-top: 20px;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.policy-list li {
+    position: relative;
+
+    padding-left: 28px;
+
+    color: #4f5961;
+
+    font-size: 14px;
+}
+
+.policy-list li::before {
+    content: "✓";
+
+    position: absolute;
+
+    left: 0;
+    top: 2px;
+
+    width: 19px;
+    height: 19px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0df;
+
+    border-radius: 50%;
+
+    color: #f77f00;
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   INFO / NOTICE / WARNING BOXES
+   ========================================================= */
+
+.info-box,
+.notice-box,
+.warning-box {
+    margin: 22px 0;
+
+    padding: 20px 22px;
+
+    background: #f8f2eb;
+
+    border-left: 4px solid #f77f00;
+
+    border-radius: 4px 15px 15px 4px;
+}
+
+.info-box strong,
+.notice-box strong,
+.warning-box strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #003049;
+
+    font-size: 14px;
+}
+
+.info-box p,
+.notice-box p,
+.warning-box p {
+    margin: 0;
+
+    color: #687179;
+
+    font-size: 13px;
+}
+
+.warning-box {
+    background: #fff3e4;
+
+    border-left-color: #d95f02;
+}
+
+
+/* =========================================================
+   HIGHLIGHT BOX
+   ========================================================= */
+
+.highlight-box {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-top: 22px;
+
+    padding: 21px;
+
+    background: #003049;
+
+    border-radius: 18px;
+}
+
+.highlight-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f77f00;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.highlight-box strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+.highlight-box p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CONTACT CARD
+   ========================================================= */
+
+.refund-contact-card {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 21px;
+
+    background: #ffffff;
+
+    border: 1px solid #eadfd4;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 48, 73, 0.06);
+}
+
+.contact-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 11px;
+
+    min-width: 0;
+}
+
+.contact-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fff0df;
+
+    border-radius: 11px;
+
+    color: #f77f00;
+
+    font-size: 15px;
+}
+
+.contact-item small {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #8a9298;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.contact-item a,
+.contact-item span {
+    display: block;
+
+    color: #003049;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.contact-item a:hover {
+    color: #f77f00;
+}
+
+
+/* =========================================================
+   POLICY DISCLAIMER
+   ========================================================= */
+
+.policy-disclaimer {
+    margin-top: 35px;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #eadfd4;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 48, 73, 0.05);
+}
+
+.policy-disclaimer strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #003049;
+
+    font-size: 14px;
+}
+
+.policy-disclaimer p {
+    margin-bottom: 10px;
+
+    color: #737c83;
+
+    font-size: 12px;
+}
+
+.policy-disclaimer p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.refund-cta {
+    padding: 72px 0;
+
+    background: #003049;
+
+    color: #ffffff;
+}
+
+.refund-cta-inner {
+    width: min(1200px, 92%);
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 45px;
+}
+
+.refund-cta h2 {
+    margin-bottom: 10px;
+
+    color: #ffffff;
+
+    font-size: clamp(31px, 4vw, 47px);
+
+    line-height: 1.1;
+
+    letter-spacing: -1px;
+}
+
+.refund-cta p {
+    max-width: 600px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 14px;
+}
+
+.cta-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 11px;
+
+    flex-shrink: 0;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.btn-primary,
+.btn-secondary {
+    min-height: 47px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 22px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn-primary {
+    background: #f77f00;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 10px 25px rgba(247, 127, 0, 0.25);
+}
+
+.btn-primary:hover {
+    background: #e96f00;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(247, 127, 0, 0.35);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    color: #ffffff;
+
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    background: #001f30;
+
+    color: #ffffff;
+}
+
+.footer-inner {
+    width: min(1200px, 92%);
+
+    margin: 0 auto;
+
+    padding: 60px 0 45px;
+
+    display: grid;
+
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+
+    gap: 45px;
+}
+
+
+/* ---------- FOOTER BRAND ---------- */
+
+.footer-brand {
+    max-width: 310px;
+}
+
+.footer-logo {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+}
+
+
+/* ---------- FOOTER COLUMNS ---------- */
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 9px;
+}
+
+.footer-column h4 {
+    margin-bottom: 7px;
+
+    color: #f77f00;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.footer-column a,
+.footer-column span {
+    color: rgba(255, 255, 255, 0.58);
+
+    font-size: 12px;
+
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+
+/* ---------- FOOTER BOTTOM ---------- */
+
+.footer-bottom {
+    width: min(1200px, 92%);
+
+    margin: 0 auto;
+
+    padding: 19px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FLOATING BUTTONS
+   ========================================================= */
+
+.floating-whatsapp,
+.floating-call {
+    position: fixed;
+
+    bottom: 20px;
+
+    z-index: 999;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 16px;
+
+    border-radius: 50px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.floating-whatsapp {
+    right: 20px;
+
+    background: #128c7e;
+}
+
+.floating-call {
+    right: 145px;
+
+    background: #f77f00;
+}
+
+.floating-whatsapp:hover,
+.floating-call:hover {
+    transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .site-header-inner {
+        min-height: 70px;
+    }
+
+    .site-nav {
+        gap: 0;
+    }
+
+    .site-nav a {
+        padding: 9px 9px;
+
+        font-size: 12px;
+    }
+
+    .refund-layout {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .refund-sidebar {
+        position: static;
+    }
+
+    .policy-menu {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 5px;
+    }
+
+    .refund-contact-card {
+        grid-template-columns: 1fr;
+    }
+
+    .refund-cta-inner {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .footer-inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* ---------- HEADER ---------- */
+
+    .site-header-inner {
+        min-height: 66px;
+
+        width: 92%;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .site-nav {
+        position: absolute;
+
+        left: 0;
+        right: 0;
+        top: 66px;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 12px;
+
+        background: #003049;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.20);
+    }
+
+    .site-nav.active {
+        display: flex;
+    }
+
+    .site-nav a {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        padding: 12px 14px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+    }
+
+    .site-nav a::after {
+        display: none;
+    }
+
+    .site-nav .nav-dashboard {
+        margin: 4px 0 0;
+
+        justify-content: center;
+    }
+
+
+    /* ---------- HERO ---------- */
+
+    .policy-hero {
+        min-height: 400px;
+    }
+
+    .policy-hero-content {
+        width: 90%;
+
+        padding: 55px 0;
+    }
+
+    .policy-hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -1.5px;
+    }
+
+    .policy-hero p {
+        font-size: 14px;
+    }
+
+
+    /* ---------- MAIN ---------- */
+
+    .refund-layout {
+        width: 90%;
+
+        margin: 48px auto;
+    }
+
+
+    /* ---------- SIDEBAR ---------- */
+
+    .sidebar-card {
+        padding: 21px;
+
+        border-radius: 18px;
+    }
+
+    .policy-menu {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .policy-menu a {
+        font-size: 11px;
+
+        padding: 9px 10px;
+    }
+
+
+    /* ---------- SECTION ---------- */
+
+    .refund-section {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+
+        padding: 32px 0;
+    }
+
+    .refund-section:first-child {
+        padding-top: 0;
+    }
+
+    .section-number {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 12px;
+
+        font-size: 10px;
+    }
+
+    .section-content h2 {
+        font-size: 27px;
+    }
+
+    .section-content p {
+        font-size: 13px;
+    }
+
+    .policy-list li {
+        font-size: 13px;
+    }
+
+
+    /* ---------- BOXES ---------- */
+
+    .info-box,
+    .notice-box,
+    .warning-box {
+        padding: 17px;
+
+        border-radius: 3px 13px 13px 3px;
+    }
+
+    .highlight-box {
+        padding: 17px;
+
+        border-radius: 15px;
+    }
+
+
+    /* ---------- CONTACT ---------- */
+
+    .refund-contact-card {
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+    .contact-item a,
+    .contact-item span {
+        font-size: 12px;
+    }
+
+
+    /* ---------- DISCLAIMER ---------- */
+
+    .policy-disclaimer {
+        padding: 19px;
+
+        border-radius: 16px;
+    }
+
+
+    /* ---------- CTA ---------- */
+
+    .refund-cta {
+        padding: 55px 0;
+    }
+
+    .refund-cta-inner {
+        width: 90%;
+
+        gap: 25px;
+    }
+
+    .refund-cta h2 {
+        font-size: 32px;
+    }
+
+    .cta-actions {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+
+    /* ---------- FOOTER ---------- */
+
+    .footer-inner {
+        width: 90%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding: 45px 0 35px;
+    }
+
+    .footer-bottom {
+        width: 90%;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        padding: 17px 0;
+    }
+
+
+    /* ---------- FLOATING BUTTONS ---------- */
+
+    .floating-whatsapp,
+    .floating-call {
+        bottom: 14px;
+
+        height: 40px;
+
+        padding: 0 12px;
+
+        font-size: 9px;
+    }
+
+    .floating-whatsapp {
+        right: 14px;
+    }
+
+    .floating-call {
+        right: 112px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .site-logo {
+        font-size: 16px;
+    }
+
+    .policy-hero h1 {
+        font-size: 36px;
+    }
+
+    .policy-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .section-content h2 {
+        font-size: 24px;
+    }
+
+    .floating-call {
+        right: 100px;
+    }
+}

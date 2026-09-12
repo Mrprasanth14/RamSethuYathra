@@ -1,777 +1,1895 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Medium Package | RamSethuYatra</title>
-<meta name="description"
-      content="Explore the RamSethuYatra Medium Package in Rameswaram with improved accommodation, cab transportation, temple visits, sightseeing and dinner.">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="normal.css">
+    <meta name="description"
+          content="Rameswaram Medium Tour Package by RamSethuYatra with better accommodation, cab transportation, temple visit, sightseeing and dinner.">
 
+    <meta name="keywords"
+          content="Rameswaram tour package, Rameswaram medium package, Ram Sethu Yatra, Rameswaram trip">
+
+    <meta name="theme-color"
+          content="#003049">
+
+    <title>Medium Package | RamSethuYatra</title>
+
+    <link rel="stylesheet"
+          href="normal.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* Medium package accent */
+
+        .medium-accent {
+            color: #fcbf49;
+        }
+
+        .medium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            margin-bottom: 18px;
+            border-radius: 50px;
+            background: rgba(252, 191, 73, 0.12);
+            border: 1px solid rgba(252, 191, 73, 0.25);
+            color: #fcbf49;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+        }
+
+        .medium-badge i {
+            font-size: 9px;
+        }
+
+        .package-tag {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #f77f00;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+    </style>
 </head>
 
+
 <body>
+
+
 <!-- =====================================================
      HEADER
-====================================================== -->
+===================================================== -->
 
-<header class="package-header">
+<header class="site-header">
 
-    <a href="totalpackage.html" class="back-btn">
-        ← Back to Packages
-    </a>
+    <div class="header-inner">
 
 
-    <a href="index.html" class="logo">
-        🛕 <span>RamSethuYatra</span>
-    </a>
+        <!-- LOGO -->
+
+        <a href="index.html"
+           class="logo">
+
+            <span class="logo-mark">
+                <i class="fa-solid fa-om"></i>
+            </span>
+
+            <span class="logo-name">
+                <b>RamSethu</b>
+                <em>Yatra</em>
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav"
+             id="mainNav">
+
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="about.html">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </a>
+
+            <a href="totalpackage.html"
+               class="active">
+                <i class="fa-solid fa-suitcase"></i>
+                Packages
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                <i class="fa-solid fa-place-of-worship"></i>
+                Temple
+            </a>
+
+            <a href="contact.html">
+                <i class="fa-solid fa-phone"></i>
+                Contact
+            </a>
+
+            <a href="login.html"
+               id="loginNav">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </a>
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               style="display:none;">
+                <i class="fa-solid fa-calendar-check"></i>
+                My Booking
+            </a>
+
+            <button class="nav-logout"
+                    id="logoutNav"
+                    style="display:none;"
+                    type="button">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </nav>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="translate-box">
+
+                <button class="language-btn"
+                        id="languageBtn"
+                        type="button"
+                        aria-label="Choose language">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                </button>
+
+
+                <div class="language-menu"
+                     id="languageMenu">
+
+                    <div class="language-title">
+                        Choose Language
+                    </div>
+
+                    <button type="button"
+                            onclick="changeLanguage('en')">
+                        English
+                    </button>
+
+                    <button type="button"
+                            onclick="changeLanguage('ta')">
+                        தமிழ்
+                    </button>
+
+                    <button type="button"
+                            onclick="changeLanguage('hi')">
+                        हिन्दी
+                    </button>
+
+                    <button type="button"
+                            onclick="changeLanguage('ml')">
+                        മലയാളം
+                    </button>
+
+                    <button type="button"
+                            onclick="changeLanguage('te')">
+                        తెలుగు
+                    </button>
+
+                    <button type="button"
+                            onclick="changeLanguage('kn')">
+                        ಕನ್ನಡ
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    type="button"
+                    aria-label="Open menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+        </div>
+
+    </div>
 
 </header>
 
 
+<!-- =====================================================
+     GOOGLE TRANSLATE
+===================================================== -->
+
+<div id="google_translate_element"
+     class="google-translate-hidden">
+</div>
+
 
 <!-- =====================================================
      HERO
-====================================================== -->
+===================================================== -->
 
-<section class="package-hero">
-
-    <div class="hero-overlay"></div>
+<section class="package-detail-hero">
 
 
-    <div class="hero-content">
+    <div class="detail-hero-image"
+         style="background-image:url('images/Rameswaram agnitheertham.jpg');">
+    </div>
 
-        <span class="hero-label">
-            ✦ MEDIUM PACKAGE
+
+    <div class="detail-hero-overlay"></div>
+
+
+    <div class="detail-hero-content">
+
+
+        <a href="totalpackage.html"
+           class="back-link">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to all packages
+
+        </a>
+
+
+        <div class="medium-badge">
+
+            <i class="fa-solid fa-star"></i>
+
+            COMFORT EXPERIENCE
+
+        </div>
+
+
+        <span class="hero-kicker">
+            RAMSETHUYATRA • RAMESWARAM
         </span>
 
 
         <h1>
-            Explore Rameswaram
-            <span>With More Comfort</span>
+
+            Rameswaram
+
+            <strong>
+                Medium Package
+            </strong>
+
         </h1>
 
 
         <p>
-            A comfortable package with better accommodation,
-            more sightseeing and dinner included for a
-            memorable Rameswaram journey.
+
+            A comfortable Rameswaram experience designed for
+            travellers who want better accommodation, convenient
+            transportation, temple visits, sightseeing and dinner
+            included in one simple package.
+
         </p>
 
 
-        <a href="#package-details" class="hero-btn">
-            Explore Package ↓
-        </a>
+        <div class="hero-info">
+
+
+            <div>
+
+                <i class="fa-solid fa-users"></i>
+
+                2–10 Persons
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-car"></i>
+
+                Cab Included
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-bed"></i>
+
+                Better Room
+
+            </div>
+
+
+            <div>
+
+                <i class="fa-solid fa-utensils"></i>
+
+                Dinner Included
+
+            </div>
+
+
+        </div>
 
     </div>
 
 </section>
 
 
-
 <!-- =====================================================
-     PACKAGE DETAILS
-====================================================== -->
+     PACKAGE CONTENT
+===================================================== -->
 
-<main id="package-details" class="package-container">
-
-
-    <!-- IMAGE -->
-
-    <div class="package-image-box">
-
-        <div class="image-badge">
-            MEDIUM PACKAGE
-        </div>
+<main class="package-detail-main">
 
 
-        <img
-            src="images/medium-package.jpg"
-            alt="Rameswaram Medium Tour Package"
-        >
+    <div class="package-detail-grid">
 
 
-        <div class="image-bottom">
+        <!-- =================================================
+             LEFT CONTENT
+        ================================================== -->
 
-            <span>
-                🛕 Spiritual Journey
+        <div class="package-detail-content">
+
+
+            <span class="section-kicker">
+                THE COMFORT CHOICE
             </span>
 
-            <span>
-                👨‍👩‍👧‍👦 Family Friendly
-            </span>
 
-        </div>
+            <h2>
 
-    </div>
+                More comfort.
 
+                <strong>
+                    More to experience.
+                </strong>
 
-
-    <!-- INFORMATION -->
-
-    <div class="package-info">
+            </h2>
 
 
-        <span class="package-label">
-            COMFORT EXPERIENCE
-        </span>
+            <p class="lead">
+
+                The Medium Package is ideal for travellers looking
+                for a more comfortable stay while exploring the
+                spiritual and scenic highlights of Rameswaram.
+
+                Enjoy convenient cab transportation, better room
+                accommodation, temple visits, sightseeing and
+                dinner as part of the experience.
+
+            </p>
 
 
-        <h2>
-            Rameswaram Medium
-            Tour Package
-        </h2>
+            <!-- =================================================
+                 HIGHLIGHTS
+            ================================================== -->
+
+            <div class="detail-highlights">
 
 
-        <p class="description">
-            A comfortable Rameswaram experience with better
-            accommodation, cab transportation, additional
-            sightseeing places and dinner included.
-        </p>
+                <article class="highlight-card reveal">
+
+                    <div class="highlight-icon">
+
+                        <i class="fa-solid fa-place-of-worship"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Ramanathaswamy Temple
+                        </h3>
+
+                        <p>
+                            Visit one of India's most important
+                            pilgrimage destinations.
+                        </p>
+
+                    </div>
+
+                </article>
 
 
+                <article class="highlight-card reveal">
 
-        <!-- QUICK INFO -->
+                    <div class="highlight-icon">
 
-        <div class="quick-info">
+                        <i class="fa-solid fa-water"></i>
 
-            <div>
+                    </div>
 
-                <span>👥</span>
+                    <div>
 
-                <div>
-                    <strong>2–10</strong>
-                    <small>Persons</small>
-                </div>
+                        <h3>
+                            Agni Theertham
+                        </h3>
+
+                        <p>
+                            Experience the sacred seashore near
+                            the Ramanathaswamy Temple.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="highlight-card reveal">
+
+                    <div class="highlight-icon">
+
+                        <i class="fa-solid fa-road"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pamban Bridge
+                        </h3>
+
+                        <p>
+                            See the iconic bridge connecting
+                            Rameswaram with mainland India.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="highlight-card reveal">
+
+                    <div class="highlight-icon">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Extended Sightseeing
+                        </h3>
+
+                        <p>
+                            Explore selected attractions around
+                            Rameswaram comfortably.
+                        </p>
+
+                    </div>
+
+                </article>
 
             </div>
 
 
-            <div>
+            <!-- =================================================
+                 INCLUDED
+            ================================================== -->
 
-                <span>🚕</span>
-
-                <div>
-                    <strong>Cab</strong>
-                    <small>Included</small>
-                </div>
-
-            </div>
+            <section class="included-section">
 
 
-            <div>
-
-                <span>🛏️</span>
-
-                <div>
-                    <strong>Room</strong>
-                    <small>Included</small>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- INCLUDED -->
-
-        <div class="included-section">
-
-            <div class="section-title">
-
-                <span>
-                    ✦
+                <span class="section-kicker">
+                    WHAT'S INCLUDED
                 </span>
 
-                <h3>
-                    Package Includes
-                </h3>
 
-            </div>
-
-
-            <div class="included-list">
+                <h2>
+                    Everything you need for a smoother journey
+                </h2>
 
 
-                <div class="included-item">
+                <div class="included-list">
 
-                    <div class="included-icon">
-                        🛏️
-                    </div>
 
                     <div>
 
-                        <strong>
-                            Medium Room
-                        </strong>
+                        <i class="fa-solid fa-check"></i>
 
-                        <p>
-                            Comfortable accommodation
-                        </p>
+                        Better Room Accommodation
 
                     </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Cab Transportation
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Ramanathaswamy Temple
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Agni Theertham
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Pamban Bridge
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Selected Sightseeing Places
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Dinner Included
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Basic Trip Assistance
+
+                    </div>
+
 
                 </div>
 
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🚕
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Cab Transportation
-                        </strong>
-
-                        <p>
-                            Comfortable local transportation
-                        </p>
-
-                    </div>
-
-                </div>
+            </section>
 
 
-                <div class="included-item">
+            <!-- =================================================
+                 NOTE
+            ================================================== -->
 
-                    <div class="included-icon">
-                        🛕
-                    </div>
+            <div class="package-warning">
 
-                    <div>
+                <i class="fa-solid fa-circle-info"></i>
 
-                        <strong>
-                            Ramanathaswamy Temple
-                        </strong>
+                <div>
 
-                        <p>
-                            Visit the famous spiritual landmark
-                        </p>
+                    <strong>
+                        A small planning note
+                    </strong>
 
-                    </div>
+                    <p>
 
-                </div>
+                        Temple timings, sightseeing access,
+                        room availability and travel conditions
+                        may vary depending on the date, festivals,
+                        local conditions and availability.
 
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🌊
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Agni Theertham
-                        </strong>
-
-                        <p>
-                            Experience the sacred seashore
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🌉
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Pamban Bridge
-                        </strong>
-
-                        <p>
-                            Enjoy the famous bridge views
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🏛️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Abdul Kalam Memorial
-                        </strong>
-
-                        <p>
-                            Visit the memorial in Rameswaram
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        📍
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            More Sightseeing Places
-                        </strong>
-
-                        <p>
-                            Explore additional local attractions
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🍽️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Dinner Included
-                        </strong>
-
-                        <p>
-                            Dinner included in the package
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
             </div>
+
 
         </div>
 
 
+        <!-- =================================================
+             BOOKING CARD
+        ================================================== -->
 
-        <!-- PERSON SELECTION -->
+        <aside class="booking-card reveal">
 
-        <div class="booking-box">
 
-            <div class="booking-title">
+            <div class="booking-card-top">
+
+                <span>
+                    PLAN YOUR RAMESWARAM TRIP
+                </span>
+
+
+                <div class="booking-price">
+
+                    <small>
+                        Starting package price
+                    </small>
+
+                    <strong id="priceDisplay">
+                        ₹9,500
+                    </strong>
+
+                    <em id="pricePersonDisplay">
+                        For 5 Persons
+                    </em>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-divider"></div>
+
+
+            <div class="booking-field">
+
+                <label for="personCount">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Number of persons
+
+                </label>
+
+
+                <select id="personCount">
+
+
+                    <option value="2">
+                        2 Persons
+                    </option>
+
+
+                    <option value="3">
+                        3 Persons
+                    </option>
+
+
+                    <option value="4">
+                        4 Persons
+                    </option>
+
+
+                    <option value="5"
+                            selected>
+                        5 Persons
+                    </option>
+
+
+                    <option value="6">
+                        6 Persons
+                    </option>
+
+
+                    <option value="7">
+                        7 Persons
+                    </option>
+
+
+                    <option value="8">
+                        8 Persons
+                    </option>
+
+
+                    <option value="9">
+                        9 Persons
+                    </option>
+
+
+                    <option value="10">
+                        10 Persons
+                    </option>
+
+
+                </select>
+
+            </div>
+
+
+            <div class="price-summary">
+
 
                 <div>
 
                     <span>
-                        STEP 1
+                        Selected travellers
                     </span>
 
-                    <h3>
-                        Select Number of Persons
-                    </h3>
+                    <strong id="summaryPersons">
+                        5
+                    </strong>
 
                 </div>
 
 
-                <div class="people-icon">
-                    👥
+                <div>
+
+                    <span>
+                        Package
+                    </span>
+
+                    <strong>
+                        Medium
+                    </strong>
+
                 </div>
+
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="summaryPrice">
+                        ₹9,500
+                    </strong>
+
+                </div>
+
 
             </div>
 
 
-            <label for="persons">
-                Number of Persons
-            </label>
-
-
-            <select id="persons">
-
-                <option value="2">
-                    2 Persons
-                </option>
-
-                <option value="3">
-                    3 Persons
-                </option>
-
-                <option value="4">
-                    4 Persons
-                </option>
-
-                <option value="5" selected>
-                    5 Persons
-                </option>
-
-                <option value="6">
-                    6 Persons
-                </option>
-
-                <option value="7">
-                    7 Persons
-                </option>
-
-                <option value="8">
-                    8 Persons
-                </option>
-
-                <option value="9">
-                    9 Persons
-                </option>
-
-                <option value="10">
-                    10 Persons
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- PRICE -->
-
-        <div class="total-box">
-
-            <div class="price-title">
+            <button class="continue-btn"
+                    id="continueBooking"
+                    type="button">
 
                 <span>
-                    TOTAL PACKAGE
+                    Continue to booking
                 </span>
 
-                <small>
-                    Based on selected persons
-                </small>
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <div class="booking-login-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    You may need to sign in before completing
+                    your booking.
+                </span>
 
             </div>
 
 
-            <div class="price-value">
+            <a href="contact.html"
+               class="help-link">
 
-                <h4 id="totalPrice">
-                    ₹9,500
-                </h4>
+                Need help?
 
-                <p id="priceFor">
-                    For 5 Persons
-                </p>
+                <strong>
+                    Contact us
+                </strong>
 
-            </div>
-
-        </div>
+            </a>
 
 
-
-        <!-- CONTINUE -->
-
-        <button
-            class="continue-btn"
-            onclick="continueBooking()"
-        >
-
-            <span>
-                Continue Booking
-            </span>
-
-            <strong>
-                →
-            </strong>
-
-        </button>
-
-
-        <p class="secure-note">
-            🔒 You can review your booking details before confirming.
-        </p>
+        </aside>
 
     </div>
 
 </main>
 
 
-
 <!-- =====================================================
-     WHY CHOOSE THIS PACKAGE
-====================================================== -->
+     EXPERIENCE STRIP
+===================================================== -->
 
-<section class="why-section">
-
-
-    <div class="why-heading">
-
-        <span>
-            ✦ WHY THIS PACKAGE
-        </span>
+<section class="experience-strip">
 
 
-        <h2>
-            More Comfort.
-            <strong>More Memories.</strong>
-        </h2>
+    <div class="experience-inner">
 
 
-        <p>
-            A balanced Rameswaram experience with
-            comfortable accommodation, sightseeing
-            and added convenience.
-        </p>
+        <div class="reveal">
 
-    </div>
+            <i class="fa-solid fa-car"></i>
 
+            <div>
 
-    <div class="why-grid">
+                <strong>
+                    Comfortable Travel
+                </strong>
 
+                <span>
+                    Cab transportation
+                </span>
 
-        <div class="why-card">
-
-            <div class="why-icon">
-                💰
             </div>
-
-            <h3>
-                Great Value
-            </h3>
-
-            <p>
-                A comfortable package offering
-                additional services and sightseeing.
-            </p>
 
         </div>
 
 
-        <div class="why-card">
+        <div class="reveal">
 
-            <div class="why-icon">
-                🚕
+            <i class="fa-solid fa-bed"></i>
+
+            <div>
+
+                <strong>
+                    Better Stay
+                </strong>
+
+                <span>
+                    Comfortable room
+                </span>
+
             </div>
-
-            <h3>
-                Easy Travel
-            </h3>
-
-            <p>
-                Cab transportation helps make
-                your local sightseeing comfortable.
-            </p>
 
         </div>
 
 
-        <div class="why-card">
+        <div class="reveal">
 
-            <div class="why-icon">
-                🛕
+            <i class="fa-solid fa-utensils"></i>
+
+            <div>
+
+                <strong>
+                    Dinner
+                </strong>
+
+                <span>
+                    Included in package
+                </span>
+
             </div>
-
-            <h3>
-                More Sightseeing
-            </h3>
-
-            <p>
-                Explore important spiritual and
-                local attractions around Rameswaram.
-            </p>
 
         </div>
 
 
-        <div class="why-card">
+        <div class="reveal">
 
-            <div class="why-icon">
-                ❤️
+            <i class="fa-solid fa-location-dot"></i>
+
+            <div>
+
+                <strong>
+                    Sightseeing
+                </strong>
+
+                <span>
+                    Selected attractions
+                </span>
+
             </div>
 
-            <h3>
-                Family Friendly
-            </h3>
-
-            <p>
-                Suitable for families, friends
-                and small travel groups.
-            </p>
-
         </div>
+
 
     </div>
 
 </section>
 
 
-
 <!-- =====================================================
-     CTA
-====================================================== -->
+     OTHER PACKAGES
+===================================================== -->
 
-<section class="package-cta">
+<section class="other-packages">
 
-    <div>
 
-        <span>
-            ✦ READY FOR YOUR JOURNEY?
+    <div class="other-heading">
+
+        <span class="section-kicker">
+            CHOOSE YOUR EXPERIENCE
         </span>
 
 
         <h2>
-            Experience the
-            <strong>Beauty of Rameswaram</strong>
+
+            Find the package that
+
+            <strong>
+                fits your journey.
+            </strong>
+
         </h2>
 
 
         <p>
-            Select your number of persons and continue
-            to complete your booking.
+
+            Choose a package based on the level of comfort,
+            accommodation and experience you want during
+            your Rameswaram visit.
+
+        </p>
+
+    </div>
+
+
+    <div class="other-grid">
+
+
+        <!-- NORMAL -->
+
+        <a href="normal-package.html"
+           class="other-card reveal">
+
+
+            <div class="other-image">
+
+                <img src="images/Ram.jpg"
+                     alt="Rameswaram Normal Package"
+                     loading="lazy">
+
+            </div>
+
+
+            <div class="other-content">
+
+                <span>
+                    STARTER EXPERIENCE
+                </span>
+
+                <h3>
+                    Normal Package
+                </h3>
+
+                <p>
+
+                    A simple and practical Rameswaram
+                    experience for pilgrims and travellers.
+
+                </p>
+
+                <strong>
+
+                    Explore package
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </strong>
+
+            </div>
+
+        </a>
+
+
+        <!-- PREMIUM -->
+
+        <a href="premium-package.html"
+           class="other-card reveal">
+
+
+            <div class="other-image">
+
+                <img src="images/beautiful-beach.jpg"
+                     alt="Rameswaram Premium Package"
+                     loading="lazy">
+
+            </div>
+
+
+            <div class="other-content">
+
+                <span>
+                    PREMIUM EXPERIENCE
+                </span>
+
+                <h3>
+                    Premium Package
+                </h3>
+
+                <p>
+
+                    A more elevated experience with enhanced
+                    comfort and additional travel benefits.
+
+                </p>
+
+                <strong>
+
+                    Explore package
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </strong>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="detail-cta">
+
+
+    <div class="detail-cta-image"></div>
+
+    <div class="detail-cta-overlay"></div>
+
+
+    <div class="detail-cta-content">
+
+
+        <span class="section-kicker">
+            YOUR RAMESWARAM JOURNEY
+        </span>
+
+
+        <h2>
+
+            Travel with comfort.
+
+            <strong>
+                Return with memories.
+            </strong>
+
+        </h2>
+
+
+        <p>
+
+            Make your Rameswaram visit easier with a package
+            designed around comfortable travel, temple visits,
+            sightseeing and accommodation.
+
         </p>
 
 
-        <a href="#package-details">
-            Continue Booking →
+        <a href="#booking"
+           class="cta-book-button"
+           id="ctaBookButton">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            Plan this package
+
         </a>
 
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
      FOOTER
-====================================================== -->
+===================================================== -->
 
-<footer class="package-footer">
-
-    <div class="footer-logo">
-        🛕 RamSethuYatra
-    </div>
+<footer class="footer">
 
 
-    <p>
-        Your trusted travel partner in Rameswaram.
-    </p>
+    <div class="footer-inner">
 
 
-    <div class="footer-links">
+        <!-- BRAND -->
 
-        <a href="index.html">
-            Home
-        </a>
+        <div class="footer-brand">
 
-        <a href="totalpackage.html">
-            Packages
-        </a>
 
-        <a href="about.html">
-            About
-        </a>
+            <a href="index.html"
+               class="logo">
+
+                <span class="logo-mark">
+
+                    <i class="fa-solid fa-om"></i>
+
+                </span>
+
+
+                <span class="logo-name">
+
+                    <b>RamSethu</b>
+
+                    <em>Yatra</em>
+
+                </span>
+
+            </a>
+
+
+            <p>
+
+                Discover Rameswaram through a comfortable,
+                simple and meaningful travel experience.
+
+            </p>
+
+
+            <div class="footer-social">
+
+
+                <a href="#"
+                   aria-label="Instagram">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+
+
+                <a href="#"
+                   aria-label="Facebook">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                </a>
+
+
+                <a href="#"
+                   aria-label="YouTube">
+
+                    <i class="fa-brands fa-youtube"></i>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div class="footer-column">
+
+            <h3>
+                Services
+            </h3>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple
+            </a>
+
+            <a href="rameswaram-cab-service.html">
+                Cab Service
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="booking.html">
+                Booking
+            </a>
+
+        </div>
+
+
+        <!-- LEGAL -->
+
+        <div class="footer-column">
+
+            <h3>
+                Information
+            </h3>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h3>
+                Contact
+            </h3>
+
+
+            <span>
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                Rameswaram, Tamil Nadu, India
+
+            </span>
+
+
+            <a href="tel:+918838170745">
+
+                <i class="fa-solid fa-phone"></i>
+
+                +91 8838170745
+
+            </a>
+
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                ramsethuyatra@gmail.com
+
+            </a>
+
+        </div>
+
 
     </div>
 
 
     <div class="footer-bottom">
 
-        © 2026 RamSethuYatra.
-        All Rights Reserved.
+
+        <p>
+
+            © 2026 RamSethuYatra.
+            All Rights Reserved.
+
+        </p>
+
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            &nbsp; • &nbsp;
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+        </div>
 
     </div>
 
 </footer>
 
 
+<!-- =====================================================
+     FLOATING BUTTONS
+===================================================== -->
+
+<a href="https://wa.me/918838170745"
+   class="floating-whatsapp"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat on WhatsApp">
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+    <span>
+        WhatsApp
+    </span>
+
+</a>
+
+
+<a href="tel:+918838170745"
+   class="floating-call"
+   aria-label="Call RamSethuYatra">
+
+    <i class="fa-solid fa-phone"></i>
+
+    <span>
+        Call
+    </span>
+
+</a>
+
+
+<button class="top-btn"
+        id="topBtn"
+        type="button"
+        aria-label="Back to top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
 
 <!-- =====================================================
-     PRICE JAVASCRIPT
-====================================================== -->
+     FIREBASE + PAGE SCRIPT
+===================================================== -->
 
-<script>
+<script type="module">
+
+    import { auth } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+
+    /* =====================================================
+       PRICE DATA
+    ===================================================== */
 
     const prices = {
 
         2: 5500,
-        3: 6500,
-        4: 8000,
+        3: 6800,
+        4: 8200,
         5: 9500,
         6: 10800,
-        7: 12000,
-        8: 13500,
-        9: 14800,
+        7: 12100,
+        8: 13400,
+        9: 14700,
         10: 16000
 
     };
 
 
-    const persons =
-        document.getElementById("persons");
+    const personSelect =
+        document.getElementById("personCount");
+
+    const priceDisplay =
+        document.getElementById("priceDisplay");
+
+    const pricePersonDisplay =
+        document.getElementById("pricePersonDisplay");
+
+    const summaryPersons =
+        document.getElementById("summaryPersons");
+
+    const summaryPrice =
+        document.getElementById("summaryPrice");
+
+    const continueBooking =
+        document.getElementById("continueBooking");
+
+    const ctaBookButton =
+        document.getElementById("ctaBookButton");
 
 
-    const totalPrice =
-        document.getElementById("totalPrice");
+    /* =====================================================
+       UPDATE PRICE
+    ===================================================== */
+
+    function updatePrice() {
+
+        const persons =
+            Number(personSelect.value);
+
+        const price =
+            prices[persons];
 
 
-    const priceFor =
-        document.getElementById("priceFor");
+        if (!price) {
+            return;
+        }
 
 
-    persons.addEventListener(
+        const formattedPrice =
+            "₹" +
+            price.toLocaleString("en-IN");
+
+
+        priceDisplay.textContent =
+            formattedPrice;
+
+
+        pricePersonDisplay.textContent =
+            `For ${persons} Persons`;
+
+
+        summaryPersons.textContent =
+            persons;
+
+
+        summaryPrice.textContent =
+            formattedPrice;
+
+    }
+
+
+    personSelect.addEventListener(
         "change",
-        function () {
-
-            const count =
-                Number(this.value);
-
-            const price =
-                prices[count];
+        updatePrice
+    );
 
 
-            totalPrice.textContent =
-                "₹" +
-                price.toLocaleString("en-IN");
+    updatePrice();
 
 
-            priceFor.textContent =
-                "For " +
-                count +
-                " Persons";
+    /* =====================================================
+       BOOKING REDIRECT
+    ===================================================== */
+
+    function openBooking() {
+
+        const persons =
+            Number(personSelect.value);
+
+        const price =
+            prices[persons];
+
+
+        if (!price) {
+            return;
+        }
+
+
+        const bookingUrl =
+            `booking.html?package=medium&persons=${persons}&price=${price}`;
+
+
+        window.location.href =
+            bookingUrl;
+
+    }
+
+
+    continueBooking.addEventListener(
+        "click",
+        openBooking
+    );
+
+
+    ctaBookButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            openBooking();
 
         }
     );
 
 
-    function continueBooking() {
+    /* =====================================================
+       FIREBASE AUTH
+    ===================================================== */
 
-        const count =
-            Number(persons.value);
+    const loginNav =
+        document.getElementById("loginNav");
+
+    const myBookingNav =
+        document.getElementById("myBookingNav");
+
+    const logoutNav =
+        document.getElementById("logoutNav");
 
 
-        const price =
-            prices[count];
+    onAuthStateChanged(
+        auth,
+        function(user) {
+
+            if (user) {
+
+                if (loginNav) {
+                    loginNav.style.display =
+                        "none";
+                }
+
+                if (myBookingNav) {
+                    myBookingNav.style.display =
+                        "flex";
+                }
+
+                if (logoutNav) {
+                    logoutNav.style.display =
+                        "flex";
+                }
+
+            } else {
+
+                if (loginNav) {
+                    loginNav.style.display =
+                        "flex";
+                }
+
+                if (myBookingNav) {
+                    myBookingNav.style.display =
+                        "none";
+                }
+
+                if (logoutNav) {
+                    logoutNav.style.display =
+                        "none";
+                }
+
+            }
+
+        }
+    );
 
 
-        window.location.href =
-            "booking.html?package=medium&persons="
-            + count
-            + "&price="
-            + price;
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    if (logoutNav) {
+
+        logoutNav.addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.reload();
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+
+    if (mobileMenuBtn && mainNav) {
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function() {
+
+                mainNav.classList.toggle(
+                    "mobile-open"
+                );
+
+
+                const icon =
+                    mobileMenuBtn.querySelector("i");
+
+
+                if (
+                    mainNav.classList.contains(
+                        "mobile-open"
+                    )
+                ) {
+
+                    icon.classList.remove(
+                        "fa-bars"
+                    );
+
+                    icon.classList.add(
+                        "fa-xmark"
+                    );
+
+                } else {
+
+                    icon.classList.remove(
+                        "fa-xmark"
+                    );
+
+                    icon.classList.add(
+                        "fa-bars"
+                    );
+
+                }
+
+            }
+        );
+
+
+        mainNav
+            .querySelectorAll("a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        mainNav.classList.remove(
+                            "mobile-open"
+                        );
+
+                        const icon =
+                            mobileMenuBtn.querySelector("i");
+
+                        icon.classList.remove(
+                            "fa-xmark"
+                        );
+
+                        icon.classList.add(
+                            "fa-bars"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =====================================================
+       LANGUAGE MENU
+    ===================================================== */
+
+    const languageBtn =
+        document.getElementById("languageBtn");
+
+    const languageMenu =
+        document.getElementById("languageMenu");
+
+
+    if (languageBtn && languageMenu) {
+
+        languageBtn.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                languageMenu.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            function() {
+
+                languageMenu.classList.remove(
+                    "open"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       GOOGLE TRANSLATE
+    ===================================================== */
+
+    window.googleTranslateElementInit =
+        function() {
+
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: "en",
+                    autoDisplay: false
+                },
+                "google_translate_element"
+            );
+
+        };
+
+
+    window.changeLanguage =
+        function(language) {
+
+            const select =
+                document.querySelector(
+                    ".goog-te-combo"
+                );
+
+
+            if (!select) {
+                return;
+            }
+
+
+            select.value =
+                language;
+
+
+            select.dispatchEvent(
+                new Event("change")
+            );
+
+        };
+
+
+    /* =====================================================
+       REVEAL ANIMATION
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    const revealObserver =
+        new IntersectionObserver(
+            function(entries) {
+
+                entries.forEach(
+                    function(entry) {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    revealElements.forEach(
+        function(element) {
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       BACK TO TOP
+    ===================================================== */
+
+    const topBtn =
+        document.getElementById("topBtn");
+
+
+    window.addEventListener(
+        "scroll",
+        function() {
+
+            if (
+                window.scrollY > 500
+            ) {
+
+                topBtn.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                topBtn.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    if (topBtn) {
+
+        topBtn.addEventListener(
+            "click",
+            function() {
+
+                window.scrollTo(
+                    {
+                        top: 0,
+                        behavior: "smooth"
+                    }
+                );
+
+            }
+        );
 
     }
 
 </script>
+
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 </body>
 

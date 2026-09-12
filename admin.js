@@ -382,12 +382,28 @@ function renderExtraDetails(
         `;
 
     }
+    if (collectionName === "poojaBookings") {
+
+    return `
+
+        <p>
+            <b>🛕 Service:</b>
+            ${data.service || "-"}
+        </p>
+
+        <p>
+            <b>🙏 Pooja:</b>
+            ${data.poojaType || "Not specified"}
+        </p>
+
+    `;
+
+}
 
 
     if (
         collectionName === "templeBookings" ||
-        collectionName === "wellBookings" ||
-        collectionName === "poojaBookings"
+        collectionName === "wellBookings"
     ) {
 
         return `
@@ -1573,12 +1589,11 @@ window.deleteReview =
    // ==========================================
 // 🔎 ADMIN BOOKING FILTER SYSTEM
 // ==========================================
-
 const filterSearch =
-    document.getElementById("customerSearch");
+    document.getElementById("adminSearch");
 
 const filterStatus =
-    document.getElementById("statusFilter");
+    document.getElementById("bookingStatusFilter");
 
 const filterDate =
     document.getElementById("dateFilter");
@@ -1767,7 +1782,8 @@ async function filterCollection(
                         data.customerMobile,
                         data.service,
                         data.package,
-                        data.packageName
+                        data.packageName,
+                        data.poojaType
 
                     ]
                     .filter(Boolean)

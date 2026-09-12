@@ -3,39 +3,47 @@
 
 <head>
 
+    <!-- ============================= -->
+    <!-- BASIC PAGE SETTINGS -->
+    <!-- ============================= -->
+
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Rameswaram Tour Packages | Rooms, Cabs, Temple & Sightseeing | RamSethuYatra
-    </title>
+    <title>RamSethuYatra | Discover Rameswaram</title>
 
-    <meta
-        name="description"
-        content="Plan your Rameswaram trip with RamSethuYatra. Explore tour packages, Ramanathaswamy Temple, Dhanushkodi, Pamban Bridge, rooms, cabs and sightseeing."
-    >
+    <meta name="description"
+          content="Plan your Rameswaram journey with RamSethuYatra — tour packages, temple services, cabs, rooms and sightseeing.">
 
-    <meta
-        name="keywords"
-        content="Rameswaram tour package, Rameswaram sightseeing, Rameswaram rooms, Rameswaram cab service, Dhanushkodi tour, Ramanathaswamy Temple, Rameswaram pilgrimage"
-    >
+    <meta name="keywords"
+          content="Rameswaram tour package, Rameswaram sightseeing, Ramanathaswamy Temple, Dhanushkodi, Pamban Bridge, Rameswaram cab, Rameswaram rooms">
 
-    <meta name="author" content="RamSethuYatra">
+    <meta name="author"
+          content="RamSethuYatra">
+
+
+    <!-- ============================= -->
+    <!-- CSS -->
+    <!-- ============================= -->
 
     <link rel="stylesheet" href="style.css">
 
+
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 
     <!-- SweetAlert -->
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- Google Translate -->
+
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </head>
@@ -44,9 +52,9 @@
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
 
 <header class="site-header">
 
@@ -55,153 +63,207 @@
 
         <!-- LOGO -->
 
-        <a href="index.html" class="logo">
+        <a href="index.html"
+           class="logo"
+           aria-label="RamSethuYatra home">
 
-            <span class="logo-icon">
+            <span class="logo-mark">
                 ॐ
             </span>
 
-            <span>
-                Ram<span>Sethu</span>Yatra
+            <span class="logo-name">
+
+                <b>Ram</b>
+
+                <em>Sethu</em>
+
+                <b>Yatra</b>
+
             </span>
 
         </a>
 
 
         <!-- NAVIGATION -->
-<nav class="main-nav">
 
-    <a href="index.html">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
-
-    <a href="totalpackage.html">
-        <i class="fa-solid fa-suitcase-rolling"></i>
-        Packages
-    </a>
-
-    <a href="ramanathaswamy-temple.html">
-        <i class="fa-solid fa-place-of-worship"></i>
-        Temple
-    </a>
-
-    <a href="rameswaram-cab-service.html">
-        <i class="fa-solid fa-car"></i>
-        Cabs
-    </a>
-
-    <a href="rameswaram-rooms.html">
-        <i class="fa-solid fa-bed"></i>
-        Rooms
-    </a>
-
-    <!-- ONLY LOGGED IN -->
-    <a
-        href="customer-dashboard.html"
-        id="myBookingNav"
-        class="logged-in-only"
-        style="display:none;"
-    >
-        <i class="fa-solid fa-book-open"></i>
-        My Bookings
-    </a>
-
-    <!-- ONLY LOGGED OUT -->
-    <a
-        href="login.html"
-        id="loginNav"
-        class="logged-out-only"
-        hidden
-    >
-        <i class="fa-solid fa-right-to-bracket"></i>
-        Login
-    </a>
-    <a href="about.html">
-        <i class="fa-solid fa-circle-info"></i>
-        About
-    </a>
-
-    <!-- ONLY LOGGED IN -->
-    <button
-        type="button"
-        id="logoutNav"
-        class="logged-in-only nav-logout"
-        style="display:none;"
-    >
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Logout
-    </button>
-
-</nav>
+        <nav class="main-nav"
+             id="mainNav">
 
 
-        <!-- LANGUAGE -->
+            <a href="index.html"
+               class="active">
 
-        <div class="translate-box">
+                <i class="fa-solid fa-house"></i>
 
-            <button
-                type="button"
-                id="languageBtn"
-                class="language-btn"
-                aria-label="Select language"
-            >
-                <i class="fa-solid fa-globe"></i>
-            </button>
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="totalpackage.html">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+
+                <span>Packages</span>
+
+            </a>
+
+
+            <a href="ramanathaswamy-temple.html">
+
+                <i class="fa-solid fa-place-of-worship"></i>
+
+                <span>Temple</span>
+
+            </a>
+
+
+            <a href="rameswaram-cab-service.html">
+
+                <i class="fa-solid fa-car"></i>
+
+                <span>Cabs</span>
+
+            </a>
+
+
+            <a href="rameswaram-rooms.html">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <span>Rooms</span>
+
+            </a>
+
+
+            <!-- SHOW ONLY AFTER LOGIN -->
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               class="logged-in-only"
+               style="display:none;">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>My Bookings</span>
+
+            </a>
+
+
+            <!-- SHOW WHEN NOT LOGGED IN -->
+
+            <a href="login.html"
+               id="loginNav"
+               class="logged-out-only">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>Login</span>
+
+            </a>
+
+
+            <a href="about.html">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>About</span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
 
             <button type="button"
-                class="mobile-menu-btn"
-                id="mobileMenuBtn">
+                    id="logoutNav"
+                    class="logged-in-only nav-logout"
+                    style="display:none;">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </button>
+
+        </nav>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="translate-box">
+
+                <button type="button"
+                        id="languageBtn"
+                        class="language-btn"
+                        aria-label="Select language">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                </button>
+
+
+                <div id="languageMenu"
+                     class="language-menu">
+
+
+                    <div class="language-title">
+
+                        Select Language
+
+                    </div>
+
+
+                    <button type="button"
+                            data-lang="en">
+
+                        🇬🇧 English
+
+                    </button>
+
+
+                    <button type="button"
+                            data-lang="ta">
+
+                        🇮🇳 தமிழ்
+
+                    </button>
+
+
+                    <button type="button"
+                            data-lang="hi">
+
+                        🇮🇳 हिन्दी
+
+                    </button>
+
+                </div>
+
+
+                <div id="google_translate_element"
+                     class="google-translate-hidden">
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open menu">
 
                 <i class="fa-solid fa-bars"></i>
 
             </button>
 
-            <div
-                id="languageMenu"
-                class="language-menu"
-            >
-
-                <div class="language-title">
-                    Select Language
-                </div>
-
-
-                <button
-                    type="button"
-                    data-lang="en"
-                >
-                    🇬🇧 English
-                </button>
-
-
-                <button
-                    type="button"
-                    data-lang="ta"
-                >
-                    🇮🇳 தமிழ்
-                </button>
-
-
-                <button
-                    type="button"
-                    data-lang="hi"
-                >
-                    🇮🇳 हिन्दी
-                </button>
-
-            </div>
-
-
-            <!-- Hidden Google Translate -->
-
-            <div
-                id="google_translate_element"
-                class="google-translate-hidden"
-            ></div>
-
         </div>
-        
 
     </div>
 
@@ -209,121 +271,122 @@
 
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- ===================================================== -->
+<!-- MAIN -->
+<!-- ===================================================== -->
 
-<section id="home" class="hero">
-
-    <div class="hero-overlay"></div>
+<main>
 
 
-    <div class="hero-content reveal">
+<!-- ===================================================== -->
+<!-- HERO SECTION -->
+<!-- ===================================================== -->
 
-        <span class="hero-badge">
-            🌴 Welcome to Rameswaram
-        </span>
+<section id="home"
+         class="hero">
+
+
+    <div class="hero-media"></div>
+
+
+    <div class="hero-shade"></div>
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-eyebrow">
+
+            <span></span>
+
+            THE SACRED ISLAND OF RAMESWARAM
+
+        </div>
 
 
         <h1>
-            Discover the Sacred
-            <span>Beauty of Rameswaram</span>
+
+            A journey of
+
+            <br>
+
+            <strong>
+                faith, sea & memories.
+            </strong>
+
         </h1>
 
 
         <p>
-            Temple visits, sightseeing, comfortable rooms,
-            reliable cabs and complete tour packages —
-            plan your Rameswaram journey in one place.
+
+            From Ramanathaswamy Temple to Dhanushkodi,
+            build your Rameswaram trip around the places
+            and services that matter to you.
+
         </p>
 
 
-        <div class="hero-buttons">
+        <div class="hero-actions">
 
-            <a
-                href="totalpackage.html"
-                class="btn btn-primary"
-            >
-                <i class="fa-solid fa-suitcase-rolling"></i>
-                Explore Packages
+
+            <a href="totalpackage.html"
+               class="btn btn-primary">
+
+                <i class="fa-solid fa-compass"></i>
+
+                Explore packages
+
             </a>
 
 
-            <a
-                href="ramanathaswamy-temple.html"
-                class="btn btn-outline"
-            >
-                <i class="fa-solid fa-place-of-worship"></i>
-                Temple & Poojai
+            <a href="#journey"
+               class="btn btn-glass">
+
+                <span class="play-dot">
+
+                    <i class="fa-solid fa-arrow-down"></i>
+
+                </span>
+
+                See the journey
+
             </a>
 
         </div>
 
 
-        <div class="hero-trust">
+        <div class="hero-proof">
+
 
             <div>
+
                 <i class="fa-solid fa-shield-heart"></i>
-                Local Assistance
+
+                <span>
+                    Local assistance
+                </span>
+
             </div>
 
+
             <div>
+
                 <i class="fa-solid fa-car"></i>
-                Cab Support
+
+                <span>
+                    Cab support
+                </span>
+
             </div>
+
 
             <div>
+
                 <i class="fa-solid fa-hotel"></i>
-                Stay Options
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- TEMPLE TIMING -->
-
-    <div class="timing-card reveal">
-
-        <div class="timing-icon">
-            <i class="fa-solid fa-place-of-worship"></i>
-        </div>
-
-
-        <div>
-
-            <span class="small-label">
-                Temple Information
-            </span>
-
-            <h3>
-                Ramanathaswamy Temple
-            </h3>
-
-
-            <div class="timing-row">
 
                 <span>
-                    🌅 Morning
+                    Stay options
                 </span>
-
-                <strong>
-                    5:00 AM – 1:00 PM
-                </strong>
-
-            </div>
-
-
-            <div class="timing-row">
-
-                <span>
-                    🌙 Evening
-                </span>
-
-                <strong>
-                    3:00 PM – 9:00 PM
-                </strong>
 
             </div>
 
@@ -332,664 +395,284 @@
     </div>
 
 
-    <a
-        href="#why-us"
-        class="scroll-down"
-        aria-label="Scroll down"
-    >
-        <i class="fa-solid fa-chevron-down"></i>
+
+    <!-- PLAN YOUR VISIT CARD -->
+
+    <div class="hero-side-card">
+
+
+        <span class="side-label">
+
+            PLAN YOUR VISIT
+
+        </span>
+
+
+        <h3>
+
+            Everything you need,
+
+            <br>
+
+            in one place.
+
+        </h3>
+
+
+        <div class="side-links">
+
+
+            <!-- PACKAGES -->
+
+            <a href="totalpackage.html">
+
+
+                <span class="side-icon">
+
+                    <i class="fa-solid fa-suitcase-rolling"></i>
+
+                </span>
+
+
+                <span>
+
+                    <b>
+                        Tour packages
+                    </b>
+
+                    <small>
+                        Complete experiences
+                    </small>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </a>
+
+
+
+            <!-- TEMPLE -->
+
+            <a href="ramanathaswamy-temple.html">
+
+
+                <span class="side-icon">
+
+                    <i class="fa-solid fa-place-of-worship"></i>
+
+                </span>
+
+
+                <span>
+
+                    <b>
+                        Temple timings
+                    </b>
+
+                    <small>
+                        Morning 5 AM – 1 PM · Evening 3 PM – 9 PM
+                    </small>
+
+                    <small class="timing-note">
+                        Timings may vary on special days
+                    </small>
+
+                </span>
+
+
+                <i class="fa-solid fa-clock"></i>
+
+            </a>
+
+
+
+            <!-- CABS -->
+
+            <a href="rameswaram-cab-service.html">
+
+
+                <span class="side-icon">
+
+                    <i class="fa-solid fa-car"></i>
+
+                </span>
+
+
+                <span>
+
+                    <b>
+                        Cabs & sightseeing
+                    </b>
+
+                    <small>
+                        Travel around Rameswaram
+                    </small>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCROLL -->
+
+    <a href="#journey"
+       class="scroll-cue">
+
+        <span>
+            SCROLL
+        </span>
+
+        <i class="fa-solid fa-arrow-down"></i>
+
     </a>
 
 </section>
 
 
 
-<!-- =====================================================
-     QUICK STATS
-===================================================== -->
+<!-- ===================================================== -->
+<!-- QUICK JOURNEY STRIP -->
+<!-- ===================================================== -->
 
-<section class="stats-section">
+<section class="quick-strip"
+         id="journey">
 
-    <div class="stats-container">
 
-        <div class="stat-item reveal">
+    <div class="quick-strip-inner">
 
-            <div class="stat-icon">
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
 
-            <div>
-                <strong>10+</strong>
-                <span>Popular Places</span>
-            </div>
+        <div class="quick-intro">
 
-        </div>
+            <span>
+                01
+            </span>
 
 
-        <div class="stat-item reveal">
+            <h2>
 
-            <div class="stat-icon">
-                <i class="fa-solid fa-car"></i>
-            </div>
+                Your journey,
 
-            <div>
-                <strong>Multiple</strong>
-                <span>Cab Options</span>
-            </div>
-
-        </div>
-
-
-        <div class="stat-item reveal">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-bed"></i>
-            </div>
-
-            <div>
-                <strong>Flexible</strong>
-                <span>Stay Options</span>
-            </div>
-
-        </div>
-
-
-        <div class="stat-item reveal">
-
-            <div class="stat-icon">
-                <i class="fa-solid fa-headset"></i>
-            </div>
-
-            <div>
-                <strong>Local</strong>
-                <span>Travel Support</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     WHY CHOOSE US
-===================================================== -->
-
-<section
-    id="why-us"
-    class="section why-section"
->
-
-    <div class="section-heading reveal">
-
-        <span>
-            WHY RAMSETHUYATRA?
-        </span>
-
-        <h2>
-            Your Rameswaram Journey,
-            <strong>Made Simple</strong>
-        </h2>
-
-        <p>
-            From temple visits to sightseeing and accommodation,
-            find the essential travel services you need for your trip.
-        </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <article class="why-card reveal">
-
-            <div class="why-icon">
-                <i class="fa-solid fa-place-of-worship"></i>
-            </div>
-
-            <h3>
-                Temple Assistance
-            </h3>
-
-            <p>
-                Plan your Ramanathaswamy Temple visit,
-                22 Holy Wells experience and poojai services.
-            </p>
-
-            <a href="ramanathaswamy-temple.html">
-                Explore Temple Services
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </article>
-
-
-        <article class="why-card reveal">
-
-            <div class="why-icon">
-                <i class="fa-solid fa-car"></i>
-            </div>
-
-            <h3>
-                Comfortable Cabs
-            </h3>
-
-            <p>
-                Choose a suitable cab for temple visits,
-                sightseeing and local travel.
-            </p>
-
-            <a href="rameswaram-cab-service.html">
-                Explore Cabs
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </article>
-
-
-        <article class="why-card reveal">
-
-            <div class="why-icon">
-                <i class="fa-solid fa-bed"></i>
-            </div>
-
-            <h3>
-                Stay Options
-            </h3>
-
-            <p>
-                Find room options suitable for families,
-                pilgrims and different travel requirements.
-            </p>
-
-            <a href="rameswaram-rooms.html">
-                Explore Rooms
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </article>
-
-
-        <article class="why-card reveal">
-
-            <div class="why-icon">
-                <i class="fa-solid fa-route"></i>
-            </div>
-
-            <h3>
-                Complete Packages
-            </h3>
-
-            <p>
-                Combine your travel needs with our Normal,
-                Medium and Premium tour packages.
-            </p>
-
-            <a href="totalpackage.html">
-                View Packages
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     BOOK YOUR TRIP
-===================================================== -->
-
-<section class="section booking-section">
-
-    <div class="section-heading reveal">
-
-        <span>
-            BOOK YOUR TRIP
-        </span>
-
-        <h2>
-            Choose What You
-            <strong>Need</strong>
-        </h2>
-
-        <p>
-            Book individual travel services when you don't need
-            a complete tour package.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <!-- TEMPLE -->
-
-        <article class="service-card reveal">
-
-            <div class="service-image">
-
-                <img
-                    src="images/Sri Ramanathaswamy Temple.jpg"
-                    alt="Ramanathaswamy Temple Rameswaram"
-                    loading="lazy"
-                >
-
-                <span class="service-label">
-                    Spiritual
-                </span>
-
-            </div>
-
-
-            <div class="service-content">
-
-                <div class="service-icon">
-                    🛕
-                </div>
-
-                <h3>
-                    Temple & Poojai
-                </h3>
-
-                <p>
-                    Temple visit, 22 Holy Wells and
-                    special poojai services.
-                </p>
-
-                <a
-                    href="ramanathaswamy-temple.html"
-                    class="service-btn"
-                >
-                    View Services
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- CAB -->
-
-        <article class="service-card reveal">
-
-            <div class="service-image">
-
-                <img
-                    src="images/Pamban Bridge.jpg"
-                    alt="Rameswaram Cab and sightseeing"
-                    loading="lazy"
-                >
-
-                <span class="service-label">
-                    Transport
-                </span>
-
-            </div>
-
-
-            <div class="service-content">
-
-                <div class="service-icon">
-                    🚕
-                </div>
-
-                <h3>
-                    Cabs
-                </h3>
-
-                <p>
-                    Local travel and sightseeing cab options
-                    for your Rameswaram trip.
-                </p>
-
-                <a
-                    href="rameswaram-cab-service.html"
-                    class="service-btn"
-                >
-                    View Cabs
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- ROOMS -->
-
-        <article class="service-card reveal">
-
-            <div class="service-image">
-
-                <img
-                    src="images/Modern blue theme bedroom with soft lighting and….jpg"
-                    alt="Rameswaram hotel room"
-                    loading="lazy"
-                >
-
-                <span class="service-label">
-                    Accommodation
-                </span>
-
-            </div>
-
-
-            <div class="service-content">
-
-                <div class="service-icon">
-                    🏨
-                </div>
-
-                <h3>
-                    Rooms
-                </h3>
-
-                <p>
-                    Comfortable accommodation options
-                    for families and pilgrims.
-                </p>
-
-                <a
-                    href="rameswaram-rooms.html"
-                    class="service-btn"
-                >
-                    View Rooms
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     COMPLETE PACKAGES
-===================================================== -->
-
-<section class="section packages-section">
-
-    <div class="section-heading reveal">
-
-        <span>
-            COMPLETE TOUR PACKAGES
-        </span>
-
-        <h2>
-            Choose Your
-            <strong>Travel Experience</strong>
-        </h2>
-
-        <p>
-            Select a package according to your travel style,
-            group size and preferred services.
-        </p>
-
-    </div>
-
-
-    <div class="package-preview-grid">
-
-
-        <!-- NORMAL -->
-
-        <article class="package-preview normal reveal">
-
-            <div class="package-top">
-
-                <span class="package-badge">
-                    NORMAL
-                </span>
-
-                <span class="package-icon">
-                    🌿
-                </span>
-
-            </div>
-
-
-            <h3>
-                Normal Package
-            </h3>
-
-            <p>
-                A simple option for travelers who want
-                essential services.
-            </p>
-
-
-            <ul>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Normal Room
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Selected Sightseeing
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Cab Included
-                </li>
-
-            </ul>
-
-
-            <div class="package-bottom">
-
-                <span>
-                    Starting package
-                </span>
+                <br>
 
                 <strong>
-                    ₹7,000
+                    your way.
                 </strong>
 
-            </div>
+            </h2>
 
-
-            <a
-                href="totalpackage.html"
-                class="package-btn"
-            >
-                View Package
-            </a>
-
-        </article>
+        </div>
 
 
 
-        <!-- MEDIUM -->
-
-        <article class="package-preview medium reveal">
-
-            <div class="package-top">
-
-                <span class="package-badge">
-                    MEDIUM
-                </span>
-
-                <span class="package-icon">
-                    ⭐
-                </span>
-
-            </div>
+        <a href="ramanathaswamy-temple.html"
+           class="quick-item">
 
 
-            <h3>
-                Medium Package
-            </h3>
-
-            <p>
-                A balanced package for families and
-                comfortable sightseeing.
-            </p>
+            <i class="fa-solid fa-place-of-worship"></i>
 
 
-            <ul>
+            <span>
 
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Medium Room
-                </li>
+                <b>
+                    Temple
+                </b>
 
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    More Sightseeing
-                </li>
+                <small>
+                    Darshan & services
+                </small>
 
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Cab Included
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Dinner Included
-                </li>
-
-            </ul>
+            </span>
 
 
-            <div class="package-bottom">
-
-                <span>
-                    Starting package
-                </span>
-
-                <strong>
-                    ₹9,500
-                </strong>
-
-            </div>
-
-
-            <a
-                href="totalpackage.html"
-                class="package-btn"
-            >
-                View Package
-            </a>
-
-        </article>
-
-
-
-        <!-- PREMIUM -->
-
-        <article class="package-preview premium reveal">
-
-            <div class="popular-ribbon">
-                MOST POPULAR
-            </div>
-
-
-            <div class="package-top">
-
-                <span class="package-badge">
-                    PREMIUM
-                </span>
-
-                <span class="package-icon">
-                    👑
-                </span>
-
-            </div>
-
-
-            <h3>
-                Premium Package
-            </h3>
-
-            <p>
-                A complete experience with premium
-                services and maximum convenience.
-            </p>
-
-
-            <ul>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Premium Room
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Full Sightseeing
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Premium Cab
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Meals Included
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-check"></i>
-                    Premium Services
-                </li>
-
-            </ul>
-
-
-            <div class="package-bottom">
-
-                <span>
-                    Starting package
-                </span>
-
-                <strong>
-                    ₹13,000
-                </strong>
-
-            </div>
-
-
-            <a
-                href="totalpackage.html"
-                class="package-btn"
-            >
-                View Package
-            </a>
-
-        </article>
-
-
-    </div>
-
-
-    <div class="center-btn reveal">
-
-        <a
-            href="totalpackage.html"
-            class="btn btn-dark"
-        >
-            View All Packages
             <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+
+        <a href="rameswaram-cab-service.html"
+           class="quick-item">
+
+
+            <i class="fa-solid fa-car"></i>
+
+
+            <span>
+
+                <b>
+                    Cabs
+                </b>
+
+                <small>
+                    Local travel & tours
+                </small>
+
+            </span>
+
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+
+        <a href="rameswaram-rooms.html"
+           class="quick-item">
+
+
+            <i class="fa-solid fa-bed"></i>
+
+
+            <span>
+
+                <b>
+                    Rooms
+                </b>
+
+                <small>
+                    Comfortable stays
+                </small>
+
+            </span>
+
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+
+
+        <a href="totalpackage.html"
+           class="quick-item">
+
+
+            <i class="fa-solid fa-route"></i>
+
+
+            <span>
+
+                <b>
+                    Packages
+                </b>
+
+                <small>
+                    Complete trips
+                </small>
+
+            </span>
+
+
+            <i class="fa-solid fa-arrow-right"></i>
+
         </a>
 
     </div>
@@ -998,188 +681,142 @@
 
 
 
-<!-- =====================================================
-     POPULAR PLACES
-===================================================== -->
+<!-- ===================================================== -->
+<!-- DISCOVERY / STORY -->
+<!-- ===================================================== -->
 
-<section class="section places-section">
+<section class="story-section section">
 
-    <div class="section-heading reveal">
 
-        <span>
-            EXPLORE RAMESWARAM
-        </span>
+    <div class="story-visual reveal">
 
-        <h2>
-            Popular Places to
-            <strong>Visit</strong>
-        </h2>
 
-        <p>
-            Discover the spiritual, historical and scenic
-            attractions of Rameswaram.
-        </p>
+        <img src="images/RAMESWARAM.jpg"
+             alt="Rameswaram destination"
+             loading="lazy">
+
+
+        <div class="story-stamp">
+
+
+            <strong>
+                R
+            </strong>
+
+
+            <span>
+
+                Rameswaram
+
+                <br>
+
+                journey
+
+            </span>
+
+        </div>
 
     </div>
 
 
-    <div class="places-grid">
+
+    <div class="story-copy reveal">
 
 
-        <article class="place-card reveal">
+        <span class="section-kicker">
 
-            <div class="place-image">
+            02 / DISCOVER
 
-                <img
-                    src="images/Sri Ramanathaswamy Temple.jpg"
-                    alt="Ramanathaswamy Temple"
-                    loading="lazy"
-                >
-
-            </div>
+        </span>
 
 
-            <div class="place-content">
+        <h2>
 
-                <span>
-                    🛕 Spiritual
-                </span>
+            More than a destination.
 
-                <h3>
-                    Ramanathaswamy Temple
-                </h3>
+            <br>
 
-                <p>
-                    One of the most important spiritual
-                    destinations in Rameswaram.
-                </p>
+            <strong>
+                It's a feeling.
+            </strong>
 
-                <a href="ramanathaswamy-temple.html">
-                    Explore
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
+        </h2>
 
 
+        <p>
 
-        <article class="place-card reveal">
+            Rameswaram brings together sacred temples,
+            ocean views, historic landmarks and unforgettable
+            roads. RamSethuYatra helps you arrange the
+            essentials without making the journey complicated.
 
-            <div class="place-image">
-
-                <img
-                    src="images/Dhanuskodi - Rameshwaram.jpg"
-                    alt="Dhanushkodi Rameswaram"
-                    loading="lazy"
-                >
-
-            </div>
+        </p>
 
 
-            <div class="place-content">
+        <div class="story-list">
+
+
+            <div>
 
                 <span>
-                    🌊 Coastal
+                    01
                 </span>
 
-                <h3>
-                    Dhanushkodi
-                </h3>
+                <b>
+                    Plan around your purpose
+                </b>
 
-                <p>
-                    A unique coastal destination known for
-                    its history and scenic surroundings.
-                </p>
-
-                <a href="#gallery">
-                    Explore
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="place-card reveal">
-
-            <div class="place-image">
-
-                <img
-                    src="images/Pamban Bridge.jpg"
-                    alt="Pamban Bridge Rameswaram"
-                    loading="lazy"
-                >
+                <small>
+                    Pilgrimage, sightseeing or a complete trip.
+                </small>
 
             </div>
 
 
-            <div class="place-content">
+            <div>
 
                 <span>
-                    🌉 Landmark
+                    02
                 </span>
 
-                <h3>
-                    Pamban Bridge
-                </h3>
+                <b>
+                    Choose only what you need
+                </b>
 
-                <p>
-                    Enjoy one of the iconic landmarks
-                    connecting Rameswaram with the mainland.
-                </p>
-
-                <a href="#gallery">
-                    Explore
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="place-card reveal">
-
-            <div class="place-image">
-
-                <img
-                    src="images/APJ Abdul Kalam, Museum(Former President of India) RAMESHWARAM.jpg"
-                    alt="APJ Abdul Kalam Memorial Rameswaram"
-                    loading="lazy"
-                >
+                <small>
+                    Book a package, cab, room or temple service.
+                </small>
 
             </div>
 
 
-            <div class="place-content">
+            <div>
 
                 <span>
-                    📚 History
+                    03
                 </span>
 
-                <h3>
-                    APJ Abdul Kalam Memorial
-                </h3>
+                <b>
+                    Travel with local support
+                </b>
 
-                <p>
-                    Explore the memorial dedicated to
-                    India's former President Dr. APJ Abdul Kalam.
-                </p>
-
-                <a href="#gallery">
-                    Explore
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <small>
+                    Keep your Rameswaram journey simple.
+                </small>
 
             </div>
 
-        </article>
+        </div>
 
+
+        <a href="about.html"
+           class="text-link">
+
+            Discover RamSethuYatra
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
 
     </div>
 
@@ -1187,24 +824,692 @@
 
 
 
-<!-- =====================================================
-     HOW IT WORKS
-===================================================== -->
+<!-- ===================================================== -->
+<!-- PACKAGES -->
+<!-- ===================================================== -->
 
-<section class="section steps-section">
+<section class="packages-section section"
+         id="packages">
+
+
+    <div class="section-top reveal">
+
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                03 / SIGNATURE EXPERIENCES
+
+            </span>
+
+
+            <h2>
+
+                Choose your
+
+                <br>
+
+                <strong>
+                    way to travel.
+                </strong>
+
+            </h2>
+
+        </div>
+
+
+        <a href="totalpackage.html"
+           class="outline-link">
+
+            View all packages
+
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="package-grid">
+
+
+        <!-- NORMAL PACKAGE -->
+
+        <article class="journey-card reveal">
+
+
+            <div class="journey-image">
+
+
+                <img src="images/Ram.jpg"
+                     alt="Rameswaram tour"
+                     loading="lazy">
+
+
+                <span>
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="journey-body">
+
+
+                <div class="journey-meta">
+
+
+                    <span>
+                        ESSENTIAL
+                    </span>
+
+
+                    <b>
+                        ₹7,000
+                    </b>
+
+                </div>
+
+
+                <h3>
+                    Normal Package
+                </h3>
+
+
+                <p>
+
+                    A simple option for travelers
+                    who want essential services.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Normal room
+                    </li>
+
+                    <li>
+                        Selected sightseeing
+                    </li>
+
+                    <li>
+                        Cab included
+                    </li>
+
+                </ul>
+
+
+                <a href="normal-package.html">
+
+                    Explore package
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- MEDIUM PACKAGE -->
+
+        <article class="journey-card featured reveal">
+
+
+            <div class="journey-image">
+
+
+                <img src="images/Rameswaram agnitheertham.jpg"
+                     alt="Rameswaram experience"
+                     loading="lazy">
+
+
+                <span>
+                    02
+                </span>
+
+
+                <em>
+                    MOST POPULAR
+                </em>
+
+            </div>
+
+
+            <div class="journey-body">
+
+
+                <div class="journey-meta">
+
+
+                    <span>
+                        COMFORT
+                    </span>
+
+
+                    <b>
+                        ₹9,500
+                    </b>
+
+                </div>
+
+
+                <h3>
+                    Medium Package
+                </h3>
+
+
+                <p>
+
+                    A balanced package for families
+                    and comfortable sightseeing.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Medium room
+                    </li>
+
+                    <li>
+                        More sightseeing
+                    </li>
+
+                    <li>
+                        Dinner included
+                    </li>
+
+                </ul>
+
+
+                <a href="medium-package.html">
+
+                    Explore package
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PREMIUM PACKAGE -->
+
+        <article class="journey-card reveal">
+
+
+            <div class="journey-image">
+
+
+                <img src="images/beautiful-beach.jpg"
+                     alt="Rameswaram premium travel"
+                     loading="lazy">
+
+
+                <span>
+                    03
+                </span>
+
+            </div>
+
+
+            <div class="journey-body">
+
+
+                <div class="journey-meta">
+
+
+                    <span>
+                        PREMIUM
+                    </span>
+
+
+                    <b>
+                        ₹13,000
+                    </b>
+
+                </div>
+
+
+                <h3>
+                    Premium Package
+                </h3>
+
+
+                <p>
+
+                    A complete experience with
+                    premium services and convenience.
+
+                </p>
+
+
+                <ul>
+
+                    <li>
+                        Premium room
+                    </li>
+
+                    <li>
+                        Full sightseeing
+                    </li>
+
+                    <li>
+                        Meals included
+                    </li>
+
+                </ul>
+
+
+                <a href="premium-package.html">
+
+                    Explore package
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- PLACES -->
+<!-- ===================================================== -->
+
+<section class="places-section section">
+
+
+    <div class="section-top reveal">
+
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                04 / THE ISLAND
+
+            </span>
+
+
+            <h2>
+
+                Places that make
+
+                <br>
+
+                <strong>
+                    Rameswaram.
+                </strong>
+
+            </h2>
+
+        </div>
+
+
+        <span class="section-note">
+
+            SPIRITUAL · COASTAL · HISTORICAL
+
+        </span>
+
+    </div>
+
+
+
+    <div class="places-layout">
+
+
+        <!-- TEMPLE -->
+
+        <a href="ramanathaswamy-temple.html"
+           class="place-feature reveal">
+
+
+            <img src="images/Sri Ramanathaswamy Temple.jpg"
+                 alt="Ramanathaswamy Temple"
+                 loading="lazy">
+
+
+            <div>
+
+                <span>
+                    SPIRITUAL
+                </span>
+
+
+                <h3>
+                    Ramanathaswamy Temple
+                </h3>
+
+
+                <p>
+                    A sacred centre of the Rameswaram journey.
+                </p>
+
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <div class="place-stack">
+
+
+            <!-- DHANUSHKODI -->
+
+            <a href="#gallery"
+               class="place-mini reveal">
+
+
+                <img src="images/Dhanuskodi - Rameshwaram.jpg"
+                     alt="Dhanushkodi"
+                     loading="lazy">
+
+
+                <span>
+
+                    <small>
+                        COASTAL
+                    </small>
+
+                    <b>
+                        Dhanushkodi
+                    </b>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+
+            <!-- PAMBAN -->
+
+            <a href="#gallery"
+               class="place-mini reveal">
+
+
+                <img src="images/Pamban Bridge.jpg"
+                     alt="Pamban Bridge"
+                     loading="lazy">
+
+
+                <span>
+
+                    <small>
+                        LANDMARK
+                    </small>
+
+                    <b>
+                        Pamban Bridge
+                    </b>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+
+            <!-- APJ KALAM -->
+
+            <a href="#gallery"
+               class="place-mini reveal">
+
+
+                <img src="images/APJ Abdul Kalam, Museum(Former President of India) RAMESHWARAM.jpg"
+                     alt="APJ Abdul Kalam Memorial"
+                     loading="lazy">
+
+
+                <span>
+
+                    <small>
+                        HISTORY
+                    </small>
+
+                    <b>
+                        APJ Abdul Kalam Memorial
+                    </b>
+
+                </span>
+
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- SERVICES -->
+<!-- ===================================================== -->
+
+<section class="services-section section">
+
+
+    <div class="section-top reveal">
+
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                05 / BUILD YOUR TRIP
+
+            </span>
+
+
+            <h2>
+
+                Book only what
+
+                <br>
+
+                <strong>
+                    you need.
+                </strong>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Not every journey needs a package.
+            Pick individual services and create
+            your own plan.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+        <!-- TEMPLE -->
+
+        <a class="service-tile reveal"
+           href="ramanathaswamy-temple.html">
+
+
+            <span class="tile-number">
+                01
+            </span>
+
+
+            <i class="fa-solid fa-place-of-worship"></i>
+
+
+            <h3>
+                Temple & Poojai
+            </h3>
+
+
+            <p>
+                Temple visit, 22 Holy Wells
+                and poojai services.
+            </p>
+
+
+            <span class="tile-link">
+
+                View services
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+        </a>
+
+
+
+        <!-- CABS -->
+
+        <a class="service-tile reveal"
+           href="rameswaram-cab-service.html">
+
+
+            <span class="tile-number">
+                02
+            </span>
+
+
+            <i class="fa-solid fa-car"></i>
+
+
+            <h3>
+                Cabs
+            </h3>
+
+
+            <p>
+                Local travel and sightseeing
+                cab options.
+            </p>
+
+
+            <span class="tile-link">
+
+                View cabs
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+        </a>
+
+
+
+        <!-- ROOMS -->
+
+        <a class="service-tile reveal"
+           href="rameswaram-rooms.html">
+
+
+            <span class="tile-number">
+                03
+            </span>
+
+
+            <i class="fa-solid fa-bed"></i>
+
+
+            <h3>
+                Rooms
+            </h3>
+
+
+            <p>
+                Comfortable accommodation
+                options for your stay.
+            </p>
+
+
+            <span class="tile-link">
+
+                View rooms
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- HOW IT WORKS -->
+<!-- ===================================================== -->
+
+<section class="steps-section section">
+
 
     <div class="section-heading reveal">
 
-        <span>
-            SIMPLE BOOKING
+
+        <span class="section-kicker">
+
+            06 / HOW IT WORKS
+
         </span>
 
+
         <h2>
-            Plan Your Trip in
-            <strong>3 Steps</strong>
+
+            Three steps.
+
+            <br>
+
+            <strong>
+                One easy journey.
+            </strong>
+
         </h2>
 
     </div>
+
 
 
     <div class="steps-grid">
@@ -1212,469 +1517,260 @@
 
         <div class="step-card reveal">
 
-            <div class="step-number">
-                01
-            </div>
 
-            <div class="step-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+            <span>
+                01
+            </span>
+
+
+            <i class="fa-solid fa-compass"></i>
+
 
             <h3>
                 Choose
             </h3>
 
+
             <p>
-                Select a package, cab, room or temple service
-                according to your needs.
+
+                Select a package, cab, room
+                or temple service according
+                to your needs.
+
             </p>
 
         </div>
 
 
 
-        <div class="step-line"></div>
-
-
         <div class="step-card reveal">
 
-            <div class="step-number">
-                02
-            </div>
 
-            <div class="step-icon">
-                <i class="fa-solid fa-calendar-check"></i>
-            </div>
+            <span>
+                02
+            </span>
+
+
+            <i class="fa-solid fa-calendar-check"></i>
+
 
             <h3>
                 Book
             </h3>
 
+
             <p>
-                Enter your travel details and submit
-                your booking request.
+
+                Enter your travel details
+                and submit your booking request.
+
             </p>
 
         </div>
 
 
 
-        <div class="step-line"></div>
-
-
         <div class="step-card reveal">
 
-            <div class="step-number">
-                03
-            </div>
 
-            <div class="step-icon">
-                <i class="fa-solid fa-person-walking-luggage"></i>
-            </div>
+            <span>
+                03
+            </span>
+
+
+            <i class="fa-solid fa-person-walking-luggage"></i>
+
 
             <h3>
                 Travel
             </h3>
 
+
             <p>
-                Get ready to explore Rameswaram
-                with your selected services.
+
+                Get ready to explore
+                Rameswaram with your
+                selected services.
+
             </p>
 
         </div>
 
-
     </div>
 
 </section>
 
 
 
-<!-- =====================================================
-     TRAVEL TIPS
-===================================================== -->
+<!-- ===================================================== -->
+<!-- GALLERY -->
+<!-- ===================================================== -->
 
-<section
-    id="tips"
-    class="section tips-section"
->
-
-    <div class="section-heading reveal">
-
-        <span>
-            TRAVEL GUIDE
-        </span>
-
-        <h2>
-            Useful Travel
-            <strong>Tips</strong>
-        </h2>
-
-    </div>
+<section id="gallery"
+         class="gallery-section section">
 
 
-    <div class="tips-grid">
+    <div class="section-top reveal">
 
 
-        <article class="tip-card reveal">
-
-            <div class="tip-icon">
-                🛕
-            </div>
-
-            <h3>
-                Temple Darshan
-            </h3>
-
-            <p>
-                Visit the temple early in the morning
-                to avoid long queues and enjoy a peaceful visit.
-            </p>
-
-        </article>
+        <div>
 
 
+            <span class="section-kicker">
 
-        <article class="tip-card reveal">
+                07 / VISUAL JOURNEY
 
-            <div class="tip-icon">
-                💧
-            </div>
-
-            <h3>
-                Stay Hydrated
-            </h3>
-
-            <p>
-                Carry water while exploring Dhanushkodi
-                and other outdoor sightseeing locations.
-            </p>
-
-        </article>
+            </span>
 
 
+            <h2>
 
-        <article class="tip-card reveal">
+                See the island
 
-            <div class="tip-icon">
-                📅
-            </div>
+                <br>
 
-            <h3>
-                Plan Your Season
-            </h3>
+                <strong>
+                    before you go.
+                </strong>
 
-            <p>
-                October to March is generally a comfortable
-                period for sightseeing and temple visits.
-            </p>
+            </h2>
 
-        </article>
-
+        </div>
 
     </div>
 
-</section>
-
-
-
-<!-- =====================================================
-     FOOD
-===================================================== -->
-
-<section
-    id="food"
-    class="section food-section"
->
-
-    <div class="section-heading reveal">
-
-        <span>
-            TASTE RAMESWARAM
-        </span>
-
-        <h2>
-            Food &
-            <strong>Dinner</strong>
-        </h2>
-
-    </div>
-
-
-    <div class="food-grid">
-
-
-        <article class="food-card reveal">
-
-            <div class="food-icon">
-                🍛
-            </div>
-
-            <div>
-
-                <h3>
-                    South Indian Vegetarian
-                </h3>
-
-                <p>
-                    Enjoy familiar South Indian favourites
-                    such as meals, dosa, idli and chapati.
-                </p>
-
-            </div>
-
-        </article>
-
-
-
-        <article class="food-card reveal">
-
-            <div class="food-icon">
-                🍽️
-            </div>
-
-            <div>
-
-                <h3>
-                    Local Food Options
-                </h3>
-
-                <p>
-                    Discover a variety of local food options
-                    available around Rameswaram.
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     GALLERY
-===================================================== -->
-
-<section
-    id="gallery"
-    class="section gallery-section"
->
-
-    <div class="section-heading reveal">
-
-        <span>
-            SEE RAMESWARAM
-        </span>
-
-        <h2>
-            Travel
-            <strong>Gallery</strong>
-        </h2>
-
-        <p>
-            A glimpse of the places you can explore.
-        </p>
-
-    </div>
 
 
     <div class="gallery-grid">
 
 
+        <!-- AGNI THEERTHAM -->
+
         <div class="gallery-card gallery-large reveal">
 
-            <img
-                src="images/Agnitheertham Rameswaram, mandir theertham, Agni theertham in Rameswaram.jpg"
-                alt="Agni Theertham Rameswaram"
-                loading="lazy"
-            >
 
-            <div class="gallery-overlay">
+            <img src="images/Agnitheertham Rameswaram, mandir theertham, Agni theertham in Rameswaram.jpg"
+                 alt="Agni Theertham"
+                 loading="lazy">
+
+
+            <div>
+
+                <small>
+                    HOLY SEA BATH
+                </small>
 
                 <h3>
                     Agni Theertham
                 </h3>
 
-                <p>
-                    Holy Sea Bath
-                </p>
-
             </div>
 
         </div>
 
 
 
+        <!-- DHANUSHKODI -->
+
         <div class="gallery-card reveal">
 
-            <img
-                src="images/Dhanuskodi - Rameshwaram.jpg"
-                alt="Dhanushkodi Rameswaram"
-                loading="lazy"
-            >
 
-            <div class="gallery-overlay">
+            <img src="images/Dhanuskodi - Rameshwaram.jpg"
+                 alt="Dhanushkodi"
+                 loading="lazy">
+
+
+            <div>
+
+                <small>
+                    COASTAL DESTINATION
+                </small>
 
                 <h3>
                     Dhanushkodi
                 </h3>
 
-                <p>
-                    Coastal Destination
-                </p>
-
             </div>
 
         </div>
 
 
 
-        <div class="gallery-card reveal">
-
-            <img
-                src="images/APJ Abdul Kalam, Museum(Former President of India) RAMESHWARAM.jpg"
-                alt="APJ Abdul Kalam Memorial"
-                loading="lazy"
-            >
-
-            <div class="gallery-overlay">
-
-                <h3>
-                    APJ Abdul Kalam Memorial
-                </h3>
-
-                <p>
-                    Historical Landmark
-                </p>
-
-            </div>
-
-        </div>
-
-
+        <!-- PAMBAN -->
 
         <div class="gallery-card reveal">
 
-            <img
-                src="images/Sri Ramanathaswamy Temple.jpg"
-                alt="Ramanathaswamy Temple"
-                loading="lazy"
-            >
 
-            <div class="gallery-overlay">
-
-                <h3>
-                    Ramanathaswamy Temple
-                </h3>
-
-                <p>
-                    Sacred Temple
-                </p>
-
-            </div>
-
-        </div>
+            <img src="images/Pamban Bridge.jpg"
+                 alt="Pamban Bridge"
+                 loading="lazy">
 
 
+            <div>
 
-        <div class="gallery-card reveal">
-
-            <img
-                src="images/Pamban Bridge.jpg"
-                alt="Pamban Bridge"
-                loading="lazy"
-            >
-
-            <div class="gallery-overlay">
+                <small>
+                    ICONIC LANDMARK
+                </small>
 
                 <h3>
                     Pamban Bridge
                 </h3>
 
-                <p>
-                    Iconic Sea Bridge
-                </p>
-
             </div>
 
         </div>
 
 
 
+        <!-- PAMBAN RAILWAY -->
+
         <div class="gallery-card reveal">
 
-            <img
-                src="images/pamban1.jpg"
-                alt="Pamban Railway Bridge"
-                loading="lazy"
-            >
 
-            <div class="gallery-overlay">
+            <img src="images/pamban1.jpg"
+                 alt="Pamban Railway Bridge"
+                 loading="lazy">
+
+
+            <div>
+
+                <small>
+                    HISTORIC LANDMARK
+                </small>
 
                 <h3>
                     Pamban Railway Bridge
                 </h3>
 
-                <p>
-                    Historic Landmark
-                </p>
-
             </div>
 
         </div>
 
 
 
-        <div class="gallery-card reveal">
-
-            <img
-                src="images/RAMESWARAM.jpg"
-                alt="Rameswaram"
-                loading="lazy"
-            >
-
-            <div class="gallery-overlay">
-
-                <h3>
-                    Rameswaram
-                </h3>
-
-                <p>
-                    Sacred Island Destination
-                </p>
-
-            </div>
-
-        </div>
-
-
+        <!-- JADA THEERTHAM -->
 
         <div class="gallery-card reveal">
 
-            <img
-                src="images/Jada Theertham, rameswaram _ _Jada_ maguda _theertham_ siva temple _ Dhanuskodi.jpg"
-                alt="Jada Theertham"
-                loading="lazy"
-            >
 
-            <div class="gallery-overlay">
+            <img src="images/Jada Theertham, rameswaram _ _Jada_ maguda _theertham_ siva temple _ Dhanuskodi.jpg"
+                 alt="Jada Theertham"
+                 loading="lazy">
+
+
+            <div>
+
+                <small>
+                    PILGRIMAGE SPOT
+                </small>
 
                 <h3>
                     Jada Theertham
                 </h3>
 
-                <p>
-                    Sacred Pilgrimage Spot
-                </p>
-
             </div>
 
         </div>
-
 
     </div>
 
@@ -1682,75 +1778,405 @@
 
 
 
-<!-- =====================================================
-     REVIEWS
-===================================================== -->
+<!-- ===================================================== -->
+<!-- TRAVEL TIPS -->
+<!-- ===================================================== -->
 
-<!-- ⭐ CUSTOMER REVIEWS -->
-<section id="reviews" class="reviews-section">
+<section class="tips-section section">
 
-    <h2>⭐ Customer Reviews</h2>
 
-    <p class="review-subtitle">
-        See what our customers say about RamSethuYatra
-    </p>
+    <div class="section-top reveal">
 
-    <!-- Approved reviews will appear here -->
-    <div id="reviewGrid" class="review-grid"></div>
 
-    <!-- Write Review -->
-    <div class="review-form-card">
+        <div>
 
-        <h3>Write Your Review</h3>
+
+            <span class="section-kicker">
+
+                08 / TRAVEL GUIDE
+
+            </span>
+
+
+            <h2>
+
+                A little local
+
+                <br>
+
+                <strong>
+                    knowledge helps.
+                </strong>
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="tips-grid">
+
+
+        <!-- TIP 1 -->
+
+        <article class="tip-card reveal">
+
+
+            <span>
+                01
+            </span>
+
+
+            <i>
+                🛕
+            </i>
+
+
+            <h3>
+                Temple Darshan
+            </h3>
+
+
+            <p>
+
+                Visit the temple early in the
+                morning to avoid long queues
+                and enjoy a peaceful visit.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- TIP 2 -->
+
+        <article class="tip-card reveal">
+
+
+            <span>
+                02
+            </span>
+
+
+            <i>
+                💧
+            </i>
+
+
+            <h3>
+                Stay Hydrated
+            </h3>
+
+
+            <p>
+
+                Carry water while exploring
+                Dhanushkodi and other outdoor
+                sightseeing locations.
+
+            </p>
+
+        </article>
+
+
+
+        <!-- TIP 3 -->
+
+        <article class="tip-card reveal">
+
+
+            <span>
+                03
+            </span>
+
+
+            <i>
+                📅
+            </i>
+
+
+            <h3>
+                Plan Your Season
+            </h3>
+
+
+            <p>
+
+                October to March is generally
+                a comfortable period for
+                sightseeing and temple visits.
+
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- REVIEWS -->
+<!-- ===================================================== -->
+
+<section id="reviews"
+         class="reviews-section section">
+
+
+    <div class="section-top reveal">
+
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                09 / TRAVELER VOICES
+
+            </span>
+
+
+            <h2>
+
+                Real experiences.
+
+                <br>
+
+                <strong>
+                    Real journeys.
+                </strong>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Approved customer reviews appear
+            here after moderation.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- REVIEWS LOAD HERE -->
+
+    <div id="reviewGrid"
+         class="review-grid">
+
+    </div>
+
+
+
+    <!-- REVIEW FORM -->
+
+    <div class="review-form-card reveal">
+
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                SHARE YOUR EXPERIENCE
+
+            </span>
+
+
+            <h3>
+                How was your journey?
+            </h3>
+
+
+            <p>
+
+                Logged-in customers can leave
+                a review for a service they used.
+
+            </p>
+
+        </div>
+
+
 
         <form id="reviewForm">
 
-            <label for="reviewService">Service</label>
 
-            <select id="reviewService" required>
-                <option value="">Select Service</option>
-                <option value="Tour Package">Tour Package</option>
-                <option value="Cab Booking">Cab Booking</option>
-                <option value="Room Booking">Room Booking</option>
-                <option value="Temple Service">Temple Service</option>
-                <option value="22 Holy Wells">22 Holy Wells</option>
-                <option value="Poojai Service">Poojai Service</option>
-                <option value="Overall Experience">Overall Experience</option>
+            <!-- SERVICE -->
+
+            <label for="reviewService">
+
+                Service
+
+            </label>
+
+
+            <select id="reviewService"
+                    required>
+
+
+                <option value="">
+
+                    Select Service
+
+                </option>
+
+
+                <option value="Tour Package">
+
+                    Tour Package
+
+                </option>
+
+
+                <option value="Cab Booking">
+
+                    Cab Booking
+
+                </option>
+
+
+                <option value="Room Booking">
+
+                    Room Booking
+
+                </option>
+
+
+                <option value="Temple Service">
+
+                    Temple Service
+
+                </option>
+
+
+                <option value="22 Holy Wells">
+
+                    22 Holy Wells
+
+                </option>
+
+
+                <option value="Poojai Service">
+
+                    Poojai Service
+
+                </option>
+
+
+                <option value="Overall Experience">
+
+                    Overall Experience
+
+                </option>
+
             </select>
 
-            <label>Rating</label>
 
-            <div class="star-picker" id="starPicker">
-                <button type="button" data-rating="1">★</button>
-                <button type="button" data-rating="2">★</button>
-                <button type="button" data-rating="3">★</button>
-                <button type="button" data-rating="4">★</button>
-                <button type="button" data-rating="5">★</button>
+
+            <!-- RATING -->
+
+            <label>
+
+                Rating
+
+            </label>
+
+
+            <div class="star-picker"
+                 id="starPicker">
+
+
+                <button type="button"
+                        data-rating="1">
+
+                    ★
+
+                </button>
+
+
+                <button type="button"
+                        data-rating="2">
+
+                    ★
+
+                </button>
+
+
+                <button type="button"
+                        data-rating="3">
+
+                    ★
+
+                </button>
+
+
+                <button type="button"
+                        data-rating="4">
+
+                    ★
+
+                </button>
+
+
+                <button type="button"
+                        data-rating="5">
+
+                    ★
+
+                </button>
+
             </div>
 
-            <input
-                type="hidden"
-                id="reviewRating"
-                value="0"
-            >
 
-            <label for="reviewText">Your Review</label>
+            <input type="hidden"
+                   id="reviewRating"
+                   value="0">
 
-            <textarea
-                id="reviewText"
-                maxlength="500"
-                placeholder="Write your experience..."
-                required
-            ></textarea>
+
+
+            <!-- REVIEW -->
+
+            <label for="reviewText">
+
+                Your Review
+
+            </label>
+
+
+            <textarea id="reviewText"
+                      maxlength="500"
+                      placeholder="Write your experience..."
+                      required></textarea>
+
+
+
+            <!-- SUBMIT -->
 
             <button type="submit">
+
                 Submit Review
+
+                <i class="fa-solid fa-arrow-right"></i>
+
             </button>
 
         </form>
 
-        <p id="reviewLoginMessage" style="display:none;">
+
+
+        <p id="reviewLoginMessage"
+           style="display:none;">
+
             Please login to write a review.
+
         </p>
 
     </div>
@@ -1759,27 +2185,38 @@
 
 
 
-<!-- =====================================================
-     FAQ
-===================================================== -->
+<!-- ===================================================== -->
+<!-- FAQ -->
+<!-- ===================================================== -->
 
-<section
-    id="faq"
-    class="section faq-section"
->
+<section id="faq"
+         class="faq-section section">
+
 
     <div class="section-heading reveal">
 
-        <span>
-            NEED HELP?
+
+        <span class="section-kicker">
+
+            10 / NEED HELP?
+
         </span>
 
+
         <h2>
-            Frequently Asked
-            <strong>Questions</strong>
+
+            Frequently asked
+
+            <br>
+
+            <strong>
+                questions.
+            </strong>
+
         </h2>
 
     </div>
+
 
 
     <div class="faq-list reveal">
@@ -1787,14 +2224,21 @@
 
         <details>
 
+
             <summary>
+
                 Is hotel accommodation included?
+
                 <i class="fa-solid fa-plus"></i>
+
             </summary>
 
+
             <p>
-                Accommodation depends on the package or
-                room option you select.
+
+                Accommodation depends on the package
+                or room option you select.
+
             </p>
 
         </details>
@@ -1803,14 +2247,21 @@
 
         <details>
 
+
             <summary>
+
                 Is cab service available for sightseeing?
+
                 <i class="fa-solid fa-plus"></i>
+
             </summary>
 
+
             <p>
-                Yes. Cab options are available for local
-                travel and sightseeing.
+
+                Yes. Cab options are available
+                for local travel and sightseeing.
+
             </p>
 
         </details>
@@ -1819,14 +2270,21 @@
 
         <details>
 
+
             <summary>
+
                 Can I book only a temple visit?
+
                 <i class="fa-solid fa-plus"></i>
+
             </summary>
 
+
             <p>
-                Yes. You can use the Temple & Poojai page
-                to submit a temple service booking.
+
+                Yes. You can use the Temple & Poojai
+                page to submit a temple service booking.
+
             </p>
 
         </details>
@@ -1835,14 +2293,21 @@
 
         <details>
 
+
             <summary>
+
                 Can I book a complete package?
+
                 <i class="fa-solid fa-plus"></i>
+
             </summary>
 
+
             <p>
-                Yes. Visit the Packages page and choose
-                Normal, Medium or Premium.
+
+                Yes. Visit the Packages page and
+                choose Normal, Medium or Premium.
+
             </p>
 
         </details>
@@ -1851,18 +2316,24 @@
 
         <details>
 
+
             <summary>
+
                 How can I contact RamSethuYatra?
+
                 <i class="fa-solid fa-plus"></i>
+
             </summary>
 
+
             <p>
+
                 You can contact us using the WhatsApp
                 or Call Now buttons on this website.
+
             </p>
 
         </details>
-
 
     </div>
 
@@ -1870,36 +2341,53 @@
 
 
 
-<!-- =====================================================
-     MAP
-===================================================== -->
+<!-- ===================================================== -->
+<!-- MAP -->
+<!-- ===================================================== -->
 
-<section
-    id="map"
-    class="section map-section"
->
+<section class="map-section section">
 
-    <div class="section-heading reveal">
 
-        <span>
-            LOCATION
-        </span>
+    <div class="section-top reveal">
 
-        <h2>
-            Find Us in
-            <strong>Rameswaram</strong>
-        </h2>
+
+        <div>
+
+
+            <span class="section-kicker">
+
+                11 / LOCATION
+
+            </span>
+
+
+            <h2>
+
+                Find us in
+
+                <br>
+
+                <strong>
+                    Rameswaram.
+                </strong>
+
+            </h2>
+
+        </div>
 
     </div>
+
 
 
     <div class="map-wrapper reveal">
 
+
         <iframe
             src="https://www.google.com/maps?q=Rameswaram,Tamil%20Nadu&output=embed"
             title="Rameswaram Map"
-            loading="lazy"
-        ></iframe>
+            loading="lazy">
+        </iframe>
+
 
     </div>
 
@@ -1907,50 +2395,69 @@
 
 
 
-<!-- =====================================================
-     FINAL CTA
-===================================================== -->
+<!-- ===================================================== -->
+<!-- FINAL CTA -->
+<!-- ===================================================== -->
 
 <section class="final-cta">
 
-    <div class="final-cta-overlay"></div>
+
+    <div class="final-cta-bg"></div>
 
 
     <div class="final-cta-content reveal">
 
-        <span>
-            🌴 YOUR JOURNEY STARTS HERE
+
+        <span class="section-kicker">
+
+            12 / YOUR JOURNEY STARTS HERE
+
         </span>
 
+
         <h2>
-            Ready to Explore Rameswaram?
+
+            Make your next Rameswaram trip
+
+            <br>
+
+            <strong>
+                easy to remember.
+            </strong>
+
         </h2>
 
+
         <p>
-            Choose your package, plan your temple visit,
-            arrange a cab or find your stay.
+
+            Choose your package, arrange a cab,
+            find your stay or plan your temple visit.
+
         </p>
 
 
         <div class="cta-buttons">
 
-            <a
-                href="totalpackage.html"
-                class="btn btn-primary"
-            >
-                <i class="fa-solid fa-suitcase-rolling"></i>
-                Explore Packages
+
+            <a href="totalpackage.html"
+               class="btn btn-primary">
+
+                Explore packages
+
+                <i class="fa-solid fa-arrow-right"></i>
+
             </a>
 
 
-            <a
-                href="https://wa.me/918838170745"
-                target="_blank"
-                rel="noopener"
-                class="btn btn-whatsapp"
-            >
+            <a href="https://wa.me/918838170745"
+               target="_blank"
+               rel="noopener"
+               class="btn btn-whatsapp">
+
                 <i class="fa-brands fa-whatsapp"></i>
-                WhatsApp Us
+
+                WhatsApp us
+
             </a>
 
         </div>
@@ -1961,89 +2468,119 @@
 
 
 
-<!-- =====================================================
-     SEO CONTENT
-===================================================== -->
+<!-- ===================================================== -->
+<!-- SEO CONTENT -->
+<!-- ===================================================== -->
 
 <section class="seo-section">
 
-    <div class="seo-content reveal">
+
+    <div class="seo-content">
+
 
         <span>
             RAMSETHUYATRA
         </span>
 
+
         <h2>
             Rameswaram Tour Packages
         </h2>
 
-        <p>
-            RamSethuYatra helps travelers plan their
-            Rameswaram journey with tour packages,
-            accommodation options, cab services,
-            temple visits and sightseeing.
-        </p>
 
         <p>
+
+            RamSethuYatra helps travelers plan
+            their Rameswaram journey with tour
+            packages, accommodation options,
+            cab services, temple visits and
+            sightseeing.
+
+        </p>
+
+
+        <p>
+
             Explore Ramanathaswamy Temple,
             Agni Theertham, Pamban Bridge,
             Dhanushkodi, APJ Abdul Kalam Memorial
-            and other popular destinations around Rameswaram.
+            and other popular destinations around
+            Rameswaram.
+
         </p>
 
     </div>
 
 </section>
 
+</main>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
 
 <footer class="footer">
+
 
     <div class="footer-inner">
 
 
         <!-- BRAND -->
+
         <div class="footer-brand">
 
-            <a href="index.html" class="logo">
 
-                <span class="logo-icon">
+            <a href="index.html"
+               class="logo">
+
+
+                <span class="logo-mark">
                     ॐ
                 </span>
 
-                <span>
-                    Ram<span>Sethu</span>Yatra
+
+                <span class="logo-name">
+
+                    <b>Ram</b>
+
+                    <em>Sethu</em>
+
+                    <b>Yatra</b>
+
                 </span>
 
             </a>
 
 
             <p>
-                Explore Rameswaram with comfortable travel,
-                temple services, sightseeing and stay options.
+
+                Explore Rameswaram with comfortable
+                travel, temple services, sightseeing
+                and stay options.
+
             </p>
 
 
             <div class="footer-social">
 
-                <a
-                    href="https://wa.me/918838170745"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="WhatsApp"
-                >
+
+                <a href="https://wa.me/918838170745"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="WhatsApp">
+
                     <i class="fa-brands fa-whatsapp"></i>
+
                 </a>
 
-                <a
-                    href="tel:+918838170745"
-                    aria-label="Call"
-                >
+
+                <a href="tel:+918838170745"
+                   aria-label="Call">
+
                     <i class="fa-solid fa-phone"></i>
+
                 </a>
 
             </div>
@@ -2053,27 +2590,34 @@
 
 
         <!-- QUICK LINKS -->
+
         <div class="footer-column">
 
+
             <h3>
-                Quick Links
+                Quick links
             </h3>
+
 
             <a href="index.html">
                 Home
             </a>
 
+
             <a href="totalpackage.html">
                 Packages
             </a>
+
 
             <a href="ramanathaswamy-temple.html">
                 Temple & Poojai
             </a>
 
+
             <a href="rameswaram-cab-service.html">
                 Cabs
             </a>
+
 
             <a href="rameswaram-rooms.html">
                 Rooms
@@ -2084,27 +2628,29 @@
 
 
         <!-- EXPLORE -->
+
         <div class="footer-column">
+
 
             <h3>
                 Explore
             </h3>
 
+
             <a href="#gallery">
                 Gallery
             </a>
 
-            <a href="#tips">
-                Travel Tips
-            </a>
 
             <a href="#reviews">
                 Reviews
             </a>
 
+
             <a href="#faq">
                 FAQ
             </a>
+
 
             <a href="about.html">
                 About Us
@@ -2115,23 +2661,29 @@
 
 
         <!-- LEGAL -->
+
         <div class="footer-column">
+
 
             <h3>
                 Legal
             </h3>
 
+
             <a href="terms.html">
                 Terms & Conditions
             </a>
+
 
             <a href="privacy.html">
                 Privacy Policy
             </a>
 
+
             <a href="refund-cancellation.html">
                 Cancellation & Refund
             </a>
+
 
             <a href="contact.html">
                 Contact Us
@@ -2142,11 +2694,14 @@
 
 
         <!-- CONTACT -->
+
         <div class="footer-column">
+
 
             <h3>
                 Contact
             </h3>
+
 
             <a href="tel:+918838170745">
 
@@ -2157,11 +2712,9 @@
             </a>
 
 
-            <a
-                href="https://wa.me/918838170745"
-                target="_blank"
-                rel="noopener"
-            >
+            <a href="https://wa.me/918838170745"
+               target="_blank"
+               rel="noopener">
 
                 <i class="fa-brands fa-whatsapp"></i>
 
@@ -2180,22 +2733,27 @@
 
         </div>
 
-
     </div>
 
 
 
     <!-- FOOTER BOTTOM -->
+
     <div class="footer-bottom">
 
+
         <p>
+
             © 2026 RamSethuYatra.
             All rights reserved.
+
         </p>
 
 
         <a href="admin-login.html">
+
             Admin Login
+
         </a>
 
     </div>
@@ -2203,17 +2761,16 @@
 </footer>
 
 
-<!-- =====================================================
-     FLOATING BUTTONS
-===================================================== -->
 
-<a
-    href="https://wa.me/918838170745"
-    target="_blank"
-    rel="noopener"
-    class="floating-whatsapp"
-    aria-label="WhatsApp"
->
+<!-- ===================================================== -->
+<!-- FLOATING WHATSAPP -->
+<!-- ===================================================== -->
+
+<a href="https://wa.me/918838170745"
+   target="_blank"
+   rel="noopener"
+   class="floating-whatsapp"
+   aria-label="WhatsApp">
 
     <i class="fa-brands fa-whatsapp"></i>
 
@@ -2225,11 +2782,13 @@
 
 
 
-<a
-    href="tel:+918838170745"
-    class="floating-call"
-    aria-label="Call Now"
->
+<!-- ===================================================== -->
+<!-- FLOATING CALL -->
+<!-- ===================================================== -->
+
+<a href="tel:+918838170745"
+   class="floating-call"
+   aria-label="Call Now">
 
     <i class="fa-solid fa-phone"></i>
 
@@ -2241,210 +2800,238 @@
 
 
 
-<button
-    id="topBtn"
-    class="top-btn"
-    aria-label="Back to top"
->
+<!-- ===================================================== -->
+<!-- BACK TO TOP -->
+<!-- ===================================================== -->
+
+<button id="topBtn"
+        class="top-btn"
+        aria-label="Back to top">
 
     <i class="fa-solid fa-arrow-up"></i>
 
 </button>
 
-<!-- =====================================================
-     EXISTING WEBSITE SCRIPT
-===================================================== -->
-
-<script type="module" src="script.js"></script>
 
 
+<!-- ===================================================== -->
+<!-- YOUR EXISTING SCRIPT -->
+<!-- ===================================================== -->
 
+<script type="module"
+        src="script.js">
+</script>
+
+
+
+<!-- ===================================================== -->
 <!-- GOOGLE TRANSLATE -->
+<!-- ===================================================== -->
 
 <script>
+
 function googleTranslateElementInit() {
 
     new google.translate.TranslateElement(
+
         {
-            pageLanguage: "en",
-            includedLanguages: "en,ta,hi",
+            pageLanguage: 'en',
+            includedLanguages: 'en,ta,hi',
             autoDisplay: false
         },
-        "google_translate_element"
+
+        'google_translate_element'
+
     );
 
 }
+
 </script>
+
+
+
+<!-- ===================================================== -->
+<!-- FIREBASE LOGIN NAVIGATION -->
+<!-- ===================================================== -->
 
 <script type="module">
 
-import { auth } from "./firebase.js";
+
+import { auth }
+    from "./firebase.js";
+
 
 import {
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
 
 
 const myBookingNav =
     document.getElementById("myBookingNav");
 
+
 const loginNav =
     document.getElementById("loginNav");
 
-// const signupNav =
-//     document.getElementById("signupNav");
 
 const logoutNav =
     document.getElementById("logoutNav");
 
+
 const menuBtn =
     document.getElementById("mobileMenuBtn");
 
+
 const mainNav =
-    document.querySelector(".main-nav");
+    document.getElementById("mainNav");
 
 
 
-/* =========================================================
-   FIREBASE LOGIN STATUS
-   ========================================================= */
+/* ============================= */
+/* LOGIN STATE */
+/* ============================= */
 
-onAuthStateChanged(auth, (user) => {
 
-    console.log(
-        "Firebase Auth User:",
-        user
-    );
+onAuthStateChanged(
 
-    if (user) {
+    auth,
 
-        console.log(
-            "CUSTOMER LOGGED IN:",
-            user.email
-        );
+    (user) => {
 
-        /* Logged in */
 
-        if (myBookingNav) {
-            myBookingNav.style.display = "";
+        if (user) {
+
+
+            if (myBookingNav) {
+
+                myBookingNav.style.display = "";
+
+            }
+
+
+            if (logoutNav) {
+
+                logoutNav.style.display = "";
+
+            }
+
+
+            if (loginNav) {
+
+                loginNav.style.display = "none";
+
+            }
+
+
         }
 
-        if (logoutNav) {
-            logoutNav.style.display = "";
+        else {
+
+
+            if (myBookingNav) {
+
+                myBookingNav.style.display = "none";
+
+            }
+
+
+            if (logoutNav) {
+
+                logoutNav.style.display = "none";
+
+            }
+
+
+            if (loginNav) {
+
+                loginNav.style.display = "";
+
+            }
+
         }
-
-        if (loginNav) {
-            loginNav.style.display = "none";
-        }
-
-        // if (signupNav) {
-        //     signupNav.style.display = "none";
-        // }
-
-    } else {
-
-        console.log(
-            "CUSTOMER NOT LOGGED IN"
-        );
-
-        /* Logged out */
-
-        if (myBookingNav) {
-            myBookingNav.style.display = "none";
-        }
-
-        if (logoutNav) {
-            logoutNav.style.display = "none";
-        }
-
-        if (loginNav) {
-            loginNav.style.display = "";
-        }
-
-        // if (signupNav) {
-        //     signupNav.style.display = "";
-        // }
 
     }
 
-});
+);
 
 
 
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
+/* ============================= */
+/* MOBILE MENU */
+/* ============================= */
+
 
 if (menuBtn && mainNav) {
 
+
     menuBtn.addEventListener(
+
         "click",
+
         () => {
+
 
             mainNav.classList.toggle(
                 "mobile-open"
             );
 
+
             const icon =
                 menuBtn.querySelector("i");
 
-            if (
-                mainNav.classList.contains(
-                    "mobile-open"
-                )
-            ) {
 
-                icon.classList.remove(
-                    "fa-bars"
-                );
+            icon.classList.toggle(
+                "fa-bars"
+            );
 
-                icon.classList.add(
-                    "fa-xmark"
-                );
 
-            } else {
-
-                icon.classList.remove(
-                    "fa-xmark"
-                );
-
-                icon.classList.add(
-                    "fa-bars"
-                );
-
-            }
+            icon.classList.toggle(
+                "fa-xmark"
+            );
 
         }
+
     );
 
 }
 
 
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
+/* ============================= */
+/* LOGOUT */
+/* ============================= */
+
 
 if (logoutNav) {
 
+
     logoutNav.addEventListener(
+
         "click",
+
         async () => {
+
 
             try {
 
+
                 await signOut(auth);
+
 
                 window.location.href =
                     "index.html";
 
-            } catch (error) {
 
-                console.error(
-                    "Logout Error:",
-                    error
-                );
+            }
+
+            catch (error) {
+
+
+                console.error(error);
+
 
                 alert(
                     "Logout failed. Please try again."
@@ -2453,97 +3040,288 @@ if (logoutNav) {
             }
 
         }
+
     );
 
 }
 
+
 </script>
 
-<!-- =====================================================
-     HOMEPAGE ANIMATION
-===================================================== -->
+
+
+<!-- ===================================================== -->
+<!-- PAGE INTERACTIONS -->
+<!-- ===================================================== -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    () => {
 
 
-    /* SCROLL REVEAL */
+        /* ========================= */
+        /* SCROLL REVEAL */
+        /* ========================= */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+
+        const elements =
+            document.querySelectorAll(
+                ".reveal"
+            );
 
 
-    const observer =
-        new IntersectionObserver(
-            function (entries) {
+        const observer =
+            new IntersectionObserver(
 
-                entries.forEach(function (entry) {
+                entries => {
 
-                    if (entry.isIntersecting) {
 
-                        entry.target.classList.add("active");
+                    entries.forEach(
 
-                        observer.unobserve(entry.target);
+                        entry => {
 
-                    }
 
-                });
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-            },
-            {
-                threshold: 0.12
-            }
+
+                                entry.target.classList.add(
+                                    "active"
+                                );
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+                },
+
+                {
+                    threshold: 0.1
+                }
+
+            );
+
+
+        elements.forEach(
+
+            element =>
+                observer.observe(element)
+
         );
 
 
-    revealElements.forEach(function (element) {
 
-        observer.observe(element);
-
-    });
-
+        /* ========================= */
+        /* BACK TO TOP */
+        /* ========================= */
 
 
-    /* BACK TO TOP */
+        const topBtn =
+            document.getElementById(
+                "topBtn"
+            );
 
-    const topBtn =
-        document.getElementById("topBtn");
+
+        window.addEventListener(
+
+            "scroll",
+
+            () => {
 
 
-    window.addEventListener(
-        "scroll",
-        function () {
+                if (
+                    window.scrollY > 500
+                ) {
 
-            if (window.scrollY > 500) {
+                    topBtn.classList.add(
+                        "show"
+                    );
 
-                topBtn.classList.add("show");
+                }
 
-            } else {
+                else {
 
-                topBtn.classList.remove("show");
+                    topBtn.classList.remove(
+                        "show"
+                    );
+
+                }
 
             }
 
+        );
+
+
+        topBtn.addEventListener(
+
+            "click",
+
+            () => {
+
+
+                window.scrollTo(
+
+                    {
+                        top: 0,
+                        behavior: "smooth"
+                    }
+
+                );
+
+            }
+
+        );
+
+
+
+        /* ========================= */
+        /* LANGUAGE MENU */
+        /* ========================= */
+
+
+        const languageBtn =
+            document.getElementById(
+                "languageBtn"
+            );
+
+
+        const languageMenu =
+            document.getElementById(
+                "languageMenu"
+            );
+
+
+        if (languageBtn) {
+
+
+            languageBtn.addEventListener(
+
+                "click",
+
+                () => {
+
+
+                    languageMenu.classList.toggle(
+                        "open"
+                    );
+
+                }
+
+            );
+
         }
-    );
 
 
-    topBtn.addEventListener(
-        "click",
-        function () {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-    );
+        /* ========================= */
+        /* CHANGE LANGUAGE */
+        /* ========================= */
 
 
-});
+        document
+            .querySelectorAll("[data-lang]")
+            .forEach(
+
+                button => {
+
+
+                    button.addEventListener(
+
+                        "click",
+
+                        () => {
+
+
+                            const combo =
+                                document.querySelector(
+                                    ".goog-te-combo"
+                                );
+
+
+                            if (combo) {
+
+
+                                combo.value =
+                                    button.dataset.lang;
+
+
+                                combo.dispatchEvent(
+                                    new Event(
+                                        "change"
+                                    )
+                                );
+
+                            }
+
+
+                            languageMenu.classList.remove(
+                                "open"
+                            );
+
+                        }
+
+                    );
+
+                }
+
+            );
+
+
+
+        /* ========================= */
+        /* CLOSE LANGUAGE MENU */
+        /* ========================= */
+
+
+        document.addEventListener(
+
+            "click",
+
+            event => {
+
+
+                if (
+                    !event.target.closest(
+                        ".translate-box"
+                    )
+                ) {
+
+
+                    if (languageMenu) {
+
+
+                        languageMenu.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+                }
+
+            }
+
+        );
+
+    }
+
+);
 
 </script>
+
+
 </body>
+
 </html>

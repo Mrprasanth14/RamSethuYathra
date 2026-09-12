@@ -1,209 +1,545 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* =========================================================
+   RAMSETHUYATRA — ADMIN LOGIN
+   Premium Navy / Orange / Cream Design
+========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+:root {
+    --navy: #003049;
+    --navy-dark: #001f2e;
+    --navy-light: #0b4663;
+
+    --orange: #f77f00;
+    --orange-dark: #d96500;
+    --orange-light: #ff9f43;
+
+    --cream: #fffaf4;
+    --cream-dark: #f5ede3;
+
+    --white: #ffffff;
+
+    --text: #24323d;
+    --text-light: #66727c;
+
+    --border: #e2d9cf;
+
+    --shadow:
+        0 25px 70px rgba(0, 48, 73, 0.16);
 }
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ff7a00,#ff3d00,#ff9a44);
-    overflow:hidden;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Glass Login Box */
 
-.login-box{
-    width:420px;
-    max-width:90%;
-    padding:40px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:20px;
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
-    text-align:center;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
-/* Heading */
 
-.login-box h2{
-    color:#fff;
-    font-size:32px;
-    margin-bottom:30px;
-    font-weight:700;
+body {
+    min-height: 100vh;
+
+    font-family:
+        "DM Sans",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(247, 127, 0, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(0, 48, 73, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            var(--cream),
+            #f7eee4
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    overflow-x: hidden;
 }
 
-/* Input */
 
-.login-box input{
-    width:100%;
-    padding:15px;
-    margin-bottom:18px;
-    border:none;
-    outline:none;
-    border-radius:12px;
-    background:rgba(255,255,255,.9);
-    font-size:16px;
-    transition:.3s;
+/* =========================================================
+   BACKGROUND DECORATION
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(0, 48, 73, 0.08);
+
+    top: -250px;
+    right: -150px;
+
+    pointer-events: none;
 }
 
-.login-box input:focus{
-    transform:scale(1.02);
-    box-shadow:0 0 15px rgba(255,255,255,.5);
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(247, 127, 0, 0.05);
+
+    bottom: -180px;
+    left: -120px;
+
+    pointer-events: none;
 }
 
-/* Button */
 
-.login-box button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#fff;
-    color:#ff5a00;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+/* =========================================================
+   LOGIN BOX
+========================================================= */
+
+.login-box {
+    position: relative;
+
+    width: min(430px, 100%);
+
+    padding: 42px 38px 38px;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border:
+        1px solid rgba(226, 217, 207, 0.9);
+
+    border-radius: 26px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+
+    z-index: 2;
 }
 
-.login-box button:hover{
-    background:#003049;
-    color:#fff;
-    transform:translateY(-3px);
-    box-shadow:0 10px 20px rgba(0,0,0,.25);
+
+/* orange top line */
+
+.login-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--orange),
+            var(--orange-light)
+        );
 }
 
-/* Placeholder */
 
-.login-box input::placeholder{
-    color:#777;
+/* =========================================================
+   SMALL BRAND MARK
+========================================================= */
+
+.login-box::after {
+    content: "RAMSETHUYATRA";
+
+    display: block;
+
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    color:
+        rgba(0, 48, 73, 0.28);
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
 }
 
-/* Mobile */
 
-@media(max-width:768px){
+/* =========================================================
+   TITLE
+========================================================= */
 
-.login-box{
-    width:95%;
-    padding:30px 22px;
+.login-box h2 {
+    color: var(--navy);
+
+    font-size: 27px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    margin-bottom: 30px;
+
+    padding-right: 50px;
 }
 
-.login-box h2{
-    font-size:28px;
+
+.login-box h2::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 4px;
+
+    margin-top: 12px;
+
+    border-radius: 10px;
+
+    background: var(--orange);
 }
 
-.login-box input{
-    padding:14px;
-    font-size:15px;
+
+/* =========================================================
+   FORM
+========================================================= */
+
+#adminLoginForm {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
 }
 
-.login-box button{
-    padding:14px;
-    font-size:16px;
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+#adminLoginForm input {
+    width: 100%;
+
+    height: 54px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 11px;
+
+    background:
+        #fffdf9;
+
+    color:
+        var(--text);
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    transition:
+        0.25s ease;
 }
 
+
+#adminLoginForm input::placeholder {
+    color:
+        #9aa2a7;
 }
 
-/* Small Mobile */
 
-@media(max-width:480px){
-
-.login-box{
-    padding:25px 18px;
+#adminLoginForm input:hover {
+    border-color:
+        #cfc2b5;
 }
 
-.login-box h2{
-    font-size:24px;
+
+#adminLoginForm input:focus {
+    border-color:
+        var(--orange);
+
+    background:
+        var(--white);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(247, 127, 0, 0.10);
 }
 
-.login-box input{
-    padding:12px;
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+#adminLoginForm button {
+    width: 100%;
+
+    height: 54px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--orange),
+            var(--orange-dark)
+        );
+
+    color:
+        var(--white);
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.2px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 10px 24px
+        rgba(247, 127, 0, 0.23);
+
+    transition:
+        0.25s ease;
 }
 
-.login-box button{
-    padding:12px;
+
+#adminLoginForm button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(247, 127, 0, 0.28);
 }
 
+
+#adminLoginForm button:active {
+    transform:
+        translateY(0);
 }
-/* =========================================
-   MOBILE TEXT / SECTION FIX
-========================================= */
 
-@media (max-width: 768px) {
 
-    section {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
+#adminLoginForm button:disabled {
+    opacity: 0.65;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* =========================================================
+   INPUT VALIDATION
+========================================================= */
+
+#adminLoginForm input:invalid:not(:placeholder-shown) {
+    border-color:
+        #d95c5c;
+}
+
+
+#adminLoginForm input:valid:not(:placeholder-shown) {
+    border-color:
+        #b9d8c8;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding:
+            18px;
     }
 
-    section h2 {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 15px;
-        margin-left: auto;
-        margin-right: auto;
 
-        font-size: 28px;
-        line-height: 1.25;
-        text-align: center;
+    .login-box {
+        width:
+            100%;
 
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+        padding:
+            38px 25px 28px;
+
+        border-radius:
+            21px;
     }
 
-    #seo-content,
-    #faq {
-        width: 100%;
-        padding-left: 15px;
-        padding-right: 15px;
+
+    .login-box::after {
+        top:
+            18px;
+
+        right:
+            20px;
+
+        font-size:
+            7px;
     }
 
-    #seo-content h2,
-    #faq h2 {
-        font-size: 27px;
-        text-align: center;
-        padding: 0 5px;
+
+    .login-box h2 {
+        font-size:
+            23px;
+
+        margin-bottom:
+            25px;
     }
 
-    #seo-content p {
-        width: 100%;
-        max-width: 100%;
-        font-size: 15px;
-        line-height: 1.5;
-        margin-left: auto;
-        margin-right: auto;
+
+    #adminLoginForm {
+        gap:
+            14px;
     }
 
-    .faq {
-        width: 100%;
-        max-width: 100%;
-        margin: 20px auto;
+
+    #adminLoginForm input,
+    #adminLoginForm button {
+        height:
+            52px;
     }
+
 }
-@media (max-width: 480px) {
 
-    section h2 {
-        font-size: 24px;
-        padding: 0 12px;
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    body {
+        padding:
+            12px;
     }
 
-    #seo-content h2,
-    #faq h2 {
-        font-size: 23px;
+
+    .login-box {
+        padding:
+            34px 20px 24px;
+
+        border-radius:
+            18px;
     }
 
-    #seo-content p {
-        font-size: 14px;
+
+    .login-box h2 {
+        font-size:
+            21px;
+
+        padding-right:
+            0;
     }
+
+
+    .login-box::after {
+        display:
+            none;
+    }
+
+
+    #adminLoginForm input,
+    #adminLoginForm button {
+        height:
+            50px;
+
+        font-size:
+            13px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+#adminLoginForm input:focus-visible,
+#adminLoginForm button:focus-visible {
+    outline:
+        3px solid
+        rgba(247, 127, 0, 0.25);
+
+    outline-offset:
+        2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition:
+            none !important;
+    }
+
 }

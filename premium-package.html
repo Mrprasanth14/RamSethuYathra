@@ -1,821 +1,1382 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Premium Package | RamSethuYatra</title>
-<meta name="description"
-      content="Experience the RamSethuYatra Premium Package in Rameswaram with premium accommodation, transportation, temple visits and sightseeing services.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="normal.css">
+    <title>Premium Package | RamSethuYatra</title>
 
+    <meta
+        name="description"
+        content="Explore the RamSethuYatra Premium Rameswaram tour package with premium stay, cab transportation, temple visit and sightseeing."
+    >
+
+    <link rel="stylesheet" href="package.css">
+
+    <link rel="stylesheet" href="site-theme.css">
+
+    <style>
+        /* Premium page small custom additions */
+
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fcbf49, #f77f00);
+            color: #003049;
+            font-weight: 800;
+            padding: 8px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .premium-note {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-left: 4px solid #fcbf49;
+            background: #fff8e8;
+            border-radius: 10px;
+            color: #5d4b28;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .premium-feature {
+            border: 1px solid #f0dfbd;
+            background: linear-gradient(135deg, #fffaf4, #fff4dd);
+        }
+
+        .premium-feature .feature-icon {
+            background: #fcbf49;
+            color: #003049;
+        }
+    </style>
 </head>
 
 <body>
-<!-- =====================================================
-     HEADER
-====================================================== -->
 
-<header class="package-header">
+    <!-- ================= HEADER ================= -->
 
-    <a href="totalpackage.html" class="back-btn">
-        ← Back to Packages
-    </a>
+    <header class="site-header">
 
+        <div class="header-inner">
 
-    <a href="index.html" class="logo">
-        🛕 <span>RamSethuYatra</span>
-    </a>
+            <a href="index.html" class="site-logo">
+                <span>Ram</span>
+                <span>Sethu</span>
+                <span>Yatra</span>
+            </a>
 
-</header>
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                type="button"
+            >
+                ☰
+            </button>
 
+            <nav class="main-nav" id="mainNav">
 
+                <a href="index.html">Home</a>
 
-<!-- =====================================================
-     HERO
-====================================================== -->
+                <a href="about.html">About</a>
 
-<section class="package-hero">
+                <a href="totalpackage.html" class="active">
+                    Packages
+                </a>
 
-    <div class="hero-overlay"></div>
+                <a href="ramanathaswamy-temple.html">
+                    Temple
+                </a>
 
+                <a href="contact.html">
+                    Contact
+                </a>
 
-    <div class="hero-content">
+                <a href="login.html" id="loginNav">
+                    Login
+                </a>
 
-        <span class="hero-label">
-            ✦ PREMIUM PACKAGE
-        </span>
+                <a href="customer-dashboard.html" id="myBookingNav">
+                    My Booking
+                </a>
 
+                <button
+                    type="button"
+                    id="logoutNav"
+                    class="nav-logout"
+                    style="display:none;"
+                >
+                    Logout
+                </button>
 
-        <h1>
-            Experience Rameswaram
-            <span>In Premium Comfort</span>
-        </h1>
-
-
-        <p>
-            Our complete Rameswaram experience with premium
-            accommodation, full sightseeing, cab
-            transportation and meals.
-        </p>
-
-
-        <a href="#package-details" class="hero-btn">
-            Explore Package ↓
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PACKAGE DETAILS
-====================================================== -->
-
-<main id="package-details" class="package-container">
-
-
-    <!-- IMAGE -->
-
-    <div class="package-image-box">
-
-        <div class="image-badge">
-            PREMIUM PACKAGE
-        </div>
-
-
-        <img
-            src="images/premium-package.jpg"
-            alt="Rameswaram Premium Tour Package"
-        >
-
-
-        <div class="image-bottom">
-
-            <span>
-                ✨ Premium Experience
-            </span>
-
-            <span>
-                🍽️ Meals Included
-            </span>
+            </nav>
 
         </div>
 
-    </div>
+    </header>
 
 
+    <!-- ================= HERO ================= -->
 
-    <!-- INFORMATION -->
+    <main>
 
-    <div class="package-info">
+        <section class="package-hero">
 
+            <div class="package-hero-image">
 
-        <span class="package-label">
-            PREMIUM EXPERIENCE
-        </span>
+                <img
+                    src="images/beautiful-beach.jpg"
+                    alt="Beautiful Rameswaram beach"
+                >
 
+                <div class="hero-overlay"></div>
 
-        <h2>
-            Rameswaram Premium
-            Tour Package
-        </h2>
-
-
-        <p class="description">
-            Our complete Rameswaram experience with premium
-            accommodation, full sightseeing, cab
-            transportation and meals included.
-        </p>
+            </div>
 
 
+            <div class="package-hero-content">
 
-        <!-- QUICK INFO -->
+                <a href="totalpackage.html" class="back-link">
+                    ← Back to Packages
+                </a>
 
-        <div class="quick-info">
+                <div class="premium-badge">
+                    ★ Premium Experience
+                </div>
 
-            <div>
+                <span class="eyebrow">
+                    PREMIUM EXPERIENCE
+                </span>
 
-                <span>👥</span>
+                <h1>
+                    Rameswaram Premium
+                    Tour Package
+                </h1>
+
+                <p>
+                    Experience Rameswaram with a more comfortable stay,
+                    private cab transportation, temple visits and
+                    carefully selected sightseeing experiences.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#booking"
+                        class="btn btn-primary"
+                    >
+                        Plan Your Trip
+                    </a>
+
+                    <a
+                        href="https://wa.me/918838170745"
+                        class="btn btn-light"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        WhatsApp Us
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUICK INFO ================= -->
+
+        <section class="quick-info">
+
+            <div class="quick-info-item">
+
+                <span class="quick-icon">👥</span>
 
                 <div>
+                    <small>PERSONS</small>
                     <strong>2–10</strong>
-                    <small>Persons</small>
                 </div>
 
             </div>
 
 
-            <div>
+            <div class="quick-info-item">
 
-                <span>🚕</span>
+                <span class="quick-icon">🚕</span>
 
                 <div>
-                    <strong>Premium</strong>
-                    <small>Cab</small>
+                    <small>TRANSPORT</small>
+                    <strong>Cab Included</strong>
                 </div>
 
             </div>
 
 
-            <div>
+            <div class="quick-info-item">
 
-                <span>🍽️</span>
+                <span class="quick-icon">🏨</span>
 
                 <div>
-                    <strong>Meals</strong>
-                    <small>Included</small>
+                    <small>STAY</small>
+                    <strong>Premium Room</strong>
                 </div>
 
             </div>
 
-        </div>
+
+            <div class="quick-info-item">
+
+                <span class="quick-icon">🛕</span>
+
+                <div>
+                    <small>EXPERIENCE</small>
+                    <strong>Temple + Sightseeing</strong>
+                </div>
+
+            </div>
+
+        </section>
 
 
+        <!-- ================= PACKAGE DETAILS ================= -->
 
-        <!-- INCLUDED -->
+        <section class="package-section">
 
-        <div class="included-section">
+            <div class="section-heading">
 
-            <div class="section-title">
-
-                <span>
-                    ✦
+                <span class="eyebrow">
+                    THE PREMIUM EXPERIENCE
                 </span>
 
-                <h3>
-                    Package Includes
-                </h3>
-
-            </div>
-
-
-            <div class="included-list">
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🛏️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Premium Room
-                        </strong>
-
-                        <p>
-                            Premium accommodation
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🚕
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Premium Cab
-                        </strong>
-
-                        <p>
-                            Comfortable local transportation
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🛕
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Ramanathaswamy Temple
-                        </strong>
-
-                        <p>
-                            Visit the famous spiritual landmark
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🌊
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Agni Theertham
-                        </strong>
-
-                        <p>
-                            Experience the sacred seashore
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🌉
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Pamban Bridge
-                        </strong>
-
-                        <p>
-                            Enjoy the famous bridge views
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🏛️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Abdul Kalam Memorial
-                        </strong>
-
-                        <p>
-                            Visit the memorial in Rameswaram
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🏝️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Dhanushkodi
-                        </strong>
-
-                        <p>
-                            Explore the famous coastal destination
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        📍
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Full Sightseeing
-                        </strong>
-
-                        <p>
-                            Explore the included local attractions
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        🍽️
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Meals Included
-                        </strong>
-
-                        <p>
-                            Meals included in the package
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="included-item">
-
-                    <div class="included-icon">
-                        ✨
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Premium Services
-                        </strong>
-
-                        <p>
-                            Premium package services
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- PERSON SELECTION -->
-
-        <div class="booking-box">
-
-            <div class="booking-title">
-
-                <div>
-
-                    <span>
-                        STEP 1
-                    </span>
-
-                    <h3>
-                        Select Number of Persons
-                    </h3>
-
-                </div>
-
-
-                <div class="people-icon">
-                    👥
-                </div>
-
-            </div>
-
-
-            <label for="persons">
-                Number of Persons
-            </label>
-
-
-            <select id="persons">
-
-                <option value="2">
-                    2 Persons
-                </option>
-
-                <option value="3">
-                    3 Persons
-                </option>
-
-                <option value="4">
-                    4 Persons
-                </option>
-
-                <option value="5" selected>
-                    5 Persons
-                </option>
-
-                <option value="6">
-                    6 Persons
-                </option>
-
-                <option value="7">
-                    7 Persons
-                </option>
-
-                <option value="8">
-                    8 Persons
-                </option>
-
-                <option value="9">
-                    9 Persons
-                </option>
-
-                <option value="10">
-                    10 Persons
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <!-- PRICE -->
-
-        <div class="total-box">
-
-            <div class="price-title">
-
-                <span>
-                    TOTAL PACKAGE
-                </span>
-
-                <small>
-                    Based on selected persons
-                </small>
-
-            </div>
-
-
-            <div class="price-value">
-
-                <h4 id="totalPrice">
-                    ₹13,000
-                </h4>
-
-                <p id="priceFor">
-                    For 5 Persons
+                <h2>
+                    Travel with comfort,
+                    peace and convenience
+                </h2>
+
+                <p>
+                    Our Premium Package is designed for travellers
+                    who want a comfortable Rameswaram experience
+                    without worrying about arranging every detail
+                    separately.
                 </p>
 
             </div>
 
+
+            <div class="package-layout">
+
+                <!-- LEFT CONTENT -->
+
+                <div class="package-main-content">
+
+                    <div class="package-card">
+
+                        <div class="card-heading">
+
+                            <span class="card-number">
+                                01
+                            </span>
+
+                            <div>
+                                <h3>
+                                    What's included
+                                </h3>
+
+                                <p>
+                                    Your core travel experience
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="included-grid">
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🏨
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Premium Room
+                                    </strong>
+
+                                    <p>
+                                        Comfortable accommodation
+                                        for your Rameswaram stay.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🚕
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Cab Transportation
+                                    </strong>
+
+                                    <p>
+                                        Convenient local transportation
+                                        for your planned sightseeing.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🛕
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Ramanathaswamy Temple
+                                    </strong>
+
+                                    <p>
+                                        Visit one of India's important
+                                        pilgrimage destinations.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🌊
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Agni Theertham
+                                    </strong>
+
+                                    <p>
+                                        Experience the sacred seashore
+                                        near Ramanathaswamy Temple.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🌉
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Pamban Bridge
+                                    </strong>
+
+                                    <p>
+                                        Enjoy one of Rameswaram's
+                                        iconic landmarks.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    📍
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Selected Sightseeing
+                                    </strong>
+
+                                    <p>
+                                        Explore selected attractions
+                                        around Rameswaram.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🍽️
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Premium Experience
+                                    </strong>
+
+                                    <p>
+                                        A more comfortable travel
+                                        experience from start to finish.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="included-item premium-feature">
+
+                                <div class="feature-icon">
+                                    🤝
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Travel Assistance
+                                    </strong>
+
+                                    <p>
+                                        Get assistance while planning
+                                        your Rameswaram journey.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= HIGHLIGHTS ================= -->
+
+                    <div class="package-card">
+
+                        <div class="card-heading">
+
+                            <span class="card-number">
+                                02
+                            </span>
+
+                            <div>
+                                <h3>
+                                    Premium highlights
+                                </h3>
+
+                                <p>
+                                    Why choose this package?
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="highlight-list">
+
+                            <div class="highlight-item">
+
+                                <span>✓</span>
+
+                                <div>
+                                    <strong>
+                                        Comfortable stay
+                                    </strong>
+
+                                    <p>
+                                        Enjoy a premium room during
+                                        your Rameswaram visit.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="highlight-item">
+
+                                <span>✓</span>
+
+                                <div>
+                                    <strong>
+                                        Convenient transportation
+                                    </strong>
+
+                                    <p>
+                                        Reduce the hassle of arranging
+                                        local transportation yourself.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="highlight-item">
+
+                                <span>✓</span>
+
+                                <div>
+                                    <strong>
+                                        Pilgrimage + sightseeing
+                                    </strong>
+
+                                    <p>
+                                        Combine your spiritual journey
+                                        with selected local attractions.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="highlight-item">
+
+                                <span>✓</span>
+
+                                <div>
+                                    <strong>
+                                        Family-friendly planning
+                                    </strong>
+
+                                    <p>
+                                        Suitable for small groups and
+                                        family trips of 2–10 persons.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= NOTE ================= -->
+
+                    <div class="premium-note">
+
+                        <strong>
+                            Important:
+                        </strong>
+
+                        Package availability, room category,
+                        sightseeing coverage and exact arrangements
+                        should be confirmed before booking.
+                        Temple timings may also vary on special days,
+                        festivals or temple events.
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= BOOKING CARD ================= -->
+
+                <aside
+                    class="booking-card"
+                    id="booking"
+                >
+
+                    <div class="booking-card-top">
+
+                        <span class="eyebrow">
+                            PREMIUM PACKAGE
+                        </span>
+
+                        <h2>
+                            Plan your stay
+                        </h2>
+
+                        <p>
+                            Select the number of persons to see
+                            the package price.
+                        </p>
+
+                    </div>
+
+
+                    <div class="booking-field">
+
+                        <label for="persons">
+                            Number of persons
+                        </label>
+
+                        <select id="persons">
+
+                            <option value="2">
+                                2 Persons
+                            </option>
+
+                            <option value="3">
+                                3 Persons
+                            </option>
+
+                            <option value="4">
+                                4 Persons
+                            </option>
+
+                            <option value="5" selected>
+                                5 Persons
+                            </option>
+
+                            <option value="6">
+                                6 Persons
+                            </option>
+
+                            <option value="7">
+                                7 Persons
+                            </option>
+
+                            <option value="8">
+                                8 Persons
+                            </option>
+
+                            <option value="9">
+                                9 Persons
+                            </option>
+
+                            <option value="10">
+                                10 Persons
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="price-summary">
+
+                        <span>
+                            Package price
+                        </span>
+
+                        <strong id="price">
+                            ₹13,000
+                        </strong>
+
+                        <small id="priceText">
+                            For 5 Persons
+                        </small>
+
+                    </div>
+
+
+                    <div class="booking-benefits">
+
+                        <div>
+                            ✓ Premium room
+                        </div>
+
+                        <div>
+                            ✓ Cab transportation
+                        </div>
+
+                        <div>
+                            ✓ Temple visit
+                        </div>
+
+                        <div>
+                            ✓ Selected sightseeing
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="continueBtn"
+                        class="continue-btn"
+                    >
+                        Continue to Booking
+                        <span>→</span>
+                    </button>
+
+
+                    <a
+                        href="https://wa.me/918838170745"
+                        target="_blank"
+                        rel="noopener"
+                        class="booking-whatsapp"
+                    >
+                        💬 Ask on WhatsApp
+                    </a>
+
+
+                    <p class="booking-small-text">
+                        Final package arrangements should be
+                        confirmed before payment.
+                    </p>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EXPERIENCE STRIP ================= -->
+
+        <section class="experience-strip">
+
+            <div class="experience-content">
+
+                <span class="eyebrow">
+                    A BETTER WAY TO TRAVEL
+                </span>
+
+                <h2>
+                    Make your Rameswaram
+                    journey memorable.
+                </h2>
+
+                <p>
+                    Focus on the spiritual experience while we help
+                    you organise the essentials of your trip.
+                </p>
+
+            </div>
+
+
+            <div class="experience-points">
+
+                <div>
+                    <span>01</span>
+                    <strong>
+                        Comfortable Stay
+                    </strong>
+                    <p>
+                        Relax after a day of sightseeing.
+                    </p>
+                </div>
+
+
+                <div>
+                    <span>02</span>
+                    <strong>
+                        Easy Transport
+                    </strong>
+                    <p>
+                        Travel around Rameswaram conveniently.
+                    </p>
+                </div>
+
+
+                <div>
+                    <span>03</span>
+                    <strong>
+                        Spiritual Journey
+                    </strong>
+                    <p>
+                        Visit important pilgrimage locations.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= OTHER PACKAGES ================= -->
+
+        <section class="other-packages">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    EXPLORE MORE
+                </span>
+
+                <h2>
+                    Other ways to experience Rameswaram
+                </h2>
+
+            </div>
+
+
+            <div class="other-package-grid">
+
+                <a
+                    href="normal-package.html"
+                    class="other-package-card"
+                >
+
+                    <img
+                        src="images/Ram.jpg"
+                        alt="Normal Rameswaram package"
+                    >
+
+                    <div>
+
+                        <span>
+                            STARTER
+                        </span>
+
+                        <h3>
+                            Normal Package
+                        </h3>
+
+                        <p>
+                            A simple and practical Rameswaram
+                            travel experience.
+                        </p>
+
+                        <strong>
+                            Explore Package →
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="medium-package.html"
+                    class="other-package-card"
+                >
+
+                    <img
+                        src="images/Rameswaram agnitheertham.jpg"
+                        alt="Medium Rameswaram package"
+                    >
+
+                    <div>
+
+                        <span>
+                            COMFORT
+                        </span>
+
+                        <h3>
+                            Medium Package
+                        </h3>
+
+                        <p>
+                            More comfort and sightseeing for
+                            your Rameswaram trip.
+                        </p>
+
+                        <strong>
+                            Explore Package →
+                        </strong>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="package-cta">
+
+            <div>
+
+                <span class="eyebrow">
+                    READY TO TRAVEL?
+                </span>
+
+                <h2>
+                    Begin your Rameswaram
+                    journey with RamSethuYatra.
+                </h2>
+
+                <p>
+                    Choose your package, select your group size
+                    and continue to booking.
+                </p>
+
+            </div>
+
+
+            <div class="cta-actions">
+
+                <a
+                    href="#booking"
+                    class="btn btn-primary"
+                >
+                    Book This Package
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="btn btn-outline"
+                >
+                    Contact Us
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="footer-logo">
+                    RamSethuYatra
+                </a>
+
+                <p>
+                    Your travel companion for discovering
+                    Rameswaram's spiritual and scenic experiences.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="totalpackage.html">
+                    Packages
+                </a>
+
+                <a href="ramanathaswamy-temple.html">
+                    Temple
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Services
+                </h4>
+
+                <a href="rameswaram-cab-service.html">
+                    Cab Service
+                </a>
+
+                <a href="rameswaram-rooms.html">
+                    Rooms
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="customer-dashboard.html">
+                    My Booking
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Legal
+                </h4>
+
+                <a href="privacy.html">
+                    Privacy Policy
+                </a>
+
+                <a href="terms.html">
+                    Terms & Conditions
+                </a>
+
+                <a href="refund-cancellation.html">
+                    Cancellation & Refund
+                </a>
+
+            </div>
+
         </div>
 
 
-
-        <!-- CONTINUE -->
-
-        <button
-            class="continue-btn"
-            onclick="continueBooking()"
-        >
-
-            <span>
-                Continue Booking
-            </span>
-
-            <strong>
-                →
-            </strong>
-
-        </button>
-
-
-        <p class="secure-note">
-            🔒 You can review your booking details before confirming.
-        </p>
-
-    </div>
-
-</main>
-
-
-
-<!-- =====================================================
-     WHY CHOOSE THIS PACKAGE
-====================================================== -->
-
-<section class="why-section">
-
-
-    <div class="why-heading">
-
-        <span>
-            ✦ WHY THIS PACKAGE
-        </span>
-
-
-        <h2>
-            Complete.
-            <strong>Premium. Memorable.</strong>
-        </h2>
-
-
-        <p>
-            A complete Rameswaram experience with premium
-            accommodation, sightseeing, transportation
-            and meals.
-        </p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                ✨
-            </div>
-
-            <h3>
-                Premium Experience
-            </h3>
+        <div class="footer-bottom">
 
             <p>
-                Enjoy premium accommodation and
-                package services during your journey.
+                © 2026 RamSethuYatra.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                Rameswaram, Tamil Nadu, India
             </p>
 
         </div>
 
+    </footer>
 
-        <div class="why-card">
 
-            <div class="why-icon">
-                🚕
-            </div>
+    <!-- ================= FLOATING BUTTONS ================= -->
 
-            <h3>
-                Comfortable Travel
-            </h3>
+    <a
+        href="https://wa.me/918838170745"
+        class="floating-whatsapp"
+        target="_blank"
+        rel="noopener"
+        aria-label="Chat on WhatsApp"
+    >
+        💬
+    </a>
 
-            <p>
-                Premium cab transportation helps
-                make local sightseeing convenient.
-            </p>
 
-        </div>
+    <a
+        href="tel:+918838170745"
+        class="floating-call"
+        aria-label="Call RamSethuYatra"
+    >
+        ☎
+    </a>
 
 
-        <div class="why-card">
+    <button
+        type="button"
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
 
-            <div class="why-icon">
-                🏝️
-            </div>
 
-            <h3>
-                Full Sightseeing
-            </h3>
+    <!-- ================= FIREBASE / SITE JS ================= -->
 
-            <p>
-                Explore important spiritual and
-                sightseeing destinations included
-                in the package.
-            </p>
+    <script type="module">
 
-        </div>
+        import { auth } from "./firebase.js";
 
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-        <div class="why-card">
 
-            <div class="why-icon">
-                🍽️
-            </div>
+        const loginNav =
+            document.getElementById("loginNav");
 
-            <h3>
-                Meals Included
-            </h3>
+        const myBookingNav =
+            document.getElementById("myBookingNav");
 
-            <p>
-                Meals are included as part of
-                the Premium package.
-            </p>
+        const logoutNav =
+            document.getElementById("logoutNav");
 
-        </div>
 
-    </div>
+        onAuthStateChanged(auth, (user) => {
 
-</section>
+            if (user) {
 
+                if (loginNav) {
+                    loginNav.style.display = "none";
+                }
 
+                if (myBookingNav) {
+                    myBookingNav.style.display = "inline-flex";
+                }
 
-<!-- =====================================================
-     CTA
-====================================================== -->
+                if (logoutNav) {
+                    logoutNav.style.display = "inline-flex";
+                }
 
-<section class="package-cta">
+            } else {
 
-    <div>
+                if (loginNav) {
+                    loginNav.style.display = "inline-flex";
+                }
 
-        <span>
-            ✦ READY FOR YOUR JOURNEY?
-        </span>
+                if (myBookingNav) {
+                    myBookingNav.style.display = "none";
+                }
 
+                if (logoutNav) {
+                    logoutNav.style.display = "none";
+                }
 
-        <h2>
-            Experience the
-            <strong>Beauty of Rameswaram</strong>
-        </h2>
+            }
 
+        });
 
-        <p>
-            Select your number of persons and continue
-            to complete your booking.
-        </p>
 
+        if (logoutNav) {
 
-        <a href="#package-details">
-            Continue Booking →
-        </a>
+            logoutNav.addEventListener("click", async () => {
 
-    </div>
+                try {
 
-</section>
+                    await signOut(auth);
 
+                    window.location.href = "index.html";
 
+                } catch (error) {
 
-<!-- =====================================================
-     FOOTER
-====================================================== -->
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
 
-<footer class="package-footer">
+                }
 
-    <div class="footer-logo">
-        🛕 RamSethuYatra
-    </div>
-
-
-    <p>
-        Your trusted travel partner in Rameswaram.
-    </p>
-
-
-    <div class="footer-links">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="totalpackage.html">
-            Packages
-        </a>
-
-        <a href="about.html">
-            About
-        </a>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        © 2026 RamSethuYatra.
-        All Rights Reserved.
-
-    </div>
-
-</footer>
-
-
-
-<!-- =====================================================
-     PRICE JAVASCRIPT
-====================================================== -->
-
-<script>
-
-    const prices = {
-
-        2: 7500,
-        3: 9000,
-        4: 11000,
-        5: 13000,
-        6: 14800,
-        7: 16500,
-        8: 18200,
-        9: 20000,
-        10: 22000
-
-    };
-
-
-    const persons =
-        document.getElementById("persons");
-
-
-    const totalPrice =
-        document.getElementById("totalPrice");
-
-
-    const priceFor =
-        document.getElementById("priceFor");
-
-
-    persons.addEventListener(
-        "change",
-        function () {
-
-            const count =
-                Number(this.value);
-
-            const price =
-                prices[count];
-
-
-            totalPrice.textContent =
-                "₹" +
-                price.toLocaleString("en-IN");
-
-
-            priceFor.textContent =
-                "For " +
-                count +
-                " Persons";
+            });
 
         }
-    );
 
 
-    function continueBooking() {
+        /* ================= MOBILE MENU ================= */
 
-        const count =
-            Number(persons.value);
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const mainNav =
+            document.getElementById("mainNav");
 
 
-        const price =
-            prices[count];
+        if (menuToggle && mainNav) {
+
+            menuToggle.addEventListener("click", () => {
+
+                mainNav.classList.toggle("open");
+
+            });
 
 
-        window.location.href =
-            "booking.html?package=premium&persons="
-            + count
-            + "&price="
-            + price;
+            mainNav.querySelectorAll("a").forEach((link) => {
 
-    }
+                link.addEventListener("click", () => {
 
-</script>
+                    mainNav.classList.remove("open");
+
+                });
+
+            });
+
+        }
+
+
+        /* ================= PRICE ================= */
+
+        const personsSelect =
+            document.getElementById("persons");
+
+        const priceElement =
+            document.getElementById("price");
+
+        const priceText =
+            document.getElementById("priceText");
+
+
+        /*
+         * Premium package pricing.
+         *
+         * Confirm these prices for your actual business
+         * before publishing them as final prices.
+         */
+
+        const prices = {
+
+            2: 6000,
+
+            3: 7800,
+
+            4: 10500,
+
+            5: 13000,
+
+            6: 15000,
+
+            7: 17000,
+
+            8: 19000,
+
+            9: 21000,
+
+            10: 23000
+
+        };
+
+
+        function updatePrice() {
+
+            const persons =
+                Number(personsSelect.value);
+
+            const price =
+                prices[persons];
+
+
+            if (!price) {
+                return;
+            }
+
+
+            priceElement.textContent =
+                "₹" + price.toLocaleString("en-IN");
+
+
+            priceText.textContent =
+                `For ${persons} Persons`;
+
+        }
+
+
+        if (personsSelect) {
+
+            personsSelect.addEventListener(
+                "change",
+                updatePrice
+            );
+
+            updatePrice();
+
+        }
+
+
+        /* ================= CONTINUE BOOKING ================= */
+
+        const continueBtn =
+            document.getElementById("continueBtn");
+
+
+        if (continueBtn) {
+
+            continueBtn.addEventListener("click", () => {
+
+                const persons =
+                    Number(personsSelect.value);
+
+                const price =
+                    prices[persons];
+
+
+                if (!price) {
+
+                    alert(
+                        "Please select a valid number of persons."
+                    );
+
+                    return;
+
+                }
+
+
+                const url =
+                    `booking.html?package=premium&persons=${persons}&price=${price}`;
+
+
+                window.location.href = url;
+
+            });
+
+        }
+
+
+        /* ================= BACK TO TOP ================= */
+
+        const backToTop =
+            document.getElementById("backToTop");
+
+
+        if (backToTop) {
+
+            window.addEventListener("scroll", () => {
+
+                if (window.scrollY > 400) {
+
+                    backToTop.classList.add("show");
+
+                } else {
+
+                    backToTop.classList.remove("show");
+
+                }
+
+            });
+
+
+            backToTop.addEventListener("click", () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            });
+
+        }
+
+
+        /* ================= REVEAL ================= */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".package-card, .other-package-card, .experience-points > div"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach((element) => {
+
+            element.classList.add("reveal");
+
+            revealObserver.observe(element);
+
+        });
+
+    </script>
+
+
+    <script src="site.js"></script>
 
 </body>
-
 </html>

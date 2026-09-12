@@ -5,39 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ramanathaswamy Temple, 22 Holy Wells & Poojai | RamSethuYatra</title>
+    <title>Ramanathaswamy Temple, Holy Wells & Pooja | RamSethuYatra</title>
 
     <meta
         name="description"
-        content="Explore Ramanathaswamy Temple, the 22 Holy Wells and spiritual poojai services in Rameswaram with RamSethuYatra."
+        content="Explore Ramanathaswamy Temple, 22 Holy Wells and spiritual pooja services in Rameswaram with RamSethuYatra."
     >
 
+    <meta name="keywords"
+        content="Ramanathaswamy Temple, Rameswaram Temple, 22 Holy Wells, Pooja Rameswaram, Rameswaram pilgrimage"
+    >
+
+    <link rel="canonical" href="https://ram-sethu-yathra.vercel.app/ramanathaswamy-temple.html">
+
+    <!-- Main page CSS -->
     <link rel="stylesheet" href="hal.css">
+
+    <!-- Shared site design -->
+    <link rel="stylesheet" href="site-theme.css">
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
+
 
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<header class="temple-header">
+<header class="site-header">
 
-    <a href="index.html" class="back-home">
-        ← RamSethuYatra
-    </a>
+    <div class="header-inner">
 
-    <!-- <div class="translate-box">
-        <div id="google_translate_element"></div>
-    </div> -->
+        <a href="index.html" class="site-logo">
+            <span>Ram</span>
+            <span>Sethu</span>
+            <span>Yatra</span>
+        </a>
+
+
+        <nav class="main-nav" id="mainNav">
+
+            <a href="index.html">Home</a>
+
+            <a href="about.html">About</a>
+
+            <a href="totalpackage.html">Packages</a>
+
+            <a href="ramanathaswamy-temple.html" class="active">
+                Temple
+            </a>
+
+            <a href="contact.html">Contact</a>
+
+            <a href="login.html" id="loginNav">
+                Login
+            </a>
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               style="display:none;">
+                My Booking
+            </a>
+
+            <a href="#"
+               id="logoutNav"
+               style="display:none;">
+                Logout
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="language-btn"
+                id="languageBtn">
+                🌐
+            </button>
+
+            <div class="language-menu" id="languageMenu">
+
+                <button data-lang="en">English</button>
+                <button data-lang="ta">தமிழ்</button>
+                <button data-lang="hi">हिन्दी</button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open menu">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="temple-hero">
 
@@ -50,18 +135,1421 @@
         </span>
 
         <h1>
-            Rameswaram Temple
+            Ramanathaswamy Temple
             <br>
-            & Spiritual Services
+            & Spiritual Journey
         </h1>
 
         <p>
             Discover the sacred Ramanathaswamy Temple,
-            22 Holy Wells and traditional poojai services.
+            22 Holy Wells and traditional spiritual services
+            in Rameswaram.
         </p>
 
-        <a href="#services" class="hero-btn">
-            Explore Services ↓
+        <div class="hero-buttons">
+
+            <a href="#temple-services" class="hero-btn">
+                Explore Services ↓
+            </a>
+
+            <a href="#booking-options" class="hero-btn secondary">
+                Book a Service
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     QUICK INFO
+===================================================== -->
+
+<section class="temple-quick-info">
+
+    <div class="quick-card">
+
+        <span>🛕</span>
+
+        <div>
+            <strong>Temple</strong>
+            <small>Ramanathaswamy Temple</small>
+        </div>
+
+    </div>
+
+
+    <div class="quick-card">
+
+        <span>💧</span>
+
+        <div>
+            <strong>22 Wells</strong>
+            <small>Sacred Holy Wells</small>
+        </div>
+
+    </div>
+
+
+    <div class="quick-card">
+
+        <span>🪔</span>
+
+        <div>
+            <strong>Pooja</strong>
+            <small>Traditional Spiritual Services</small>
+        </div>
+
+    </div>
+
+
+    <div class="quick-card">
+
+        <span>🙏</span>
+
+        <div>
+            <strong>Pilgrimage</strong>
+            <small>Rameswaram Experience</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<section class="temple-intro reveal">
+
+    <div class="section-label">
+        SACRED RAMESWARAM
+    </div>
+
+    <h2>
+        A journey of faith,
+        tradition and discovery
+    </h2>
+
+    <p>
+        Ramanathaswamy Temple is one of the most important
+        spiritual destinations in Rameswaram. Visitors can
+        experience the temple, sacred wells and traditional
+        devotional services as part of their pilgrimage.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     TEMPLE TIMINGS
+===================================================== -->
+
+<section class="temple-timing-card reveal">
+
+    <div>
+
+        <span>
+            PLAN AROUND DARSHAN
+        </span>
+
+        <h2>
+            Temple timings
+        </h2>
+
+    </div>
+
+
+    <div class="timing-hours">
+
+        <strong>Morning</strong>
+        <b>5:00 AM – 1:00 PM</b>
+
+        <strong>Evening</strong>
+        <b>3:00 PM – 9:00 PM</b>
+
+    </div>
+
+
+    <p>
+        Timings may vary on special days, festivals
+        or temple events. Please confirm before visiting.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     HIGHLIGHTS
+===================================================== -->
+
+<section class="temple-highlights reveal">
+
+    <div class="section-heading">
+
+        <span>
+            ✨ Explore
+        </span>
+
+        <h2>
+            Highlights around the temple
+        </h2>
+
+        <p>
+            Make your Rameswaram pilgrimage more meaningful
+            with these sacred experiences.
+        </p>
+
+    </div>
+
+
+    <div class="highlight-grid">
+
+
+        <article class="highlight-card">
+
+            <div class="highlight-image">
+
+                <img
+                    src="images/Sri Ramanathaswamy Temple.jpg"
+                    alt="Ramanathaswamy Temple Rameswaram"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="highlight-content">
+
+                <span>🛕 TEMPLE</span>
+
+                <h3>
+                    Ramanathaswamy Temple
+                </h3>
+
+                <p>
+                    Explore the magnificent temple,
+                    sacred atmosphere and historic corridors.
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="highlight-card">
+
+            <div class="highlight-image">
+
+                <img
+                    src="images/Agni Theertham.jpg"
+                    alt="Agni Theertham Rameswaram"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="highlight-content">
+
+                <span>🌊 SACRED WATER</span>
+
+                <h3>
+                    Agni Theertham
+                </h3>
+
+                <p>
+                    Visit the sacred seashore associated
+                    with the spiritual traditions of Rameswaram.
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="highlight-card">
+
+            <div class="highlight-image">
+
+                <img
+                    src="images/Pamban Bridge.jpg"
+                    alt="Pamban Bridge Rameswaram"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="highlight-content">
+
+                <span>🌉 LANDMARK</span>
+
+                <h3>
+                    Pamban Bridge
+                </h3>
+
+                <p>
+                    Experience one of Rameswaram's
+                    famous landmarks and scenic views.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     POOJAI DETAILS
+===================================================== -->
+
+<section class="poojai-section reveal" id="poojai">
+
+    <div class="section-heading">
+
+        <span>
+            🪔 DEVOTIONAL SERVICES
+        </span>
+
+        <h2>
+            Pooja & Seva options
+        </h2>
+
+        <p>
+            Explore traditional devotional services and
+            continue to the booking form when you are ready.
+        </p>
+
+    </div>
+
+
+    <div class="poojai-grid">
+
+
+        <!-- ABHISHEKAM -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    🪔
+                </div>
+
+                <span class="poojai-number">
+                    01
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                TRADITIONAL RITUAL
+            </span>
+
+            <h3>
+                Abhishekam
+            </h3>
+
+            <p>
+                Traditional ritual service performed
+                as part of devotional worship.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Abhishekam')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- ARCHANA -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    🙏
+                </div>
+
+                <span class="poojai-number">
+                    02
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                DEVOTIONAL OFFERING
+            </span>
+
+            <h3>
+                Archana
+            </h3>
+
+            <p>
+                A devotional offering performed with
+                prayers and traditional temple rituals.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Archana')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- SPECIAL POOJA -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    ✨
+                </div>
+
+                <span class="poojai-number">
+                    03
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                SPECIAL SERVICE
+            </span>
+
+            <h3>
+                Special Pooja
+            </h3>
+
+            <p>
+                Special devotional service subject to
+                temple availability and schedule.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Special Pooja')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- RUDRA POOJA -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    🔱
+                </div>
+
+                <span class="poojai-number">
+                    04
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                SPIRITUAL SERVICE
+            </span>
+
+            <h3>
+                Rudra Pooja
+            </h3>
+
+            <p>
+                Traditional devotional ritual. Availability
+                and fee should be confirmed before booking.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Rudra Pooja')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- LAKSHMI POOJA -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    🌺
+                </div>
+
+                <span class="poojai-number">
+                    05
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                DEVOTIONAL SERVICE
+            </span>
+
+            <h3>
+                Lakshmi Pooja
+            </h3>
+
+            <p>
+                A devotional ritual associated with prayers
+                and traditional offerings.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Lakshmi Pooja')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- OTHER SEVA -->
+
+        <article class="poojai-card">
+
+            <div class="poojai-top">
+
+                <div class="poojai-icon">
+                    🕉️
+                </div>
+
+                <span class="poojai-number">
+                    06
+                </span>
+
+            </div>
+
+            <span class="poojai-category">
+                OTHER SEVAS
+            </span>
+
+            <h3>
+                Other Sevas
+            </h3>
+
+            <p>
+                Ask about available devotional services
+                before selecting a booking date.
+            </p>
+
+            <div class="poojai-bottom">
+
+                <strong>
+                    Price
+                </strong>
+
+                <span>
+                    Check Temple
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="pooja-book-small"
+                onclick="openPoojaBooking('Other Seva')">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+    </div>
+
+
+    <div class="poojai-note">
+
+        <strong>
+            Important:
+        </strong>
+
+        Pooja names, availability, timings and official
+        temple fees can change. Please confirm the current
+        details before the service is finalized.
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BOOKING OPTIONS
+===================================================== -->
+
+<section
+    class="booking-options-section reveal"
+    id="booking-options">
+
+    <div class="section-heading">
+
+        <span>
+            ✨ RAMSETHUYATRA SERVICES
+        </span>
+
+        <h2>
+            Book your spiritual experience
+        </h2>
+
+        <p>
+            Select the service you want to arrange.
+            You will need to be logged in before submitting
+            a booking.
+        </p>
+
+    </div>
+
+
+    <div class="booking-option-grid">
+
+
+        <!-- TEMPLE -->
+
+        <article class="booking-option-card">
+
+            <div class="booking-option-icon">
+                🛕
+            </div>
+
+            <span>
+                TEMPLE VISIT
+            </span>
+
+            <h3>
+                Ramanathaswamy Temple
+            </h3>
+
+            <p>
+                Request a temple visit by selecting
+                persons, date, time and mobile number.
+            </p>
+
+            <button
+                type="button"
+                onclick="showTempleDetails()">
+
+                Book Temple Visit →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- WELLS -->
+
+        <article class="booking-option-card">
+
+            <div class="booking-option-icon">
+                💧
+            </div>
+
+            <span>
+                SACRED BATH
+            </span>
+
+            <h3>
+                22 Holy Wells
+            </h3>
+
+            <p>
+                Request a sacred 22 Wells experience
+                for your selected date and time.
+            </p>
+
+            <button
+                type="button"
+                onclick="showWellDetails()">
+
+                Book 22 Wells →
+
+            </button>
+
+        </article>
+
+
+
+        <!-- POOJA -->
+
+        <article class="booking-option-card">
+
+            <div class="booking-option-icon">
+                🪔
+            </div>
+
+            <span>
+                DEVOTIONAL SERVICE
+            </span>
+
+            <h3>
+                Temple Pooja
+            </h3>
+
+            <p>
+                Select your preferred pooja service
+                and submit a booking request.
+            </p>
+
+            <button
+                type="button"
+                onclick="showPoojaDetails()">
+
+                Book Pooja →
+
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TEMPLE BOOKING FORM
+===================================================== -->
+
+<section
+    id="templeDetails"
+    class="details-box booking-form-box">
+
+    <div class="details-header">
+
+        <div>
+
+            <span class="small-label">
+                TEMPLE EXPERIENCE
+            </span>
+
+            <h3>
+                🛕 Ramanathaswamy Temple Booking
+            </h3>
+
+            <p>
+                Enter your visit details below.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="close-btn"
+            onclick="closeDetails('templeDetails')">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div class="details-grid">
+
+
+        <div class="detail-item">
+
+            <span>👥</span>
+
+            <label>
+                How Many Persons?
+            </label>
+
+            <input
+                type="number"
+                id="templePersons"
+                min="1"
+                max="20"
+                placeholder="Number of persons"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📅</span>
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="templeDate"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>⏰</span>
+
+            <label>
+                Time
+            </label>
+
+            <input
+                type="time"
+                id="templeTime"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📱</span>
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                type="tel"
+                id="templeMobile"
+                maxlength="10"
+                inputmode="numeric"
+                placeholder="10 digit mobile number"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="booking-login-note">
+        🔐 You must be logged in before submitting a booking.
+    </div>
+
+
+    <button
+        type="button"
+        class="book-btn"
+        onclick="showTempleDetailsform()">
+
+        Continue Booking →
+
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOLY WELLS BOOKING FORM
+===================================================== -->
+
+<section
+    id="WellDetails"
+    class="details-box booking-form-box">
+
+    <div class="details-header">
+
+        <div>
+
+            <span class="small-label">
+                SACRED BATH EXPERIENCE
+            </span>
+
+            <h3>
+                💧 22 Holy Wells Booking
+            </h3>
+
+            <p>
+                Enter your sacred bath experience details.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="close-btn"
+            onclick="closeDetails('WellDetails')">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div class="details-grid">
+
+
+        <div class="detail-item">
+
+            <span>👥</span>
+
+            <label>
+                How Many Persons?
+            </label>
+
+            <input
+                type="number"
+                id="wellPersons"
+                min="1"
+                max="20"
+                placeholder="Number of persons"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📅</span>
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="wellDate"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>⏰</span>
+
+            <label>
+                Time
+            </label>
+
+            <input
+                type="time"
+                id="wellTime"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📱</span>
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                type="tel"
+                id="wellMobile"
+                maxlength="10"
+                inputmode="numeric"
+                placeholder="10 digit mobile number"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="booking-login-note">
+        🔐 You must be logged in before submitting a booking.
+    </div>
+
+
+    <button
+        type="button"
+        class="book-btn"
+        onclick="showWellDetailsform()">
+
+        Continue Booking →
+
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     POOJA BOOKING FORM
+===================================================== -->
+
+<section
+    id="PoojaDetails"
+    class="details-box booking-form-box">
+
+    <div class="details-header">
+
+        <div>
+
+            <span class="small-label">
+                TRADITIONAL RITUAL
+            </span>
+
+            <h3>
+                🪔 Temple Pooja Booking
+            </h3>
+
+            <p>
+                Select the pooja and enter your preferred
+                booking details.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            class="close-btn"
+            onclick="closeDetails('PoojaDetails')">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <!-- Selected Pooja -->
+
+    <div class="selected-pooja-box">
+
+        <label>
+            Selected Pooja
+        </label>
+
+        <select id="poojaType">
+
+            <option value="">
+                Select Pooja
+            </option>
+
+            <option value="Abhishekam">
+                Abhishekam
+            </option>
+
+            <option value="Archana">
+                Archana
+            </option>
+
+            <option value="Special Pooja">
+                Special Pooja
+            </option>
+
+            <option value="Rudra Pooja">
+                Rudra Pooja
+            </option>
+
+            <option value="Lakshmi Pooja">
+                Lakshmi Pooja
+            </option>
+
+            <option value="Other Seva">
+                Other Seva
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="details-grid">
+
+
+        <div class="detail-item">
+
+            <span>👥</span>
+
+            <label>
+                How Many Persons?
+            </label>
+
+            <input
+                type="number"
+                id="poojaPersons"
+                min="1"
+                max="20"
+                placeholder="Number of persons"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📅</span>
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="poojaDate"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>⏰</span>
+
+            <label>
+                Time
+            </label>
+
+            <input
+                type="time"
+                id="poojaTime"
+            >
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <span>📱</span>
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                type="tel"
+                id="poojaMobile"
+                maxlength="10"
+                inputmode="numeric"
+                placeholder="10 digit mobile number"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="booking-login-note">
+        🔐 You must be logged in before submitting a booking.
+    </div>
+
+
+    <button
+        type="button"
+        class="book-btn"
+        onclick="showPoojaDetailsform()">
+
+        Continue Booking →
+
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     SIMPLE VISIT GUIDE
+===================================================== -->
+
+<section class="visit-guide reveal">
+
+    <div class="section-heading">
+
+        <span>
+            PLAN YOUR VISIT
+        </span>
+
+        <h2>
+            A simple pilgrimage guide
+        </h2>
+
+    </div>
+
+
+    <div class="guide-grid">
+
+
+        <div class="guide-card">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Plan your date
+            </h3>
+
+            <p>
+                Choose your preferred visit date and
+                consider temple timings before travelling.
+            </p>
+
+        </div>
+
+
+        <div class="guide-card">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Select services
+            </h3>
+
+            <p>
+                Choose Temple Visit, 22 Holy Wells
+                or a Pooja service.
+            </p>
+
+        </div>
+
+
+        <div class="guide-card">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Submit your request
+            </h3>
+
+            <p>
+                Login and submit your booking request.
+                Your request will be stored for processing.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="temple-gallery reveal">
+
+    <div class="section-heading">
+
+        <span>
+            VISUAL JOURNEY
+        </span>
+
+        <h2>
+            Rameswaram through our lens
+        </h2>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+        <img
+            src="images/Sri Ramanathaswamy Temple.jpg"
+            alt="Ramanathaswamy Temple"
+            loading="lazy"
+        >
+
+        <img
+            src="images/Pamban Bridge.jpg"
+            alt="Pamban Bridge"
+            loading="lazy"
+        >
+
+        <img
+            src="images/Ram.jpg"
+            alt="Rameswaram"
+            loading="lazy"
+        >
+
+        <img
+            src="images/beautiful-beach.jpg"
+            alt="Rameswaram beach"
+            loading="lazy"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAP
+===================================================== -->
+
+<section class="temple-map reveal">
+
+    <div class="section-heading">
+
+        <span>
+            FIND YOUR WAY
+        </span>
+
+        <h2>
+            Ramanathaswamy Temple
+        </h2>
+
+        <p>
+            Rameswaram, Tamil Nadu, India
+        </p>
+
+    </div>
+
+
+    <div class="map-frame">
+
+        <iframe
+            src="https://www.google.com/maps?q=Ramanathaswamy%20Temple%20Rameswaram&output=embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="temple-cta reveal">
+
+    <div>
+
+        <span>
+            READY FOR YOUR JOURNEY?
+        </span>
+
+        <h2>
+            Make your Rameswaram visit memorable.
+        </h2>
+
+        <p>
+            Plan your temple visit, sacred wells experience
+            or spiritual service with RamSethuYatra.
+        </p>
+
+    </div>
+
+
+    <div class="cta-buttons">
+
+        <a href="#booking-options" class="cta-primary">
+            Book a Service →
+        </a>
+
+        <a href="contact.html" class="cta-secondary">
+            Contact Us
         </a>
 
     </div>
@@ -70,586 +1558,332 @@
 
 
 
-<!-- ================= MAIN ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-<main id="services" class="place-section">
+<footer class="site-footer">
 
-    <div class="section-heading">
+    <div class="footer-main">
+
+        <div class="footer-brand">
+
+            <h3>
+                RamSethuYatra
+            </h3>
+
+            <p>
+                Your trusted companion for exploring
+                Rameswaram's spiritual and scenic experiences.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="#booking-options">
+                Temple Visit
+            </a>
+
+            <a href="#booking-options">
+                22 Holy Wells
+            </a>
+
+            <a href="#poojai">
+                Pooja Services
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="tel:+918838170745">
+                +91 8838170745
+            </a>
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+                ramsethuyatra@gmail.com
+            </a>
+
+            <span>
+                Rameswaram, Tamil Nadu
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
 
         <span>
-            ✨ RamSethuYatra Spiritual Services
+            © 2026 RamSethuYatra. All rights reserved.
         </span>
 
-        <h2>
-            Explore Sacred Experiences
-        </h2>
+        <div>
 
-        <p>
-            Choose a service below to learn more and continue
-            with your booking.
-        </p>
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation
+            </a>
+
+        </div>
 
     </div>
-
-
-
-    <!-- ================= TEMPLE ================= -->
-
-    <article class="place-card temple-card">
-
-        <div class="place-images">
-
-            <img
-                src="images/21884748183348126.jpg"
-                alt="Ramanathaswamy Temple Rameswaram"
-            >
-
-            <img
-                src="images/Ramanathaswamy Temple in Rameshwaram!.jpg"
-                alt="Ramanathaswamy Temple architecture"
-            >
-
-        </div>
-
-
-        <div class="place-content">
-
-            <span class="tag">
-                🛕 Temple Visit
-            </span>
-
-            <h3>
-                Ramanathaswamy Temple
-            </h3>
-
-            <p>
-                Visit one of the most sacred temples in Rameswaram,
-                known for its magnificent corridors, spiritual
-                importance and ancient heritage.
-            </p>
-
-
-            <div class="service-info">
-
-                <span>🙏 Spiritual Visit</span>
-                <span>🏛️ Ancient Architecture</span>
-
-            </div>
-
-
-            <button
-    type="button"
-    class="details-btn"
-    id="templeViewBtn"
-    onclick="showTempleDetails()"
->
-    View Details
-</button>
-
-        </div>
-
-    </article>
-
-
-
-    <!-- TEMPLE DETAILS -->
-
-    <div
-        id="templeDetails"
-        class="details-box"
-    >
-
-        <div class="details-header">
-
-            <div>
-
-                <span class="small-label">
-                    Temple Experience
-                </span>
-
-                <h3>
-                    🛕 Ramanathaswamy Temple Booking
-                </h3>
-
-            </div>
-
-            <button
-    class="close-btn"
-    onclick="closeDetails('templeDetails')"
->
-    ×
-</button>
-
-        </div>
-
-
-        <div class="details-grid">
-
-            <div class="detail-item">
-                <span>👥</span>
-
-                <label>
-                    How Many Persons?
-                </label>
-
-                <input
-                    type="number"
-                    id="templePersons"
-                    min="1"
-                    placeholder="Number of persons"
-                >
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📅</span>
-
-                <label>
-                    Date
-                </label>
-
-                <input
-                    type="date"
-                    id="templeDate"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>⏰</span>
-
-                <label>
-                    Time
-                </label>
-
-                <input
-                    type="time"
-                    id="templeTime"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📱</span>
-
-                <label>
-                    Mobile Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="templeMobile"
-                    maxlength="10"
-                    placeholder="10 digit mobile number"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="book-btn"
-            onclick="showTempleDetailsform()"
-        >
-            Continue Booking →
-        </button>
-
-    </div>
-
-
-
-
-    <!-- ================= 22 WELLS ================= -->
-
-    <article class="place-card well-card">
-
-        <div class="place-images">
-
-            <img
-                src="images/549509592059408804.jpg"
-                alt="22 Holy Wells Rameswaram"
-            >
-
-            <img
-                src="images/638174209733712638.jpg"
-                alt="Sacred 22 Wells Rameswaram"
-            >
-
-        </div>
-
-
-        <div class="place-content">
-
-            <span class="tag well">
-                💧 Holy Bath
-            </span>
-
-            <h3>
-                22 Holy Wells
-            </h3>
-
-            <p>
-                Experience the sacred tradition of bathing in
-                the 22 holy wells associated with the
-                Ramanathaswamy Temple.
-            </p>
-
-
-            <div class="service-info">
-
-                <span>💧 Sacred Wells</span>
-                <span>🙏 Spiritual Experience</span>
-
-            </div>
-
-
-            <button
-    type="button"
-    class="details-btn"
-    id="wellViewBtn"
-    onclick="showWellDetails()"
->
-    View Details
-</button>
-
-        </div>
-
-    </article>
-
-
-
-    <!-- WELL DETAILS -->
-
-    <div
-        id="WellDetails"
-        class="details-box"
-    >
-
-        <div class="details-header">
-
-            <div>
-
-                <span class="small-label">
-                    Sacred Bath Experience
-                </span>
-
-                <h3>
-                    💧 22 Holy Wells Booking
-                </h3>
-
-            </div>
-
-           <button
-    type="button"
-    class="close-btn"
-    data-close="WellDetails"
->
-    ×
-</button>
-        </div>
-
-
-        <div class="details-grid">
-
-            <div class="detail-item">
-
-                <span>👥</span>
-
-                <label>
-                    How Many Persons?
-                </label>
-
-                <input
-                    type="number"
-                    id="wellPersons"
-                    min="1"
-                    placeholder="Number of persons"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📅</span>
-
-                <label>
-                    Date
-                </label>
-
-                <input
-                    type="date"
-                    id="wellDate"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>⏰</span>
-
-                <label>
-                    Time
-                </label>
-
-                <input
-                    type="time"
-                    id="wellTime"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📱</span>
-
-                <label>
-                    Mobile Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="wellMobile"
-                    maxlength="10"
-                    placeholder="10 digit mobile number"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="book-btn"
-            onclick="showWellDetailsform()"
-        >
-            Continue Booking →
-        </button>
-
-    </div>
-
-
-
-
-    <!-- ================= POOJAI ================= -->
-
-    <article class="place-card poojai-card">
-
-        <div class="place-images">
-
-            <img
-                src="images/650981321194064746.jpg"
-                alt="Special Poojai Rameswaram"
-            >
-
-            <img
-                src="images/1040472320140927225.jpg"
-                alt="Temple Poojai Rameswaram"
-            >
-
-        </div>
-
-
-        <div class="place-content">
-
-            <span class="tag poojai">
-                🪔 Spiritual Service
-            </span>
-
-            <h3>
-                Special Poojai
-            </h3>
-
-            <p>
-                Explore traditional poojai services including
-                Archanai, Abhishekam, Rudra Poojai,
-                Lakshmi Poojai and other spiritual rituals.
-            </p>
-
-
-            <div class="service-info">
-
-                <span>🪔 Traditional Poojai</span>
-                <span>🙏 Devotional Service</span>
-
-            </div>
-
-
-           <button
-    type="button"
-    class="details-btn"
-    id="poojaViewBtn"
-    onclick="showPoojaDetails()"
->
-    View Details
-</button>
-
-        </div>
-
-    </article>
-
-
-
-    <!-- POOJAI DETAILS -->
-
-    <div
-        id="PoojaDetails"
-        class="details-box"
-    >
-
-        <div class="details-header">
-
-            <div>
-
-                <span class="small-label">
-                    Traditional Ritual
-                </span>
-
-                <h3>
-                    🪔 Temple Poojai Booking
-                </h3>
-
-            </div>
-
-           <button
-    type="button"
-    class="close-btn"
-    data-close="PoojaDetails"
->
-    ×
-</button>
-
-        </div>
-
-
-        <div class="details-grid">
-
-            <div class="detail-item">
-
-                <span>👥</span>
-
-                <label>
-                    How Many Persons?
-                </label>
-
-                <input
-                    type="number"
-                    id="poojaPersons"
-                    min="1"
-                    placeholder="Number of persons"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📅</span>
-
-                <label>
-                    Date
-                </label>
-
-                <input
-                    type="date"
-                    id="poojaDate"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>⏰</span>
-
-                <label>
-                    Time
-                </label>
-
-                <input
-                    type="time"
-                    id="poojaTime"
-                >
-
-            </div>
-
-
-            <div class="detail-item">
-
-                <span>📱</span>
-
-                <label>
-                    Mobile Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="poojaMobile"
-                    maxlength="10"
-                    placeholder="10 digit mobile number"
-                >
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="book-btn"
-            onclick="showPoojaDetailsform()"
-        >
-            Continue Booking →
-        </button>
-
-    </div>
-
-
-</main>
-
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="temple-footer">
-
-    <h3>
-        RamSethuYatra
-    </h3>
-
-    <p>
-        Your trusted companion for exploring Rameswaram.
-    </p>
-
-    <p class="copyright">
-        © 2026 RamSethuYatra. All rights reserved.
-    </p>
 
 </footer>
 
 
 
-<!-- YOUR EXISTING SCRIPT -->
+<!-- =====================================================
+     FLOATING CONTACT BUTTONS
+===================================================== -->
+
+<a
+    href="https://wa.me/918838170745"
+    class="floating-whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp">
+
+    💬
+
+</a>
+
+
+<a
+    href="tel:+918838170745"
+    class="floating-call"
+    aria-label="Call">
+
+    📞
+
+</a>
+
+
+<button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top">
+
+    ↑
+
+</button>
+
+
+
+<!-- =====================================================
+     FIREBASE + EXISTING BOOKING SYSTEM
+===================================================== -->
+
+<script type="module" src="firebase.js"></script>
 
 <script type="module" src="script.js"></script>
 
-<script type="module" src="firebase.js"></script>
-<script
-    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+<script src="site.js"></script>
+
+
+
+<!-- =====================================================
+     PAGE-SPECIFIC BOOKING HELPERS
+===================================================== -->
+
+<script>
+
+function openPoojaBooking(poojaName) {
+
+    const poojaBox =
+        document.getElementById("PoojaDetails");
+
+    const poojaType =
+        document.getElementById("poojaType");
+
+    if (!poojaBox || !poojaType) {
+        return;
+    }
+
+    poojaType.value = poojaName;
+
+    showPoojaDetails();
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* -----------------------------------------
+       DATE MINIMUM = TODAY
+    ----------------------------------------- */
+
+    const today =
+        new Date().toISOString().split("T")[0];
+
+
+    const dateInputs = [
+
+        "templeDate",
+        "wellDate",
+        "poojaDate"
+
+    ];
+
+
+    dateInputs.forEach(function (id) {
+
+        const input =
+            document.getElementById(id);
+
+        if (input) {
+            input.min = today;
+        }
+
+    });
+
+
+
+    /* -----------------------------------------
+       BACK TO TOP
+    ----------------------------------------- */
+
+    const backToTop =
+        document.getElementById("backToTop");
+
+
+    if (backToTop) {
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 500) {
+
+                backToTop.classList.add("show");
+
+            } else {
+
+                backToTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        backToTop.addEventListener("click", function () {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+    }
+
+
+
+    /* -----------------------------------------
+       REVEAL ANIMATION
+    ----------------------------------------- */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    if ("IntersectionObserver" in window) {
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(function (element) {
+
+            observer.observe(element);
+
+        });
+
+    } else {
+
+        revealElements.forEach(function (element) {
+
+            element.classList.add("visible");
+
+        });
+
+    }
+
+});
+
 </script>
 
 
-<!-- GOOGLE TRANSLATE -->
+
+<!-- =====================================================
+     GOOGLE TRANSLATE
+===================================================== -->
 
 <script>
 
@@ -657,19 +1891,24 @@ function googleTranslateElementInit() {
 
     new google.translate.TranslateElement({
 
-        pageLanguage: 'en',
+        pageLanguage: "en",
 
-        includedLanguages: 'en,ta,hi',
+        includedLanguages: "en,ta,hi",
 
         layout:
             google.translate.TranslateElement.InlineLayout.SIMPLE
 
-    }, 'google_translate_element');
+    }, "google_translate_element");
 
 }
 
 </script>
 
-</body>
 
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+</body>
 </html>

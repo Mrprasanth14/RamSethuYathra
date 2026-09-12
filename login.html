@@ -7,113 +7,282 @@
 
     <title>Customer Login | RamSethuYatra</title>
 
+    <meta
+        name="description"
+        content="Login to your RamSethuYatra account to manage your Rameswaram travel bookings."
+    >
+
     <link rel="stylesheet" href="auth.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
-    <div class="auth-page">
+    <!-- =========================
+         LOGIN PAGE
+    ========================== -->
 
-        <div class="auth-card">
+    <main class="auth-page">
 
-            <div class="auth-logo">
-                RamSethu<span>Yatra</span>
-            </div>
+        <div class="auth-wrapper">
 
-            <div class="auth-heading">
-                <h1>Welcome Back</h1>
-                <p>Login to manage your Rameswaram bookings</p>
-            </div>
+            <!-- LEFT SIDE -->
+            <section class="auth-showcase">
 
+                <div class="showcase-overlay"></div>
 
-            <form id="loginForm">
+                <div class="showcase-content">
 
-                <div class="input-group">
+                    <a href="index.html" class="brand">
+                        <span>Ram</span>
+                        <span>Sethu</span>
+                        <span>Yatra</span>
+                    </a>
 
-                    <label for="email">
-                        Email Address
-                    </label>
+                    <div class="showcase-text">
 
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        autocomplete="email"
-                        required
-                    >
+                        <span class="eyebrow">
+                            RAMESWARAM JOURNEY
+                        </span>
+
+                        <h2>
+                            Your journey
+                            <br>
+                            starts here.
+                        </h2>
+
+                        <p>
+                            Login to manage your bookings,
+                            view your travel details and continue
+                            your Rameswaram journey with us.
+                        </p>
+
+                    </div>
+
+                    <div class="showcase-features">
+
+                        <div class="showcase-feature">
+                            <span class="feature-icon">✓</span>
+                            <div>
+                                <strong>Easy Booking</strong>
+                                <small>Manage your reservations</small>
+                            </div>
+                        </div>
+
+                        <div class="showcase-feature">
+                            <span class="feature-icon">✓</span>
+                            <div>
+                                <strong>Booking History</strong>
+                                <small>View your travel details</small>
+                            </div>
+                        </div>
+
+                        <div class="showcase-feature">
+                            <span class="feature-icon">✓</span>
+                            <div>
+                                <strong>Secure Account</strong>
+                                <small>Your account stays protected</small>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
+            </section>
 
-                <div class="input-group">
 
-                    <label for="password">
-                        Password
-                    </label>
+            <!-- RIGHT SIDE -->
+            <section class="auth-form-area">
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
+                <div class="auth-card">
+
+                    <!-- MOBILE BRAND -->
+                    <a href="index.html" class="mobile-brand">
+                        RamSethu<span>Yatra</span>
+                    </a>
+
+
+                    <!-- HEADING -->
+                    <div class="auth-heading">
+
+                        <span class="auth-label">
+                            CUSTOMER ACCOUNT
+                        </span>
+
+                        <h1>
+                            Welcome Back
+                        </h1>
+
+                        <p>
+                            Login to manage your Rameswaram bookings.
+                        </p>
+
+                    </div>
+
+
+                    <!-- LOGIN FORM -->
+                    <form id="loginForm">
+
+                        <!-- EMAIL -->
+                        <div class="input-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ✉
+                                </span>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+                        <div class="input-group">
+
+                            <div class="label-row">
+
+                                <label for="password">
+                                    Password
+                                </label>
+
+                            </div>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    🔒
+                                </span>
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    id="passwordToggle"
+                                    aria-label="Show password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FORGOT PASSWORD -->
+                        <div class="forgot-row">
+
+                            <a
+                                href="forgot-password.html"
+                                id="forgotPassword"
+                                class="forgot-password"
+                            >
+                                Forgot Password?
+                            </a>
+
+                        </div>
+
+
+                        <!-- LOGIN BUTTON -->
+                        <button
+                            type="submit"
+                            class="auth-btn"
+                            id="loginBtn"
+                        >
+                            <span class="btn-text">
+                                Login
+                            </span>
+
+                            <span class="btn-arrow">
+                                →
+                            </span>
+                        </button>
+
+                    </form>
+
+
+                    <!-- DIVIDER -->
+                    <div class="auth-divider">
+                        <span>New to RamSethuYatra?</span>
+                    </div>
+
+
+                    <!-- CREATE ACCOUNT -->
+                    <a
+                        href="signup.html"
+                        class="create-account-btn"
                     >
+                        Create New Account
+                        <span>→</span>
+                    </a>
+
+
+                    <!-- HOME -->
+                    <a
+                        href="index.html"
+                        class="home-link"
+                    >
+                        ← Back to RamSethuYatra
+                    </a>
+
+
+                    <!-- FOOTER -->
+                    <div class="auth-security">
+
+                        <span class="security-icon">
+                            🔐
+                        </span>
+
+                        <span>
+                            Your account information is securely handled.
+                        </span>
+
+                    </div>
 
                 </div>
 
-
-              <a
-    href="forgot-password.html"
-    id="forgotPassword"
-    class="forgot-password"
->
-    Forgot Password?
-</a>
-
-
-                <button
-                    type="submit"
-                    class="auth-btn"
-                    id="loginBtn"
-                >
-                    Login
-                </button>
-
-            </form>
-
-
-            <div class="auth-footer">
-
-                <p>
-                    Don't have an account?
-                    <a href="signup.html">Create Account</a>
-                </p>
-
-                <!-- <a
-                    href="index.html"
-                    class="home-link"
-                >
-                    ← Back to Website
-                </a> -->
-
-            </div>
+            </section>
 
         </div>
 
-    </div>
+    </main>
 
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
     <script type="module">
 
         import { auth } from "./firebase.js";
 
         import {
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail,
-    setPersistence,
-    browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+            signInWithEmailAndPassword,
+            sendPasswordResetEmail,
+            setPersistence,
+            browserLocalPersistence
+        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
         const loginForm =
@@ -125,160 +294,254 @@
         const forgotPassword =
             document.getElementById("forgotPassword");
 
+        const passwordInput =
+            document.getElementById("password");
 
-        /*
-        ==========================================
-        LOGIN
-        ==========================================
-        */
-
-        loginForm.addEventListener("submit", async (event) => {
-
-            event.preventDefault();
+        const passwordToggle =
+            document.getElementById("passwordToggle");
 
 
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
+        /* =========================
+           SHOW / HIDE PASSWORD
+        ========================== */
 
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
+        passwordToggle.addEventListener(
+            "click",
+            () => {
 
+                if (
+                    passwordInput.type ===
+                    "password"
+                ) {
 
-            loginBtn.disabled = true;
+                    passwordInput.type =
+                        "text";
 
-            loginBtn.textContent = "Logging in...";
+                    passwordToggle.textContent =
+                        "Hide";
 
-
-            try {
-
-                await setPersistence(auth, browserLocalPersistence);
-
-                await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-                );
-
-
-                /*
-                Check whether customer was redirected
-                here from another page.
-                */
-
-                const params =
-                    new URLSearchParams(
-                        window.location.search
+                    passwordToggle.setAttribute(
+                        "aria-label",
+                        "Hide password"
                     );
-
-
-                const redirect =
-                    params.get("redirect");
-
-
-                if (redirect) {
-
-                    window.location.href =
-                        decodeURIComponent(redirect);
 
                 } else {
 
-                    window.location.href =
-                        "index.html";
+                    passwordInput.type =
+                        "password";
+
+                    passwordToggle.textContent =
+                        "Show";
+
+                    passwordToggle.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
 
                 }
-
-
-            } catch (error) {
-
-                console.error(error);
-
-
-                let message =
-                    "Unable to login.";
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    message =
-                        "Incorrect email or password.";
-
-                } else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    message =
-                        "No account found with this email.";
-
-                } else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    message =
-                        "Incorrect password.";
-
-                } else if (
-                    error.code ===
-                    "auth/invalid-email"
-                ) {
-
-                    message =
-                        "Please enter a valid email.";
-
-                } else if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    message =
-                        "Too many login attempts. Please try again later.";
-
-                } else if (
-                    error.code ===
-                    "auth/network-request-failed"
-                ) {
-
-                    message =
-                        "Network error. Check your internet connection.";
-
-                }
-
-
-                   Swal.fire({
-        icon: "error",
-        title: "Login Failed",
-        text: message,
-        confirmButtonText: "Try Again",
-        confirmButtonColor: "#ff7a00",
-        background: "#ffffff",
-        color: "#333333"
-    });
-
-
-                loginBtn.disabled = false;
-
-                loginBtn.textContent =
-                    "Login";
 
             }
+        );
 
-        });
+
+        /* =========================
+           LOGIN
+        ========================== */
+
+        loginForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
 
 
-        /*
-        ==========================================
-        FORGOT PASSWORD
-        ==========================================
-        */
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!email || !password) {
+
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Missing Information",
+                        text: "Please enter your email and password.",
+                        confirmButtonColor: "#f77f00"
+                    });
+
+                    return;
+                }
+
+
+                loginBtn.disabled = true;
+
+                loginBtn.classList.add(
+                    "loading"
+                );
+
+                loginBtn.querySelector(
+                    ".btn-text"
+                ).textContent =
+                    "Logging in...";
+
+
+                try {
+
+                    /*
+                    Keep the user signed in
+                    between browser sessions.
+                    */
+
+                    await setPersistence(
+                        auth,
+                        browserLocalPersistence
+                    );
+
+
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                    /*
+                    Check whether the customer
+                    was redirected here from
+                    another page.
+                    */
+
+                    const params =
+                        new URLSearchParams(
+                            window.location.search
+                        );
+
+
+                    const redirect =
+                        params.get("redirect");
+
+
+                    if (redirect) {
+
+                        window.location.href =
+                            decodeURIComponent(
+                                redirect
+                            );
+
+                    } else {
+
+                        window.location.href =
+                            "index.html";
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Unable to login. Please try again.";
+
+
+                    if (
+                        error.code ===
+                        "auth/invalid-credential"
+                    ) {
+
+                        message =
+                            "Incorrect email or password.";
+
+                    } else if (
+                        error.code ===
+                        "auth/user-not-found"
+                    ) {
+
+                        message =
+                            "No account found with this email.";
+
+                    } else if (
+                        error.code ===
+                        "auth/wrong-password"
+                    ) {
+
+                        message =
+                            "Incorrect password.";
+
+                    } else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
+
+                        message =
+                            "Please enter a valid email address.";
+
+                    } else if (
+                        error.code ===
+                        "auth/too-many-requests"
+                    ) {
+
+                        message =
+                            "Too many login attempts. Please try again later.";
+
+                    } else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message =
+                            "Network error. Please check your internet connection.";
+
+                    } else if (
+                        error.code ===
+                        "auth/user-disabled"
+                    ) {
+
+                        message =
+                            "This account has been disabled.";
+
+                    }
+
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Login Failed",
+                        text: message,
+                        confirmButtonText: "Try Again",
+                        confirmButtonColor: "#f77f00",
+                        background: "#ffffff",
+                        color: "#243447"
+                    });
+
+
+                    loginBtn.disabled = false;
+
+                    loginBtn.classList.remove(
+                        "loading"
+                    );
+
+                    loginBtn.querySelector(
+                        ".btn-text"
+                    ).textContent =
+                        "Login";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           FORGOT PASSWORD
+        ========================== */
 
         forgotPassword.addEventListener(
             "click",
@@ -296,9 +559,12 @@
 
                 if (!email) {
 
-                    alert(
-                        "Please enter your email address first."
-                    );
+                    Swal.fire({
+                        icon: "info",
+                        title: "Enter Your Email",
+                        text: "Please enter your email address first.",
+                        confirmButtonColor: "#f77f00"
+                    });
 
                     return;
                 }
@@ -312,14 +578,24 @@
                     );
 
 
-                    alert(
-                        "Password reset email sent. Please check your inbox."
-                    );
+                    Swal.fire({
+                        icon: "success",
+                        title: "Reset Email Sent",
+                        text: "Please check your inbox for the password reset link.",
+                        confirmButtonColor: "#f77f00"
+                    });
 
 
                 } catch (error) {
 
-                    console.error(error);
+                    console.error(
+                        "Password reset error:",
+                        error
+                    );
+
+
+                    let message =
+                        "Unable to send password reset email.";
 
 
                     if (
@@ -327,17 +603,34 @@
                         "auth/user-not-found"
                     ) {
 
-                        alert(
-                            "No account found with this email."
-                        );
+                        message =
+                            "No account found with this email.";
 
-                    } else {
+                    } else if (
+                        error.code ===
+                        "auth/invalid-email"
+                    ) {
 
-                        alert(
-                            "Unable to send password reset email."
-                        );
+                        message =
+                            "Please enter a valid email address.";
+
+                    } else if (
+                        error.code ===
+                        "auth/network-request-failed"
+                    ) {
+
+                        message =
+                            "Network error. Please check your internet connection.";
 
                     }
+
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Password Reset Failed",
+                        text: message,
+                        confirmButtonColor: "#f77f00"
+                    });
 
                 }
 
