@@ -307,69 +307,69 @@ async function loadCustomer(user) {
 
     try {
 
-        const customerRef =
-            doc(db, "customers", user.uid);
+        // Always get name and email from Firebase Authentication first
+        const authName = user.displayName || "Customer";
+        const authEmail = user.email || "Not available";
 
-        const customerSnap =
-            await getDoc(customerRef);
+        customerName.textContent = authName;
+        profileName.textContent = authName;
+        profileEmail.textContent = authEmail;
 
+        // Try to get additional customer information from Firestore
+        const customerRef = doc(db, "customers", user.uid);
+        const customerSnap = await getDoc(customerRef);
 
         if (customerSnap.exists()) {
 
-            const data =
-                customerSnap.data();
+            const data = customerSnap.data();
 
+            // Name
             const name =
                 data.name ||
                 user.displayName ||
                 "Customer";
 
-            customerName.textContent =
-                name;
+            customerName.textContent = name;
+            profileName.textContent = name;
 
-            profileName.textContent =
-                name;
-
+            // Email
             profileEmail.textContent =
                 data.email ||
                 user.email ||
                 "Not available";
 
+            // Mobile
             profilePhone.textContent =
+                data.mobile ||
                 data.phone ||
-                "Not available";
+                "Mobile number not available";
 
         } else {
 
-            const name =
-                user.displayName ||
-                "Customer";
-
-            customerName.textContent =
-                name;
-
-            profileName.textContent =
-                name;
-
-            profileEmail.textContent =
-                user.email ||
-                "Not available";
-
+            // Customer document does not exist
             profilePhone.textContent =
-                "Not available";
+                "Mobile number not available";
+
         }
 
     } catch (error) {
 
-        console.error(
-            "Profile Error:",
-            error
-        );
+        console.error("Profile Error:", error);
 
+        // Even if Firestore fails, show Firebase Auth email
+        customerName.textContent =
+            user.displayName || "Customer";
+
+        profileName.textContent =
+            user.displayName || "Customer";
+
+        profileEmail.textContent =
+            user.email || "Not available";
+
+        profilePhone.textContent =
+            "Mobile number not available";
     }
-
 }
-
 
 /* ==========================================
    LOAD ALL BOOKINGS

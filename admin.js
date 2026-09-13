@@ -205,37 +205,37 @@ async function loadBookings(collectionName, divId) {
 
                     <p>
                         <b>👤 Customer:</b>
-                        ${data.name || data.customerName || "-"}
+                      ${escapeAdminHtml(data.customerName)}
                     </p>
 
 
                     <p>
                         <b>📧 Email:</b>
-                        ${data.customerEmail || data.email || "-"}
+                       ${escapeAdminHtml(data.customerEmail)}
                     </p>
 
 
                     <p>
                         <b>📱 Mobile:</b>
-                        ${data.mobile || data.customerMobile || "-"}
+                       ${escapeAdminHtml(data.mobile)}
                     </p>
 
 
                     <p>
                         <b>👥 Persons:</b>
-                        ${data.persons || "-"}
+                        ${escapeAdminHtml(data.persons)}
                     </p>
 
 
                     <p>
                         <b>📅 Date:</b>
-                        ${data.date || "-"}
+                        ${escapeAdminHtml(data.date)}
                     </p>
 
 
                     <p>
                         <b>⏰ Time:</b>
-                        ${data.time || "-"}
+                        ${escapeAdminHtml(data.time)}
                     </p>
 
 
@@ -342,12 +342,12 @@ function renderExtraDetails(
 
             <p>
                 <b>🚖 Cab:</b>
-                ${data.cab || "-"} Seater
+                ${escapeAdminHtml(data.cab)} Seater
             </p>
 
             <p>
                 <b>📍 Pickup:</b>
-                ${data.pickup || "-"}
+                ${escapeAdminHtml(data.pickup)}
             </p>
 
         `;
@@ -361,22 +361,22 @@ function renderExtraDetails(
 
             <p>
                 <b>🏨 Room:</b>
-                ${data.room || "-"}
+                ${escapeAdminHtml(data.room)}
             </p>
 
             <p>
                 <b>📅 Check-in:</b>
-                ${data.checkin || "-"}
+                ${escapeAdminHtml(data.checkin)}
             </p>
 
             <p>
                 <b>📅 Check-out:</b>
-                ${data.checkout || "-"}
+                ${escapeAdminHtml(data.checkout)}
             </p>
 
             <p>
                 <b>📝 Request:</b>
-                ${data.request || "None"}
+                ${escapeAdminHtml(data.request)}
             </p>
 
         `;
@@ -388,12 +388,12 @@ function renderExtraDetails(
 
         <p>
             <b>🛕 Service:</b>
-            ${data.service || "-"}
+            ${escapeAdminHtml(data.service)}
         </p>
 
         <p>
             <b>🙏 Pooja:</b>
-            ${data.poojaType || "Not specified"}
+            ${escapeAdminHtml(data.poojaType || "Not specified")}
         </p>
 
     `;
@@ -410,7 +410,7 @@ function renderExtraDetails(
 
             <p>
                 <b>🛕 Service:</b>
-                ${data.service || "-"}
+                ${escapeAdminHtml(data.service || "-")}
             </p>
 
         `;
@@ -524,49 +524,49 @@ async function loadPackageBookings() {
 
                     <p>
                         <b>👤 Customer:</b>
-                        ${data.customerName || "-"}
+                        ${escapeAdminHtml(data.customerName)}
                     </p>
 
 
                     <p>
                         <b>📧 Email:</b>
-                        ${data.customerEmail || "-"}
+                        ${escapeAdminHtml(data.customerEmail)}
                     </p>
 
 
                     <p>
                         <b>📱 Mobile:</b>
-                        ${data.customerMobile || "-"}
+                        ${escapeAdminHtml(data.mobile)}
                     </p>
 
 
                     <p>
                         <b>👥 Persons:</b>
-                        ${data.persons || "-"}
+                        ${escapeAdminHtml(data.persons)}
                     </p>
 
 
                     <p>
                         <b>📅 Travel Date:</b>
-                        ${data.travelDate || "-"}
+                        ${escapeAdminHtml(data.travelDate)}
                     </p>
 
 
                     <p>
                         <b>⏰ Pickup Time:</b>
-                        ${data.pickupTime || "-"}
+                        ${escapeAdminHtml(data.pickupTime)}
                     </p>
 
 
                     <p>
                         <b>📍 Pickup Location:</b>
-                        ${data.pickupLocation || "-"}
+                       ${escapeAdminHtml(data.pickupLocation)}
                     </p>
 
 
                     <p>
                         <b>📝 Special Request:</b>
-                        ${data.specialRequest || "None"}
+                        ${escapeAdminHtml(data.specialRequest)}
                     </p>
 
 
