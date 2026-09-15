@@ -20,6 +20,8 @@
 
     <link rel="stylesheet"
           href="normal.css">
+    <link rel="stylesheet"
+          href="header.css">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -90,15 +92,21 @@
         <!-- LOGO -->
 
         <a href="index.html"
-           class="logo">
+           class="logo"
+           aria-label="RamSethuYatra home">
 
             <span class="logo-mark">
-                <i class="fa-solid fa-om"></i>
+                ॐ
             </span>
 
             <span class="logo-name">
-                <b>RamSethu</b>
-                <em>Yatra</em>
+
+                <b>Ram</b>
+
+                <em>Sethu</em>
+
+                <b>Yatra</b>
+
             </span>
 
         </a>
@@ -109,53 +117,99 @@
         <nav class="main-nav"
              id="mainNav">
 
-            <a href="index.html">
-                <i class="fa-solid fa-house"></i>
-                Home
-            </a>
 
-            <a href="about.html">
-                <i class="fa-solid fa-circle-info"></i>
-                About
-            </a>
-
-            <a href="totalpackage.html"
+            <a href="index.html"
                class="active">
-                <i class="fa-solid fa-suitcase"></i>
-                Packages
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Home</span>
+
             </a>
+
+
+            <a href="totalpackage.html">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+
+                <span>Packages</span>
+
+            </a>
+
 
             <a href="ramanathaswamy-temple.html">
+
                 <i class="fa-solid fa-place-of-worship"></i>
-                Temple
+
+                <span>Temple</span>
+
             </a>
 
-            <a href="contact.html">
-                <i class="fa-solid fa-phone"></i>
-                Contact
+
+            <a href="rameswaram-cab-service.html">
+
+                <i class="fa-solid fa-car"></i>
+
+                <span>Cabs</span>
+
             </a>
 
-            <a href="login.html"
-               id="loginNav">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Login
+
+            <a href="rameswaram-rooms.html">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <span>Rooms</span>
+
             </a>
+
+
+            <!-- SHOW ONLY AFTER LOGIN -->
 
             <a href="customer-dashboard.html"
                id="myBookingNav"
+               class="logged-in-only"
                style="display:none;">
-                <i class="fa-solid fa-calendar-check"></i>
-                My Booking
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>My Bookings</span>
+
             </a>
 
-            <button class="nav-logout"
+
+            <!-- SHOW WHEN NOT LOGGED IN -->
+
+            <a href="login.html"
+               id="loginNav"
+               class="logged-out-only">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>Login</span>
+
+            </a>
+
+
+            <a href="about.html">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>About</span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <button type="button"
                     id="logoutNav"
-                    style="display:none;"
-                    type="button">
+                    class="logged-in-only nav-logout"
+                    style="display:none;">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                Logout
+                <span>Logout</span>
 
             </button>
 
@@ -171,63 +225,93 @@
 
             <div class="translate-box">
 
-                <button class="language-btn"
-                        id="languageBtn"
-                        type="button"
-                        aria-label="Choose language">
+    <button type="button"
+            id="languageBtn"
+            class="language-btn"
+            aria-label="Select language">
 
-                    <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
 
-                </button>
+    </button>
 
+    <div id="languageMenu"
+         class="language-menu">
 
-                <div class="language-menu"
-                     id="languageMenu">
+        <div class="language-title">
+            Select Language
+        </div>
 
-                    <div class="language-title">
-                        Choose Language
-                    </div>
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('en')">
-                        English
-                    </button>
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('ta')">
-                        தமிழ்
-                    </button>
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('hi')">
-                        हिन्दी
-                    </button>
+        <button type="button" data-lang="ml">
+            🇮🇳 മലയാളം
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('ml')">
-                        മലയാളം
-                    </button>
+        <button type="button" data-lang="te">
+            🇮🇳 తెలుగు
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('te')">
-                        తెలుగు
-                    </button>
+        <button type="button" data-lang="kn">
+            🇮🇳 ಕನ್ನಡ
+        </button>
 
-                    <button type="button"
-                            onclick="changeLanguage('kn')">
-                        ಕನ್ನಡ
-                    </button>
+        <button type="button" data-lang="bn">
+            🇮🇳 বাংলা
+        </button>
 
-                </div>
+        <button type="button" data-lang="mr">
+            🇮🇳 मराठी
+        </button>
 
-            </div>
+        <button type="button" data-lang="gu">
+            🇮🇳 ગુજરાતી
+        </button>
+
+        <button type="button" data-lang="pa">
+            🇮🇳 ਪੰਜਾਬੀ
+        </button>
+
+        <button type="button" data-lang="es">
+            🇪🇸 Español
+        </button>
+
+        <button type="button" data-lang="fr">
+            🇫🇷 Français
+        </button>
+
+        <button type="button" data-lang="de">
+            🇩🇪 Deutsch
+        </button>
+
+        <button type="button" data-lang="ar">
+            🇸🇦 العربية
+        </button>
+
+    </div>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element"
+         class="google-translate-hidden">
+    </div>
+
+</div>
 
 
             <!-- MOBILE MENU -->
 
-            <button class="mobile-menu-btn"
+            <button type="button"
+                    class="mobile-menu-btn"
                     id="mobileMenuBtn"
-                    type="button"
                     aria-label="Open menu">
 
                 <i class="fa-solid fa-bars"></i>
@@ -1888,8 +1972,10 @@
 </script>
 
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+<script src="header.js"></script>
 
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 

@@ -13,6 +13,8 @@
     >
 
     <link rel="stylesheet" href="package.css">
+    <link rel="stylesheet"
+          href="header.css">
 
     <link rel="stylesheet" href="site-theme.css">
 
@@ -61,65 +63,246 @@
 
     <!-- ================= HEADER ================= -->
 
-    <header class="site-header">
+   <header class="site-header">
 
-        <div class="header-inner">
+    <div class="header-inner">
 
-            <a href="index.html" class="site-logo">
-                <span>Ram</span>
-                <span>Sethu</span>
-                <span>Yatra</span>
+
+        <!-- LOGO -->
+
+        <a href="index.html"
+           class="logo"
+           aria-label="RamSethuYatra home">
+
+            <span class="logo-mark">
+                ॐ
+            </span>
+
+            <span class="logo-name">
+
+                <b>Ram</b>
+
+                <em>Sethu</em>
+
+                <b>Yatra</b>
+
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav"
+             id="mainNav">
+
+
+            <a href="index.html"
+               class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Home</span>
+
             </a>
 
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Open navigation menu"
-                type="button"
-            >
-                ☰
+
+            <a href="totalpackage.html">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+
+                <span>Packages</span>
+
+            </a>
+
+
+            <a href="ramanathaswamy-temple.html">
+
+                <i class="fa-solid fa-place-of-worship"></i>
+
+                <span>Temple</span>
+
+            </a>
+
+
+            <a href="rameswaram-cab-service.html">
+
+                <i class="fa-solid fa-car"></i>
+
+                <span>Cabs</span>
+
+            </a>
+
+
+            <a href="rameswaram-rooms.html">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <span>Rooms</span>
+
+            </a>
+
+
+            <!-- SHOW ONLY AFTER LOGIN -->
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               class="logged-in-only"
+               style="display:none;">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>My Bookings</span>
+
+            </a>
+
+
+            <!-- SHOW WHEN NOT LOGGED IN -->
+
+            <a href="login.html"
+               id="loginNav"
+               class="logged-out-only">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>Login</span>
+
+            </a>
+
+
+            <a href="about.html">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>About</span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <button type="button"
+                    id="logoutNav"
+                    class="logged-in-only nav-logout"
+                    style="display:none;">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
             </button>
 
-            <nav class="main-nav" id="mainNav">
+        </nav>
 
-                <a href="index.html">Home</a>
 
-                <a href="about.html">About</a>
+        <!-- HEADER ACTIONS -->
 
-                <a href="totalpackage.html" class="active">
-                    Packages
-                </a>
+        <div class="header-actions">
 
-                <a href="ramanathaswamy-temple.html">
-                    Temple
-                </a>
 
-                <a href="contact.html">
-                    Contact
-                </a>
+            <!-- LANGUAGE -->
 
-                <a href="login.html" id="loginNav">
-                    Login
-                </a>
+            <div class="translate-box">
 
-                <a href="customer-dashboard.html" id="myBookingNav">
-                    My Booking
-                </a>
+    <button type="button"
+            id="languageBtn"
+            class="language-btn"
+            aria-label="Select language">
 
-                <button
-                    type="button"
-                    id="logoutNav"
-                    class="nav-logout"
-                    style="display:none;"
-                >
-                    Logout
-                </button>
+        <i class="fa-solid fa-globe"></i>
 
-            </nav>
+    </button>
+
+    <div id="languageMenu"
+         class="language-menu">
+
+        <div class="language-title">
+            Select Language
+        </div>
+
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
+
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
+
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
+
+        <button type="button" data-lang="ml">
+            🇮🇳 മലയാളം
+        </button>
+
+        <button type="button" data-lang="te">
+            🇮🇳 తెలుగు
+        </button>
+
+        <button type="button" data-lang="kn">
+            🇮🇳 ಕನ್ನಡ
+        </button>
+
+        <button type="button" data-lang="bn">
+            🇮🇳 বাংলা
+        </button>
+
+        <button type="button" data-lang="mr">
+            🇮🇳 मराठी
+        </button>
+
+        <button type="button" data-lang="gu">
+            🇮🇳 ગુજરાતી
+        </button>
+
+        <button type="button" data-lang="pa">
+            🇮🇳 ਪੰਜਾਬੀ
+        </button>
+
+        <button type="button" data-lang="es">
+            🇪🇸 Español
+        </button>
+
+        <button type="button" data-lang="fr">
+            🇫🇷 Français
+        </button>
+
+        <button type="button" data-lang="de">
+            🇩🇪 Deutsch
+        </button>
+
+        <button type="button" data-lang="ar">
+            🇸🇦 العربية
+        </button>
+
+    </div>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element"
+         class="google-translate-hidden">
+    </div>
+
+</div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open menu">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
+
 
 
     <!-- ================= HERO ================= -->
@@ -1376,7 +1559,11 @@
     </script>
 
 
-    <script src="site.js"></script>
+    <!-- <script src="site.js"></script>
+      -->
+    <script src="header.js"></script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>

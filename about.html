@@ -2,69 +2,303 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin Dashboard | RamSethuYatra</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        About RamSethuYatra | Rameswaram Travel Services
+    </title>
 
     <meta
         name="description"
-        content="RamSethuYatra secure admin dashboard for managing bookings and customer reviews."
+        content="Learn about RamSethuYatra and our travel, pilgrimage, cab, room and tour package services in Rameswaram."
     >
 
-    <link rel="stylesheet" href="admin.css">
+    <meta
+        name="keywords"
+        content="Rameswaram travel, Rameswaram tour, Rameswaram pilgrimage, RamSethuYatra, Rameswaram cab, Rameswaram rooms"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
 
     <link
-        rel="icon"
-        href="images/logo.png"
+        rel="canonical"
+        href="https://ramsethuyatra.in/about.html"
     >
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- SITE CSS -->
+
+    <link
+        rel="stylesheet"
+        href="site-theme.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="about.css"
+    >
+     <link rel="stylesheet"
+          href="header.css">
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <!-- =====================================================
-     ADMIN HEADER
-     ===================================================== -->
+     HEADER
+===================================================== -->
 
-<header class="admin-header">
+<header class="site-header">
 
-    <div class="admin-header-inner">
+    <div class="header-inner">
 
-        <a href="index.html" class="admin-logo">
-            <span>Ram</span>
-            <span>Sethu</span>
-            <span>Yatra</span>
+
+        <!-- LOGO -->
+
+        <a href="index.html"
+           class="logo"
+           aria-label="RamSethuYatra home">
+
+            <span class="logo-mark">
+                ॐ
+            </span>
+
+            <span class="logo-name">
+
+                <b>Ram</b>
+
+                <em>Sethu</em>
+
+                <b>Yatra</b>
+
+            </span>
+
         </a>
 
-        <div class="admin-title">
-            <span>ADMIN PANEL</span>
-            <h1>Dashboard</h1>
-        </div>
 
-        <div class="admin-header-actions">
+        <!-- NAVIGATION -->
 
-            <a
-                href="index.html"
-                class="view-site-btn"
-            >
-                View Site
+        <nav class="main-nav"
+             id="mainNav">
+
+
+            <a href="index.html"
+               class="active">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Home</span>
+
             </a>
 
-            <button
-                id="logoutBtn"
-                class="logout-btn"
-                type="button"
-            >
-                Logout
+
+            <a href="totalpackage.html">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+
+                <span>Packages</span>
+
+            </a>
+
+
+            <a href="ramanathaswamy-temple.html">
+
+                <i class="fa-solid fa-place-of-worship"></i>
+
+                <span>Temple</span>
+
+            </a>
+
+
+            <a href="rameswaram-cab-service.html">
+
+                <i class="fa-solid fa-car"></i>
+
+                <span>Cabs</span>
+
+            </a>
+
+
+            <a href="rameswaram-rooms.html">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <span>Rooms</span>
+
+            </a>
+
+
+            <!-- SHOW ONLY AFTER LOGIN -->
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               class="logged-in-only"
+               style="display:none;">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>My Bookings</span>
+
+            </a>
+
+
+            <!-- SHOW WHEN NOT LOGGED IN -->
+
+            <a href="login.html"
+               id="loginNav"
+               class="logged-out-only">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>Login</span>
+
+            </a>
+
+
+            <a href="about.html">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>About</span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <button type="button"
+                    id="logoutNav"
+                    class="logged-in-only nav-logout"
+                    style="display:none;">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
             </button>
 
-            <button
-                id="adminMenuBtn"
-                class="admin-menu-btn"
-                type="button"
-                aria-label="Open menu"
-            >
-                ☰
+        </nav>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+
+            <!-- LANGUAGE -->
+
+            <div class="translate-box">
+
+    <button type="button"
+            id="languageBtn"
+            class="language-btn"
+            aria-label="Select language">
+
+        <i class="fa-solid fa-globe"></i>
+
+    </button>
+
+    <div id="languageMenu"
+         class="language-menu">
+
+        <div class="language-title">
+            Select Language
+        </div>
+
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
+
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
+
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
+
+        <button type="button" data-lang="ml">
+            🇮🇳 മലയാളം
+        </button>
+
+        <button type="button" data-lang="te">
+            🇮🇳 తెలుగు
+        </button>
+
+        <button type="button" data-lang="kn">
+            🇮🇳 ಕನ್ನಡ
+        </button>
+
+        <button type="button" data-lang="bn">
+            🇮🇳 বাংলা
+        </button>
+
+        <button type="button" data-lang="mr">
+            🇮🇳 मराठी
+        </button>
+
+        <button type="button" data-lang="gu">
+            🇮🇳 ગુજરાતી
+        </button>
+
+        <button type="button" data-lang="pa">
+            🇮🇳 ਪੰਜਾਬੀ
+        </button>
+
+        <button type="button" data-lang="es">
+            🇪🇸 Español
+        </button>
+
+        <button type="button" data-lang="fr">
+            🇫🇷 Français
+        </button>
+
+        <button type="button" data-lang="de">
+            🇩🇪 Deutsch
+        </button>
+
+        <button type="button" data-lang="ar">
+            🇸🇦 العربية
+        </button>
+
+    </div>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element"
+         class="google-translate-hidden">
+    </div>
+
+</div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button type="button"
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="Open menu">
+
+                <i class="fa-solid fa-bars"></i>
+
             </button>
 
         </div>
@@ -74,991 +308,838 @@
 </header>
 
 
+
 <!-- =====================================================
-     MOBILE ADMIN NAV
-     ===================================================== -->
+     HERO
+===================================================== -->
 
-<nav
-    id="adminMobileNav"
-    class="admin-mobile-nav"
->
+<section class="about-hero">
 
-    <a href="#overview">
-        Dashboard
-    </a>
+    <div class="about-hero-overlay"></div>
 
-    <a href="#packageSection">
-        Packages
-    </a>
+    <div class="about-hero-content">
 
-    <a href="#templeSection">
-        Temple
-    </a>
+        <span class="small-label">
+            ABOUT RAMSETHUYATRA
+        </span>
 
-    <a href="#wellSection">
-        Wells
-    </a>
+        <h1>
+            Discover Rameswaram
+            <span>with confidence.</span>
+        </h1>
 
-    <a href="#poojaSection">
-        Pooja
-    </a>
+        <p>
+            Travel, pilgrimage and local experiences
+            thoughtfully arranged for your journey
+            through sacred Rameswaram.
+        </p>
 
-    <a href="#roomSection">
-        Rooms
-    </a>
+    </div>
 
-    <a href="#cabSection">
-        Cab
-    </a>
+</section>
 
-    <a href="#reviewSection">
-        Reviews
-    </a>
-
-</nav>
 
 
 <!-- =====================================================
-     MAIN
-     ===================================================== -->
+     INTRODUCTION
+===================================================== -->
 
-<main class="admin-main">
+<section class="about-intro section-space">
+
+    <div class="about-intro-grid">
 
 
-    <!-- =================================================
-         DASHBOARD HERO
-         ================================================= -->
+        <div class="about-image">
 
-    <section
-        class="admin-hero"
-        id="overview"
-    >
+            <img
+                src="images/RAMESWARAM.jpg"
+                alt="Rameswaram Tamil Nadu"
+                loading="lazy"
+            >
 
-        <div class="admin-hero-content">
+        </div>
 
-            <span class="hero-label">
-                RAMSETHUYATRA • MANAGEMENT
+
+        <div class="about-content">
+
+            <span class="small-label">
+                WHO WE ARE
             </span>
 
             <h2>
-                Welcome back,
-                <span>Admin.</span>
+                Your journey to
+                <strong>Rameswaram</strong>
+                starts here.
             </h2>
 
             <p>
-                Manage customer bookings, travel services,
-                temple visits and reviews from one place.
+                RamSethuYatra is focused on making travel
+                around Rameswaram simple, comfortable and
+                convenient for families, pilgrims and
+                visitors.
             </p>
-
-        </div>
-
-
-        <div class="admin-status-card">
-
-            <div class="status-dot"></div>
-
-            <div>
-                <strong>Admin System</strong>
-
-                <span>
-                    Secure dashboard active
-                </span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         STATISTICS
-         ================================================= -->
-
-    <section class="stats-section">
-
-        <div class="stats-grid">
-
-
-            <!-- TOTAL BOOKINGS -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📋
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        TOTAL BOOKINGS
-                    </span>
-
-                    <strong id="totalBookings">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- PENDING -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon pending-icon">
-                    ⏳
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        PENDING
-                    </span>
-
-                    <strong id="pendingBookings">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- CONFIRMED -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon confirmed-icon">
-                    ✓
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        CONFIRMED
-                    </span>
-
-                    <strong id="confirmedBookings">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- REVIEWS -->
-
-            <div class="stat-card">
-
-                <div class="stat-icon review-icon">
-                    ⭐
-                </div>
-
-                <div class="stat-content">
-
-                    <span>
-                        REVIEWS
-                    </span>
-
-                    <strong id="totalReviews">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         QUICK NAVIGATION
-         ================================================= -->
-
-    <section class="quick-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span>
-                    MANAGEMENT
-                </span>
-
-                <h2>
-                    Booking Categories
-                </h2>
-
-            </div>
 
             <p>
-                Select a category to review customer requests.
+                From temple visits and sacred places to
+                local transportation, accommodation and
+                complete tour packages, our goal is to
+                bring essential travel services together
+                in one place.
             </p>
-
-        </div>
-
-
-        <div class="quick-grid">
-
-
-            <a
-                href="#packageSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    📦
-                </div>
-
-                <div>
-                    <strong>
-                        Packages
-                    </strong>
-
-                    <span>
-                        Tour bookings
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-            <a
-                href="#templeSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    🛕
-                </div>
-
-                <div>
-                    <strong>
-                        Temple
-                    </strong>
-
-                    <span>
-                        Temple visits
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-            <a
-                href="#wellSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    💧
-                </div>
-
-                <div>
-                    <strong>
-                        Sacred Wells
-                    </strong>
-
-                    <span>
-                        Well bookings
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-            <a
-                href="#poojaSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    🪔
-                </div>
-
-                <div>
-                    <strong>
-                        Pooja
-                    </strong>
-
-                    <span>
-                        Pooja bookings
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-            <a
-                href="#roomSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    🏨
-                </div>
-
-                <div>
-                    <strong>
-                        Rooms
-                    </strong>
-
-                    <span>
-                        Room bookings
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-            <a
-                href="#cabSection"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    🚕
-                </div>
-
-                <div>
-                    <strong>
-                        Cab
-                    </strong>
-
-                    <span>
-                        Cab bookings
-                    </span>
-                </div>
-
-                <b>
-                    →
-                </b>
-
-            </a>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SEARCH / FILTER
-         ================================================= -->
-
-    <section class="filter-section">
-
-        <div class="filter-box">
-
-            <div class="filter-title">
-
-                <span>
-                    🔎
-                </span>
-
-                <div>
-
-                    <strong>
-                        Find Booking
-                    </strong>
-
-                    <small>
-                        Search customer or booking details
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="filter-controls">
-
-                <input
-                    type="search"
-                    id="adminSearch"
-                    placeholder="Search name, email, mobile, service..."
-                    autocomplete="off"
-                >
-
-
-                <select id="bookingStatusFilter">
-
-                    <option value="all">
-                        All Status
-                    </option>
-
-                    <option value="pending">
-                        Pending
-                    </option>
-
-                    <option value="confirmed">
-                        Confirmed
-                    </option>
-
-                    <option value="cancelled">
-                        Cancelled
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         PACKAGE BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="packageSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    01
-                </span>
-
-                <div>
-
-                    <small>
-                        TRAVEL PACKAGES
-                    </small>
-
-                    <h2>
-                        Package Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Packages
-            </span>
-
-        </div>
-
-
-        <div
-            id="packageData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading package bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         TEMPLE BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="templeSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    02
-                </span>
-
-                <div>
-
-                    <small>
-                        PILGRIMAGE
-                    </small>
-
-                    <h2>
-                        Temple Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Temple
-            </span>
-
-        </div>
-
-
-        <div
-            id="templeData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading temple bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         WELL BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="wellSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    03
-                </span>
-
-                <div>
-
-                    <small>
-                        SACRED PLACES
-                    </small>
-
-                    <h2>
-                        Sacred Well Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Wells
-            </span>
-
-        </div>
-
-
-        <div
-            id="wellData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading well bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         POOJA BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="poojaSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    04
-                </span>
-
-                <div>
-
-                    <small>
-                        SPIRITUAL SERVICES
-                    </small>
-
-                    <h2>
-                        Pooja Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Pooja
-            </span>
-
-        </div>
-
-
-        <div
-            id="poojaData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading pooja bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         ROOM BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="roomSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    05
-                </span>
-
-                <div>
-
-                    <small>
-                        ACCOMMODATION
-                    </small>
-
-                    <h2>
-                        Room Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Rooms
-            </span>
-
-        </div>
-
-
-        <div
-            id="roomData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading room bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         CAB BOOKINGS
-         ================================================= -->
-
-    <section
-        class="booking-section"
-        id="cabSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    06
-                </span>
-
-                <div>
-
-                    <small>
-                        TRANSPORTATION
-                    </small>
-
-                    <h2>
-                        Cab Bookings
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Cab
-            </span>
-
-        </div>
-
-
-        <div
-            id="cabData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading cab bookings...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         CUSTOMER REVIEWS
-         ================================================= -->
-
-    <section
-        class="booking-section review-section"
-        id="reviewSection"
-    >
-
-        <div class="booking-section-header">
-
-            <div>
-
-                <span class="section-number">
-                    07
-                </span>
-
-                <div>
-
-                    <small>
-                        CUSTOMER FEEDBACK
-                    </small>
-
-                    <h2>
-                        Customer Reviews
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <span class="section-tag">
-                Reviews
-            </span>
-
-        </div>
-
-
-        <div
-            id="reviewData"
-            class="booking-data"
-        >
-
-            <div class="loading-state">
-                Loading customer reviews...
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         EMPTY SEARCH STATE
-         ================================================= -->
-
-    <section
-        id="emptyState"
-        class="empty-state"
-        style="display: none;"
-    >
-
-        <div class="empty-icon">
-            🔍
-        </div>
-
-        <h3>
-            No matching bookings
-        </h3>
-
-        <p>
-            Try a different customer name, email,
-            mobile number or service.
-        </p>
-
-    </section>
-
-
-    <!-- =================================================
-         ADMIN SECURITY NOTICE
-         ================================================= -->
-
-    <section class="security-notice">
-
-        <div class="security-symbol">
-            🔐
-        </div>
-
-        <div>
-
-            <strong>
-                Protected Admin Area
-            </strong>
 
             <p>
-                This dashboard contains customer booking
-                information. Do not share admin credentials
-                or booking information with unauthorized users.
+                Whether you are visiting the
+                Ramanathaswamy Temple, exploring the
+                island or planning a complete pilgrimage,
+                RamSethuYatra helps you organize the
+                important parts of your journey.
             </p>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
-</main>
 
 
 <!-- =====================================================
-     FOOTER
-     ===================================================== -->
+     OUR SERVICES
+===================================================== -->
 
-<footer class="admin-footer">
+<section class="about-services section-space">
 
-    <div class="admin-footer-inner">
+    <div class="section-heading">
 
-        <div class="footer-brand">
+        <span>
+            WHAT WE OFFER
+        </span>
 
-            <a
-                href="index.html"
-                class="footer-logo"
-            >
-                RamSethuYatra
-            </a>
+        <h2>
+            Everything you need for your
+            <strong>Rameswaram journey</strong>
+        </h2>
+
+        <p>
+            Choose individual services or combine them
+            through one of our complete travel packages.
+        </p>
+
+    </div>
+
+
+    <div class="about-service-grid">
+
+
+        <!-- TEMPLE -->
+
+        <article class="about-service-card">
+
+            <div class="about-service-icon">
+                <i class="fa-solid fa-place-of-worship"></i>
+            </div>
+
+            <h3>
+                Temple & Poojai
+            </h3>
 
             <p>
-                Rameswaram travel and pilgrimage services.
+                Plan your Ramanathaswamy Temple visit,
+                22 Holy Wells experience and available
+                poojai services.
             </p>
+
+            <a href="ramanathaswamy-temple.html">
+                Explore Temple Services
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </article>
+
+
+        <!-- CAB -->
+
+        <article class="about-service-card">
+
+            <div class="about-service-icon">
+                <i class="fa-solid fa-car"></i>
+            </div>
+
+            <h3>
+                Cab Services
+            </h3>
+
+            <p>
+                Choose convenient transportation for
+                temple visits, sightseeing and local
+                travel around Rameswaram.
+            </p>
+
+            <a href="rameswaram-cab-service.html">
+                Explore Cabs
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </article>
+
+
+        <!-- ROOMS -->
+
+        <article class="about-service-card">
+
+            <div class="about-service-icon">
+                <i class="fa-solid fa-bed"></i>
+            </div>
+
+            <h3>
+                Comfortable Rooms
+            </h3>
+
+            <p>
+                Find accommodation options suitable
+                for families, pilgrims and different
+                travel requirements.
+            </p>
+
+            <a href="rameswaram-rooms.html">
+                Explore Rooms
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </article>
+
+
+        <!-- PACKAGES -->
+
+        <article class="about-service-card">
+
+            <div class="about-service-icon">
+                <i class="fa-solid fa-route"></i>
+            </div>
+
+            <h3>
+                Tour Packages
+            </h3>
+
+            <p>
+                Combine your travel needs through
+                Normal, Medium and Premium tour
+                packages.
+            </p>
+
+            <a href="totalpackage.html">
+                View Packages
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY CHOOSE US
+===================================================== -->
+
+<section class="about-why section-space">
+
+    <div class="about-why-grid">
+
+
+        <div class="about-why-content">
+
+            <span class="small-label">
+                WHY RAMSETHUYATRA
+            </span>
+
+            <h2>
+                Your Rameswaram journey,
+                <strong>made simple.</strong>
+            </h2>
+
+            <p>
+                We bring together the essential services
+                visitors commonly need while exploring
+                Rameswaram.
+            </p>
+
+
+            <div class="about-benefits">
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Local Travel
+                        </h3>
+
+                        <p>
+                            Convenient transportation
+                            around Rameswaram.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Pilgrimage Support
+                        </h3>
+
+                        <p>
+                            Services designed around
+                            temple visits and sacred
+                            places.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Easy Planning
+                        </h3>
+
+                        <p>
+                            Book the services you need
+                            for your trip in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Complete Packages
+                        </h3>
+
+                        <p>
+                            Choose a package when you
+                            want a more complete travel
+                            experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </div>
 
 
-        <div class="footer-links">
+        <div class="about-why-image">
 
-            <a href="index.html">
-                Home
+            <img
+                src="images/Sri Ramanathaswamy Temple.jpg"
+                alt="Ramanathaswamy Temple Rameswaram"
+                loading="lazy"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DESTINATIONS
+===================================================== -->
+
+<section class="about-destinations section-space">
+
+    <div class="section-heading">
+
+        <span>
+            EXPLORE RAMESWARAM
+        </span>
+
+        <h2>
+            Places worth
+            <strong>experiencing</strong>
+        </h2>
+
+    </div>
+
+
+    <div class="destination-grid">
+
+
+        <div class="destination-card">
+
+            <img
+                src="images/Sri Ramanathaswamy Temple.jpg"
+                alt="Ramanathaswamy Temple"
+                loading="lazy"
+            >
+
+            <div class="destination-overlay">
+
+                <span>
+                    SACRED PLACE
+                </span>
+
+                <h3>
+                    Ramanathaswamy Temple
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination-card">
+
+            <img
+                src="images/Agni Theertham.jpg"
+                alt="Agni Theertham"
+                loading="lazy"
+            >
+
+            <div class="destination-overlay">
+
+                <span>
+                    HOLY WATER
+                </span>
+
+                <h3>
+                    Agni Theertham
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination-card">
+
+            <img
+                src="images/Pamban Bridge.jpg"
+                alt="Pamban Bridge"
+                loading="lazy"
+            >
+
+            <div class="destination-overlay">
+
+                <span>
+                    LANDMARK
+                </span>
+
+                <h3>
+                    Pamban Bridge
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="destination-card">
+
+            <img
+                src="images/beautiful-beach.jpg"
+                alt="Rameswaram beach"
+                loading="lazy"
+            >
+
+            <div class="destination-overlay">
+
+                <span>
+                    COASTAL ESCAPE
+                </span>
+
+                <h3>
+                    Rameswaram Beaches
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="about-cta">
+
+    <div class="about-cta-overlay"></div>
+
+    <div class="about-cta-content">
+
+        <span class="small-label">
+            PLAN YOUR JOURNEY
+        </span>
+
+        <h2>
+            Ready to explore
+            <strong>Rameswaram?</strong>
+        </h2>
+
+        <p>
+            Explore our services and choose what you
+            need for your journey.
+        </p>
+
+
+        <div class="cta-buttons">
+
+            <a
+                href="totalpackage.html"
+                class="cta-primary"
+            >
+                View Packages
             </a>
 
-            <a href="contact.html">
-                Contact
-            </a>
-
-            <a href="privacy.html">
-                Privacy
-            </a>
-
-            <a href="terms.html">
-                Terms
+            <a
+                href="contact.html"
+                class="cta-secondary"
+            >
+                Contact Us
             </a>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="admin-footer-bottom">
 
-        <span>
-            © 2026 RamSethuYatra. All Rights Reserved.
-        </span>
 
-        <span>
-            Secure Admin Dashboard
-        </span>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="brand footer-logo"
+            >
+
+                <div class="brand-icon">
+                    ॐ
+                </div>
+
+                <div class="brand-name">
+
+                    <span>Ram</span>
+                    <span>Sethu</span>
+                    <span>Yatra</span>
+
+                </div>
+
+            </a>
+
+
+            <p>
+                Comfortable travel and memorable
+                experiences in sacred Rameswaram.
+            </p>
+
+
+            <div class="footer-social">
+
+                <a
+                    href="https://wa.me/918838170745"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                >
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a
+                    href="tel:+918838170745"
+                    aria-label="Call"
+                >
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="totalpackage.html">
+                Packages
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple & Poojai
+            </a>
+
+            <a href="customer-dashboard.html">
+                My Booking
+            </a>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div class="footer-column">
+
+            <h3>
+                Services
+            </h3>
+
+            <a href="rameswaram-cab-service.html">
+                Cab Service
+            </a>
+
+            <a href="rameswaram-rooms.html">
+                Rooms
+            </a>
+
+            <a href="totalpackage.html">
+                Tour Packages
+            </a>
+
+            <a href="ramanathaswamy-temple.html">
+                Temple Services
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h3>
+                Contact
+            </h3>
+
+            <a href="tel:+918838170745">
+                <i class="fa-solid fa-phone"></i>
+                +91 88381 70745
+            </a>
+
+            <a href="mailto:ramsethuyatra@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+                ramsethuyatra@gmail.com
+            </a>
+
+            <a
+                href="https://wa.me/918838170745"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+            </a>
+
+            <span>
+                <i class="fa-solid fa-location-dot"></i>
+                Rameswaram, Tamil Nadu, India
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 RamSethuYatra.
+            All Rights Reserved.
+        </p>
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+            <a href="refund-cancellation.html">
+                Cancellation & Refund
+            </a>
+
+        </div>
 
     </div>
 
 </footer>
 
 
-<!-- =====================================================
-     FIREBASE / ADMIN SCRIPT
-     ===================================================== -->
-
-<script type="module" src="admin.js"></script>
-
 
 <!-- =====================================================
-     MOBILE MENU SCRIPT
-     ===================================================== -->
+     FLOATING WHATSAPP
+===================================================== -->
+
+<a
+    href="https://wa.me/918838170745"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="floating-whatsapp"
+    aria-label="WhatsApp"
+>
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+    <span>
+        WhatsApp
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     FLOATING CALL
+===================================================== -->
+
+<a
+    href="tel:+918838170745"
+    class="floating-call"
+    aria-label="Call Now"
+>
+
+    <i class="fa-solid fa-phone"></i>
+
+    <span>
+        Call Now
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<button
+    id="topBtn"
+    class="top-btn"
+    aria-label="Back to top"
+>
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+
+<!-- =====================================================
+     GOOGLE TRANSLATE
+===================================================== -->
 
 <script>
 
-    const adminMenuBtn =
-        document.getElementById("adminMenuBtn");
+function googleTranslateElementInit() {
 
-    const adminMobileNav =
-        document.getElementById("adminMobileNav");
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+            includedLanguages: "en,ta,hi",
+            autoDisplay: false
+        },
+        "google_translate_element"
+    );
 
-
-    if (adminMenuBtn && adminMobileNav) {
-
-        adminMenuBtn.addEventListener("click", () => {
-
-            adminMobileNav.classList.toggle("active");
-
-        });
-
-
-        adminMobileNav
-            .querySelectorAll("a")
-            .forEach(link => {
-
-                link.addEventListener("click", () => {
-
-                    adminMobileNav.classList.remove("active");
-
-                });
-
-            });
-
-    }
+}
 
 </script>
 
 
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+></script>
+
+
+
+<!-- =====================================================
+     SITE JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="site.js"
+></script>
+<script src="header.js"></script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
 </body>
+
 </html>

@@ -34,6 +34,8 @@
 
     <link rel="stylesheet"
           href="normal.css">
+    <link rel="stylesheet"
+          href="header.css">
 
     <script type="module"
             src="firebase.js"></script>
@@ -53,16 +55,17 @@
     <div class="header-inner">
 
 
+        <!-- LOGO -->
+
         <a href="index.html"
-           class="logo">
+           class="logo"
+           aria-label="RamSethuYatra home">
 
-            <div class="logo-mark">
+            <span class="logo-mark">
+                ॐ
+            </span>
 
-                <i class="fa-solid fa-om"></i>
-
-            </div>
-
-            <div class="logo-name">
+            <span class="logo-name">
 
                 <b>Ram</b>
 
@@ -70,20 +73,86 @@
 
                 <b>Yatra</b>
 
-            </div>
+            </span>
 
         </a>
 
+
+        <!-- NAVIGATION -->
 
         <nav class="main-nav"
              id="mainNav">
 
 
-            <a href="index.html">
+            <a href="index.html"
+               class="active">
 
                 <i class="fa-solid fa-house"></i>
 
-                Home
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="totalpackage.html">
+
+                <i class="fa-solid fa-suitcase-rolling"></i>
+
+                <span>Packages</span>
+
+            </a>
+
+
+            <a href="ramanathaswamy-temple.html">
+
+                <i class="fa-solid fa-place-of-worship"></i>
+
+                <span>Temple</span>
+
+            </a>
+
+
+            <a href="rameswaram-cab-service.html">
+
+                <i class="fa-solid fa-car"></i>
+
+                <span>Cabs</span>
+
+            </a>
+
+
+            <a href="rameswaram-rooms.html">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <span>Rooms</span>
+
+            </a>
+
+
+            <!-- SHOW ONLY AFTER LOGIN -->
+
+            <a href="customer-dashboard.html"
+               id="myBookingNav"
+               class="logged-in-only"
+               style="display:none;">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>My Bookings</span>
+
+            </a>
+
+
+            <!-- SHOW WHEN NOT LOGGED IN -->
+
+            <a href="login.html"
+               id="loginNav"
+               class="logged-out-only">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                <span>Login</span>
 
             </a>
 
@@ -92,154 +161,130 @@
 
                 <i class="fa-solid fa-circle-info"></i>
 
-                About
+                <span>About</span>
 
             </a>
 
 
-            <a href="totalpackage.html"
-               class="active">
-
-                <i class="fa-solid fa-suitcase-rolling"></i>
-
-                Packages
-
-            </a>
-
-
-            <a href="ramanathaswamy-temple.html">
-
-                <i class="fa-solid fa-gopuram"></i>
-
-                Temple
-
-            </a>
-
-
-            <a href="contact.html">
-
-                <i class="fa-solid fa-phone"></i>
-
-                Contact
-
-            </a>
-
-
-            <a href="login.html"
-               id="loginNav">
-
-                <i class="fa-solid fa-right-to-bracket"></i>
-
-                Login
-
-            </a>
-
-
-            <a href="customer-dashboard.html"
-               id="myBookingNav"
-               style="display:none;">
-
-                <i class="fa-solid fa-calendar-check"></i>
-
-                My Booking
-
-            </a>
-
+            <!-- LOGOUT -->
 
             <button type="button"
                     id="logoutNav"
-                    class="nav-logout"
+                    class="logged-in-only nav-logout"
                     style="display:none;">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
-                Logout
+                <span>Logout</span>
 
             </button>
-
 
         </nav>
 
 
+        <!-- HEADER ACTIONS -->
+
         <div class="header-actions">
 
 
+            <!-- LANGUAGE -->
+
             <div class="translate-box">
 
-                <button type="button"
-                        class="language-btn"
-                        id="languageBtn">
+    <button type="button"
+            id="languageBtn"
+            class="language-btn"
+            aria-label="Select language">
 
-                    <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
 
-                </button>
+    </button>
+
+    <div id="languageMenu"
+         class="language-menu">
+
+        <div class="language-title">
+            Select Language
+        </div>
+
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
+
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
+
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
+
+        <button type="button" data-lang="ml">
+            🇮🇳 മലയാളം
+        </button>
+
+        <button type="button" data-lang="te">
+            🇮🇳 తెలుగు
+        </button>
+
+        <button type="button" data-lang="kn">
+            🇮🇳 ಕನ್ನಡ
+        </button>
+
+        <button type="button" data-lang="bn">
+            🇮🇳 বাংলা
+        </button>
+
+        <button type="button" data-lang="mr">
+            🇮🇳 मराठी
+        </button>
+
+        <button type="button" data-lang="gu">
+            🇮🇳 ગુજરાતી
+        </button>
+
+        <button type="button" data-lang="pa">
+            🇮🇳 ਪੰਜਾਬੀ
+        </button>
+
+        <button type="button" data-lang="es">
+            🇪🇸 Español
+        </button>
+
+        <button type="button" data-lang="fr">
+            🇫🇷 Français
+        </button>
+
+        <button type="button" data-lang="de">
+            🇩🇪 Deutsch
+        </button>
+
+        <button type="button" data-lang="ar">
+            🇸🇦 العربية
+        </button>
+
+    </div>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element"
+         class="google-translate-hidden">
+    </div>
+
+</div>
 
 
-                <div class="language-menu"
-                     id="languageMenu">
-
-                    <div class="language-title">
-
-                        Choose Language
-
-                    </div>
-
-
-                    <button type="button"
-                            onclick="changeLanguage('en')">
-
-                        English
-
-                    </button>
-
-
-                    <button type="button"
-                            onclick="changeLanguage('ta')">
-
-                        தமிழ்
-
-                    </button>
-
-
-                    <button type="button"
-                            onclick="changeLanguage('hi')">
-
-                        हिन्दी
-
-                    </button>
-
-
-                    <button type="button"
-                            onclick="changeLanguage('ml')">
-
-                        മലയാളം
-
-                    </button>
-
-
-                    <button type="button"
-                            onclick="changeLanguage('te')">
-
-                        తెలుగు
-
-                    </button>
-
-                </div>
-
-            </div>
-
+            <!-- MOBILE MENU -->
 
             <button type="button"
                     class="mobile-menu-btn"
-                    id="mobileMenuBtn">
+                    id="mobileMenuBtn"
+                    aria-label="Open menu">
 
                 <i class="fa-solid fa-bars"></i>
 
             </button>
 
-
         </div>
-
 
     </div>
 
@@ -1944,6 +1989,9 @@
 
 </script>
 
+
+<!-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+<script src="header.js"></script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

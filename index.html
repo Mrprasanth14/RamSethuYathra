@@ -194,60 +194,86 @@
 
             <div class="translate-box">
 
-                <button type="button"
-                        id="languageBtn"
-                        class="language-btn"
-                        aria-label="Select language">
+    <button type="button"
+            id="languageBtn"
+            class="language-btn"
+            aria-label="Select language">
 
-                    <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-globe"></i>
 
-                </button>
+    </button>
 
+    <div id="languageMenu"
+         class="language-menu">
 
-                <div id="languageMenu"
-                     class="language-menu">
+        <div class="language-title">
+            Select Language
+        </div>
 
+        <button type="button" data-lang="en">
+            🇬🇧 English
+        </button>
 
-                    <div class="language-title">
+        <button type="button" data-lang="ta">
+            🇮🇳 தமிழ்
+        </button>
 
-                        Select Language
+        <button type="button" data-lang="hi">
+            🇮🇳 हिन्दी
+        </button>
 
-                    </div>
+        <button type="button" data-lang="ml">
+            🇮🇳 മലയാളം
+        </button>
 
+        <button type="button" data-lang="te">
+            🇮🇳 తెలుగు
+        </button>
 
-                    <button type="button"
-                            data-lang="en">
+        <button type="button" data-lang="kn">
+            🇮🇳 ಕನ್ನಡ
+        </button>
 
-                        🇬🇧 English
+        <button type="button" data-lang="bn">
+            🇮🇳 বাংলা
+        </button>
 
-                    </button>
+        <button type="button" data-lang="mr">
+            🇮🇳 मराठी
+        </button>
 
+        <button type="button" data-lang="gu">
+            🇮🇳 ગુજરાતી
+        </button>
 
-                    <button type="button"
-                            data-lang="ta">
+        <button type="button" data-lang="pa">
+            🇮🇳 ਪੰਜਾਬੀ
+        </button>
 
-                        🇮🇳 தமிழ்
+        <button type="button" data-lang="es">
+            🇪🇸 Español
+        </button>
 
-                    </button>
+        <button type="button" data-lang="fr">
+            🇫🇷 Français
+        </button>
 
+        <button type="button" data-lang="de">
+            🇩🇪 Deutsch
+        </button>
 
-                    <button type="button"
-                            data-lang="hi">
+        <button type="button" data-lang="ar">
+            🇸🇦 العربية
+        </button>
 
-                        🇮🇳 हिन्दी
+    </div>
 
-                    </button>
+    <!-- Google Translate -->
+    <div id="google_translate_element"
+         class="google-translate-hidden">
+    </div>
 
-                </div>
-
-
-                <div id="google_translate_element"
-                     class="google-translate-hidden">
-
-                </div>
-
-            </div>
-
+</div>
 
             <!-- MOBILE MENU -->
 
@@ -3313,6 +3339,9 @@ document.addEventListener(
 );
 
 </script>
+<script src="header.js"></script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
 </body>
