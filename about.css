@@ -845,7 +845,26 @@ button {
 
     font-weight: 800;
 }
+/* =========================================
+   HIDE GOOGLE TRANSLATE TOP BAR
+   ========================================= */
 
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Prevent Google Translate from adding extra space */
+html {
+    margin-top: 0 !important;
+}
 
 /* =========================================================
    CTA

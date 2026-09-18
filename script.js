@@ -361,7 +361,7 @@ try {
  Swal.fire({
   icon: "success",
   title: "Booking Successful!",
-  text: "Your room booking has been submitted successfully.",
+  text: "Your temple visit booking has been submitted successfully.",
   confirmButtonText: "OK",
   confirmButtonColor: "#ff7a00"
 }).then(() => {
@@ -647,37 +647,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-
-// ==========================================
-// GOOGLE TRANSLATE
-// ==========================================
-
-function changeGoogleLanguage(language) {
-
-    const tryTranslate = setInterval(function () {
-
-        const googleSelect =
-            document.querySelector(".goog-te-combo");
-
-        if (googleSelect) {
-
-            googleSelect.value = language;
-
-            googleSelect.dispatchEvent(
-                new Event("change")
-            );
-
-            clearInterval(tryTranslate);
-        }
-
-    }, 100);
-
-    // Stop checking after 5 seconds
-    setTimeout(function () {
-        clearInterval(tryTranslate);
-    }, 5000);
-}
 
 /// ==========================================
 // VIEW DETAILS

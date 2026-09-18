@@ -548,6 +548,16 @@ async function loadAllBookings(userId) {
     }
 
 }
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
 
 
 /* ==========================================
@@ -605,31 +615,31 @@ function createBookingCard(booking) {
             <p>
                 📦
                 <strong>Package:</strong>
-                ${booking.packageName || booking.package || "-"}
+                ${escapeHTML(booking.packageName || booking.package || "-")}
             </p>
 
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Travel Date:</strong>
-                ${booking.travelDate || "-"}
+                ${escapeHTML(booking.travelDate || "-")}
             </p>
 
             <p>
                 ⏰
                 <strong>Pickup Time:</strong>
-                ${booking.pickupTime || "-"}
+                ${escapeHTML(booking.pickupTime || "-")}
             </p>
 
             <p>
                 📍
                 <strong>Pickup:</strong>
-                ${booking.pickupLocation || "-"}
+                ${escapeHTML(booking.pickupLocation || "-")}
             </p>
 
             <p>
@@ -657,31 +667,31 @@ function createBookingCard(booking) {
             <p>
                 🚕
                 <strong>Cab:</strong>
-                ${booking.cab || "-"} Seater
+                ${escapeHTML(booking.cab || "-")} Seater
             </p>
 
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Date:</strong>
-                ${booking.date || "-"}
+                ${escapeHTML(booking.date || "-")}
             </p>
 
             <p>
                 ⏰
                 <strong>Time:</strong>
-                ${booking.time || "-"}
+                ${escapeHTML(booking.time || "-")}
             </p>
 
             <p>
                 📍
                 <strong>Pickup:</strong>
-                ${booking.pickup || "-"}
+                ${escapeHTML(booking.pickup || "-")}
             </p>
 
         `;
@@ -701,25 +711,25 @@ function createBookingCard(booking) {
             <p>
                 🛏️
                 <strong>Room:</strong>
-                ${booking.room || "-"}
+                ${escapeHTML(booking.room || "-")}
             </p>
 
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Check-in:</strong>
-                ${booking.checkin || "-"}
+                ${escapeHTML(booking.checkin || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Check-out:</strong>
-                ${booking.checkout || "-"}
+                ${escapeHTML(booking.checkout || "-")}
             </p>
 
         `;
@@ -745,19 +755,19 @@ function createBookingCard(booking) {
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Date:</strong>
-                ${booking.date || "-"}
+                ${escapeHTML(booking.date || "-")}
             </p>
 
             <p>
                 ⏰
                 <strong>Time:</strong>
-                ${booking.time || "-"}
+                ${escapeHTML(booking.time || "-")}
             </p>
 
         `;
@@ -783,19 +793,19 @@ function createBookingCard(booking) {
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Date:</strong>
-                ${booking.date || "-"}
+                ${escapeHTML(booking.date || "-")}
             </p>
 
             <p>
                 ⏰
                 <strong>Time:</strong>
-                ${booking.time || "-"}
+                ${escapeHTML(booking.time || "-")}
             </p>
 
         `;
@@ -821,19 +831,19 @@ function createBookingCard(booking) {
             <p>
                 👥
                 <strong>Persons:</strong>
-                ${booking.persons || "-"}
+                ${escapeHTML(booking.persons || "-")}
             </p>
 
             <p>
                 📅
                 <strong>Date:</strong>
-                ${booking.date || "-"}
+                ${escapeHTML(booking.date || "-")}
             </p>
 
             <p>
                 ⏰
                 <strong>Time:</strong>
-                ${booking.time || "-"}
+                ${escapeHTML(booking.time || "-")}
             </p>
 
         `;
@@ -850,14 +860,14 @@ function createBookingCard(booking) {
                 <div>
 
                     <span class="booking-type">
-                        ${booking.type}
+                        ${escapeHTML(booking.type)}
                     </span>
 
                     <h3>
-                        ${booking.service ||
+                        ${escapeHTML(booking.service ||
                           booking.packageName ||
                           booking.type +
-                          " Booking"}
+                          " Booking")}
                     </h3>
 
                 </div>
@@ -881,7 +891,7 @@ function createBookingCard(booking) {
                 <span>
                     Booking ID:
                     <strong>
-                        ${booking.id}
+                        ${escapeHTML(booking.id)}
                     </strong>
                 </span>
 
@@ -953,6 +963,7 @@ logoutBtn.addEventListener(
 );
 
 </script>
-
+<script src="header.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

@@ -363,7 +363,26 @@
 
     cursor: pointer;
 }
+/* =========================================
+   HIDE GOOGLE TRANSLATE TOP BAR
+   ========================================= */
 
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Prevent Google Translate from adding extra space */
+html {
+    margin-top: 0 !important;
+}
 
 /* =========================================================
    TABLET
@@ -491,26 +510,5 @@
     .mobile-menu-btn {
         width: 38px;
         height: 38px;
-    }
-}
-@media (max-width: 850px) {
-
-    .mobile-menu-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .main-nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .main-nav.mobile-open {
-        display: flex;
     }
 }

@@ -550,258 +550,457 @@
     Call
 
 </a>
+<script type="module">
+
+import { db, auth } from "./firebase.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-<!-- ================= SCRIPT ================= -->
-
-<script>
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /*
-     * Read booking information passed through URL.
-     *
-     * Example:
-     * booking-success.html?
-     * package=normal&
-     * persons=5&
-     * price=7000
-     */
+document.addEventListener("DOMContentLoaded", function () {
 
     const params =
         new URLSearchParams(window.location.search);
 
-
-    const service =
-        params.get("package") ||
-        params.get("service");
+    const bookingId =
+        params.get("id");
 
 
-    const persons =
-        params.get("persons");
+    /*
+     * No booking ID
+     */
 
+    if (!bookingId) {
 
-    const date =
-        params.get("date");
+        showBookingError(
+            "Booking reference is missing."
+        );
 
-
-    const time =
-        params.get("time");
-
-
-    const price =
-        params.get("price");
-
-
-    const mobile =
-        params.get("mobile");
-
-
-    /* -----------------------------------------
-       SERVICE
-       ----------------------------------------- */
-
-    const serviceElement =
-        document.getElementById("bookingService");
-
-
-    if (service) {
-
-        const serviceNames = {
-
-            normal:
-                "Rameswaram Normal Package",
-
-            medium:
-                "Rameswaram Medium Package",
-
-            premium:
-                "Rameswaram Premium Package",
-
-            cab:
-                "Cab Service",
-
-            room:
-                "Room Booking",
-
-            temple:
-                "Temple Booking",
-
-            well:
-                "Sacred Well Booking",
-
-            pooja:
-                "Pooja Booking"
-
-        };
-
-
-        serviceElement.textContent =
-            serviceNames[service.toLowerCase()] ||
-            service;
-
-    } else {
-
-        serviceElement.textContent =
-            "RamSethuYatra Booking";
-
+        return;
     }
 
 
-    /* -----------------------------------------
-       PERSONS
-       ----------------------------------------- */
+    /*
+     * Wait for Firebase login state
+     */
+
+    onAuthStateChanged(auth, async function (user) {
+
+        /*
+         * User is not logged in
+         */
+
+        if (!user) {
+
+            window.location.href =
+                "login.html?redirect=" +
+                encodeURIComponent(
+                    window.location.pathname +
+                    window.location.search
+                );
+
+            return;
+        }
+
+
+        try {
+
+            /*
+             * Get booking document
+             */
+
+            const bookingRef =
+                doc(
+                    db,
+                    "packageBookings",
+                    bookingId
+                );
+
+            const bookingSnapshot =
+                await getDoc(bookingRef);
+
+
+            /*
+             * Booking does not exist
+             */
+
+            if (!bookingSnapshot.exists()) {
+
+                showBookingError(
+                    "Booking could not be found."
+                );
+
+                return;
+            }
+
+
+            const booking =
+                bookingSnapshot.data();
+
+
+            /*
+             * SECURITY CHECK
+             *
+             * The booking must belong
+             * to the currently logged-in user.
+             */
+
+            if (
+                booking.userId !== user.uid
+            ) {
+
+                showBookingError(
+                    "You are not authorized to view this booking."
+                );
+
+                return;
+            }
+
+
+            /*
+             * Display booking
+             */
+
+            displayBooking(
+                booking,
+                bookingSnapshot.id
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Booking loading error:",
+                error
+            );
+
+            showBookingError(
+                "Unable to load your booking details."
+            );
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   DISPLAY BOOKING
+   ===================================================== */
+
+function displayBooking(
+    booking,
+    bookingId
+) {
+
+    /*
+     * SERVICE
+     */
+
+    const serviceElement =
+        document.getElementById(
+            "bookingService"
+        );
+
+
+    serviceElement.textContent =
+        booking.service ||
+        booking.package ||
+        "RamSethuYatra Booking";
+
+
+    /*
+     * DATE
+     */
+
+    document.getElementById("bookingDate").textContent =
+    booking.date ||
+    booking.bookingDate ||
+    booking.travelDate ||
+    "To be confirmed";
+
+
+    /*
+     * TIME
+     */
+
+    document.getElementById("bookingTime").textContent =
+    booking.pickupTime ||
+    booking.time ||
+    booking.bookingTime ||
+    booking.travelTime ||
+    "To be confirmed";
+
+
+    /*
+     * PERSONS
+     */
+
+    const persons =
+        booking.persons;
+
 
     document.getElementById(
         "bookingPersons"
     ).textContent =
         persons
-            ? `${persons} ${persons == 1 ? "Person" : "Persons"}`
-            : "-";
+            ? `${persons} ${
+                Number(persons) === 1
+                    ? "Person"
+                    : "Persons"
+            }`
+            : "To be confirmed";
 
 
-    /* -----------------------------------------
-       DATE
-       ----------------------------------------- */
-
-    document.getElementById(
-        "bookingDate"
-    ).textContent =
-        date || "To be confirmed";
-
-
-    /* -----------------------------------------
-       TIME
-       ----------------------------------------- */
-
-    document.getElementById(
-        "bookingTime"
-    ).textContent =
-        time || "To be confirmed";
-
-
-    /* -----------------------------------------
-       MOBILE
-       ----------------------------------------- */
-
-    document.getElementById(
-        "customerMobile"
-    ).textContent =
-        mobile || "Provided during booking";
-
-
-    /* -----------------------------------------
-       EMAIL
-       ----------------------------------------- */
-
-    const savedEmail =
-        localStorage.getItem("customerEmail");
-
+    /*
+     * CUSTOMER EMAIL
+     */
 
     document.getElementById(
         "customerEmail"
     ).textContent =
-        savedEmail || "Your registered email";
+        booking.customerEmail ||
+        "Registered email";
 
 
-    /* -----------------------------------------
-       BOOKING REFERENCE
-       ----------------------------------------- */
+    /*
+     * MOBILE
+     */
 
-    let reference =
-        localStorage.getItem(
-            "lastBookingReference"
-        );
-
-
-    if (!reference) {
-
-        const randomPart =
-            Math.random()
-                .toString(36)
-                .substring(2, 7)
-                .toUpperCase();
+    document.getElementById(
+        "customerMobile"
+    ).textContent =
+        booking.mobile ||
+        "Provided during booking";
 
 
-        reference =
-            "RSY-" + randomPart;
+    /*
+     * BOOKING REFERENCE
+     *
+     * Firestore document ID is the
+     * real booking identifier.
+     */
 
-
-        localStorage.setItem(
-            "lastBookingReference",
-            reference
-        );
-
-    }
+    const shortId =
+        bookingId
+            .substring(0, 8)
+            .toUpperCase();
 
 
     document.getElementById(
         "bookingReference"
     ).textContent =
-        reference;
+        "RSY-" + shortId;
 
 
-    /* -----------------------------------------
-       PRICE
-       ----------------------------------------- */
+    /*
+     * STATUS
+     */
 
-    if (price) {
+    const status =
+        booking.status ||
+        "pending";
 
-        const extra =
-            document.getElementById(
-                "extraInformation"
-            );
 
-        const extraText =
-            document.getElementById(
-                "bookingExtra"
-            );
+    const statusElement =
+        document.querySelector(
+            ".ticket-status"
+        );
+
+
+    if (statusElement) {
+
+        statusElement.textContent =
+            status.toUpperCase();
+
+    }
+
+
+    /*
+     * EXTRA INFORMATION
+     */
+
+    const extra =
+        document.getElementById(
+            "extraInformation"
+        );
+
+    const extraText =
+        document.getElementById(
+            "bookingExtra"
+        );
+
+
+    if (
+        booking.totalPrice !== undefined ||
+        booking.price !== undefined
+    ) {
+
+        const amount =
+            booking.totalPrice ??
+            booking.price;
+
 
         extra.style.display =
             "flex";
 
+
         extraText.textContent =
-            `Estimated booking amount: ₹${Number(price).toLocaleString("en-IN")}`;
+            `Booking amount: ₹${
+                Number(amount)
+                    .toLocaleString("en-IN")
+            }`;
 
     }
 
 
-    /* -----------------------------------------
-       MOBILE MENU
-       ----------------------------------------- */
+    /*
+     * If additional information exists
+     */
 
-    const menuToggle =
-        document.getElementById(
-            "menuToggle"
-        );
+    else if (
+        booking.request ||
+        booking.message ||
+        booking.pickup ||
+        booking.room
+    ) {
 
-    const mainNav =
-        document.getElementById(
-            "mainNav"
-        );
+        let information = "";
 
 
-    if (menuToggle && mainNav) {
+        if (booking.room) {
 
-        menuToggle.addEventListener(
-            "click",
-            () => {
+            information +=
+                `Room: ${booking.room}`;
 
-                mainNav.classList.toggle(
-                    "open"
-                );
+        }
 
-            }
-        );
+
+        if (booking.pickup) {
+
+            information +=
+                information
+                    ? ` • Pickup: ${booking.pickup}`
+                    : `Pickup: ${booking.pickup}`;
+
+        }
+
+
+        if (booking.request) {
+
+            information +=
+                information
+                    ? ` • ${booking.request}`
+                    : booking.request;
+
+        }
+
+
+        if (booking.message) {
+
+            information +=
+                information
+                    ? ` • ${booking.message}`
+                    : booking.message;
+
+        }
+
+
+        if (information) {
+
+            extra.style.display =
+                "flex";
+
+            extraText.textContent =
+                information;
+
+        }
 
     }
 
-});
+}
+
+
+/* =====================================================
+   ERROR MESSAGE
+   ===================================================== */
+
+function showBookingError(message) {
+
+    document.getElementById(
+        "bookingReference"
+    ).textContent =
+        "Unavailable";
+
+
+    document.getElementById(
+        "bookingService"
+    ).textContent =
+        "Booking unavailable";
+
+
+    document.getElementById(
+        "bookingDate"
+    ).textContent =
+        "-";
+
+
+    document.getElementById(
+        "bookingTime"
+    ).textContent =
+        "-";
+
+
+    document.getElementById(
+        "bookingPersons"
+    ).textContent =
+        "-";
+
+
+    document.getElementById(
+        "customerEmail"
+    ).textContent =
+        "-";
+
+
+    document.getElementById(
+        "customerMobile"
+    ).textContent =
+        "-";
+
+
+    Swal.fire({
+
+        icon: "error",
+
+        title: "Booking Not Available",
+
+        text: message,
+
+        confirmButtonText: "Go to Dashboard",
+
+        confirmButtonColor: "#ff7a00"
+
+    }).then(function () {
+
+        window.location.href =
+            "customer-dashboard.html";
+
+    });
+
+}
 
 </script>
 
-
-<script src="site.js"></script>
-
+<script src="header.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
