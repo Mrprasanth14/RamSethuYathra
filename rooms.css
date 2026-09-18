@@ -2853,3 +2853,146 @@ textarea {
         display:flex;
     }
 }
+/* =========================================================
+   ROOM BED TYPE & PRICE OPTIONS
+   ========================================================= */
+
+.room-price-options {
+    margin-top: 22px;
+    padding: 16px;
+    background: #fffaf4;
+    border: 1px solid #eee2d5;
+    border-radius: 14px;
+}
+
+.room-price-title {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #003049;
+}
+
+.room-price-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+.bed-price-btn {
+    border: 1px solid #e5ddd4;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 11px 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.bed-price-btn:hover {
+    border-color: #f77f00;
+    transform: translateY(-2px);
+}
+
+.bed-price-btn.active {
+    background: #003049;
+    border-color: #003049;
+    color: #ffffff;
+}
+
+.bed-price-btn .bed-name {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.bed-price-btn .bed-price {
+    display: block;
+    color: #f77f00;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.bed-price-btn.active .bed-price {
+    color: #ffffff;
+}
+
+.room-selected-price {
+    margin-top: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.room-selected-price small {
+    color: #777;
+    font-size: 11px;
+}
+
+.room-selected-price strong {
+    color: #f77f00;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   BOOKING SELECTED ROOM
+   ========================================================= */
+
+.selected-room-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.selected-room-box span {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+.selected-room-box strong {
+    color: #003049;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .room-price-options {
+        margin-top: 18px;
+        padding: 12px;
+    }
+
+    .room-price-list {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .bed-price-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        padding: 10px 12px;
+    }
+
+    .bed-price-btn .bed-name {
+        margin-bottom: 0;
+    }
+
+    .bed-price-btn .bed-price {
+        font-size: 14px;
+    }
+
+}

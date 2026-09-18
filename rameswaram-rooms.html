@@ -682,6 +682,82 @@
                     </span>
 
                 </div>
+                <div class="room-price-options">
+
+    <span class="room-price-title">
+        Choose Bed Type
+    </span>
+
+    <div class="room-price-list">
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Standard Room"
+            data-bed="Single Bed"
+            data-price="1500">
+
+            <span class="bed-name">
+                🛏️ Single Bed
+            </span>
+
+            <span class="bed-price">
+                ₹1,500
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn active"
+            data-room="Standard Room"
+            data-bed="Double Bed"
+            data-price="2000">
+
+            <span class="bed-name">
+                🛏️ Double Bed
+            </span>
+
+            <span class="bed-price">
+                ₹2,000
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Standard Room"
+            data-bed="Triple Bed"
+            data-price="2800">
+
+            <span class="bed-name">
+                🛏️ Triple Bed
+            </span>
+
+            <span class="bed-price">
+                ₹2,800
+            </span>
+
+        </button>
+
+    </div>
+
+    <div class="room-selected-price">
+
+        <small>
+            Starting / selected price
+        </small>
+
+        <strong>
+            ₹2,000
+        </strong>
+
+    </div>
+
+</div>
 
 
                 <p class="room-description">
@@ -795,6 +871,82 @@
                     </span>
 
                 </div>
+                <div class="room-price-options">
+
+    <span class="room-price-title">
+        Choose Bed Type
+    </span>
+
+    <div class="room-price-list">
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Family Room"
+            data-bed="Single Bed"
+            data-price="2500">
+
+            <span class="bed-name">
+                🛏️ Single Bed
+            </span>
+
+            <span class="bed-price">
+                ₹2,500
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn active"
+            data-room="Family Room"
+            data-bed="Double Bed"
+            data-price="3500">
+
+            <span class="bed-name">
+                🛏️ Double Bed
+            </span>
+
+            <span class="bed-price">
+                ₹3,500
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Family Room"
+            data-bed="Triple Bed"
+            data-price="4500">
+
+            <span class="bed-name">
+                🛏️ Triple Bed
+            </span>
+
+            <span class="bed-price">
+                ₹4,500
+            </span>
+
+        </button>
+
+    </div>
+
+    <div class="room-selected-price">
+
+        <small>
+            Starting / selected price
+        </small>
+
+        <strong>
+            ₹3,500
+        </strong>
+
+    </div>
+
+</div>
 
 
                 <p class="room-description">
@@ -903,6 +1055,82 @@
                     </span>
 
                 </div>
+                <div class="room-price-options">
+
+    <span class="room-price-title">
+        Choose Bed Type
+    </span>
+
+    <div class="room-price-list">
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Premium Room"
+            data-bed="Single Bed"
+            data-price="3500">
+
+            <span class="bed-name">
+                🛏️ Single Bed
+            </span>
+
+            <span class="bed-price">
+                ₹3,500
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn active"
+            data-room="Premium Room"
+            data-bed="Double Bed"
+            data-price="4500">
+
+            <span class="bed-name">
+                🛏️ Double Bed
+            </span>
+
+            <span class="bed-price">
+                ₹4,500
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="bed-price-btn"
+            data-room="Premium Room"
+            data-bed="Triple Bed"
+            data-price="5500">
+
+            <span class="bed-name">
+                🛏️ Triple Bed
+            </span>
+
+            <span class="bed-price">
+                ₹5,500
+            </span>
+
+        </button>
+
+    </div>
+
+    <div class="room-selected-price">
+
+        <small>
+            Starting / selected price
+        </small>
+
+        <strong>
+            ₹4,500
+        </strong>
+
+    </div>
+
+</div>
 
 
                 <p class="room-description">
@@ -1085,20 +1313,27 @@
 
             <!-- SELECTED ROOM -->
 
-            <div class="selected-room-box">
+           <div class="selected-room-box">
 
-                <span>
-                    Selected Room
-                </span>
+    <span>
+        Selected Room
+    </span>
 
-                <strong id="selectedRoomText">
+    <strong id="selectedRoomText">
+        Please select a room above
+    </strong>
 
-                    Please select a room above
+    <input
+        type="hidden"
+        id="selectedBedType"
+        value="">
 
-                </strong>
+    <input
+        type="hidden"
+        id="selectedRoomPrice"
+        value="">
 
-            </div>
-
+</div>
 
 
             <div class="form-grid">
@@ -1758,7 +1993,125 @@
 <!-- =====================================================
      JAVASCRIPT
      ===================================================== -->
+<script type="module">
 
+    import { auth } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+
+
+
+    /* =====================================================
+       FIREBASE AUTH
+    ===================================================== */
+
+    const loginNav =
+        document.getElementById("loginNav");
+
+    const myBookingNav =
+        document.getElementById("myBookingNav");
+
+    const logoutNav =
+        document.getElementById("logoutNav");
+
+
+    onAuthStateChanged(
+        auth,
+        (user) => {
+
+            if (user) {
+
+                if (loginNav) {
+
+                    loginNav.style.display =
+                        "none";
+
+                }
+
+
+                if (myBookingNav) {
+
+                    myBookingNav.style.display =
+                        "flex";
+
+                }
+
+
+                if (logoutNav) {
+
+                    logoutNav.style.display =
+                        "flex";
+
+                }
+
+            } else {
+
+                if (loginNav) {
+
+                    loginNav.style.display =
+                        "flex";
+
+                }
+
+
+                if (myBookingNav) {
+
+                    myBookingNav.style.display =
+                        "none";
+
+                }
+
+
+                if (logoutNav) {
+
+                    logoutNav.style.display =
+                        "none";
+
+                }
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    if (logoutNav) {
+
+        logoutNav.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+</script>
 <script>
 
 
@@ -1804,7 +2157,7 @@ if (menuToggle && mainNav) {
 
 
 /* =====================================================
-   ROOM SELECTION
+   ROOM + BED + PRICE SELECTION
    ===================================================== */
 
 const roomInputs =
@@ -1812,12 +2165,57 @@ const roomInputs =
         'input[name="room"]'
     );
 
+const bedButtons =
+    document.querySelectorAll(
+        ".bed-price-btn"
+    );
 
 const selectedRoomText =
     document.getElementById(
         "selectedRoomText"
     );
 
+const selectedBedType =
+    document.getElementById(
+        "selectedBedType"
+    );
+
+const selectedRoomPrice =
+    document.getElementById(
+        "selectedRoomPrice"
+    );
+
+
+function updateSelectedRoom(roomName, bedName, price) {
+
+    if (selectedRoomText) {
+
+        selectedRoomText.textContent =
+            roomName + " • " + bedName +
+            " • ₹" + Number(price).toLocaleString("en-IN");
+
+    }
+
+    if (selectedBedType) {
+
+        selectedBedType.value =
+            bedName;
+
+    }
+
+    if (selectedRoomPrice) {
+
+        selectedRoomPrice.value =
+            price;
+
+    }
+
+}
+
+
+/* =====================================================
+   ROOM SELECTION
+   ===================================================== */
 
 roomInputs.forEach(function (room) {
 
@@ -1825,12 +2223,147 @@ roomInputs.forEach(function (room) {
         "change",
         function () {
 
-            if (selectedRoomText) {
+            const roomCard =
+                this.closest(".room-card");
 
-                selectedRoomText.textContent =
-                    this.value;
+            if (!roomCard) return;
+
+
+            const firstBed =
+                roomCard.querySelector(
+                    ".bed-price-btn.active"
+                ) ||
+                roomCard.querySelector(
+                    ".bed-price-btn"
+                );
+
+
+            if (!firstBed) return;
+
+
+            const bedName =
+                firstBed.dataset.bed;
+
+            const price =
+                firstBed.dataset.price;
+
+
+            roomCard
+                .querySelectorAll(
+                    ".bed-price-btn"
+                )
+                .forEach(function (button) {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            firstBed.classList.add(
+                "active"
+            );
+
+
+            updateSelectedRoom(
+                this.value,
+                bedName,
+                price
+            );
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   BED TYPE SELECTION
+   ===================================================== */
+
+bedButtons.forEach(function (button) {
+
+    button.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const roomName =
+                this.dataset.room;
+
+            const bedName =
+                this.dataset.bed;
+
+            const price =
+                this.dataset.price;
+
+
+            const roomCard =
+                this.closest(".room-card");
+
+
+            if (roomCard) {
+
+                const roomInput =
+                    roomCard.querySelector(
+                        'input[name="room"]'
+                    );
+
+
+                if (roomInput) {
+
+                    roomInput.checked =
+                        true;
+
+                }
+
+
+                roomCard
+                    .querySelectorAll(
+                        ".bed-price-btn"
+                    )
+                    .forEach(function (item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    });
 
             }
+
+
+            this.classList.add(
+                "active"
+            );
+
+
+            const priceDisplay =
+                roomCard?.querySelector(
+                    ".room-selected-price strong"
+                );
+
+
+            if (priceDisplay) {
+
+                priceDisplay.textContent =
+                    "₹" +
+                    Number(price)
+                        .toLocaleString("en-IN");
+
+            }
+
+
+            updateSelectedRoom(
+                roomName,
+                bedName,
+                price
+            );
 
         }
     );

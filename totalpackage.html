@@ -291,11 +291,6 @@
 
 
 
-<!-- Google Translate -->
-
-<div id="google_translate_element"
-     class="google-translate-hidden">
-</div>
 
 
 
@@ -1839,171 +1834,6 @@
     } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
-
-    const mobileMenuBtn =
-        document.getElementById("mobileMenuBtn");
-
-    const mainNav =
-        document.getElementById("mainNav");
-
-
-    if (mobileMenuBtn && mainNav) {
-
-        mobileMenuBtn.addEventListener(
-            "click",
-            () => {
-
-                mainNav.classList.toggle(
-                    "mobile-open"
-                );
-
-
-                const icon =
-                    mobileMenuBtn.querySelector("i");
-
-
-                if (
-                    mainNav.classList.contains(
-                        "mobile-open"
-                    )
-                ) {
-
-                    icon.className =
-                        "fa-solid fa-xmark";
-
-                } else {
-
-                    icon.className =
-                        "fa-solid fa-bars";
-
-                }
-
-            }
-        );
-
-
-        mainNav
-            .querySelectorAll("a")
-            .forEach(link => {
-
-                link.addEventListener(
-                    "click",
-                    () => {
-
-                        mainNav.classList.remove(
-                            "mobile-open"
-                        );
-
-
-                        const icon =
-                            mobileMenuBtn.querySelector("i");
-
-
-                        icon.className =
-                            "fa-solid fa-bars";
-
-                    }
-                );
-
-            });
-
-    }
-
-
-
-    /* =====================================================
-       LANGUAGE MENU
-    ===================================================== */
-
-    const languageBtn =
-        document.getElementById("languageBtn");
-
-    const languageMenu =
-        document.getElementById("languageMenu");
-
-
-    if (languageBtn && languageMenu) {
-
-        languageBtn.addEventListener(
-            "click",
-            (event) => {
-
-                event.stopPropagation();
-
-                languageMenu.classList.toggle(
-                    "open"
-                );
-
-            }
-        );
-
-
-        document.addEventListener(
-            "click",
-            () => {
-
-                languageMenu.classList.remove(
-                    "open"
-                );
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       GOOGLE TRANSLATE
-    ===================================================== */
-
-    window.googleTranslateElementInit =
-        function () {
-
-            new google.translate.TranslateElement(
-                {
-                    pageLanguage: "en",
-                    includedLanguages:
-                        "en,ta,hi,ml,te",
-                    autoDisplay: false
-                },
-                "google_translate_element"
-            );
-
-        };
-
-
-    window.changeLanguage =
-        function (language) {
-
-            const select =
-                document.querySelector(
-                    ".goog-te-combo"
-                );
-
-
-            if (!select) {
-
-                console.log(
-                    "Google Translate is not ready yet."
-                );
-
-                return;
-
-            }
-
-
-            select.value = language;
-
-            select.dispatchEvent(
-                new Event("change")
-            );
-
-        };
-
 
 
     /* =====================================================
@@ -2164,25 +1994,6 @@
 
         }
     );
-document.addEventListener("DOMContentLoaded", function () {
-
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const mobileMenu =
-        document.getElementById("mobileMenu");
-
-    if(menuToggle && mobileMenu){
-
-        menuToggle.addEventListener("click", function () {
-
-            mobileMenu.classList.toggle("active");
-
-        });
-
-    }
-
-});
 
 
 

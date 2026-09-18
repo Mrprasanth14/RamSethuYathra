@@ -1887,7 +1887,125 @@
 
 <!-- <script src="site.js"></script> -->
 
+<script type="module">
 
+    import { auth } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+
+
+
+    /* =====================================================
+       FIREBASE AUTH
+    ===================================================== */
+
+    const loginNav =
+        document.getElementById("loginNav");
+
+    const myBookingNav =
+        document.getElementById("myBookingNav");
+
+    const logoutNav =
+        document.getElementById("logoutNav");
+
+
+    onAuthStateChanged(
+        auth,
+        (user) => {
+
+            if (user) {
+
+                if (loginNav) {
+
+                    loginNav.style.display =
+                        "none";
+
+                }
+
+
+                if (myBookingNav) {
+
+                    myBookingNav.style.display =
+                        "flex";
+
+                }
+
+
+                if (logoutNav) {
+
+                    logoutNav.style.display =
+                        "flex";
+
+                }
+
+            } else {
+
+                if (loginNav) {
+
+                    loginNav.style.display =
+                        "flex";
+
+                }
+
+
+                if (myBookingNav) {
+
+                    myBookingNav.style.display =
+                        "none";
+
+                }
+
+
+                if (logoutNav) {
+
+                    logoutNav.style.display =
+                        "none";
+
+                }
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    if (logoutNav) {
+
+        logoutNav.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "index.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+</script>
 
 <!-- =====================================================
      PAGE-SPECIFIC BOOKING HELPERS

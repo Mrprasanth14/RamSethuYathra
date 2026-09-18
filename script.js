@@ -238,6 +238,13 @@ async function sendRoomWhatsApp() {
 
   const request =
     document.getElementById("request").value.trim();
+    const bedType =
+    document.getElementById("selectedBedType")?.value || "";
+
+    const roomPrice =
+    Number(
+        document.getElementById("selectedRoomPrice")?.value || 0
+    );
 
   if (!room) {
     Swal.fire(
@@ -282,6 +289,8 @@ async function sendRoomWhatsApp() {
       mobile,
       email,
       request: request || "No Special Request",
+      bedType,
+      roomPrice,
 
       service: "Room Booking",
       status: "pending",

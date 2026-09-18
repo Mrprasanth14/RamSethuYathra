@@ -12,11 +12,11 @@
         content="Explore the RamSethuYatra Premium Rameswaram tour package with premium stay, cab transportation, temple visit and sightseeing."
     >
 
-    <link rel="stylesheet" href="package.css">
-    <link rel="stylesheet"
-          href="header.css">
-
-    <link rel="stylesheet" href="site-theme.css">
+    <!-- <link rel="stylesheet" href="site-theme.css"> -->
+<link rel="stylesheet" href="package.css">
+<link rel="stylesheet" href="header.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
         /* Premium page small custom additions */
@@ -63,7 +63,7 @@
 
     <!-- ================= HEADER ================= -->
 
-   <header class="site-header">
+  <header class="site-header">
 
     <div class="header-inner">
 
@@ -284,7 +284,6 @@
     </div>
 
 </div>
-
 
             <!-- MOBILE MENU -->
 
@@ -1329,36 +1328,6 @@
 
         }
 
-
-        /* ================= MOBILE MENU ================= */
-
-        const menuToggle =
-            document.getElementById("menuToggle");
-
-        const mainNav =
-            document.getElementById("mainNav");
-
-
-        if (menuToggle && mainNav) {
-
-            menuToggle.addEventListener("click", () => {
-
-                mainNav.classList.toggle("open");
-
-            });
-
-
-            mainNav.querySelectorAll("a").forEach((link) => {
-
-                link.addEventListener("click", () => {
-
-                    mainNav.classList.remove("open");
-
-                });
-
-            });
-
-        }
 
 
         /* ================= PRICE ================= */

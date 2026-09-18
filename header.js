@@ -56,6 +56,22 @@ window.googleTranslateElementInit = function () {
         "google_translate_element"
     );
 
+    /*
+     * Apply the language previously selected
+     * on index.html.
+     */
+
+    const savedLanguage =
+        localStorage.getItem("rsyLanguage");
+
+    if (savedLanguage) {
+
+        waitForGoogleTranslate(
+            savedLanguage
+        );
+    }
+
+    hideGoogleTranslateBar();
 };
 
 
@@ -136,6 +152,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function changeLanguage(language) {
 
+    /*
+     * Save selected language.
+     * This makes the language continue
+     * when the user opens another page.
+     */
+
+    localStorage.setItem(
+        "rsyLanguage",
+        language
+    );
+
+
+    applyGoogleLanguage(language);
+}
+
+
+/* =====================================================
+   APPLY GOOGLE LANGUAGE
+   ===================================================== */
+
+function applyGoogleLanguage(language) {
+
     const translateSelect =
         document.querySelector(
             ".goog-te-combo"
@@ -144,81 +182,115 @@ function changeLanguage(language) {
 
     if (!translateSelect) {
 
-        console.warn(
-            "Google Translate is not ready yet."
-        );
-
-        return;
-
+        return false;
     }
 
 
-    translateSelect.value = language;
+    /*
+     * English = original language
+     */
+
+    if (
+        language === "en" ||
+        language === ""
+    ) {
+
+        translateSelect.value = "";
+
+    } else {
+
+        translateSelect.value = language;
+
+    }
 
 
     translateSelect.dispatchEvent(
         new Event("change")
     );
 
+
+    hideGoogleTranslateBar();
+
+    return true;
 }
-document.addEventListener("DOMContentLoaded", function () {
 
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const mainNav = document.getElementById("mainNav");
 
-    if (!mobileMenuBtn || !mainNav) {
+/* =====================================================
+   WAIT FOR GOOGLE TRANSLATE
+   ===================================================== */
+
+function waitForGoogleTranslate(
+    language,
+    attempts = 0
+) {
+
+    /*
+     * Stop after approximately 10 seconds.
+     */
+
+    if (attempts > 40) {
         return;
     }
 
-    mobileMenuBtn.addEventListener("click", function (event) {
-        event.stopPropagation();
 
-        mainNav.classList.toggle("mobile-open");
+    const translateSelect =
+        document.querySelector(
+            ".goog-te-combo"
+        );
 
-        const icon = mobileMenuBtn.querySelector("i");
 
-        if (mainNav.classList.contains("mobile-open")) {
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
-        } else {
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-        }
+    if (translateSelect) {
+
+        applyGoogleLanguage(
+            language
+        );
+
+        return;
+    }
+
+
+    setTimeout(function () {
+
+        waitForGoogleTranslate(
+            language,
+            attempts + 1
+        );
+
+    }, 250);
+
+}
+
+
+/* =====================================================
+   HIDE GOOGLE TRANSLATE BAR
+   ===================================================== */
+
+function hideGoogleTranslateBar() {
+
+    const elements =
+        document.querySelectorAll(
+            ".goog-te-banner-frame, " +
+            "iframe.goog-te-banner-frame"
+        );
+
+
+    elements.forEach(function (element) {
+
+        element.style.display =
+            "none";
+
+        element.style.visibility =
+            "hidden";
+
+        element.style.height =
+            "0";
+
     });
 
-    // Close menu when clicking outside
-    document.addEventListener("click", function (event) {
 
-        if (
-            !mainNav.contains(event.target) &&
-            !mobileMenuBtn.contains(event.target)
-        ) {
-            mainNav.classList.remove("mobile-open");
+    document.body.style.top =
+        "0";
 
-            const icon = mobileMenuBtn.querySelector("i");
-
-            if (icon) {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
-        }
-    });
-
-    // Close menu after clicking a navigation link
-    mainNav.querySelectorAll("a").forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            mainNav.classList.remove("mobile-open");
-
-            const icon = mobileMenuBtn.querySelector("i");
-
-            if (icon) {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
-        });
-
-    });
-
-});
+    document.body.style.marginTop =
+        "0";
+}
