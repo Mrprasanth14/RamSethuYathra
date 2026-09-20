@@ -3390,6 +3390,7 @@ body {
     }
 
 }
+
 /* =========================================
    HIDE GOOGLE TRANSLATE TOP BAR
    ========================================= */
@@ -3409,4 +3410,19 @@ body {
 /* Prevent Google Translate from adding extra space */
 html {
     margin-top: 0 !important;
+}
+/* ==========================================
+   LOGIN / LOGOUT MOBILE FIX
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    #myBookingNav[style*="display: none"] {
+        display: none !important;
+    }
+
+    #logoutNav[style*="display: none"] {
+        display: none !important;
+    }
+
 }

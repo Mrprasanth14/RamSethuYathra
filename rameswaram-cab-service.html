@@ -37,9 +37,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <!-- Firebase -->
-    <script type="module"
-            src="firebase.js"></script>
+    
 
 </head>
 
@@ -86,7 +84,7 @@
 
 
             <a href="index.html"
-               class="active">
+               >
 
                 <i class="fa-solid fa-house"></i>
 
@@ -1653,216 +1651,34 @@
 
 </a>
 <script type="module" src="script.js"></script>
-<script type="module">
 
-    import { auth } from "./firebase.js";
-
-    import {
-        onAuthStateChanged,
-        signOut
-    } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-
-
-
-    /* =====================================================
-       FIREBASE AUTH
-    ===================================================== */
-
-    const loginNav =
-        document.getElementById("loginNav");
-
-    const myBookingNav =
-        document.getElementById("myBookingNav");
-
-    const logoutNav =
-        document.getElementById("logoutNav");
-
-
-    onAuthStateChanged(
-        auth,
-        (user) => {
-
-            if (user) {
-
-                if (loginNav) {
-
-                    loginNav.style.display =
-                        "none";
-
-                }
-
-
-                if (myBookingNav) {
-
-                    myBookingNav.style.display =
-                        "flex";
-
-                }
-
-
-                if (logoutNav) {
-
-                    logoutNav.style.display =
-                        "flex";
-
-                }
-
-            } else {
-
-                if (loginNav) {
-
-                    loginNav.style.display =
-                        "flex";
-
-                }
-
-
-                if (myBookingNav) {
-
-                    myBookingNav.style.display =
-                        "none";
-
-                }
-
-
-                if (logoutNav) {
-
-                    logoutNav.style.display =
-                        "none";
-
-                }
-
-            }
-
-        }
-    );
-
-
-
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
-
-    if (logoutNav) {
-
-        logoutNav.addEventListener(
-            "click",
-            async () => {
-
-                try {
-
-                    await signOut(auth);
-
-                    window.location.href =
-                        "index.html";
-
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-</script>
-
-
-<!-- =====================================================
-     CAB PAGE JAVASCRIPT
-     ===================================================== -->
-
+<!-- CAB PAGE JAVASCRIPT -->
 <script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-    /* ==========================================
-       MOBILE MENU
-       ========================================== */
-
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const mainNav =
-        document.getElementById("mainNav");
-
-
-    if (menuToggle && mainNav) {
-
-        menuToggle.addEventListener(
-            "click",
-            function () {
-
-                mainNav.classList.toggle("show");
-
-            }
-        );
-
-
-        const navLinks =
-            mainNav.querySelectorAll("a");
-
-
-        navLinks.forEach(function (link) {
-
-            link.addEventListener(
-                "click",
-                function () {
-
-                    mainNav.classList.remove("show");
-
-                }
-            );
-
-        });
-
-    }
-
-
+ document.addEventListener("DOMContentLoaded", function () {
 
     /* ==========================================
        CAB SELECTION
        ========================================== */
 
     const cabRadios =
-        document.querySelectorAll(
-            'input[name="cab"]'
-        );
-
+        document.querySelectorAll('input[name="cab"]');
 
     const selectedCabText =
-        document.getElementById(
-            "selectedCabText"
-        );
-
+        document.getElementById("selectedCabText");
 
     cabRadios.forEach(function (radio) {
 
-        radio.addEventListener(
-            "change",
-            function () {
+        radio.addEventListener("change", function () {
 
-                if (selectedCabText) {
-
-                    selectedCabText.textContent =
-                        this.value;
-
-                }
-
+            if (selectedCabText) {
+                selectedCabText.textContent = this.value;
             }
-        );
+
+        });
 
     });
 
-
-
+  
     /* ==========================================
        DATE MINIMUM
        ========================================== */
@@ -1870,8 +1686,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateInput =
         document.getElementById("date");
 
-
-    if (dateInput) {
+     if (dateInput) {
 
         const today =
             new Date().toISOString().split("T")[0];
@@ -1880,8 +1695,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-
+ 
     /* ==========================================
        MOBILE NUMBER
        ========================================== */
@@ -1889,24 +1703,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const mobileInput =
         document.getElementById("mobile");
 
+     if (mobileInput) {
 
-    if (mobileInput) {
+        mobileInput.addEventListener("input", function () {
 
-        mobileInput.addEventListener(
-            "input",
-            function () {
+            this.value =
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
 
-                this.value =
-                    this.value
-                        .replace(/\D/g, "")
-                        .slice(0, 10);
-
-            }
-        );
+        });
 
     }
-
-
+ 
 
     /* ==========================================
        SCROLL REVEAL
@@ -1917,8 +1726,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ".cab-card, .destination-card, .why-item, .intro-grid"
         );
 
-
-    const observer =
+     const observer =
         new IntersectionObserver(
             function (entries) {
 
@@ -1926,9 +1734,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (entry.isIntersecting) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
+                        entry.target.classList.add("visible");
 
                     }
 
@@ -1940,8 +1746,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         );
 
-
-    revealElements.forEach(function (element) {
+     revealElements.forEach(function (element) {
 
         element.classList.add("reveal");
 
@@ -1949,14 +1754,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
-});
-
+ });
 </script>
-<script src="header.js"></script>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="module" src="header.js"></script>
+<script type="module"
+        src="firebase.js"></script>
 
-
+ <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+ 
 </body>
 </html>

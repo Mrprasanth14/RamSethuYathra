@@ -1924,3 +1924,23 @@ html {
         color: white;
     }
 }
+/* ABOUT PAGE - LOGOUT BUTTON FIX */
+.main-nav button.nav-logout {
+    color: #42515b !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.main-nav button.nav-logout i {
+    color: #42515b !important;
+}
+
+.main-nav button.nav-logout:hover {
+    color: #f77f00 !important;
+    background: #fff0e4 !important;
+}
+
+.main-nav button.nav-logout:hover i {
+    color: #f77f00 !important;
+}

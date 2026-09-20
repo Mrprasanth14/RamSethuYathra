@@ -1,9 +1,153 @@
-/* ==========================================
-   ACTIVE NAVIGATION
-   Automatically highlights current page
-   ========================================== */
+/* =====================================================
+   RAMSETHUYATRA - SHARED HEADER
+   LOGIN / LOGOUT + MOBILE MENU + ACTIVE NAV
+   ===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+
+    /* =====================================================
+       PREVENT HEADER.JS FROM RUNNING TWICE
+       ===================================================== */
+
+    if (window.__ramSethuHeaderLoaded) {
+        return;
+    }
+
+    window.__ramSethuHeaderLoaded = true;
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const loginNav = document.getElementById("loginNav");
+    const logoutNav = document.getElementById("logoutNav");
+    const myBookingNav = document.getElementById("myBookingNav");
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+
+    /* =====================================================
+       LOGIN / LOGOUT
+       ===================================================== */
+
+    if (loginNav || logoutNav || myBookingNav) {
+
+        try {
+
+            const { auth } =
+                await import("./firebase.js");
+
+            const {
+                onAuthStateChanged,
+                signOut
+            } =
+                await import(
+                    "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"
+                );
+
+
+            /* =================================================
+               AUTH STATE
+               ================================================= */
+
+            onAuthStateChanged(auth, function (user) {
+
+                if (user) {
+
+                    /* ==============================
+                       USER IS LOGGED IN
+                       ============================== */
+
+                    if (loginNav) {
+                        loginNav.style.display = "none";
+                    }
+
+                    if (myBookingNav) {
+                        myBookingNav.style.display = "flex";
+                    }
+
+                    if (logoutNav) {
+                        logoutNav.style.display = "flex";
+                    }
+
+                } else {
+
+                    /* ==============================
+                       USER IS LOGGED OUT
+                       ============================== */
+
+                    if (loginNav) {
+                        loginNav.style.display = "flex";
+                    }
+
+                    if (myBookingNav) {
+                        myBookingNav.style.display = "none";
+                    }
+
+                    if (logoutNav) {
+                        logoutNav.style.display = "none";
+                    }
+
+                }
+
+            });
+
+
+            /* =================================================
+               LOGOUT
+               ================================================= */
+
+            if (logoutNav) {
+
+                logoutNav.addEventListener(
+                    "click",
+                    async function (event) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        try {
+
+                            await signOut(auth);
+
+                            window.location.replace(
+                                "index.html"
+                            );
+
+                        } catch (error) {
+
+                            console.error(
+                                "Logout failed:",
+                                error
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Header Firebase error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+       ===================================================== */
 
     const currentPage =
         window.location.pathname
@@ -11,18 +155,32 @@ document.addEventListener("DOMContentLoaded", function () {
             .pop()
             .toLowerCase() || "index.html";
 
+
     const navLinks =
         document.querySelectorAll(".main-nav a");
 
+
     navLinks.forEach(function (link) {
 
+        const href =
+            link.getAttribute("href");
+
+        if (!href) {
+            return;
+        }
+
+
         const linkPage =
-            link.getAttribute("href")
-                ?.split("/")
+            href
+                .split("/")
                 .pop()
+                .split("?")[0]
+                .split("#")[0]
                 .toLowerCase();
 
+
         link.classList.remove("active");
+
 
         if (
             linkPage === currentPage ||
@@ -31,266 +189,156 @@ document.addEventListener("DOMContentLoaded", function () {
                 linkPage === "index.html"
             )
         ) {
+
             link.classList.add("active");
-        }
-
-    });
-
-});
-/* =====================================================
-   GOOGLE TRANSLATE
-   ===================================================== */
-
-window.googleTranslateElementInit = function () {
-
-    new google.translate.TranslateElement(
-        {
-            pageLanguage: "en",
-
-            includedLanguages:
-                "en,ta,hi,ml,te,kn,bn,mr,gu,pa,es,fr,de,ar",
-
-            autoDisplay: false
-        },
-
-        "google_translate_element"
-    );
-
-    /*
-     * Apply the language previously selected
-     * on index.html.
-     */
-
-    const savedLanguage =
-        localStorage.getItem("rsyLanguage");
-
-    if (savedLanguage) {
-
-        waitForGoogleTranslate(
-            savedLanguage
-        );
-    }
-
-    hideGoogleTranslateBar();
-};
-
-
-/* =====================================================
-   LANGUAGE MENU
-   ===================================================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const languageBtn =
-        document.getElementById("languageBtn");
-
-    const languageMenu =
-        document.getElementById("languageMenu");
-
-
-    if (!languageBtn || !languageMenu) {
-        return;
-    }
-
-
-    /* Open / close language menu */
-
-    languageBtn.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        languageMenu.classList.toggle("open");
-
-    });
-
-
-    /* Select language */
-
-    const languageButtons =
-        languageMenu.querySelectorAll(
-            "button[data-lang]"
-        );
-
-
-    languageButtons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            const language =
-                this.getAttribute("data-lang");
-
-            changeLanguage(language);
-
-            languageMenu.classList.remove("open");
-
-        });
-
-    });
-
-
-    /* Close when clicking outside */
-
-    document.addEventListener("click", function (event) {
-
-        if (
-            !languageMenu.contains(event.target) &&
-            !languageBtn.contains(event.target)
-        ) {
-
-            languageMenu.classList.remove("open");
 
         }
 
     });
 
+
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
+
+    if (mobileMenuBtn && mainNav) {
+
+        /* ==============================================
+           OPEN / CLOSE MOBILE MENU
+           ============================================== */
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+
+                const isOpen =
+                    mainNav.classList.toggle(
+                        "mobile-open"
+                    );
+
+
+                mobileMenuBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+
+                const icon =
+                    mobileMenuBtn.querySelector("i");
+
+
+                if (icon) {
+
+                    icon.classList.toggle(
+                        "fa-bars",
+                        !isOpen
+                    );
+
+                    icon.classList.toggle(
+                        "fa-xmark",
+                        isOpen
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==============================================
+           CLOSE MENU AFTER CLICKING NAV ITEM
+           ============================================== */
+
+        mainNav
+            .querySelectorAll("a")
+            .forEach(function (item) {
+
+                item.addEventListener(
+                    "click",
+                    function () {
+
+                        mainNav.classList.remove(
+                            "mobile-open"
+                        );
+
+
+                        mobileMenuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        const icon =
+                            mobileMenuBtn.querySelector("i");
+
+
+                        if (icon) {
+
+                            icon.classList.remove(
+                                "fa-xmark"
+                            );
+
+                            icon.classList.add(
+                                "fa-bars"
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* ==============================================
+           CLOSE MENU WHEN CLICKING OUTSIDE
+           ============================================== */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    !mainNav.contains(event.target) &&
+                    !mobileMenuBtn.contains(event.target)
+                ) {
+
+                    mainNav.classList.remove(
+                        "mobile-open"
+                    );
+
+
+                    mobileMenuBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+
+                    const icon =
+                        mobileMenuBtn.querySelector("i");
+
+
+                    if (icon) {
+
+                        icon.classList.remove(
+                            "fa-xmark"
+                        );
+
+                        icon.classList.add(
+                            "fa-bars"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
 });
-
-
-/* =====================================================
-   CHANGE LANGUAGE
-   ===================================================== */
-
-function changeLanguage(language) {
-
-    /*
-     * Save selected language.
-     * This makes the language continue
-     * when the user opens another page.
-     */
-
-    localStorage.setItem(
-        "rsyLanguage",
-        language
-    );
-
-
-    applyGoogleLanguage(language);
-}
-
-
-/* =====================================================
-   APPLY GOOGLE LANGUAGE
-   ===================================================== */
-
-function applyGoogleLanguage(language) {
-
-    const translateSelect =
-        document.querySelector(
-            ".goog-te-combo"
-        );
-
-
-    if (!translateSelect) {
-
-        return false;
-    }
-
-
-    /*
-     * English = original language
-     */
-
-    if (
-        language === "en" ||
-        language === ""
-    ) {
-
-        translateSelect.value = "";
-
-    } else {
-
-        translateSelect.value = language;
-
-    }
-
-
-    translateSelect.dispatchEvent(
-        new Event("change")
-    );
-
-
-    hideGoogleTranslateBar();
-
-    return true;
-}
-
-
-/* =====================================================
-   WAIT FOR GOOGLE TRANSLATE
-   ===================================================== */
-
-function waitForGoogleTranslate(
-    language,
-    attempts = 0
-) {
-
-    /*
-     * Stop after approximately 10 seconds.
-     */
-
-    if (attempts > 40) {
-        return;
-    }
-
-
-    const translateSelect =
-        document.querySelector(
-            ".goog-te-combo"
-        );
-
-
-    if (translateSelect) {
-
-        applyGoogleLanguage(
-            language
-        );
-
-        return;
-    }
-
-
-    setTimeout(function () {
-
-        waitForGoogleTranslate(
-            language,
-            attempts + 1
-        );
-
-    }, 250);
-
-}
-
-
-/* =====================================================
-   HIDE GOOGLE TRANSLATE BAR
-   ===================================================== */
-
-function hideGoogleTranslateBar() {
-
-    const elements =
-        document.querySelectorAll(
-            ".goog-te-banner-frame, " +
-            "iframe.goog-te-banner-frame"
-        );
-
-
-    elements.forEach(function (element) {
-
-        element.style.display =
-            "none";
-
-        element.style.visibility =
-            "hidden";
-
-        element.style.height =
-            "0";
-
-    });
-
-
-    document.body.style.top =
-        "0";
-
-    document.body.style.marginTop =
-        "0";
-}

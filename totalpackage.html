@@ -31,8 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet"
           href="package1.css">
@@ -136,10 +134,10 @@
 
             <!-- SHOW ONLY AFTER LOGIN -->
 
-            <a href="customer-dashboard.html"
-               id="myBookingNav"
-               class="logged-in-only"
-               style="display:none;">
+           <a href="customer-dashboard.html"
+                  id="myBookingNav"
+                  class="logged-in-only"
+                  style="display: none;">
 
                 <i class="fa-solid fa-book-open"></i>
 
@@ -151,7 +149,7 @@
             <!-- SHOW WHEN NOT LOGGED IN -->
 
             <a href="login.html"
-               id="loginNav"
+              id="loginNav"
                class="logged-out-only">
 
                 <i class="fa-solid fa-right-to-bracket"></i>
@@ -173,9 +171,9 @@
             <!-- LOGOUT -->
 
             <button type="button"
-                    id="logoutNav"
-                    class="logged-in-only nav-logout"
-                    style="display:none;">
+        id="logoutNav"
+        class="logged-in-only nav-logout"
+        style="display: none;">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
 
@@ -278,9 +276,14 @@
 
 
             <!-- MOBILE MENU -->
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    aria-label="Open menu">
 
-           <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-    <i class="fas fa-bars"></i>
+    <i class="fa-solid fa-bars"></i>
+
 </button>
 
         </div>
@@ -1941,6 +1944,7 @@
         );
 
     }
+    
 
 
 
