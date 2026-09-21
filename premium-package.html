@@ -98,7 +98,7 @@
 
 
             <a href="index.html"
-               class="active">
+               >
 
                 <i class="fa-solid fa-house"></i>
 
@@ -1250,85 +1250,8 @@
 
     <!-- ================= FIREBASE / SITE JS ================= -->
 
-    <script type="module">
-
-        import { auth } from "./firebase.js";
-
-        import {
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-
-        const loginNav =
-            document.getElementById("loginNav");
-
-        const myBookingNav =
-            document.getElementById("myBookingNav");
-
-        const logoutNav =
-            document.getElementById("logoutNav");
-
-
-        onAuthStateChanged(auth, (user) => {
-
-            if (user) {
-
-                if (loginNav) {
-                    loginNav.style.display = "none";
-                }
-
-                if (myBookingNav) {
-                    myBookingNav.style.display = "inline-flex";
-                }
-
-                if (logoutNav) {
-                    logoutNav.style.display = "inline-flex";
-                }
-
-            } else {
-
-                if (loginNav) {
-                    loginNav.style.display = "inline-flex";
-                }
-
-                if (myBookingNav) {
-                    myBookingNav.style.display = "none";
-                }
-
-                if (logoutNav) {
-                    logoutNav.style.display = "none";
-                }
-
-            }
-
-        });
-
-
-        if (logoutNav) {
-
-            logoutNav.addEventListener("click", async () => {
-
-                try {
-
-                    await signOut(auth);
-
-                    window.location.href = "index.html";
-
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-                }
-
-            });
-
-        }
-
-
+     <script type="module">
+ 
 
         /* ================= PRICE ================= */
 
