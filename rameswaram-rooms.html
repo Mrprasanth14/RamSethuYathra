@@ -629,7 +629,8 @@
              STANDARD ROOM
              ================================================= -->
 
-        <label class="room-card">
+        <label class="room-card"
+        data-room-card="Standard Room">
 
 
             <input
@@ -813,7 +814,8 @@
              FAMILY ROOM
              ================================================= -->
 
-        <label class="room-card popular-room">
+        <label class="room-card popular-room"
+        data-room-card="Family Room">
 
 
             <input
@@ -1002,7 +1004,8 @@
              PREMIUM ROOM
              ================================================= -->
 
-        <label class="room-card premium-room">
+        <label class="room-card premium-room"
+        data-room-card="Premium Room">
 
 
             <input
@@ -2158,11 +2161,17 @@ if (menuToggle && mainNav) {
 
 /* =====================================================
    ROOM + BED + PRICE SELECTION
+   CUSTOMER-FRIENDLY FLOW
    ===================================================== */
 
 const roomInputs =
     document.querySelectorAll(
         'input[name="room"]'
+    );
+
+const roomCards =
+    document.querySelectorAll(
+        ".room-card"
     );
 
 const bedButtons =
@@ -2185,16 +2194,34 @@ const selectedRoomPrice =
         "selectedRoomPrice"
     );
 
+const roomBookingSection =
+    document.getElementById(
+        "room-booking"
+    );
 
-function updateSelectedRoom(roomName, bedName, price) {
+
+/* =====================================================
+   UPDATE SELECTED ROOM
+   ===================================================== */
+
+function updateSelectedRoom(
+    roomName,
+    bedName,
+    price
+) {
 
     if (selectedRoomText) {
 
         selectedRoomText.textContent =
-            roomName + " • " + bedName +
-            " • ₹" + Number(price).toLocaleString("en-IN");
+            roomName +
+            " • " +
+            bedName +
+            " • ₹" +
+            Number(price)
+                .toLocaleString("en-IN");
 
     }
+
 
     if (selectedBedType) {
 
@@ -2202,6 +2229,7 @@ function updateSelectedRoom(roomName, bedName, price) {
             bedName;
 
     }
+
 
     if (selectedRoomPrice) {
 
@@ -2214,62 +2242,199 @@ function updateSelectedRoom(roomName, bedName, price) {
 
 
 /* =====================================================
-   ROOM SELECTION
+   SCROLL TO BOOKING FORM
    ===================================================== */
 
-roomInputs.forEach(function (room) {
+function scrollToRoomBooking() {
 
-    room.addEventListener(
-        "change",
-        function () {
-
-            const roomCard =
-                this.closest(".room-card");
-
-            if (!roomCard) return;
+    if (!roomBookingSection) {
+        return;
+    }
 
 
-            const firstBed =
-                roomCard.querySelector(
-                    ".bed-price-btn.active"
-                ) ||
-                roomCard.querySelector(
-                    ".bed-price-btn"
-                );
+    setTimeout(function () {
+
+        roomBookingSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 150);
+
+}
 
 
-            if (!firstBed) return;
+/* =====================================================
+   SELECT ROOM
+   ===================================================== */
+
+function selectRoom(roomName) {
+
+    if (!roomName) {
+        return;
+    }
 
 
-            const bedName =
-                firstBed.dataset.bed;
+    /* ---------------------------------------------
+       FIND ROOM RADIO
+       --------------------------------------------- */
 
-            const price =
-                firstBed.dataset.price;
-
-
-            roomCard
-                .querySelectorAll(
-                    ".bed-price-btn"
-                )
-                .forEach(function (button) {
-
-                    button.classList.remove(
-                        "active"
-                    );
-
-                });
+    const roomInput =
+        document.querySelector(
+            'input[name="room"][value="' +
+            roomName +
+            '"]'
+        );
 
 
-            firstBed.classList.add(
+    if (!roomInput) {
+        return;
+    }
+
+
+    /* ---------------------------------------------
+       CHECK RADIO
+       --------------------------------------------- */
+
+    roomInput.checked = true;
+
+
+    /* ---------------------------------------------
+       FIND ROOM CARD
+       --------------------------------------------- */
+
+    const roomCard =
+        roomInput.closest(
+            ".room-card"
+        );
+
+
+    if (!roomCard) {
+        return;
+    }
+
+
+    /* ---------------------------------------------
+       FIND ACTIVE BED
+       --------------------------------------------- */
+
+    const activeBed =
+        roomCard.querySelector(
+            ".bed-price-btn.active"
+        );
+
+
+    const firstBed =
+        activeBed ||
+        roomCard.querySelector(
+            ".bed-price-btn"
+        );
+
+
+    if (!firstBed) {
+        return;
+    }
+
+
+    const bedName =
+        firstBed.dataset.bed;
+
+    const price =
+        firstBed.dataset.price;
+
+
+    /* ---------------------------------------------
+       MAKE THIS BED ACTIVE
+       --------------------------------------------- */
+
+    roomCard
+        .querySelectorAll(
+            ".bed-price-btn"
+        )
+        .forEach(function (button) {
+
+            button.classList.remove(
                 "active"
             );
 
+        });
 
-            updateSelectedRoom(
-                this.value,
-                bedName,
-                price
+
+    firstBed.classList.add(
+        "active"
+    );
+
+
+    /* ---------------------------------------------
+       UPDATE PRICE DISPLAY
+       --------------------------------------------- */
+
+    const priceDisplay =
+        roomCard.querySelector(
+            ".room-selected-price strong"
+        );
+
+
+    if (priceDisplay) {
+
+        priceDisplay.textContent =
+            "₹" +
+            Number(price)
+                .toLocaleString("en-IN");
+
+    }
+
+
+    /* ---------------------------------------------
+       UPDATE BOOKING FORM
+       --------------------------------------------- */
+
+    updateSelectedRoom(
+        roomName,
+        bedName,
+        price
+    );
+
+
+    /* ---------------------------------------------
+       SELECTED CARD
+       --------------------------------------------- */
+
+    roomCards.forEach(function (card) {
+
+        card.classList.remove(
+            "selected"
+        );
+
+    });
+
+
+    roomCard.classList.add(
+        "selected"
+    );
+
+
+    /* ---------------------------------------------
+       MOVE TO BOOKING FORM
+       --------------------------------------------- */
+
+    scrollToRoomBooking();
+
+}
+
+
+/* =====================================================
+   ROOM RADIO CHANGE
+   ===================================================== */
+
+roomInputs.forEach(function (radio) {
+
+    radio.addEventListener(
+        "change",
+        function () {
+
+            selectRoom(
+                this.value
             );
 
         }
@@ -2279,7 +2444,53 @@ roomInputs.forEach(function (room) {
 
 
 /* =====================================================
-   BED TYPE SELECTION
+   WHOLE ROOM CARD CLICK
+   ===================================================== */
+
+roomCards.forEach(function (card) {
+
+    card.addEventListener(
+        "click",
+        function (event) {
+
+            /*
+             * If customer clicked a bed/price
+             * button, its own handler will manage
+             * the selection.
+             */
+
+            if (
+                event.target.closest(
+                    ".bed-price-btn"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const roomName =
+                this.dataset.roomCard;
+
+
+            if (!roomName) {
+                return;
+            }
+
+
+            selectRoom(
+                roomName
+            );
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   BED TYPE + PRICE SELECTION
    ===================================================== */
 
 bedButtons.forEach(function (button) {
@@ -2293,6 +2504,10 @@ bedButtons.forEach(function (button) {
             event.stopPropagation();
 
 
+            /* -------------------------------------
+               GET VALUES
+               ------------------------------------- */
+
             const roomName =
                 this.dataset.room;
 
@@ -2303,48 +2518,71 @@ bedButtons.forEach(function (button) {
                 this.dataset.price;
 
 
+            /* -------------------------------------
+               FIND ROOM CARD
+               ------------------------------------- */
+
             const roomCard =
-                this.closest(".room-card");
+                this.closest(
+                    ".room-card"
+                );
 
 
-            if (roomCard) {
-
-                const roomInput =
-                    roomCard.querySelector(
-                        'input[name="room"]'
-                    );
+            if (!roomCard) {
+                return;
+            }
 
 
-                if (roomInput) {
+            /* -------------------------------------
+               SELECT ROOM RADIO
+               ------------------------------------- */
 
-                    roomInput.checked =
-                        true;
+            const roomInput =
+                roomCard.querySelector(
+                    'input[name="room"]'
+                );
 
-                }
 
+            if (roomInput) {
 
-                roomCard
-                    .querySelectorAll(
-                        ".bed-price-btn"
-                    )
-                    .forEach(function (item) {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    });
+                roomInput.checked =
+                    true;
 
             }
 
+
+            /* -------------------------------------
+               REMOVE ACTIVE BED
+               ------------------------------------- */
+
+            roomCard
+                .querySelectorAll(
+                    ".bed-price-btn"
+                )
+                .forEach(function (item) {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            /* -------------------------------------
+               SELECT THIS BED
+               ------------------------------------- */
 
             this.classList.add(
                 "active"
             );
 
 
+            /* -------------------------------------
+               UPDATE PRICE
+               ------------------------------------- */
+
             const priceDisplay =
-                roomCard?.querySelector(
+                roomCard.querySelector(
                     ".room-selected-price strong"
                 );
 
@@ -2359,11 +2597,40 @@ bedButtons.forEach(function (button) {
             }
 
 
+            /* -------------------------------------
+               SELECTED ROOM CARD
+               ------------------------------------- */
+
+            roomCards.forEach(function (card) {
+
+                card.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+            roomCard.classList.add(
+                "selected"
+            );
+
+
+            /* -------------------------------------
+               UPDATE BOOKING FORM
+               ------------------------------------- */
+
             updateSelectedRoom(
                 roomName,
                 bedName,
                 price
             );
+
+
+            /* -------------------------------------
+               MOVE TO BOOKING FORM
+               ------------------------------------- */
+
+            scrollToRoomBooking();
 
         }
     );

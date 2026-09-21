@@ -1590,10 +1590,10 @@ window.deleteReview =
 // 🔎 ADMIN BOOKING FILTER SYSTEM
 // ==========================================
 const filterSearch =
-    document.getElementById("adminSearch");
+    document.getElementById("customerSearch");
 
 const filterStatus =
-    document.getElementById("bookingStatusFilter");
+    document.getElementById("statusFilter");
 
 const filterDate =
     document.getElementById("dateFilter");

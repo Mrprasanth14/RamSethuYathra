@@ -831,32 +831,36 @@ translateObserver.observe(document.documentElement, {
 // ==========================================
 
 let selectedRating = 0;
-let currentReviewUser = null;
 
 
-// ------------------------------------------
-// STAR RATING
-// ------------------------------------------
+// ==========================================
+// ⭐ STAR RATING
+// ==========================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const stars = document.querySelectorAll("#starPicker button");
     const ratingInput = document.getElementById("reviewRating");
 
-    stars.forEach(star => {
+    stars.forEach(function (star) {
 
-        star.addEventListener("click", () => {
+        star.addEventListener("click", function () {
 
-            selectedRating = Number(star.dataset.rating);
+            selectedRating = Number(this.dataset.rating);
 
-            ratingInput.value = selectedRating;
+            if (ratingInput) {
+                ratingInput.value = selectedRating;
+            }
 
-            stars.forEach(item => {
+            stars.forEach(function (item) {
 
-                const rating = Number(item.dataset.rating);
+                const rating =
+                    Number(item.dataset.rating);
 
                 item.style.color =
-                    rating <= selectedRating ? "#f77f00" : "#ccc";
+                    rating <= selectedRating
+                        ? "#f77f00"
+                        : "#ccc";
 
             });
 
@@ -865,177 +869,296 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-// ------------------------------------------
-// CHECK LOGIN STATUS
-// ------------------------------------------
 
-onAuthStateChanged(auth, async (user) => {
 
-    currentReviewUser = user;
+// ==========================================
+// ⭐ REVIEW LOGIN STATE
+// ==========================================
 
-    const form = document.getElementById("reviewForm");
+onAuthStateChanged(auth, function (user) {
+
+    const reviewForm =
+        document.getElementById("reviewForm");
+
     const loginMessage =
         document.getElementById("reviewLoginMessage");
 
-    if (!form || !loginMessage) return;
 
-    if (user) {
+    if (reviewForm && loginMessage) {
 
-        form.style.display = "block";
-        loginMessage.style.display = "none";
+        if (user) {
 
-        console.log("Review user:", user.email);
+            reviewForm.style.display = "block";
+            loginMessage.style.display = "none";
 
-    } else {
+        } else {
 
-        form.style.display = "none";
-        loginMessage.style.display = "block";
+            reviewForm.style.display = "none";
+            loginMessage.style.display = "block";
+
+        }
 
     }
 
+
+    // ======================================
+    // ⭐ LOAD APPROVED REVIEWS
+    // ======================================
+
     loadApprovedReviews();
+
 });
-// ------------------------------------------
-// SUBMIT REVIEW
-// ------------------------------------------
 
-const reviewForm = document.getElementById("reviewForm");
+// ==========================================
+// ⭐ SUBMIT REVIEW
+// ==========================================
 
-if (reviewForm) {
+document.addEventListener("DOMContentLoaded", function () {
 
-    reviewForm.addEventListener("submit", async (e) => {
+    const reviewForm =
+        document.getElementById("reviewForm");
 
-        e.preventDefault();
+    if (!reviewForm) {
+        return;
+    }
 
-        if (!currentReviewUser) {
 
-            Swal.fire(
-                "Login Required",
-                "Please login before writing a review.",
-                "warning"
-            );
+    reviewForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+
+        // --------------------------------------
+        // GET CURRENT FIREBASE USER
+        // --------------------------------------
+
+        const user = auth.currentUser;
+
+
+        if (!user) {
+
+            await Swal.fire({
+                icon: "warning",
+                title: "Login Required",
+                text: "Please login before submitting a review.",
+                confirmButtonColor: "#f77f00"
+            });
 
             return;
         }
 
+
+        // --------------------------------------
+        // GET FORM VALUES
+        // --------------------------------------
+
         const service =
-            document.getElementById("reviewService").value;
+            document.getElementById("reviewService")?.value.trim();
 
         const review =
-            document.getElementById("reviewText").value.trim();
+            document.getElementById("reviewText")?.value.trim();
 
         const rating =
-            Number(document.getElementById("reviewRating").value);
+            Number(
+                document.getElementById("reviewRating")?.value || 0
+            );
+
+
+        // --------------------------------------
+        // VALIDATION
+        // --------------------------------------
 
         if (!service) {
 
-            Swal.fire(
-                "Select Service",
-                "Please select a service.",
-                "warning"
-            );
+            await Swal.fire({
+                icon: "warning",
+                title: "Select Service",
+                text: "Please select the service you used.",
+                confirmButtonColor: "#f77f00"
+            });
 
             return;
         }
+
 
         if (rating < 1 || rating > 5) {
 
-            Swal.fire(
-                "Select Rating",
-                "Please select a star rating.",
-                "warning"
-            );
+            await Swal.fire({
+                icon: "warning",
+                title: "Select Rating",
+                text: "Please select a rating from 1 to 5 stars.",
+                confirmButtonColor: "#f77f00"
+            });
 
             return;
         }
 
-        if (review.length < 5) {
 
-            Swal.fire(
-                "Review Too Short",
-                "Please write at least 5 characters.",
-                "warning"
-            );
+        if (!review || review.length < 5) {
+
+            await Swal.fire({
+                icon: "warning",
+                title: "Write Your Review",
+                text: "Please write at least 5 characters.",
+                confirmButtonColor: "#f77f00"
+            });
 
             return;
         }
+
+
+        // --------------------------------------
+        // LOADING
+        // --------------------------------------
+
+        Swal.fire({
+            title: "Submitting Review...",
+            text: "Please wait.",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: function () {
+                Swal.showLoading();
+            }
+        });
+
 
         try {
 
+            // ----------------------------------
+            // REVIEW DOCUMENT
+            // ----------------------------------
+
             const reviewRef =
-                doc(db, "reviews", currentReviewUser.uid);
+                doc(
+                    db,
+                    "reviews",
+                    user.uid
+                );
+
+
+            // ----------------------------------
+            // CHECK EXISTING REVIEW
+            // ----------------------------------
 
             const existingReview =
                 await getDoc(reviewRef);
 
+
             if (existingReview.exists()) {
 
-                Swal.fire(
-                    "Already Submitted",
-                    "You have already submitted a review.",
-                    "info"
-                );
+                Swal.close();
+
+                await Swal.fire({
+                    icon: "info",
+                    title: "Already Submitted",
+                    text: "You have already submitted a review.",
+                    confirmButtonColor: "#f77f00"
+                });
 
                 return;
             }
 
-            await setDoc(reviewRef, {
 
-                userId: currentReviewUser.uid,
+            // ----------------------------------
+            // SAVE REVIEW
+            // ----------------------------------
 
-                name:
-                    currentReviewUser.displayName ||
-                    currentReviewUser.email?.split("@")[0] ||
-                    "Customer",
+            await setDoc(
+                reviewRef,
+                {
 
-                email:
-                    currentReviewUser.email || "",
+                    userId: user.uid,
 
-                rating: rating,
+                    name:
+                        user.displayName ||
+                        user.email?.split("@")[0] ||
+                        "Customer",
 
-                review: review,
+                    email:
+                        user.email || "",
 
-                service: service,
+                    service:
+                        service,
 
-                approved: false,
+                    rating:
+                        rating,
 
-                createdAt: serverTimestamp()
+                    review:
+                        review,
 
+                    approved:
+                        false,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            // ----------------------------------
+            // SUCCESS
+            // ----------------------------------
+
+            Swal.close();
+
+            await Swal.fire({
+                icon: "success",
+                title: "Review Submitted! ⭐",
+                text: "Your review is waiting for admin approval.",
+                confirmButtonColor: "#f77f00"
             });
 
-            Swal.fire(
-                "Review Submitted!",
-                "Your review is waiting for admin approval.",
-                "success"
-            );
+
+            // ----------------------------------
+            // RESET FORM
+            // ----------------------------------
 
             reviewForm.reset();
 
             selectedRating = 0;
 
-            document.getElementById("reviewRating").value = 0;
+
+            const ratingInput =
+                document.getElementById("reviewRating");
+
+            if (ratingInput) {
+                ratingInput.value = "0";
+            }
+
 
             document
                 .querySelectorAll("#starPicker button")
-                .forEach(star => {
+                .forEach(function (star) {
+
                     star.style.color = "#ccc";
+
                 });
+
 
         } catch (error) {
 
-            console.error("Review Error:", error);
-
-            Swal.fire(
-                "Error",
-                error.message,
-                "error"
+            console.error(
+                "Review submission failed:",
+                error
             );
+
+            Swal.close();
+
+            await Swal.fire({
+                icon: "error",
+                title: "Review Submission Failed",
+                text:
+                    error.message ||
+                    "Unable to submit your review.",
+                confirmButtonColor: "#d33"
+            });
 
         }
 
     });
 
-}
+});
 // ==========================================
 // ⭐ LOAD APPROVED REVIEWS
 // ==========================================
