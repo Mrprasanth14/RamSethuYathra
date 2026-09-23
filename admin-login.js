@@ -2,7 +2,7 @@ import { auth } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
 document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
@@ -33,10 +33,11 @@ document.getElementById("adminLoginForm").addEventListener("submit", async (e) =
 
         const user = userCredential.user;
 
-        // console.log("Admin logged in:", user.email);
-
         // Double-check admin email
-        if (user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+        if (
+            !user.email ||
+            user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()
+        ) {
 
             await auth.signOut();
 

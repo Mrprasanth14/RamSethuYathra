@@ -110,101 +110,248 @@ function showPersonBox(seats) {
   persons.innerHTML = '<option value="">Select Persons</option>';
 
   for (let i = 1; i <= seats; i++) {
-    persons.innerHTML += `<option value="${i}">${i} Person${i > 1 ? "s" : ""}</option>`;
+    persons.innerHTML += `
+      <option value="${i}">
+        ${i} Person${i > 1 ? "s" : ""}
+      </option>
+    `;
   }
 }
 
-function continueBooking() {
-  const persons = document.getElementById("persons").value;
 
-  if (persons === "") {
+function continueBooking() {
+ 
+  const personsValue =
+    document.getElementById("persons").value;
+
+  if (!personsValue) {
     Swal.fire({
-  icon: "error",
-  title: "Oops...",
-  text: "Please select persons!",
-  confirmButtonColor: "#ff7a00"
-});
+      icon: "error",
+      title: "Oops...",
+      text: "Please select persons!",
+      confirmButtonColor: "#ff7a00"
+    });
+
+    return;
+  }
+
+  const persons = Number(personsValue);
+
+  if (!Number.isInteger(persons) || persons < 1) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Persons",
+      text: "Please select a valid number of persons.",
+      confirmButtonColor: "#ff7a00"
+    });
+
     return;
   }
 
   document.getElementById("bookingForm").style.display = "block";
 
   document.getElementById("bookingForm")
-    .scrollIntoView({ behavior: "smooth" });
+    .scrollIntoView({
+      behavior: "smooth"
+    });
 }
+
+
 async function sendWhatsApp() {
 
   const user = getCurrentUser();
+
   if (!user) return;
 
-  const cab = document.querySelector('input[name="cab"]:checked')?.value;
-  const persons = document.getElementById("persons").value;
-  const name = document.getElementById("name").value.trim();
-  const mobile = document.getElementById("mobile").value.trim();
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
-  const pickup = document.getElementById("pickup").value.trim();
+
+  const cab =
+    document.querySelector(
+      'input[name="cab"]:checked'
+    )?.value;
+
+
+  // IMPORTANT:
+  // Convert select value from string to number
+  const persons =
+    Number(
+      document.getElementById("persons").value
+    );
+
+
+  const name =
+    document.getElementById("name").value.trim();
+
+
+  const mobile =
+    document.getElementById("mobile").value.trim();
+
+
+  const date =
+    document.getElementById("date").value;
+
+
+  const time =
+    document.getElementById("time").value;
+
+
+  const pickup =
+    document.getElementById("pickup").value.trim();
+
+
+  // ==============================
+  // CAB VALIDATION
+  // ==============================
 
   if (!cab) {
-    Swal.fire("Cab Not Selected", "Please select a cab", "warning");
+
+    Swal.fire(
+      "Cab Not Selected",
+      "Please select a cab",
+      "warning"
+    );
+
     return;
   }
 
-  if (!persons || !name || !mobile || !date || !time || !pickup) {
+
+  // ==============================
+  // PERSON VALIDATION
+  // ==============================
+
+  if (
+    !Number.isInteger(persons) ||
+    persons < 1
+  ) {
+
+    Swal.fire(
+      "Invalid Persons",
+      "Please select the number of persons",
+      "warning"
+    );
+
+    return;
+  }
+
+
+  // ==============================
+  // OTHER FORM VALIDATION
+  // ==============================
+
+  if (
+    !name ||
+    !mobile ||
+    !date ||
+    !time ||
+    !pickup
+  ) {
+
     Swal.fire(
       "Incomplete Form",
       "Please fill all booking details",
       "warning"
     );
+
     return;
   }
 
+
+  // ==============================
+  // MOBILE VALIDATION
+  // ==============================
+
   if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
     Swal.fire(
       "Invalid Mobile Number",
       "Please enter valid 10-digit mobile number",
       "error"
     );
+
     return;
   }
 
+
+  // ==============================
+  // SAVE BOOKING
+  // ==============================
+
   try {
 
-    await addDoc(collection(db, "cabBookings"), {
+    await addDoc(
+      collection(db, "cabBookings"),
+      {
 
-      // CUSTOMER INFORMATION
-      userId: user.uid,
-      customerEmail: user.email || "",
+        // CUSTOMER INFORMATION
+        userId: user.uid,
 
-      // BOOKING INFORMATION
-      cab,
-      persons,
-      name,
-      mobile,
-      pickup,
-      date,
-      time,
+        customerEmail:
+          user.email || "",
 
-      service: "Cab Booking",
-      status: "pending",
 
-      bookingTime: new Date().toLocaleTimeString(),
-      createdAt: new Date()
-    });
+        // BOOKING INFORMATION
+        cab: cab,
+
+        // NUMBER, NOT STRING
+        persons: persons,
+
+        name: name,
+
+        mobile: mobile,
+
+        pickup: pickup,
+
+        date: date,
+
+        time: time,
+
+
+        // SERVICE
+        service: "Cab Booking",
+
+        status: "pending",
+
+
+        // TIME
+        bookingTime:
+          new Date().toLocaleTimeString(),
+
+        createdAt:
+          new Date()
+      }
+    );
+
+
+    // ==============================
+    // SUCCESS
+    // ==============================
 
     Swal.fire({
+
       icon: "success",
+
       title: "Booking Successful!",
-      text: "Your cab booking has been submitted successfully.",
+
+      text:
+        "Your cab booking has been submitted successfully.",
+
       confirmButtonText: "OK",
+
       confirmButtonColor: "#ff7a00"
+
     }).then(() => {
+
       location.reload();
+
     });
+
 
   } catch (error) {
 
-    console.error("Cab Booking Error:", error);
+    console.error(
+      "Cab Booking Error:",
+      error
+    );
+
 
     Swal.fire(
       "Error",
