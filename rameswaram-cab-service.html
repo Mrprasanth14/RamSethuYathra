@@ -635,7 +635,7 @@
 
         <div class="cab-card-image">
 
-            <img src="images/Ram.jpg"
+            <img src="images/cas1.jpg"
                  alt="Car cab service in Rameswaram"
                  loading="lazy">
 
@@ -716,7 +716,7 @@
 
         <div class="cab-card-image">
 
-            <img src="images/Rameswaram agnitheertham.jpg"
+            <img src="images/car2.jpg"
                  alt="Rameswaram sightseeing cab"
                  loading="lazy">
 
@@ -792,7 +792,7 @@
 
         <div class="cab-card-image">
 
-            <img src="images/beautiful-beach.jpg"
+            <img src="images/car3.jpg"
                  alt="Large group cab service"
                  loading="lazy">
 
@@ -999,72 +999,23 @@
 
                 <!-- PERSONS -->
 
-                <div class="form-group">
+               <div class="form-group">
 
-                    <label for="persons">
-                        Number of Persons
-                    </label>
+    <label for="persons">
+        Number of Persons
+    </label>
 
-                    <select id="persons"
-                            required>
+    <select id="persons"
+            required>
 
-                        <option value="">
-                            Select persons
-                        </option>
+        <option value="">
+            Select persons
+        </option>
 
-                        <option value="1">
-                            1 Person
-                        </option>
+    </select>
 
-                        <option value="2">
-                            2 Persons
-                        </option>
-
-                        <option value="3">
-                            3 Persons
-                        </option>
-
-                        <option value="4">
-                            4 Persons
-                        </option>
-
-                        <option value="5">
-                            5 Persons
-                        </option>
-
-                        <option value="6">
-                            6 Persons
-                        </option>
-
-                        <option value="7">
-                            7 Persons
-                        </option>
-
-                        <option value="8">
-                            8 Persons
-                        </option>
-
-                        <option value="9">
-                            9 Persons
-                        </option>
-
-                        <option value="10">
-                            10 Persons
-                        </option>
-
-                        <option value="11">
-                            11 Persons
-                        </option>
-
-                        <option value="12">
-                            12 Persons
-                        </option>
-
-                    </select>
-
-                </div>
-
-
+ </div>
+ 
 
                 <!-- NAME -->
 
@@ -1684,17 +1635,105 @@
    WHOLE CARD CLICK
    ========================================== */
 
-const cabCards =
-    document.querySelectorAll(".cab-card");
+/* ==========================================
+   CAB SELECTION + PERSON CAPACITY
+   ========================================== */
 
 const cabRadios =
-    document.querySelectorAll('input[name="cab"]');
+    document.querySelectorAll(
+        'input[name="cab"]'
+    );
+
+const cabCards =
+    document.querySelectorAll(
+        ".cab-card"
+    );
 
 const selectedCabText =
-    document.getElementById("selectedCabText");
+    document.getElementById(
+        "selectedCabText"
+    );
 
-const cabBookingSection =
-    document.getElementById("cab-booking");
+const personsSelect =
+    document.getElementById(
+        "persons"
+    );
+
+
+/* ==========================================
+   VEHICLE CAPACITY
+   ========================================== */
+
+const cabCapacity = {
+
+    "Sedan": 4,
+
+    "SUV": 6,
+
+    "Traveller": 12
+
+};
+
+
+/* ==========================================
+   UPDATE PERSON OPTIONS
+   ========================================== */
+
+function updatePersonOptions(cabName) {
+
+    if (!personsSelect) {
+        return;
+    }
+
+
+    const seats =
+        cabCapacity[cabName];
+
+
+    if (!seats) {
+        return;
+    }
+
+
+    /* Clear old options */
+
+    personsSelect.innerHTML =
+        '<option value="">Select persons</option>';
+
+
+    /* Add correct number of persons */
+
+    for (
+        let i = 1;
+        i <= seats;
+        i++
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value = i;
+
+        option.textContent =
+            i +
+            " Person" +
+            (i > 1 ? "s" : "");
+
+
+        personsSelect.appendChild(
+            option
+        );
+
+    }
+
+
+    /* Reset previous selection */
+
+    personsSelect.value = "";
+
+}
 
 
 /* ==========================================
@@ -1708,9 +1747,7 @@ function selectCab(cabName) {
     }
 
 
-    /* --------------------------------------
-       FIND RADIO BUTTON
-       -------------------------------------- */
+    /* Find radio */
 
     const radio =
         document.querySelector(
@@ -1720,26 +1757,17 @@ function selectCab(cabName) {
         );
 
 
-    /* --------------------------------------
-       SELECT RADIO
-       -------------------------------------- */
-
-    if (radio) {
-
-        radio.checked = true;
-
-        radio.dispatchEvent(
-            new Event("change", {
-                bubbles: true
-            })
-        );
-
+    if (!radio) {
+        return;
     }
 
 
-    /* --------------------------------------
-       UPDATE SELECTED VEHICLE
-       -------------------------------------- */
+    /* Select radio */
+
+    radio.checked = true;
+
+
+    /* Update selected vehicle text */
 
     if (selectedCabText) {
 
@@ -1749,41 +1777,54 @@ function selectCab(cabName) {
     }
 
 
-    /* --------------------------------------
-       UPDATE CARD STATE
-       -------------------------------------- */
+    /* Update persons */
+
+    updatePersonOptions(
+        cabName
+    );
+
+
+    /* Remove selected class */
 
     cabCards.forEach(function (card) {
 
-        card.classList.remove("selected");
+        card.classList.remove(
+            "selected"
+        );
 
     });
 
 
+    /* Add selected class */
+
     const selectedCard =
-        document.querySelector(
-            '.cab-card[data-cab="' +
-            cabName +
-            '"]'
+        radio.closest(
+            ".cab-card"
         );
 
 
     if (selectedCard) {
 
-        selectedCard.classList.add("selected");
+        selectedCard.classList.add(
+            "selected"
+        );
 
     }
 
 
-    /* --------------------------------------
-       MOVE CUSTOMER TO BOOKING FORM
-       -------------------------------------- */
+    /* Move to booking form */
 
-    if (cabBookingSection) {
+    const bookingSection =
+        document.getElementById(
+            "cab-booking"
+        );
+
+
+    if (bookingSection) {
 
         setTimeout(function () {
 
-            cabBookingSection.scrollIntoView({
+            bookingSection.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
@@ -1796,7 +1837,7 @@ function selectCab(cabName) {
 
 
 /* ==========================================
-   RADIO BUTTON CHANGE
+   RADIO CHANGE
    ========================================== */
 
 cabRadios.forEach(function (radio) {
@@ -1805,48 +1846,9 @@ cabRadios.forEach(function (radio) {
         "change",
         function () {
 
-            const cabName =
-                this.value;
-
-
-            if (selectedCabText) {
-
-                selectedCabText.textContent =
-                    cabName;
-
-            }
-
-
-            /* ------------------------------
-               UPDATE CARD
-               ------------------------------ */
-
-            cabCards.forEach(
-                function (card) {
-
-                    card.classList.remove(
-                        "selected"
-                    );
-
-                }
+            selectCab(
+                this.value
             );
-
-
-            const selectedCard =
-                document.querySelector(
-                    '.cab-card[data-cab="' +
-                    cabName +
-                    '"]'
-                );
-
-
-            if (selectedCard) {
-
-                selectedCard.classList.add(
-                    "selected"
-                );
-
-            }
 
         }
     );
@@ -1855,7 +1857,7 @@ cabRadios.forEach(function (radio) {
 
 
 /* ==========================================
-   WHOLE CARD CLICK
+   CLICK ANYWHERE ON VEHICLE CARD
    ========================================== */
 
 cabCards.forEach(function (card) {
@@ -1865,134 +1867,40 @@ cabCards.forEach(function (card) {
         function (event) {
 
             /*
-             * If the customer directly clicks
-             * the radio button or its label,
-             * don't trigger the selection twice.
+             * Don't interfere with the
+             * radio/label click itself.
              */
 
-            if (
+            const clickedRadio =
                 event.target.closest(
-                    ".cab-select-option"
-                )
-            ) {
+                    'input[name="cab"]'
+                );
 
+
+            if (clickedRadio) {
                 return;
-
             }
 
 
             const cabName =
-                this.dataset.cab;
+                this.querySelector(
+                    'input[name="cab"]'
+                )?.value;
 
 
-            selectCab(cabName);
-
-        }
-    );
-
-
-    /* ======================================
-       KEYBOARD SUPPORT
-       ====================================== */
-
-    card.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                const cabName =
-                    this.dataset.cab;
-
-                selectCab(cabName);
-
+            if (!cabName) {
+                return;
             }
+
+
+            selectCab(
+                cabName
+            );
 
         }
     );
 
 });
-
-  
-    /* ==========================================
-       DATE MINIMUM
-       ========================================== */
-
-    const dateInput =
-        document.getElementById("date");
-
-     if (dateInput) {
-
-        const today =
-            new Date().toISOString().split("T")[0];
-
-        dateInput.min = today;
-
-    }
-
- 
-    /* ==========================================
-       MOBILE NUMBER
-       ========================================== */
-
-    const mobileInput =
-        document.getElementById("mobile");
-
-     if (mobileInput) {
-
-        mobileInput.addEventListener("input", function () {
-
-            this.value =
-                this.value
-                    .replace(/\D/g, "")
-                    .slice(0, 10);
-
-        });
-
-    }
- 
-
-    /* ==========================================
-       SCROLL REVEAL
-       ========================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".cab-card, .destination-card, .why-item, .intro-grid"
-        );
-
-     const observer =
-        new IntersectionObserver(
-            function (entries) {
-
-                entries.forEach(function (entry) {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-     revealElements.forEach(function (element) {
-
-        element.classList.add("reveal");
-
-        observer.observe(element);
-
-    });
 
  });
 </script>
