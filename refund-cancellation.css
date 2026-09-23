@@ -514,14 +514,14 @@ select {
 
     scroll-margin-top: 100px;
 
-    opacity: 0;
+    /* Always visible */
+    opacity: 1;
 
-    transform: translateY(22px);
-
-    transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
+    transform: none;
 }
+
+
+/* First section */
 
 .refund-section:first-child {
     padding-top: 0;
