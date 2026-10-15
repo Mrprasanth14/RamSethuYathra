@@ -3590,3 +3590,72 @@ body {
         color: white;
     }
 }
+.regular-price {
+    display: inline-block;
+    margin-right: 10px;
+    color: #8a929a;
+    font-size: 18px;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.offer-price {
+    display: inline-block;
+    color: #003049;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.discount-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #fff0df;
+    color: #f77f00;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.age-policy-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 14px 0 20px;
+    padding: 14px 16px;
+    background: #fff5e8;
+    border: 1px solid #f5d8b4;
+    border-radius: 12px;
+    color: #003049;
+}
+
+.age-policy-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.age-policy-note strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.age-policy-note p {
+    margin: 0;
+    color: #657582;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    .age-policy-note {
+        padding: 12px;
+        gap: 9px;
+    }
+
+    .age-policy-note p {
+        font-size: 12px;
+    }
+}

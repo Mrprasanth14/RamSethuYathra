@@ -702,39 +702,59 @@ function createBookingCard(booking) {
     /* ROOM */
 
     else if (
-        booking.collection ===
-        "roomBookings"
-    ) {
+    booking.collection ===
+    "roomBookings"
+) {
 
-        details = `
+    details = `
 
-            <p>
-                🛏️
-                <strong>Room:</strong>
-                ${escapeHTML(booking.room || "-")}
-            </p>
+        <p>
+            🛏️
+            <strong>Room:</strong>
+            ${booking.room || "-"}
+        </p>
 
-            <p>
-                👥
-                <strong>Persons:</strong>
-                ${escapeHTML(booking.persons || "-")}
-            </p>
+        <p>
+            🛌
+            <strong>Bed Type:</strong>
+            ${booking.bedType || "-"}
+        </p>
 
-            <p>
-                📅
-                <strong>Check-in:</strong>
-                ${escapeHTML(booking.checkin || "-")}
-            </p>
+        <p>
+            👥
+            <strong>Persons:</strong>
+            ${booking.persons || "-"}
+        </p>
 
-            <p>
-                📅
-                <strong>Check-out:</strong>
-                ${escapeHTML(booking.checkout || "-")}
-            </p>
+        <p>
+            📅
+            <strong>Check-in:</strong>
+            ${booking.checkin || "-"}
+        </p>
 
-        `;
+        <p>
+            📅
+            <strong>Check-out:</strong>
+            ${booking.checkout || "-"}
+        </p>
 
-    }
+        <p>
+            💰
+            <strong>Room Price:</strong>
+            ₹${Number(
+                booking.roomPrice || 0
+            ).toLocaleString("en-IN")}
+        </p>
+
+        <p>
+            📝
+            <strong>Request:</strong>
+            ${booking.request || "None"}
+        </p>
+
+    `;
+
+}
 
 
     /* TEMPLE */

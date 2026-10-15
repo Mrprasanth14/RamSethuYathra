@@ -769,6 +769,21 @@
                 </select>
 
             </div>
+            
+<div class="age-policy-note">
+    <span class="age-policy-icon">ℹ️</span>
+    <div>
+        <strong>Guest Age Policy</strong>
+        <p>
+            Guests aged 18 years and above are counted as adults
+            for room accommodation. Guests aged 10–17 years are
+            not counted as separate room occupants under this policy.
+            Please include their ages in your booking details so we
+            can confirm suitable accommodation arrangements.
+        </p>
+    </div>
+</div>
+
 
 
 
@@ -978,7 +993,7 @@
 
             <div class="other-image">
 
-                <img src="images/Rameswaram agnitheertham.jpg"
+                <img src="images/medium.png"
                      alt="Medium Rameswaram package">
 
             </div>
@@ -1024,7 +1039,7 @@
 
             <div class="other-image">
 
-                <img src="images/beautiful-beach.jpg"
+                <img src="images/premium.png"
                      alt="Premium Rameswaram package">
 
             </div>
@@ -1463,27 +1478,32 @@
        PRICE DATA
     ===================================================== */
 
-    const prices = {
+    // NORMAL PACKAGE PRICES
+// Both values are total prices for the whole group.
 
-        2: 7999,
+const regularPrices = {
+    2: 9000,
+    3: 11000,
+    4: 13000,
+    5: 15000,
+    6: 17000,
+    7: 20000,
+    8: 22000,
+    9: 25000,
+    10: 28000
+};
 
-        3: 4800,
-
-        4: 5900,
-
-        5: 7000,
-
-        6: 8200,
-
-        7: 9300,
-
-        8: 10500,
-
-        9: 11600,
-
-        10: 12700
-
-    };
+const prices = {
+    2: 7500,
+    3: 8500,
+    4: 9500,
+    5: 11500,
+    6: 12500,
+    7: 13500,
+    8: 14500,
+    9: 15500,
+    10: 17500
+};
 
 
     const personsSelect =
@@ -1516,49 +1536,39 @@
     ===================================================== */
 
     function updatePrice() {
+    const persons = Number(personsSelect.value);
 
-        const persons =
-            Number(personsSelect.value);
+    const regularPrice = regularPrices[persons];
+    const offerPrice = prices[persons];
 
+    if (!regularPrice || !offerPrice) return;
 
-        const price =
-            prices[persons];
+    const formattedRegular =
+        regularPrice.toLocaleString("en-IN");
 
+    const formattedOffer =
+        offerPrice.toLocaleString("en-IN");
 
-        if (!price) return;
+    // Main package price: original price + offer price
+    priceElement.innerHTML = `
+        <span class="regular-price">₹${formattedRegular}</span>
+        <span class="offer-price">₹${formattedOffer}</span>
+        <span class="discount-badge">OFFER</span>
+    `;
 
+    // Number of persons
+    priceLabel.textContent =
+        `For ${persons} Persons`;
 
-        const formattedPrice =
-            price.toLocaleString("en-IN");
+    selectedPersons.textContent = persons;
 
+    // Total package price uses the offer price
+    totalPrice.textContent = `₹${formattedOffer}`;
+}
 
-        priceElement.textContent =
-            `₹${formattedPrice}`;
+personsSelect.addEventListener("change", updatePrice);
 
-
-        priceLabel.textContent =
-            `For ${persons} Persons`;
-
-
-        selectedPersons.textContent =
-            persons;
-
-
-        totalPrice.textContent =
-            `₹${formattedPrice}`;
-
-    }
-
-
-    personsSelect.addEventListener(
-        "change",
-        updatePrice
-    );
-
-
-    updatePrice();
-
-
+updatePrice();
 
     /* =====================================================
        CONTINUE TO BOOKING
