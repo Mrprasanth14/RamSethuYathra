@@ -3659,3 +3659,146 @@ body {
         font-size: 12px;
     }
 }
+
+/* =========================================
+   MEDIUM PACKAGE - BOOKING PRICE DESIGN
+========================================= */
+
+.booking-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.booking-card-top .package-tag {
+    display: block;
+    margin: 0;
+    color: #f77f00;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.booking-price {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.booking-price small {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.price-offer-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.price-offer-row del {
+    color: #929ba3;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: line-through;
+}
+
+.price-offer-row strong {
+    color: #003049;
+    font-size: clamp(34px, 5vw, 50px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.offer-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 30px;
+    background: #fff0df;
+    color: #f77f00;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.booking-price em {
+    color: #64748b;
+    font-size: 14px;
+    font-style: normal;
+    margin-top: 2px;
+}
+
+.booking-divider {
+    margin-top: 8px;
+    margin-bottom: 25px;
+    border-top: 1px solid #eadfd3;
+}
+
+/* PERSON SELECTOR */
+
+.booking-field label {
+    color: #003049;
+    font-weight: 800;
+}
+
+.booking-field label i {
+    color: #f77f00;
+    margin-right: 7px;
+}
+
+.booking-field select {
+    width: 100%;
+    min-height: 60px;
+    padding: 0 20px;
+    border: 1px solid #ead9c7;
+    border-radius: 13px;
+    background: #fffaf5;
+    color: #003049;
+    font-size: 16px;
+    font-weight: 700;
+    outline: none;
+}
+
+.booking-field select:focus {
+    border-color: #f77f00;
+    box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.10);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .booking-card-top {
+        gap: 20px;
+    }
+
+    .price-offer-row {
+        gap: 9px;
+    }
+
+    .price-offer-row del {
+        font-size: 16px;
+    }
+
+    .price-offer-row strong {
+        font-size: 36px;
+    }
+
+    .offer-badge {
+        padding: 5px 9px;
+        font-size: 10px;
+    }
+
+    .booking-field select {
+        min-height: 56px;
+        font-size: 15px;
+    }
+
+}

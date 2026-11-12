@@ -729,30 +729,41 @@
         <aside class="booking-card reveal">
 
 
-            <div class="booking-card-top">
+            
+<div class="booking-card-top">
 
-                <span>
-                    PLAN YOUR RAMESWARAM TRIP
-                </span>
+    <span class="package-tag">
+        MEDIUM PACKAGE
+    </span>
 
+    <div class="booking-price">
 
-                <div class="booking-price">
+        <small>Package price</small>
 
-                    <small>
-                        Starting package price
-                    </small>
+        <div class="price-offer-row">
 
-                    <strong id="priceDisplay">
-                        ₹9,500
-                    </strong>
+            <del id="originalPriceDisplay">
+                ₹15,000
+            </del>
 
-                    <em id="pricePersonDisplay">
-                        For 5 Persons
-                    </em>
+            <strong id="priceDisplay">
+                ₹12,500
+            </strong>
 
-                </div>
+            <span class="offer-badge">
+                OFFER
+            </span>
 
-            </div>
+        </div>
+
+        <em id="pricePersonDisplay">
+            For 5 Persons
+        </em>
+
+    </div>
+
+</div>
+
 
 
             <div class="booking-divider"></div>
@@ -821,6 +832,19 @@
                 </select>
 
             </div>
+            <div class="age-policy-note">
+    <span class="age-policy-icon">ℹ️</span>
+    <div>
+        <strong>Guest Age Policy</strong>
+        <p>
+            Guests aged 18 years and above are counted as adults
+            for room accommodation. Guests aged 10–17 years are
+            not counted as separate room occupants under this policy.
+            Please include their ages in your booking details so we
+            can confirm suitable accommodation arrangements.
+        </p>
+    </div>
+   </div>
 
 
             <div class="price-summary">
@@ -1529,41 +1553,41 @@
        UPDATE PRICE
     ===================================================== */
 
-    function updatePrice() {
+    
+function updatePrice() {
 
-        const persons =
-            Number(personSelect.value);
+    const persons = Number(personSelect.value);
 
-        const price =
-            prices[persons];
+    const price = prices[persons];
+    const originalPrice = regularPrices[persons];
 
-
-        if (!price) {
-            return;
-        }
-
-
-        const formattedPrice =
-            "₹" +
-            price.toLocaleString("en-IN");
-
-
-        priceDisplay.textContent =
-            formattedPrice;
-
-
-        pricePersonDisplay.textContent =
-            `For ${persons} Persons`;
-
-
-        summaryPersons.textContent =
-            persons;
-
-
-        summaryPrice.textContent =
-            formattedPrice;
-
+    if (!price || !originalPrice) {
+        return;
     }
+
+    const formattedPrice =
+        "₹" + price.toLocaleString("en-IN");
+
+    const formattedOriginalPrice =
+        "₹" + originalPrice.toLocaleString("en-IN");
+
+    // Current offer price
+    priceDisplay.textContent = formattedPrice;
+
+    // Original price
+    document.getElementById("originalPriceDisplay")
+        .textContent = formattedOriginalPrice;
+
+    // Person count
+    pricePersonDisplay.textContent =
+        `For ${persons} Persons`;
+
+    // Booking summary
+    summaryPersons.textContent = persons;
+
+    summaryPrice.textContent = formattedPrice;
+}
+
 
 
     personSelect.addEventListener(
