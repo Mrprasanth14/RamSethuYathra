@@ -60,36 +60,41 @@ if (bookingForm) {
     const packageName = document.getElementById("package").value;
     const message = document.getElementById("message").value;
 
-    const ownerNumber = "918838170745";
+    
+const ownerNumber = "918838170745";
 
-    const whatsappMessage =
-      `New Rameswaram Package Booking\n\n` +
-      `Name: ${name}\n` +
-      `Mobile: ${mobile}\n` +
-      `Persons: ${persons}\n` +
-      `Date: ${date}\n` +
-      `Package: ${packageName}\n` +
-      `Message: ${message}`;
+const whatsappMessage =
+  `New Rameswaram Package Booking\n\n` +
+  `Name: ${name}\n` +
+  `Mobile: ${mobile}\n` +
+  `Persons: ${persons}\n` +
+  `Date: ${date}\n` +
+  `Package: ${packageName}\n` +
+  `Message: ${message}`;
 
-    openWhatsAppWithSuccess(message);
+openWhatsAppWithSuccess(whatsappMessage, ownerNumber);
+
   });
 }
-function openWhatsAppWithSuccess(message) {
+
+function openWhatsAppWithSuccess(message, ownerNumber) {
+
   Swal.fire({
     icon: "success",
-    title: "Booking Confirmed",
-    text: "Redirecting to WhatsApp...",
-    timer: 1500,
-    showConfirmButton: false
+    title: "Opening WhatsApp",
+    text: "Your booking details are ready to send.",
+    confirmButtonColor: "#ff7a00"
+  }).then(() => {
+
+    const whatsappURL =
+      `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+
   });
 
-  setTimeout(() => {
-    window.open(
-      `https://wa.me/918838170745?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
-  }, 1500);
 }
+
 window.onscroll = function () {
   const topBtn = document.getElementById("topBtn");
 

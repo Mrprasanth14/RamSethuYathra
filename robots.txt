@@ -1,10 +1,14 @@
+
 User-agent: *
 Allow: /
 
 Disallow: /admin.html
+Disallow: /admin-login.html
 Disallow: /customer-dashboard.html
 Disallow: /booking.html
+Disallow: /booking-success.html
 Disallow: /login.html
 Disallow: /signup.html
+Disallow: /forgot-password.html
 
-Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
+Sitemap: https://ram-sethu-yathra.vercel.app/sitemap.xml

@@ -1,53 +1,58 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://ramsethuyatra.com/</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/about.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/about.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/contact.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/contact.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/totalpackage.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/totalpackage.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/normal-package.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/normal-package.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/medium-package.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/medium-package.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/premium-package.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/premium-package.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/rameswaram-cab-service.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/rameswaram-cab-service.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/rameswaram-rooms.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/rameswaram-rooms.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/terms.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/ramanathaswamy-temple.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/privacy.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/terms.html</loc>
     </url>
 
     <url>
-        <loc>https://ramsethuyatra.com/refund-cancellation.html</loc>
+        <loc>https://ram-sethu-yathra.vercel.app/privacy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://ram-sethu-yathra.vercel.app/refund-cancellation.html</loc>
     </url>
 
 </urlset>
