@@ -1,285 +1,151 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Cancellation & Refund Policy | RamSethuYatra</title>
 
-    <meta name="description"
-          content="Read the cancellation and refund policy for RamSethuYatra travel, pilgrimage and booking services.">
-
+    <meta name="description" content="Read the cancellation and refund policy for RamSethuYatra travel, pilgrimage and booking services.">
     <meta name="robots" content="index, follow">
 
-    <!-- <link rel="stylesheet" href="site-theme.css"> -->
     <link rel="stylesheet" href="refund-cancellation.css">
-     <link rel="stylesheet"
-          href="header.css">
-          <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="icon" href="images/logo.png">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
+<!-- HEADER -->
 <header class="site-header">
-
     <div class="header-inner">
 
-
-        <!-- LOGO -->
-
-        <a href="index.html"
-           class="logo"
-           aria-label="RamSethuYatra home">
-
-            <span class="logo-mark">
-                ॐ
-            </span>
-
+        <a href="index.html" class="logo" aria-label="RamSethuYatra home">
+            <span class="logo-mark">ॐ</span>
             <span class="logo-name">
-
                 <b>Ram</b>
-
                 <em>Sethu</em>
-
                 <b>Yatra</b>
-
             </span>
-
         </a>
 
+        <nav class="main-nav" id="mainNav">
 
-        <!-- NAVIGATION -->
-
-        <nav class="main-nav"
-             id="mainNav">
-
-
-            <a href="index.html"
-               >
-
+            <a href="index.html">
                 <i class="fa-solid fa-house"></i>
-
                 <span>Home</span>
-
             </a>
-
 
             <a href="totalpackage.html">
-
                 <i class="fa-solid fa-suitcase-rolling"></i>
-
                 <span>Packages</span>
-
             </a>
-
 
             <a href="ramanathaswamy-temple.html">
-
                 <i class="fa-solid fa-place-of-worship"></i>
-
                 <span>Temple</span>
-
             </a>
-
 
             <a href="rameswaram-cab-service.html">
-
                 <i class="fa-solid fa-car"></i>
-
                 <span>Cabs</span>
-
             </a>
-
 
             <a href="rameswaram-rooms.html">
-
                 <i class="fa-solid fa-bed"></i>
-
                 <span>Rooms</span>
-
             </a>
-
-
-            <!-- SHOW ONLY AFTER LOGIN -->
 
             <a href="customer-dashboard.html"
                id="myBookingNav"
                class="logged-in-only"
                style="display:none;">
-
                 <i class="fa-solid fa-book-open"></i>
-
                 <span>My Bookings</span>
-
             </a>
-
-
-            <!-- SHOW WHEN NOT LOGGED IN -->
 
             <a href="login.html"
                id="loginNav"
                class="logged-out-only">
-
                 <i class="fa-solid fa-right-to-bracket"></i>
-
                 <span>Login</span>
-
             </a>
-
 
             <a href="about.html">
-
                 <i class="fa-solid fa-circle-info"></i>
-
                 <span>About</span>
-
             </a>
-
-
-            <!-- LOGOUT -->
 
             <button type="button"
                     id="logoutNav"
                     class="logged-in-only nav-logout"
                     style="display:none;">
-
                 <i class="fa-solid fa-right-from-bracket"></i>
-
                 <span>Logout</span>
-
             </button>
 
         </nav>
 
-
-        <!-- HEADER ACTIONS -->
-
         <div class="header-actions">
-
-
-            <!-- LANGUAGE -->
 
             <div class="translate-box">
 
-    <button type="button"
-            id="languageBtn"
-            class="language-btn"
-            aria-label="Select language">
+                <button type="button"
+                        id="languageBtn"
+                        class="language-btn"
+                        aria-label="Select language">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
 
-        <i class="fa-solid fa-globe"></i>
+                <div id="languageMenu" class="language-menu">
 
-    </button>
+                    <div class="language-title">Select Language</div>
 
-    <div id="languageMenu"
-         class="language-menu">
+                    <button type="button" data-lang="en">🇬🇧 English</button>
+                    <button type="button" data-lang="ta">🇮🇳 தமிழ்</button>
+                    <button type="button" data-lang="hi">🇮🇳 हिन्दी</button>
+                    <button type="button" data-lang="ml">🇮🇳 മലയാളം</button>
+                    <button type="button" data-lang="te">🇮🇳 తెలుగు</button>
+                    <button type="button" data-lang="kn">🇮🇳 ಕನ್ನಡ</button>
+                    <button type="button" data-lang="bn">🇮🇳 বাংলা</button>
+                    <button type="button" data-lang="mr">🇮🇳 मराठी</button>
+                    <button type="button" data-lang="gu">🇮🇳 ગુજરાતી</button>
+                    <button type="button" data-lang="pa">🇮🇳 ਪੰਜਾਬੀ</button>
+                    <button type="button" data-lang="es">🇪🇸 Español</button>
+                    <button type="button" data-lang="fr">🇫🇷 Français</button>
+                    <button type="button" data-lang="de">🇩🇪 Deutsch</button>
+                    <button type="button" data-lang="ar">🇸🇦 العربية</button>
 
-        <div class="language-title">
-            Select Language
-        </div>
+                </div>
 
-        <button type="button" data-lang="en">
-            🇬🇧 English
-        </button>
+                <div id="google_translate_element"
+                     class="google-translate-hidden">
+                </div>
 
-        <button type="button" data-lang="ta">
-            🇮🇳 தமிழ்
-        </button>
-
-        <button type="button" data-lang="hi">
-            🇮🇳 हिन्दी
-        </button>
-
-        <button type="button" data-lang="ml">
-            🇮🇳 മലയാളം
-        </button>
-
-        <button type="button" data-lang="te">
-            🇮🇳 తెలుగు
-        </button>
-
-        <button type="button" data-lang="kn">
-            🇮🇳 ಕನ್ನಡ
-        </button>
-
-        <button type="button" data-lang="bn">
-            🇮🇳 বাংলা
-        </button>
-
-        <button type="button" data-lang="mr">
-            🇮🇳 मराठी
-        </button>
-
-        <button type="button" data-lang="gu">
-            🇮🇳 ગુજરાતી
-        </button>
-
-        <button type="button" data-lang="pa">
-            🇮🇳 ਪੰਜਾਬੀ
-        </button>
-
-        <button type="button" data-lang="es">
-            🇪🇸 Español
-        </button>
-
-        <button type="button" data-lang="fr">
-            🇫🇷 Français
-        </button>
-
-        <button type="button" data-lang="de">
-            🇩🇪 Deutsch
-        </button>
-
-        <button type="button" data-lang="ar">
-            🇸🇦 العربية
-        </button>
-
-    </div>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element"
-         class="google-translate-hidden">
-    </div>
-
-</div>
-
-
-            <!-- MOBILE MENU -->
+            </div>
 
             <button type="button"
                     class="mobile-menu-btn"
                     id="mobileMenuBtn"
                     aria-label="Open menu">
-
                 <i class="fa-solid fa-bars"></i>
-
             </button>
 
         </div>
-
     </div>
-
 </header>
 
 
-
-<!-- ================= HERO ================= -->
-
+<!-- HERO -->
 <section class="policy-hero">
 
     <div class="policy-hero-overlay"></div>
 
     <div class="policy-hero-content">
 
-        <span class="eyebrow">
-            IMPORTANT INFORMATION
-        </span>
+        <span class="eyebrow">IMPORTANT INFORMATION</span>
 
         <h1>
             Cancellation &<br>
@@ -293,583 +159,473 @@
         </p>
 
         <div class="policy-meta">
-
-            <span>
-                Last updated: 2026
-            </span>
-
-            <span>
-                RamSethuYatra
-            </span>
-
+            <span>Last updated: 2026</span>
+            <span>RamSethuYatra</span>
         </div>
 
     </div>
-
 </section>
 
 
-<!-- ================= MAIN CONTENT ================= -->
-
+<!-- MAIN CONTENT -->
 <main class="refund-layout">
 
-
-    <!-- ================= SIDEBAR ================= -->
-
+    <!-- SIDEBAR -->
     <aside class="refund-sidebar">
 
         <div class="sidebar-card">
 
-            <span class="sidebar-label">
-                POLICY GUIDE
-            </span>
+            <span class="sidebar-label">POLICY GUIDE</span>
 
-            <h3>
-                Cancellation & Refund
-            </h3>
+            <h3>Cancellation & Refund</h3>
 
-            <p>
-                Quick access to the main sections
-                of this policy.
-            </p>
+            <p>Quick access to the main sections of this policy.</p>
 
             <nav class="policy-menu">
 
-                <a href="#overview">
-                    01 Overview
-                </a>
-
-                <a href="#cancellation">
-                    02 Cancellation
-                </a>
-
-                <a href="#modification">
-                    03 Booking Changes
-                </a>
-
-                <a href="#refund">
-                    04 Refunds
-                </a>
-
-                <a href="#processing">
-                    05 Processing
-                </a>
-
-                <a href="#nonrefundable">
-                    06 Non-Refundable Items
-                </a>
-
-                <a href="#special">
-                    07 Special Circumstances
-                </a>
-
-                <a href="#contact">
-                    08 Contact Us
-                </a>
+                <a href="#overview">01 Overview</a>
+                <a href="#cancellation">02 Cancellation</a>
+                <a href="#modification">03 Booking Changes</a>
+                <a href="#refund">04 Refunds</a>
+                <a href="#processing">05 Processing</a>
+                <a href="#nonrefundable">06 Non-Refundable Items</a>
+                <a href="#special">07 Special Circumstances</a>
+                <a href="#contact">08 Contact Us</a>
 
             </nav>
 
         </div>
-
     </aside>
 
 
-    <!-- ================= POLICY CONTENT ================= -->
-
+    <!-- POLICY CONTENT -->
     <section class="refund-content">
 
+        <!-- 01 OVERVIEW -->
+        <article class="refund-section" id="overview">
 
-        <!-- 01 -->
-
-        <article class="refund-section"
-                 id="overview">
-
-            <div class="section-number">
-                01
-            </div>
+            <div class="section-number">01</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    OVERVIEW
-                </span>
+                <span class="section-label">OVERVIEW</span>
 
-                <h2>
-                    Our cancellation approach
-                </h2>
+                <h2>Our cancellation approach</h2>
 
                 <p>
-                    At RamSethuYatra, we understand that
-                    travel plans can change. We aim to handle
-                    cancellation and refund requests fairly
-                    while also considering arrangements already
-                    made for your booking.
+                    At RamSethuYatra, we understand that travel
+                    plans can change. We aim to handle cancellation
+                    and refund requests fairly while also considering
+                    arrangements already made for your booking.
                 </p>
 
                 <p>
-                    Cancellation and refund eligibility may
-                    depend on the type of service booked,
-                    the timing of the request and whether
-                    arrangements have already been confirmed
-                    with service providers.
+                    Cancellation and refund eligibility may depend
+                    on the type of service booked, the timing of the
+                    request and whether arrangements have already
+                    been confirmed with service providers.
                 </p>
 
             </div>
-
         </article>
 
 
-        <!-- 02 -->
+        <!-- 02 CANCELLATION -->
+        <article class="refund-section" id="cancellation">
 
-        <article class="refund-section"
-                 id="cancellation">
-
-            <div class="section-number">
-                02
-            </div>
+            <div class="section-number">02</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    CANCELLATION
-                </span>
+                <span class="section-label">CANCELLATION</span>
 
-                <h2>
-                    Cancelling a booking
-                </h2>
+                <h2>How to cancel a booking</h2>
 
                 <p>
-                    If you need to cancel a booking, please
-                    contact RamSethuYatra as soon as possible
-                    using the contact details provided below.
+                    To cancel a booking, contact RamSethuYatra
+                    by email or WhatsApp using the contact details
+                    in the Contact Us section. Please send the
+                    request as early as possible.
                 </p>
 
                 <div class="info-box">
 
-                    <strong>
-                        Important
-                    </strong>
+                    <strong>When is a cancellation effective?</strong>
 
                     <p>
-                        A cancellation request should be made
-                        before the scheduled service date
-                        whenever possible.
+                        Your cancellation time is the date and time
+                        we receive your written request. The applicable
+                        refund band is calculated against the scheduled
+                        start date and time of the booked service.
                     </p>
 
                 </div>
 
                 <ul class="policy-list">
-
-                    <li>
-                        Provide your booking reference or
-                        relevant booking details.
-                    </li>
-
-                    <li>
-                        Clearly mention that you want to
-                        cancel the booking.
-                    </li>
-
-                    <li>
-                        Cancellation requests are subject
-                        to review and applicable service
-                        conditions.
-                    </li>
-
-                    <li>
-                        Any amount already committed to
-                        third-party service providers may
-                        affect the refundable amount.
-                    </li>
-
+                    <li>Include your booking reference or booking ID.</li>
+                    <li>Provide the name and mobile number used for the booking.</li>
+                    <li>Mention the service, scheduled travel date and that you want to cancel.</li>
+                    <li>We will acknowledge the request and explain any applicable deductions before processing the refund.</li>
+                    <li>Please do not treat a booking as cancelled until you receive our written acknowledgement.</li>
                 </ul>
 
             </div>
-
         </article>
 
 
-        <!-- 03 -->
+        <!-- 03 BOOKING CHANGES -->
+        <article class="refund-section" id="modification">
 
-        <article class="refund-section"
-                 id="modification">
-
-            <div class="section-number">
-                03
-            </div>
+            <div class="section-number">03</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    BOOKING CHANGES
-                </span>
+                <span class="section-label">BOOKING CHANGES</span>
 
-                <h2>
-                    Changing your booking
-                </h2>
+                <h2>Changing your booking</h2>
 
                 <p>
-                    Customers may contact us if they need
-                    to change booking details such as the
-                    travel date, number of persons or
-                    selected service.
+                    Customers may contact us if they need to
+                    change booking details such as the travel
+                    date, number of persons or selected service.
                 </p>
 
                 <p>
-                    Changes are subject to availability.
-                    A requested modification may require
-                    confirmation from the relevant service
-                    provider.
+                    Changes are subject to availability. A requested
+                    modification may require confirmation from the
+                    relevant service provider.
                 </p>
 
                 <div class="highlight-box">
 
-                    <span class="highlight-icon">
-                        ↗
-                    </span>
+                    <span class="highlight-icon">↗</span>
 
                     <div>
 
-                        <strong>
-                            Contact us early
-                        </strong>
+                        <strong>Contact us early</strong>
 
                         <p>
-                            Earlier requests generally give
-                            us more opportunity to adjust
-                            arrangements before services
-                            are confirmed.
+                            Earlier requests generally give us more
+                            opportunity to adjust arrangements before
+                            services are confirmed.
                         </p>
 
                     </div>
-
                 </div>
 
             </div>
-
         </article>
 
 
-        <!-- 04 -->
+        <!-- 04 REFUNDS -->
+        <article class="refund-section" id="refund">
 
-        <article class="refund-section"
-                 id="refund">
-
-            <div class="section-number">
-                04
-            </div>
+            <div class="section-number">04</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    REFUNDS
-                </span>
+                <span class="section-label">REFUNDS</span>
 
-                <h2>
-                    Refund eligibility
-                </h2>
+                <h2>Cancellation refund schedule</h2>
 
                 <p>
-                    When a refund is applicable, the amount
-                    will be determined after reviewing the
-                    booking and the cancellation circumstances.
+                    For cancellations initiated by the customer,
+                    the following schedule applies to the eligible
+                    amount paid for the cancelled service:
+                </p>
+
+                <div class="info-box">
+
+                    <strong>Refund schedule</strong>
+
+                    <ul class="policy-list">
+
+                        <li>
+                            <strong>7 days or more before the service:</strong>
+                            90% refund.
+                        </li>
+
+                        <li>
+                            <strong>3 to 6 days before the service:</strong>
+                            50% refund.
+                        </li>
+
+                        <li>
+                            <strong>0 to 2 days before the service:</strong>
+                            No refund.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <p>
+                    The same schedule applies to advance payments.
+                    The refund is calculated on the amount actually
+                    received by RamSethuYatra for the cancelled service.
                 </p>
 
                 <p>
-                    Refunds may be affected by costs already
-                    incurred for transportation, accommodation,
-                    sightseeing, temple-related arrangements
-                    or other third-party services.
+                    Where a hotel, cab operator or other service
+                    provider has already charged a non-refundable
+                    amount, that charge may be deducted only where
+                    the relevant condition was clearly disclosed
+                    to you before you confirmed or paid for the booking.
+                    We will explain the calculation and identify
+                    any such deduction.
                 </p>
 
-                <ul class="policy-list">
-
-                    <li>
-                        The original booking details may be
-                        required to process a refund request.
-                    </li>
-
-                    <li>
-                        Amounts already paid to third-party
-                        providers may not always be recoverable.
-                    </li>
-
-                    <li>
-                        Any applicable deductions will be
-                        communicated during the cancellation
-                        review.
-                    </li>
-
-                    <li>
-                        The final refundable amount will depend
-                        on the individual booking circumstances.
-                    </li>
-
-                </ul>
+                <p>
+                    If only one part of a combined booking is cancelled,
+                    the refund will be calculated for the cancelled
+                    service or portion, taking account of any disclosed
+                    provider charges. Services already used or completed
+                    are not refundable.
+                </p>
 
             </div>
-
         </article>
 
 
-        <!-- 05 -->
+        <!-- 05 PROCESSING -->
+        <article class="refund-section" id="processing">
 
-        <article class="refund-section"
-                 id="processing">
-
-            <div class="section-number">
-                05
-            </div>
+            <div class="section-number">05</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    PROCESSING
-                </span>
+                <span class="section-label">PROCESSING</span>
 
-                <h2>
-                    Refund processing
-                </h2>
+                <h2>Refund processing time</h2>
 
                 <p>
-                   If a payment has been collected for a booking,
-                   any applicable refund request will be reviewed
-                   according to the booking terms and the
-                   circumstances of the cancellation.
+                    After we review and approve a refund,
+                    RamSethuYatra will initiate it to the original
+                    payment method, wherever possible, within
+                    7–10 business days.
                 </p>
 
                 <p>
-                    The actual time required for the refund
-                    to reach the customer may depend on the
-                    payment method, banking institution or
-                    other payment-processing arrangements.
+                    The time taken for the amount to appear in
+                    your account may also depend on your bank,
+                    card issuer, UPI app or payment provider.
+                    Bank holidays and payment-provider delays
+                    may extend the time before the amount is credited.
                 </p>
 
                 <div class="notice-box">
 
-                    <strong>
-                        Please keep your booking information
-                    </strong>
+                    <strong>Keep your booking and payment details</strong>
 
                     <p>
-                        Keep your booking confirmation,
-                        booking reference and payment
-                        information available when contacting
-                        us about a refund.
+                        Please retain your booking confirmation,
+                        booking ID and payment reference. If the
+                        refund has not appeared after the stated
+                        processing period, contact us with these details.
                     </p>
 
                 </div>
 
             </div>
-
         </article>
 
 
-        <!-- 06 -->
+        <!-- 06 NON-REFUNDABLE ITEMS -->
+        <article class="refund-section" id="nonrefundable">
 
-        <article class="refund-section"
-                 id="nonrefundable">
-
-            <div class="section-number">
-                06
-            </div>
+            <div class="section-number">06</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    SERVICE CONDITIONS
-                </span>
+                <span class="section-label">SERVICE CONDITIONS</span>
 
-                <h2>
-                    Non-refundable or third-party services
-                </h2>
+                <h2>Non-refundable and third-party charges</h2>
 
                 <p>
-                    Certain services may be subject to
-                    cancellation conditions imposed by the
-                    third-party provider.
-                </p>
-
-                <p>
-                    Where a provider has already confirmed,
-                    reserved or supplied a service, the amount
-                    recoverable from that provider may be
-                    limited or unavailable.
+                    Some accommodation, transport, ticketing or
+                    other arrangements may be supplied by independent
+                    service providers and may carry their own
+                    cancellation conditions.
                 </p>
 
                 <ul class="policy-list">
 
                     <li>
-                        Accommodation arrangements may have
-                        their own cancellation conditions.
+                        Any provider-specific non-refundable charge
+                        must be disclosed before you confirm or pay
+                        for the booking.
                     </li>
 
                     <li>
-                        Transportation arrangements may be
-                        subject to provider-specific rules.
+                        Only applicable, disclosed and non-recoverable
+                        provider charges may be deducted from an
+                        otherwise eligible refund.
                     </li>
 
                     <li>
-                        Special arrangements or services may
-                        have separate cancellation conditions.
+                        We will communicate the basis of any deduction
+                        and, where available, provide details of the
+                        provider charge.
                     </li>
 
                     <li>
-                        Third-party charges may be deducted
-                        where applicable.
+                        Services already used, completed or missed
+                        because the customer did not arrive at the
+                        agreed time are not refundable, except where
+                        applicable law requires otherwise.
                     </li>
 
                 </ul>
 
-            </div>
+                <p>
+                    If a booking has special cancellation terms,
+                    those terms will be shown to you before confirmation.
+                    They will not be changed retrospectively for a
+                    booking already confirmed.
+                </p>
 
+            </div>
         </article>
 
 
-        <!-- 07 -->
+        <!-- 07 SPECIAL CIRCUMSTANCES -->
+        <article class="refund-section" id="special">
 
-        <article class="refund-section"
-                 id="special">
-
-            <div class="section-number">
-                07
-            </div>
+            <div class="section-number">07</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    SPECIAL CIRCUMSTANCES
-                </span>
+                <span class="section-label">SPECIAL CIRCUMSTANCES</span>
 
-                <h2>
-                    Unexpected situations
-                </h2>
+                <h2>When RamSethuYatra cancels or travel is disrupted</h2>
+
+                <h3>If RamSethuYatra cancels</h3>
 
                 <p>
-                    Travel arrangements can sometimes be
-                    affected by circumstances outside the
-                    customer's or RamSethuYatra's control.
+                    If RamSethuYatra cancels a confirmed service
+                    and cannot provide the service as agreed,
+                    you may choose either:
                 </p>
 
-                <p>
-                    Examples may include severe weather,
-                    government restrictions, transportation
-                    disruptions, local conditions or changes
-                    imposed by service providers.
-                </p>
+                <ul class="policy-list">
+
+                    <li>
+                        A full refund of the amount paid to
+                        RamSethuYatra for the cancelled service; or
+                    </li>
+
+                    <li>
+                        An alternative arrangement, only if you
+                        agree to it.
+                    </li>
+
+                </ul>
 
                 <p>
-                    Such situations will be reviewed based
-                    on the circumstances and the terms of
-                    the relevant service providers.
+                    An approved refund in this situation will be
+                    initiated within 7–10 business days. Any refund
+                    for a separate service supplied directly by
+                    another provider will be subject to that
+                    provider's terms, which will be explained to you.
+                </p>
+
+                <h3>Unexpected events</h3>
+
+                <p>
+                    Severe weather, government restrictions,
+                    transport disruption, safety concerns or other
+                    events outside the parties' reasonable control
+                    may affect travel arrangements. We will contact
+                    affected customers and explain available options,
+                    which may include rescheduling, an alternative
+                    service or a refund based on the services that
+                    can no longer be provided and any applicable
+                    disclosed provider terms.
                 </p>
 
                 <div class="warning-box">
 
-                    <strong>
-                        Service availability
-                    </strong>
+                    <strong>Important</strong>
 
                     <p>
-                        A cancellation caused by circumstances
-                        outside our control does not
-                        automatically guarantee a full refund.
-                        We will review the available options
-                        and communicate them to the customer.
+                        An unexpected event does not automatically
+                        mean that every part of a combined booking
+                        is refundable. We will review the affected
+                        services, explain the calculation and
+                        communicate the available options.
+                        Nothing in this policy limits rights that
+                        customers have under applicable law.
                     </p>
 
                 </div>
 
             </div>
-
         </article>
 
 
-        <!-- 08 -->
+        <!-- 08 CONTACT -->
+        <article class="refund-section" id="contact">
 
-        <article class="refund-section"
-                 id="contact">
-
-            <div class="section-number">
-                08
-            </div>
+            <div class="section-number">08</div>
 
             <div class="section-content">
 
-                <span class="section-label">
-                    CONTACT
-                </span>
+                <span class="section-label">CONTACT</span>
 
-                <h2>
-                    Need help with a cancellation?
-                </h2>
+                <h2>Need help with a cancellation?</h2>
 
                 <p>
-                    If you have questions about cancelling,
-                    changing or requesting a refund for your
-                    booking, please contact RamSethuYatra.
+                    To request a cancellation or refund, email us at
+                    ramsethuyatra@gmail.com or message us on WhatsApp
+                    at +91 8838170745. Please include your booking ID,
+                    full name, registered mobile number, service name
+                    and scheduled travel date.
+                </p>
+
+                <p>
+                    We will acknowledge your request and share the
+                    applicable refund calculation. Keep our written
+                    acknowledgement for your records.
                 </p>
 
                 <div class="refund-contact-card">
 
                     <div class="contact-item">
 
-                        <span class="contact-icon">
-                            ✉
-                        </span>
+                        <span class="contact-icon">✉</span>
 
                         <div>
-
-                            <small>
-                                Email
-                            </small>
+                            <small>Email</small>
 
                             <a href="mailto:ramsethuyatra@gmail.com">
                                 ramsethuyatra@gmail.com
                             </a>
-
                         </div>
 
                     </div>
 
-
                     <div class="contact-item">
 
-                        <span class="contact-icon">
-                            ☎
-                        </span>
+                        <span class="contact-icon">☎</span>
 
                         <div>
-
-                            <small>
-                                Phone
-                            </small>
+                            <small>Phone</small>
 
                             <a href="tel:+918838170745">
                                 +91 8838170745
                             </a>
-
                         </div>
 
                     </div>
 
-
                     <div class="contact-item">
 
-                        <span class="contact-icon">
-                            📍
-                        </span>
+                        <span class="contact-icon">📍</span>
 
                         <div>
+                            <small>Location</small>
 
-                            <small>
-                                Location
-                            </small>
-
-                            <span>
-                                Rameswaram, Tamil Nadu, India
-                            </span>
-
+                            <span>Rameswaram, Tamil Nadu, India</span>
                         </div>
 
                     </div>
@@ -877,56 +633,47 @@
                 </div>
 
             </div>
-
         </article>
 
 
-        <!-- DISCLAIMER -->
-
+        <!-- POLICY DISCLAIMER -->
         <div class="policy-disclaimer">
 
-            <strong>
-                Policy note
-            </strong>
+            <strong>Policy note</strong>
 
             <p>
-                This policy is intended to explain the general
-                approach to cancellations and refunds. Specific
-                booking conditions may vary depending on the
-                service selected and the applicable third-party
-                provider terms.
+                This policy explains the general cancellation and
+                refund terms for RamSethuYatra bookings. Any
+                service-specific cancellation condition, including
+                a third-party provider's non-refundable charge,
+                will be disclosed before the customer confirms
+                or pays for that booking.
             </p>
 
             <p>
-                RamSethuYatra reserves the right to update this
-                policy when service arrangements or business
-                conditions change. Customers should review the
-                applicable terms before confirming a booking.
+                The version of the policy shown when a booking
+                is confirmed will apply to that booking. Updates
+                will apply to future bookings and will not remove
+                rights already agreed or available under applicable law.
             </p>
 
         </div>
-
 
     </section>
 
 </main>
 
 
-<!-- ================= CTA ================= -->
-
+<!-- CTA -->
 <section class="refund-cta">
 
     <div class="refund-cta-inner">
 
         <div>
 
-            <span class="eyebrow">
-                PLANNING YOUR JOURNEY?
-            </span>
+            <span class="eyebrow">PLANNING YOUR JOURNEY?</span>
 
-            <h2>
-                Need help before you book?
-            </h2>
+            <h2>Need help before you book?</h2>
 
             <p>
                 Our team can help you understand the available
@@ -937,13 +684,11 @@
 
         <div class="cta-actions">
 
-            <a href="contact.html"
-               class="btn-primary">
+            <a href="contact.html" class="btn-primary">
                 Contact Us
             </a>
 
-            <a href="totalpackage.html"
-               class="btn-secondary">
+            <a href="totalpackage.html" class="btn-secondary">
                 View Packages
             </a>
 
@@ -954,16 +699,14 @@
 </section>
 
 
-<!-- ================= FOOTER ================= -->
-
+<!-- FOOTER -->
 <footer class="site-footer">
 
     <div class="footer-inner">
 
         <div class="footer-brand">
 
-            <a href="index.html"
-               class="footer-logo">
+            <a href="index.html" class="footer-logo">
                 RamSethuYatra
             </a>
 
@@ -977,55 +720,30 @@
 
         <div class="footer-column">
 
-            <h4>
-                Explore
-            </h4>
+            <h4>Explore</h4>
 
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-            <a href="totalpackage.html">
-                Packages
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="totalpackage.html">Packages</a>
+            <a href="contact.html">Contact</a>
 
         </div>
 
 
         <div class="footer-column">
 
-            <h4>
-                Legal
-            </h4>
+            <h4>Legal</h4>
 
-            <a href="privacy.html">
-                Privacy Policy
-            </a>
-
-            <a href="terms.html">
-                Terms & Conditions
-            </a>
-
-            <a href="refund-cancellation.html">
-                Cancellation & Refund
-            </a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="refund-cancellation.html">Cancellation & Refund</a>
 
         </div>
 
 
         <div class="footer-column">
 
-            <h4>
-                Contact
-            </h4>
+            <h4>Contact</h4>
 
             <a href="tel:+918838170745">
                 +91 8838170745
@@ -1035,9 +753,7 @@
                 ramsethuyatra@gmail.com
             </a>
 
-            <span>
-                Rameswaram, Tamil Nadu
-            </span>
+            <span>Rameswaram, Tamil Nadu</span>
 
         </div>
 
@@ -1046,21 +762,16 @@
 
     <div class="footer-bottom">
 
-        <span>
-            © 2026 RamSethuYatra. All Rights Reserved.
-        </span>
+        <span>© 2026 RamSethuYatra. All Rights Reserved.</span>
 
-        <span>
-            Travel with faith. Journey with purpose.
-        </span>
+        <span>Travel with faith. Journey with purpose.</span>
 
     </div>
 
 </footer>
 
 
-<!-- ================= FLOATING BUTTONS ================= -->
-
+<!-- FLOATING BUTTONS -->
 <a href="https://wa.me/918838170745"
    class="floating-whatsapp"
    target="_blank"
@@ -1075,6 +786,8 @@
     Call
 </a>
 
+
+<!-- SCRIPTS -->
 <script type="module" src="header.js"></script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
