@@ -66,7 +66,7 @@ onAuthStateChanged(auth, async (user) => {
     }
 
 
-    console.log("Authenticated:", user.email);
+    // console.log("Authenticated:", user.email);
 
 
     // Frontend protection
@@ -93,7 +93,7 @@ onAuthStateChanged(auth, async (user) => {
     }
 
 
-    console.log("Admin verified:", user.email);
+    // console.log("Admin verified:", user.email);
 
 
     // Load everything
