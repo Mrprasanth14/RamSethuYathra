@@ -752,62 +752,6 @@ async function showPoojaDetailsform() {
     }
 }
 
-// ==========================================
-// LANGUAGE MENU
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const languageBtn = document.getElementById("languageBtn");
-    const languageMenu = document.getElementById("languageMenu");
-
-    if (!languageBtn || !languageMenu) {
-        return;
-    }
-
-    // OPEN / CLOSE LANGUAGE MENU
-    languageBtn.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        languageMenu.classList.toggle("open");
-
-    });
-
-    // LANGUAGE BUTTONS
-    const languageButtons =
-        languageMenu.querySelectorAll("button[data-lang]");
-
-    languageButtons.forEach(function (button) {
-
-        button.addEventListener("click", function (event) {
-
-            event.stopPropagation();
-
-            const language =
-                this.getAttribute("data-lang");
-
-            changeGoogleLanguage(language);
-
-            languageMenu.classList.remove("open");
-
-        });
-
-    });
-
-    // CLOSE WHEN CLICKING OUTSIDE
-    document.addEventListener("click", function (event) {
-
-        if (
-            !languageBtn.contains(event.target) &&
-            !languageMenu.contains(event.target)
-        ) {
-            languageMenu.classList.remove("open");
-        }
-
-    });
-
-});
 
 /// ==========================================
 // VIEW DETAILS

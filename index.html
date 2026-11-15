@@ -3144,100 +3144,6 @@ document.addEventListener(
 
 
         /* ========================= */
-        /* LANGUAGE MENU */
-        /* ========================= */
-
-
-        const languageBtn =
-            document.getElementById(
-                "languageBtn"
-            );
-
-
-        const languageMenu =
-            document.getElementById(
-                "languageMenu"
-            );
-
-
-        if (languageBtn) {
-
-
-            languageBtn.addEventListener(
-
-                "click",
-
-                () => {
-
-
-                    languageMenu.classList.toggle(
-                        "open"
-                    );
-
-                }
-
-            );
-
-        }
-
-
-
-        /* ========================= */
-        /* CHANGE LANGUAGE */
-        /* ========================= */
-
-
-        document
-            .querySelectorAll("[data-lang]")
-            .forEach(
-
-                button => {
-
-
-                    button.addEventListener(
-
-                        "click",
-
-                        () => {
-
-
-                            const combo =
-                                document.querySelector(
-                                    ".goog-te-combo"
-                                );
-
-
-                            if (combo) {
-
-
-                                combo.value =
-                                    button.dataset.lang;
-
-
-                                combo.dispatchEvent(
-                                    new Event(
-                                        "change"
-                                    )
-                                );
-
-                            }
-
-
-                            languageMenu.classList.remove(
-                                "open"
-                            );
-
-                        }
-
-                    );
-
-                }
-
-            );
-
-
-
-        /* ========================= */
         /* CLOSE LANGUAGE MENU */
         /* ========================= */
 
@@ -3278,9 +3184,7 @@ document.addEventListener(
 </script>
 <script src="header.js"></script>
 <script type="module" src="script.js"></script>
-
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+<script src="language.js"></script>
 
 </body>
 
