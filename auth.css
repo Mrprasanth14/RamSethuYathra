@@ -1177,3 +1177,63 @@ input:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   RAMSETHUYATRA - HIDE GOOGLE TRANSLATE BANNER
+   Desktop + Tablet + Mobile
+   ========================================= */
+
+/* Hide Google Translate top banner */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    border: 0 !important;
+}
+
+/* Hide Google's top wrapper */
+body > .skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+/* Remove unwanted top spacing */
+html {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+    margin-top: 0 !important;
+    position: relative;
+}
+
+/* Hide Google Translate branding widget */
+.goog-te-gadget {
+    font-size: 0 !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+    display: none !important;
+}
+
+/* Prevent banner space on mobile */
+@media screen and (max-width: 768px) {
+    .goog-te-banner-frame,
+    iframe.goog-te-banner-frame,
+    body > .skiptranslate {
+        display: none !important;
+        height: 0 !important;
+    }
+
+    html,
+    body {
+        margin-top: 0 !important;
+        top: 0 !important;
+    }
+}
