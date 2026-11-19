@@ -19,7 +19,7 @@
     <title>Medium Package | RamSethuYatra</title>
 
     <link rel="stylesheet"
-          href="normal.css">
+          href="medium.css">
     <link rel="stylesheet"
           href="header.css">
 
@@ -233,79 +233,6 @@
         <i class="fa-solid fa-globe"></i>
 
     </button>
-
-    <div id="languageMenu"
-         class="language-menu">
-
-        <div class="language-title">
-            Select Language
-        </div>
-
-        <button type="button" data-lang="en">
-            🇬🇧 English
-        </button>
-
-        <button type="button" data-lang="ta">
-            🇮🇳 தமிழ்
-        </button>
-
-        <button type="button" data-lang="hi">
-            🇮🇳 हिन्दी
-        </button>
-
-        <button type="button" data-lang="ml">
-            🇮🇳 മലയാളം
-        </button>
-
-        <button type="button" data-lang="te">
-            🇮🇳 తెలుగు
-        </button>
-
-        <button type="button" data-lang="kn">
-            🇮🇳 ಕನ್ನಡ
-        </button>
-
-        <button type="button" data-lang="bn">
-            🇮🇳 বাংলা
-        </button>
-
-        <button type="button" data-lang="mr">
-            🇮🇳 मराठी
-        </button>
-
-        <button type="button" data-lang="gu">
-            🇮🇳 ગુજરાતી
-        </button>
-
-        <button type="button" data-lang="pa">
-            🇮🇳 ਪੰਜਾਬੀ
-        </button>
-
-        <button type="button" data-lang="es">
-            🇪🇸 Español
-        </button>
-
-        <button type="button" data-lang="fr">
-            🇫🇷 Français
-        </button>
-
-        <button type="button" data-lang="de">
-            🇩🇪 Deutsch
-        </button>
-
-        <button type="button" data-lang="ar">
-            🇸🇦 العربية
-        </button>
-
-    </div>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element"
-         class="google-translate-hidden">
-    </div>
-
-</div>
-
 
             <!-- MOBILE MENU -->
 
@@ -769,70 +696,71 @@
             <div class="booking-divider"></div>
 
 
-            <div class="booking-field">
 
-                <label for="personCount">
+            <!-- PERSON SELECT -->
 
-                    <i class="fa-solid fa-users"></i>
+            <!-- STAY DATES -->
+<div class="stay-date-row">
 
-                    Number of persons
+    <div class="booking-field">
+        <label for="checkIn">
+            <i class="fa-solid fa-calendar-check"></i>
+            Check-in
+        </label>
 
-                </label>
+        <input type="date" id="checkIn" name="checkIn">
+    </div>
+
+    <div class="booking-field">
+        <label for="checkOut">
+            <i class="fa-solid fa-calendar-days"></i>
+            Check-out
+        </label>
+
+        <input type="date" id="checkOut" name="checkOut">
+    </div>
+
+</div>
+
+<!-- GUESTS -->
+<div class="booking-field guests-field">
+
+    <label for="persons">
+        <i class="fa-solid fa-users"></i>
+        Guests / Persons
+    </label>
+
+    <!-- KEEP YOUR EXISTING PERSON OPTIONS -->
+    <select id="persons" name="persons">
+
+        <option value="2">2 Persons</option>
+        <option value="3">3 Persons</option>
+        <option value="4">4 Persons</option>
+        <option value="5" selected>5 Persons</option>
+        <option value="6">6 Persons</option>
+        <option value="7">7 Persons</option>
+        <option value="8">8 Persons</option>
+        <option value="9">9 Persons</option>
+        <option value="10">10 Persons</option>
+
+    </select>
+
+</div>
+
+<!-- STAY DURATION -->
+<div class="stay-duration-row">
+
+    <i class="fa-solid fa-moon"></i>
+
+    <span id="nightsDisplay">
+        Select dates
+    </span>
+
+</div>
 
 
-                <select id="personCount">
 
-
-                    <option value="2">
-                        2 Persons
-                    </option>
-
-
-                    <option value="3">
-                        3 Persons
-                    </option>
-
-
-                    <option value="4">
-                        4 Persons
-                    </option>
-
-
-                    <option value="5"
-                            selected>
-                        5 Persons
-                    </option>
-
-
-                    <option value="6">
-                        6 Persons
-                    </option>
-
-
-                    <option value="7">
-                        7 Persons
-                    </option>
-
-
-                    <option value="8">
-                        8 Persons
-                    </option>
-
-
-                    <option value="9">
-                        9 Persons
-                    </option>
-
-
-                    <option value="10">
-                        10 Persons
-                    </option>
-
-
-                </select>
-
-            </div>
-            <div class="age-policy-note">
+<div class="age-policy-note">
     <span class="age-policy-icon">ℹ️</span>
     <div>
         <strong>Guest Age Policy</strong>
@@ -1528,7 +1456,7 @@
 
 
     const personSelect =
-        document.getElementById("personCount");
+    document.getElementById("persons");
 
     const priceDisplay =
         document.getElementById("priceDisplay");
@@ -1547,36 +1475,69 @@
 
     const ctaBookButton =
         document.getElementById("ctaBookButton");
+    // Accommodation charge
+const accommodationPricePerNight = 1000;
 
+// Stay date fields
+const checkInInput = document.getElementById("checkIn");
+const checkOutInput = document.getElementById("checkOut");
+const nightsDisplay = document.getElementById("nightsDisplay");
 
     /* =====================================================
        UPDATE PRICE
     ===================================================== */
 
-    
+function getNights() {
+
+    const checkIn = checkInInput.value;
+    const checkOut = checkOutInput.value;
+
+    if (!checkIn || !checkOut) {
+        return 0;
+    }
+
+    const start = new Date(checkIn + "T00:00:00");
+    const end = new Date(checkOut + "T00:00:00");
+
+    const nights = Math.round(
+        (end - start) / (1000 * 60 * 60 * 24)
+    );
+
+    return nights > 0 ? nights : 0;
+}
+
+
 function updatePrice() {
 
     const persons = Number(personSelect.value);
+    const nights = getNights();
 
-    const price = prices[persons];
-    const originalPrice = regularPrices[persons];
+    const packagePrice = prices[persons];
+    const originalPackagePrice = regularPrices[persons];
 
-    if (!price || !originalPrice) {
+    if (!packagePrice || !originalPackagePrice) {
         return;
     }
 
-    const formattedPrice =
-        "₹" + price.toLocaleString("en-IN");
+    // Calculate accommodation
+    const accommodationCharge =
+        nights * accommodationPricePerNight;
 
-    const formattedOriginalPrice =
-        "₹" + originalPrice.toLocaleString("en-IN");
+    // Calculate final prices
+    const finalPrice =
+        packagePrice + accommodationCharge;
 
-    // Current offer price
-    priceDisplay.textContent = formattedPrice;
+    const finalOriginalPrice =
+        originalPackagePrice + accommodationCharge;
 
-    // Original price
+    // Display offer price
+    priceDisplay.textContent =
+        "₹" + finalPrice.toLocaleString("en-IN");
+
+    // Display original price
     document.getElementById("originalPriceDisplay")
-        .textContent = formattedOriginalPrice;
+        .textContent =
+        "₹" + finalOriginalPrice.toLocaleString("en-IN");
 
     // Person count
     pricePersonDisplay.textContent =
@@ -1585,46 +1546,78 @@ function updatePrice() {
     // Booking summary
     summaryPersons.textContent = persons;
 
-    summaryPrice.textContent = formattedPrice;
+    summaryPrice.textContent =
+        "₹" + finalPrice.toLocaleString("en-IN");
+
+    // Display stay duration
+    if (nights > 0) {
+
+        nightsDisplay.textContent =
+            `${nights} Night(s) | Accommodation: ₹${accommodationCharge.toLocaleString("en-IN")}`;
+
+    } else {
+
+        nightsDisplay.textContent =
+            "Select check-in and check-out dates";
+
+    }
 }
 
+personSelect.addEventListener("change", updatePrice);
 
 
-    personSelect.addEventListener(
-        "change",
-        updatePrice
-    );
+checkInInput.addEventListener("change", function () {
 
+    checkOutInput.min = checkInInput.value;
+
+    if (
+        checkOutInput.value &&
+        checkOutInput.value <= checkInInput.value
+    ) {
+        checkOutInput.value = "";
+    }
 
     updatePrice();
+
+});
+
+
+checkOutInput.addEventListener("change", updatePrice);
+
+
+updatePrice();
 
 
     /* =====================================================
        BOOKING REDIRECT
     ===================================================== */
 
-    function openBooking() {
+   function openBooking() {
 
-        const persons =
-            Number(personSelect.value);
+    const persons = Number(personSelect.value);
+    const nights = getNights();
 
-        const price =
-            prices[persons];
+    if (!checkInInput.value || !checkOutInput.value || nights <= 0) {
 
+        alert("Please select valid check-in and check-out dates.");
 
-        if (!price) {
-            return;
-        }
-
-
-        const bookingUrl =
-            `booking.html?package=medium&persons=${persons}&price=${price}`;
-
-
-        window.location.href =
-            bookingUrl;
-
+        return;
     }
+
+    const packagePrice = prices[persons];
+
+    const accommodationCharge =
+        nights * accommodationPricePerNight;
+
+    const finalPrice =
+        packagePrice + accommodationCharge;
+
+    const bookingUrl =
+        `booking.html?package=medium&persons=${persons}&price=${finalPrice}&checkIn=${checkInInput.value}&checkOut=${checkOutInput.value}&nights=${nights}`;
+
+    window.location.href = bookingUrl;
+
+}
 
 
     continueBooking.addEventListener(

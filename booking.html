@@ -78,6 +78,20 @@
             </strong>
 
         </div>
+        <div class="summary-row">
+    <span>Check-in</span>
+    <strong id="summaryCheckIn">-</strong>
+</div>
+
+<div class="summary-row">
+    <span>Check-out</span>
+    <strong id="summaryCheckOut">-</strong>
+</div>
+
+<div class="summary-row">
+    <span>Stay Duration</span>
+    <strong id="summaryNights">-</strong>
+</div>
 
 
         <div class="summary-total">
@@ -336,14 +350,32 @@ import {
    URL PARAMETERS
 ========================================= */
 
-const params =
-    new URLSearchParams(window.location.search);
+/* =========================================
+   URL PARAMETERS
+========================================= */
 
-const packageType =
-    params.get("package");
+const params = new URLSearchParams(window.location.search);
 
-const persons =
-    params.get("persons");
+const packageType = params.get("package");
+const persons = params.get("persons");
+
+const checkInDate = params.get("checkin");
+const checkOutDate = params.get("checkout");
+
+function getNightsFromDates(checkin, checkout) {
+    if (!checkin || !checkout) return 0;
+
+    const inDate = new Date(checkin + "T00:00:00");
+    const outDate = new Date(checkout + "T00:00:00");
+
+    const difference = outDate - inDate;
+
+    return Math.round(
+        difference / (1000 * 60 * 60 * 24)
+    );
+}
+
+const nights = getNightsFromDates(checkInDate, checkOutDate);
 
 
 /*
@@ -426,58 +458,50 @@ const packagePrices = {
 };
 
 
-
 /* =========================================
-   CALCULATE TRUSTED PRICE
+   CALCULATE TRUSTED PACKAGE PRICE
 ========================================= */
 
-function getPackagePrice(packageName, personCount) {
+const extraNightCharge = 1000;
+
+function getPackagePrice(packageName, personCount, stayNights) {
 
     if (!packagePrices[packageName]) {
-
         return null;
-
     }
 
-    if (!packagePrices[packageName][personCount]) {
+    const basePrice = packagePrices[packageName][personCount];
 
+    if (!basePrice) {
         return null;
-
     }
 
-    return packagePrices[packageName][personCount];
+    if (!Number.isInteger(stayNights) || stayNights < 1) {
+        return null;
+    }
 
+    return basePrice + (extraNightCharge * (stayNights - 1));
 }
-
 
 
 /* =========================================
    VALIDATE PACKAGE INFORMATION
 ========================================= */
 
-const personNumber =
-    Number(persons);
+const personNumber = Number(persons);
 
-const totalPrice =
-    getPackagePrice(
-        packageType,
-        personNumber
-    );
+const totalPrice = getPackagePrice(
+    packageType,
+    personNumber,
+    nights
+);
 
-
-/*
-If somebody manually changes the URL,
-for example:
-
-?package=premium&persons=5&price=1
-
-the price parameter is completely ignored.
-
-The website calculates:
-
-premium + 5 persons = ₹13,000
-*/
-
+console.log("Booking price calculation:", {
+    packageType,
+    persons: personNumber,
+    nights,
+    totalPrice
+});
 
 
 /* =========================================
@@ -489,40 +513,59 @@ if (
     totalPrice !== null
 ) {
 
-    document.getElementById("packageName")
-        .textContent =
+    document.getElementById("packageName").textContent =
         packageNames[packageType];
 
-
-    document.getElementById("personCount")
-        .textContent =
+    document.getElementById("personCount").textContent =
         personNumber + " Persons";
 
-
-    document.getElementById("totalAmount")
-        .textContent =
-        "₹" +
-        totalPrice.toLocaleString("en-IN");
+    document.getElementById("totalAmount").textContent =
+        "₹" + totalPrice.toLocaleString("en-IN");
 
 } else {
 
-    document.getElementById("packageName")
-        .textContent =
+    document.getElementById("packageName").textContent =
         "Invalid Package";
 
-
-    document.getElementById("personCount")
-        .textContent =
+    document.getElementById("personCount").textContent =
         "-";
 
-
-    document.getElementById("totalAmount")
-        .textContent =
+    document.getElementById("totalAmount").textContent =
         "₹0";
-
 }
 
+/* =========================================
+   DISPLAY DATES AND NIGHTS
+========================================= */
 
+function formatDate(dateString) {
+
+    if (!dateString) return "-";
+
+    const [year, month, day] = dateString.split("-");
+
+    return `${day}-${month}-${year}`;
+}
+
+document.getElementById("summaryCheckIn").textContent =
+    formatDate(checkInDate);
+
+document.getElementById("summaryCheckOut").textContent =
+    formatDate(checkOutDate);
+
+document.getElementById("summaryNights").textContent =
+    nights === 1 ? "1 Night" : `${nights} Nights`;
+
+/* =========================================
+   AUTO-FILL TRAVEL DATE
+========================================= */
+
+const travelDateInput =
+    document.getElementById("travelDate");
+
+if (checkInDate && travelDateInput) {
+    travelDateInput.value = checkInDate;
+}
 
 /* =========================================
    POPUP ELEMENTS
@@ -1077,6 +1120,10 @@ document.getElementById("bookingForm")
                     persons:
                         personNumber,
 
+                    checkInDate: checkInDate,
+                    checkOutDate: checkOutDate,
+                    nights: nights,
+
                     totalPrice:
                         totalPrice,
 
@@ -1105,6 +1152,19 @@ document.getElementById("bookingForm")
                         serverTimestamp()
 
                 };
+                if (!currentUser.email) {
+    console.error("Firebase user has no email.");
+
+    showPopup(
+        "error",
+        "Email Required",
+        "Please sign in with an email account before booking.",
+        null,
+        "OK"
+    );
+
+    return;
+}
 
 
                 const docRef =
@@ -1155,37 +1215,61 @@ document.getElementById("bookingForm")
                 );
 
 
-            } catch (error) {
+            } 
+catch (error) {
 
-                console.error(
-                    "Booking error:",
-                    error
-                );
+    console.error("========== FIREBASE BOOKING ERROR ==========");
+
+    console.error("Error code:", error.code);
+    console.error("Error message:", error.message);
+    console.error("Full error:", error);
+
+    console.error("Current user:", {
+        uid: currentUser?.uid,
+        email: currentUser?.email
+    });
+
+    console.error("Booking data:", bookingData);
+
+    console.error("=============================================");
+
+    showPopup(
+        "error",
+        "Booking Failed",
+        "Your booking could not be saved. Please contact support.",
+        null,
+        "Try Again"
+    );
+
+    button.disabled = false;
+    button.textContent = "Confirm Booking";
+}
 
 
-                showPopup(
 
-                    "error",
+            //     showPopup(
 
-                    "Booking Failed",
+            //         "error",
 
-                    "We couldn't save your booking right now. Please check your internet connection and try again.",
+            //         "Booking Failed",
 
-                    null,
+            //         "We couldn't save your booking right now. Please check your internet connection and try again.",
 
-                    "Try Again"
+            //         null,
 
-                );
+            //         "Try Again"
 
-
-                button.disabled =
-                    false;
+            //     );
 
 
-                button.textContent =
-                    "Confirm Booking";
+            //     button.disabled =
+            //         false;
 
-            }
+
+            //     button.textContent =
+            //         "Confirm Booking";
+
+            // }
 
         }
     );

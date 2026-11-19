@@ -3802,3 +3802,173 @@ body {
     }
 
 }
+/* =========================================
+   HOTEL-STYLE BOOKING MODEL
+   ========================================= */
+
+.stay-date-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.stay-date-row .booking-field {
+    min-width: 0;
+}
+
+.stay-date-row input[type="date"] {
+    width: 100%;
+    min-height: 65px;
+    padding: 12px;
+
+    border: 1px solid #ead6c4;
+    border-radius: 18px;
+
+    background: #fffaf5;
+    color: #003049;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+.stay-date-row input[type="date"]:focus {
+    outline: none;
+    border-color: #ff7900;
+    box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.10);
+}
+
+/* Guests full width */
+
+.guests-field {
+    margin-top: 18px;
+}
+
+/* Nights display */
+
+.stay-duration-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 16px;
+
+    color: #003049;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.stay-duration-row i {
+    color: #ff7900;
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .stay-date-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .stay-date-row input[type="date"] {
+        min-height: 60px;
+    }
+
+}
+
+/* =====================================
+   COMPACT BOOKING CARD
+===================================== */
+
+.booking-card {
+    max-width: 370px;
+    padding: 24px;
+    gap: 14px;
+}
+
+/* Check-in and Check-out */
+
+.date-fields {
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.booking-field label {
+    font-size: 12px;
+    margin-bottom: 8px;
+    gap: 7px;
+}
+
+.booking-field input[type="date"] {
+    height: 62px;
+    padding: 0 10px;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+/* Guests selector */
+
+.booking-field select {
+    height: 62px;
+    padding: 0 16px;
+    border-radius: 16px;
+    font-size: 15px;
+}
+
+/* Stay duration */
+
+.stay-duration {
+    font-size: 17px;
+    margin: 0 0 16px;
+    gap: 9px;
+}
+
+/* Guest age policy */
+
+.age-policy-note {
+    padding: 14px;
+    gap: 10px;
+    border-radius: 14px;
+}
+
+.age-policy-note strong {
+    font-size: 14px;
+}
+
+.age-policy-note p {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* General spacing */
+
+.booking-divider {
+    margin: 12px 0;
+}
+
+.price-summary {
+    padding: 14px;
+    gap: 10px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .booking-card {
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    .booking-field input[type="date"] {
+        height: 55px;
+        font-size: 12px;
+    }
+
+    .booking-field select {
+        height: 55px;
+        font-size: 14px;
+    }
+}

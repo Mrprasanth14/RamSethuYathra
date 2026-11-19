@@ -237,7 +237,8 @@ async function loadBookings(collectionName, divId) {
                         <b>⏰ Time:</b>
                         ${escapeAdminHtml(data.time)}
                     </p>
-
+                     
+                    
 
                     ${renderExtraDetails(
                         collectionName,
@@ -325,7 +326,35 @@ async function loadBookings(collectionName, divId) {
     }
 
 }
+// ==========================================
+// CALCULATE ROOM BOOKING NIGHTS
+// ==========================================
 
+function calculateNights(checkin, checkout) {
+
+    if (!checkin || !checkout) {
+        return "-";
+    }
+
+    const start = new Date(checkin + "T00:00:00");
+    const end = new Date(checkout + "T00:00:00");
+
+    if (
+        isNaN(start.getTime()) ||
+        isNaN(end.getTime()) ||
+        end <= start
+    ) {
+        return "-";
+    }
+
+    const difference =
+        end.getTime() - start.getTime();
+
+    return Math.round(
+        difference / (1000 * 60 * 60 * 24)
+    );
+
+}
 
 // ==========================================
 // EXTRA BOOKING DETAILS
@@ -477,6 +506,15 @@ async function loadPackageBookings() {
                 data.package ||
                 "Package";
 
+            const checkin =
+              data.checkInDate || data.checkin || "";
+
+            const checkout =
+             data.checkOutDate || data.checkout || "";
+
+            const totalNights =
+               Number(data.nights) || calculateNights(checkin, checkout);
+
 
             const totalPrice =
                 Number(
@@ -534,10 +572,10 @@ async function loadPackageBookings() {
                     </p>
 
 
-                    <p>
-                        <b>📱 Mobile:</b>
-                        ${escapeAdminHtml(data.mobile)}
-                    </p>
+                   <p>
+    <b>📱 Mobile:</b>
+    ${escapeAdminHtml(data.customerMobile || data.mobile || "-")}
+</p>
 
 
                     <p>
@@ -550,7 +588,20 @@ async function loadPackageBookings() {
                         <b>📅 Travel Date:</b>
                         ${escapeAdminHtml(data.travelDate)}
                     </p>
+                   <p>
+    <b>📅 Check-in:</b>
+    ${escapeAdminHtml(checkin || "-")}
+</p>
 
+<p>
+    <b>📅 Check-out:</b>
+    ${escapeAdminHtml(checkout || "-")}
+</p>
+
+<p>
+    <b>🌙 Total Nights:</b>
+    ${totalNights > 0 ? totalNights + " Nights" : "-"}
+</p>
 
                     <p>
                         <b>⏰ Pickup Time:</b>
@@ -2000,7 +2051,15 @@ function renderFilteredBookingCard(
             Number(
                 data.totalPrice || 0
             );
+        const checkin =
+               data.checkInDate || data.checkin || "";
 
+        const checkout =
+          data.checkOutDate || data.checkout || "";
+
+        const totalNights =
+            Number(data.nights) || calculateNights(checkin, checkout);
+ 
 
         box.innerHTML += `
 

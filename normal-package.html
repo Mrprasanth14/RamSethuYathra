@@ -705,6 +705,7 @@
 
 
             </div>
+            
 
 
 
@@ -714,61 +715,64 @@
 
             <!-- PERSON SELECT -->
 
-            <div class="booking-field">
+            <!-- STAY DATES -->
+<div class="stay-date-row">
 
+    <div class="booking-field">
+        <label for="checkIn">
+            <i class="fa-solid fa-calendar-check"></i>
+            Check-in
+        </label>
 
-                <label for="persons">
+        <input type="date" id="checkIn" name="checkIn">
+    </div>
 
-                    <i class="fa-solid fa-users"></i>
+    <div class="booking-field">
+        <label for="checkOut">
+            <i class="fa-solid fa-calendar-days"></i>
+            Check-out
+        </label>
 
-                    Number of Persons
+        <input type="date" id="checkOut" name="checkOut">
+    </div>
 
-                </label>
+</div>
 
+<!-- GUESTS -->
+<div class="booking-field guests-field">
 
-                <select id="persons"
-                        name="persons">
+    <label for="persons">
+        <i class="fa-solid fa-users"></i>
+        Guests / Persons
+    </label>
 
-                    <option value="2">
-                        2 Persons
-                    </option>
+    <!-- KEEP YOUR EXISTING PERSON OPTIONS -->
+    <select id="persons" name="persons">
 
-                    <option value="3">
-                        3 Persons
-                    </option>
+        <option value="2">2 Persons</option>
+        <option value="3">3 Persons</option>
+        <option value="4">4 Persons</option>
+        <option value="5" selected>5 Persons</option>
+        <option value="6">6 Persons</option>
+        <option value="7">7 Persons</option>
+        <option value="8">8 Persons</option>
+        <option value="9">9 Persons</option>
+        <option value="10">10 Persons</option>
 
-                    <option value="4">
-                        4 Persons
-                    </option>
+    </select>
 
-                    <option value="5"
-                            selected>
-                        5 Persons
-                    </option>
+</div>
 
-                    <option value="6">
-                        6 Persons
-                    </option>
+<!-- STAY DURATION -->
+<div class="stay-duration-row">
 
-                    <option value="7">
-                        7 Persons
-                    </option>
+    <i class="fa-solid fa-moon"></i>
 
-                    <option value="8">
-                        8 Persons
-                    </option>
+    <span id="nightsDisplay">
+        Select dates
+    </span>
 
-                    <option value="9">
-                        9 Persons
-                    </option>
-
-                    <option value="10">
-                        10 Persons
-                    </option>
-
-                </select>
-
-            </div>
+</div>
             
 <div class="age-policy-note">
     <span class="age-policy-icon">ℹ️</span>
@@ -1481,6 +1485,7 @@
     // NORMAL PACKAGE PRICES
 // Both values are total prices for the whole group.
 
+// 1 NIGHT NORMAL PRICE
 const regularPrices = {
     2: 9000,
     3: 11000,
@@ -1493,6 +1498,7 @@ const regularPrices = {
     10: 28000
 };
 
+// 1 NIGHT OFFER PRICE
 const prices = {
     2: 7500,
     3: 8500,
@@ -1529,44 +1535,133 @@ const prices = {
     const continueBtn =
         document.getElementById("continueBtn");
 
+const checkInInput =
+    document.getElementById("checkIn");
 
+const checkOutInput =
+    document.getElementById("checkOut");
 
+const nightsDisplay =
+    document.getElementById("nightsDisplay");
+
+let selectedNights = 0;
+function calculateNights() {
+
+    const checkInValue = checkInInput.value;
+    const checkOutValue = checkOutInput.value;
+
+    if (!checkInValue || !checkOutValue) {
+        selectedNights = 0;
+        nightsDisplay.textContent = "Select dates";
+        return false;
+    }
+
+    const [inYear, inMonth, inDay] =
+        checkInValue.split("-").map(Number);
+
+    const [outYear, outMonth, outDay] =
+        checkOutValue.split("-").map(Number);
+
+    const checkInDate = Date.UTC(inYear, inMonth - 1, inDay);
+    const checkOutDate = Date.UTC(outYear, outMonth - 1, outDay);
+
+    const nights = Math.round(
+        (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)
+    );
+
+    if (nights <= 0) {
+        selectedNights = 0;
+        nightsDisplay.textContent = "Invalid dates";
+        return false;
+    }
+
+    selectedNights = nights;
+
+    nightsDisplay.textContent =
+        nights === 1 ? "1 Night" : `${nights} Nights`;
+
+    return true;
+}
     /* =====================================================
        UPDATE PRICE
     ===================================================== */
+/* =====================================================
+   UPDATE PRICE
+===================================================== */
 
-    function updatePrice() {
+function updatePrice() {
+
+    // 1. Get selected number of persons
     const persons = Number(personsSelect.value);
 
-    const regularPrice = regularPrices[persons];
-    const offerPrice = prices[persons];
+    // 2. Calculate selected nights from check-in/check-out
+    const validDates = calculateNights();
+    const nights = validDates ? selectedNights : 1;
 
-    if (!regularPrice || !offerPrice) return;
+    // 3. Get manually configured prices for selected persons
+    const regularRate = regularPrices[persons];
+    const offerRate = prices[persons];
 
-    const formattedRegular =
-        regularPrice.toLocaleString("en-IN");
+    // 4. Check if prices exist
+    if (!regularRate || !offerRate) {
+        console.error("Price not found for:", persons, "persons");
+        return;
+    }
 
-    const formattedOffer =
-        offerPrice.toLocaleString("en-IN");
+    // 5. Additional night charge (change this amount whenever you want)
+    const extraNightCharge = 1000;
 
-    // Main package price: original price + offer price
+    // 6. Calculate total price
+    // First night = base price
+    // Each additional night = + ₹1,000
+    const extraNights = nights - 1;
+
+    const regularTotal =
+        regularRate + (extraNightCharge * extraNights);
+
+    const offerTotal =
+        offerRate + (extraNightCharge * extraNights);
+
+    // 7. Display regular and offer prices
     priceElement.innerHTML = `
-        <span class="regular-price">₹${formattedRegular}</span>
-        <span class="offer-price">₹${formattedOffer}</span>
-        <span class="discount-badge">OFFER</span>
+        <span class="regular-price">
+            ₹${regularTotal.toLocaleString("en-IN")}
+        </span>
+
+        <span class="offer-price">
+            ₹${offerTotal.toLocaleString("en-IN")}
+        </span>
+
+        <span class="discount-badge">
+            OFFER
+        </span>
     `;
 
-    // Number of persons
+    // 8. Display selected persons and nights
     priceLabel.textContent =
-        `For ${persons} Persons`;
+        `For ${persons} Persons · ${nights} ${nights === 1 ? "Night" : "Nights"}`;
 
-    selectedPersons.textContent = persons;
+    if (selectedPersons) {
+        selectedPersons.textContent = persons;
+    }
 
-    // Total package price uses the offer price
-    totalPrice.textContent = `₹${formattedOffer}`;
+    // 9. Update total price
+    if (totalPrice) {
+        totalPrice.textContent =
+            `₹${offerTotal.toLocaleString("en-IN")}`;
+    }
+
+    // 10. Console debugging
+    console.log({
+        persons,
+        nights,
+        regularTotal,
+        offerTotal
+    });
 }
-
 personsSelect.addEventListener("change", updatePrice);
+checkInInput.addEventListener("change", updatePrice);
+checkOutInput.addEventListener("change", updatePrice);
 
 updatePrice();
 
@@ -1574,38 +1669,45 @@ updatePrice();
        CONTINUE TO BOOKING
     ===================================================== */
 
-    continueBtn.addEventListener(
-        "click",
-        () => {
+    continueBtn.addEventListener("click", () => {
 
-            const persons =
-                Number(personsSelect.value);
+    const persons = Number(personsSelect.value);
 
+    // Require selected dates
+    if (!checkInInput.value || !checkOutInput.value) {
+        alert("Please select check-in and check-out dates.");
+        return;
+    }
 
-            const price =
-                prices[persons];
+    // Validate stay duration
+    if (!calculateNights() || selectedNights < 1) {
+        alert("Please select valid dates.");
+        return;
+    }
 
+    const pricePerNight = prices[persons];
 
-            if (!price) {
+    if (!pricePerNight) {
+        alert("Price not found for selected persons.");
+        return;
+    }
 
-                alert(
-                    "Please select the number of persons."
-                );
+    const extraNightCharge = 1000;
 
-                return;
+    // Base price + additional night charges
+    const total = pricePerNight +
+        (extraNightCharge * (selectedNights - 1));
 
-            }
+    const bookingUrl =
+        `booking.html?package=normal` +
+        `&persons=${persons}` +
+        `&checkin=${checkInInput.value}` +
+        `&checkout=${checkOutInput.value}` +
+        `&nights=${selectedNights}` +
+        `&price=${total}`;
 
-
-            const bookingUrl =
-                `booking.html?package=normal&persons=${persons}&price=${price}`;
-
-
-            window.location.href =
-                bookingUrl;
-
-        }
-    );
+    window.location.href = bookingUrl;
+});
 
 
 

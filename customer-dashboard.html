@@ -559,6 +559,51 @@ function escapeHTML(value) {
 
 }
 
+function formatBookingDate(dateString) {
+
+    if (!dateString) return "-";
+
+    const parts = dateString.split("-");
+
+    if (parts.length !== 3) return dateString;
+
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
+
+
+function getBookingNights(booking) {
+
+    if (
+        Number.isInteger(booking.nights) &&
+        booking.nights > 0
+    ) {
+        return booking.nights;
+    }
+
+    // Calculate automatically for older bookings
+    if (booking.checkInDate && booking.checkOutDate) {
+
+        const checkIn = new Date(
+            booking.checkInDate + "T00:00:00"
+        );
+
+        const checkOut = new Date(
+            booking.checkOutDate + "T00:00:00"
+        );
+
+        const difference = checkOut - checkIn;
+
+        const nights = Math.round(
+            difference / (1000 * 60 * 60 * 24)
+        );
+
+        return nights > 0 ? nights : null;
+    }
+
+    return null;
+}
+
+
 
 /* ==========================================
    CREATE BOOKING CARD
@@ -603,56 +648,80 @@ function createBookingCard(booking) {
     let details = "";
 
 
-    /* PACKAGE */
+    
+/* PACKAGE */
 
-    if (
-        booking.collection ===
-        "packageBookings"
-    ) {
+if (
+    booking.collection ===
+    "packageBookings"
+) {
 
-        details = `
+    const stayNights = getBookingNights(booking);
 
-            <p>
-                📦
-                <strong>Package:</strong>
-                ${escapeHTML(booking.packageName || booking.package || "-")}
-            </p>
+    details = `
 
-            <p>
-                👥
-                <strong>Persons:</strong>
-                ${escapeHTML(booking.persons || "-")}
-            </p>
+        <p>
+            📦
+            <strong>Package:</strong>
+            ${escapeHTML(booking.packageName || booking.package || "-")}
+        </p>
 
-            <p>
-                📅
-                <strong>Travel Date:</strong>
-                ${escapeHTML(booking.travelDate || "-")}
-            </p>
+        <p>
+            👥
+            <strong>Persons:</strong>
+            ${escapeHTML(booking.persons || "-")}
+        </p>
 
-            <p>
-                ⏰
-                <strong>Pickup Time:</strong>
-                ${escapeHTML(booking.pickupTime || "-")}
-            </p>
+        <p>
+            📅
+            <strong>Check-in:</strong>
+            ${escapeHTML(formatBookingDate(booking.checkInDate))}
+        </p>
 
-            <p>
-                📍
-                <strong>Pickup:</strong>
-                ${escapeHTML(booking.pickupLocation || "-")}
-            </p>
+        <p>
+            📅
+            <strong>Check-out:</strong>
+            ${escapeHTML(formatBookingDate(booking.checkOutDate))}
+        </p>
 
-            <p>
-                💰
-                <strong>Total:</strong>
-                ₹${Number(
-                    booking.totalPrice || 0
-                ).toLocaleString("en-IN")}
-            </p>
+        <p>
+            🌙
+            <strong>Stay Duration:</strong>
+            ${stayNights !== null
+                ? stayNights + (stayNights === 1 ? " Night" : " Nights")
+                : "-"}
+        </p>
 
-        `;
+        <p>
+            📅
+            <strong>Travel Date:</strong>
+            ${escapeHTML(booking.travelDate || "-")}
+        </p>
 
-    }
+        <p>
+            ⏰
+            <strong>Pickup Time:</strong>
+            ${escapeHTML(booking.pickupTime || "-")}
+        </p>
+
+        <p>
+            📍
+            <strong>Pickup:</strong>
+            ${escapeHTML(booking.pickupLocation || "-")}
+        </p>
+
+        <p>
+            💰
+            <strong>Total:</strong>
+            ₹${Number(
+                booking.totalPrice || 0
+            ).toLocaleString("en-IN")}
+        </p>
+
+    `;
+
+}
+
 
 
     /* CAB */
