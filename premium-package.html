@@ -202,88 +202,7 @@
 
             <!-- LANGUAGE -->
 
-            <div class="translate-box">
-
-    <button type="button"
-            id="languageBtn"
-            class="language-btn"
-            aria-label="Select language">
-
-        <i class="fa-solid fa-globe"></i>
-
-    </button>
-
-    <div id="languageMenu"
-         class="language-menu">
-
-        <div class="language-title">
-            Select Language
-        </div>
-
-        <button type="button" data-lang="en">
-            🇬🇧 English
-        </button>
-
-        <button type="button" data-lang="ta">
-            🇮🇳 தமிழ்
-        </button>
-
-        <button type="button" data-lang="hi">
-            🇮🇳 हिन्दी
-        </button>
-
-        <button type="button" data-lang="ml">
-            🇮🇳 മലയാളം
-        </button>
-
-        <button type="button" data-lang="te">
-            🇮🇳 తెలుగు
-        </button>
-
-        <button type="button" data-lang="kn">
-            🇮🇳 ಕನ್ನಡ
-        </button>
-
-        <button type="button" data-lang="bn">
-            🇮🇳 বাংলা
-        </button>
-
-        <button type="button" data-lang="mr">
-            🇮🇳 मराठी
-        </button>
-
-        <button type="button" data-lang="gu">
-            🇮🇳 ગુજરાતી
-        </button>
-
-        <button type="button" data-lang="pa">
-            🇮🇳 ਪੰਜਾਬੀ
-        </button>
-
-        <button type="button" data-lang="es">
-            🇪🇸 Español
-        </button>
-
-        <button type="button" data-lang="fr">
-            🇫🇷 Français
-        </button>
-
-        <button type="button" data-lang="de">
-            🇩🇪 Deutsch
-        </button>
-
-        <button type="button" data-lang="ar">
-            🇸🇦 العربية
-        </button>
-
-    </div>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element"
-         class="google-translate-hidden">
-    </div>
-
-</div>
+           
 
             <!-- MOBILE MENU -->
 
@@ -836,6 +755,37 @@
                         </select>
 
                     </div>
+
+
+<div class="date-fields-row">
+
+    <div class="booking-field">
+        <label for="checkIn">📅 Check-in Date</label>
+        <input
+            type="date"
+            id="checkIn"
+            name="checkIn"
+            required
+        >
+    </div>
+
+    <div class="booking-field">
+        <label for="checkOut">📅 Check-out Date</label>
+        <input
+            type="date"
+            id="checkOut"
+            name="checkOut"
+            required
+        >
+    </div>
+
+</div>
+
+<div class="booking-field">
+    <label>Duration of Stay</label>
+    <strong id="nightsDisplay">Select your dates</strong>
+</div>
+
                     <div class="guest-age-policy">
     <span class="policy-icon">ℹ️</span>
     <h3>Guest Age Policy</h3>
@@ -1275,8 +1225,81 @@
         const priceText =
             document.getElementById("priceText");
 
+/* ================= PREMIUM STAY DATES ================= */
+
+const checkInInput = document.getElementById("checkIn");
+const checkOutInput = document.getElementById("checkOut");
+const nightsDisplay = document.getElementById("nightsDisplay");
+
+function getLocalDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+const today = getLocalDateString();
+
+checkInInput.min = today;
+checkOutInput.min = today;
+
+function getPremiumNights() {
+    if (!checkInInput.value || !checkOutInput.value) {
+        return 0;
+    }
+
+    const [inYear, inMonth, inDay] =
+        checkInInput.value.split("-").map(Number);
+
+    const [outYear, outMonth, outDay] =
+        checkOutInput.value.split("-").map(Number);
+
+    const checkIn = Date.UTC(inYear, inMonth - 1, inDay);
+    const checkOut = Date.UTC(outYear, outMonth - 1, outDay);
+
+    const difference = checkOut - checkIn;
+
+    return difference > 0
+        ? difference / (1000 * 60 * 60 * 24)
+        : 0;
+}
+
+function updatePremiumNights() {
+    checkOutInput.min = checkInInput.value || today;
+
+    const nights = getPremiumNights();
+
+    if (nights > 0) {
+        nightsDisplay.textContent =
+            `${nights} ${nights === 1 ? "Night" : "Nights"}`;
+    } else {
+        nightsDisplay.textContent = "Select valid dates";
+    }
+}
+
+checkInInput.addEventListener("change", () => {
+    if (
+        checkOutInput.value &&
+        checkOutInput.value <= checkInInput.value
+    ) {
+        checkOutInput.value = "";
+    }
+
+    updatePremiumNights();
+});
+checkInInput.addEventListener("change", () => {
+    updatePremiumNights();
+    updatePrice();
+});
+
+checkOutInput.addEventListener("change", () => {
+    updatePremiumNights();
+    updatePrice();
+});
 
         /*
+        
          * Premium package pricing.
          *
          * Confirm these prices for your actual business
@@ -1306,28 +1329,31 @@
         };
 
 
-        function updatePrice() {
+       
+function updatePrice() {
 
-            const persons =
-                Number(personsSelect.value);
+    const persons = Number(personsSelect.value);
+    const basePrice = prices[persons];
 
-            const price =
-                prices[persons];
+    if (!basePrice) {
+        return;
+    }
 
+    const nights = getPremiumNights();
 
-            if (!price) {
-                return;
-            }
+    const accommodationCharge =
+        nights > 0 ? 1500 * nights : 0;
 
+    const finalPrice = basePrice + accommodationCharge;
 
-            priceElement.textContent =
-                "₹" + price.toLocaleString("en-IN");
+    priceElement.textContent =
+        "₹" + finalPrice.toLocaleString("en-IN");
 
+    priceText.textContent = nights > 0
+        ? `For ${persons} Persons · ${nights} ${nights === 1 ? "Night" : "Nights"}`
+        : `For ${persons} Persons · Select dates`;
 
-            priceText.textContent =
-                `For ${persons} Persons`;
-
-        }
+}
 
 
         if (personsSelect) {
@@ -1342,43 +1368,52 @@
         }
 
 
-        /* ================= CONTINUE BOOKING ================= */
+       
+/* ================= CONTINUE BOOKING ================= */
 
-        const continueBtn =
-            document.getElementById("continueBtn");
+const continueBtn =
+    document.getElementById("continueBtn");
 
+if (continueBtn) {
 
-        if (continueBtn) {
+    continueBtn.addEventListener("click", () => {
 
-            continueBtn.addEventListener("click", () => {
+        const persons = Number(personsSelect.value);
+        const basePrice = prices[persons];
+        const nights = getPremiumNights();
 
-                const persons =
-                    Number(personsSelect.value);
-
-                const price =
-                    prices[persons];
-
-
-                if (!price) {
-
-                    alert(
-                        "Please select a valid number of persons."
-                    );
-
-                    return;
-
-                }
-
-
-                const url =
-                    `booking.html?package=premium&persons=${persons}&price=${price}`;
-
-
-                window.location.href = url;
-
-            });
-
+        if (!basePrice) {
+            alert("Please select a valid number of persons.");
+            return;
         }
+
+        if (
+            !checkInInput.value ||
+            !checkOutInput.value ||
+            nights < 1
+        ) {
+            alert("Please select valid check-in and check-out dates.");
+            return;
+        }
+
+        const accommodationCharge = 1500 * nights;
+        const finalPrice = basePrice + accommodationCharge;
+
+        const params = new URLSearchParams({
+            package: "premium",
+            persons: persons,
+            price: finalPrice,
+            checkIn: checkInInput.value,
+            checkOut: checkOutInput.value,
+            nights: nights
+        });
+
+        window.location.href = `booking.html?${params.toString()}`;
+
+    });
+
+}
+
 
 
         /* ================= BACK TO TOP ================= */

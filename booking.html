@@ -359,20 +359,35 @@ const params = new URLSearchParams(window.location.search);
 const packageType = params.get("package");
 const persons = params.get("persons");
 
-const checkInDate = params.get("checkin");
-const checkOutDate = params.get("checkout");
+const checkInDate =
+    params.get("checkIn") || params.get("checkin");
+
+const checkOutDate =
+    params.get("checkOut") || params.get("checkout");
+
 
 function getNightsFromDates(checkin, checkout) {
-    if (!checkin || !checkout) return 0;
 
-    const inDate = new Date(checkin + "T00:00:00");
-    const outDate = new Date(checkout + "T00:00:00");
+    if (!checkin || !checkout) {
+        return 0;
+    }
+
+    const [inYear, inMonth, inDay] =
+        checkin.split("-").map(Number);
+
+    const [outYear, outMonth, outDay] =
+        checkout.split("-").map(Number);
+
+    const inDate = Date.UTC(inYear, inMonth - 1, inDay);
+    const outDate = Date.UTC(outYear, outMonth - 1, outDay);
 
     const difference = outDate - inDate;
 
-    return Math.round(
-        difference / (1000 * 60 * 60 * 24)
-    );
+    if (difference <= 0) {
+        return 0;
+    }
+
+    return difference / (1000 * 60 * 60 * 24);
 }
 
 const nights = getNightsFromDates(checkInDate, checkOutDate);
@@ -458,11 +473,15 @@ const packagePrices = {
 };
 
 
+
+
+
 /* =========================================
-   CALCULATE TRUSTED PACKAGE PRICE
+   PACKAGE ACCOMMODATION CHARGES
 ========================================= */
 
-const extraNightCharge = 1000;
+const mediumPricePerNight = 1000;
+const premiumPricePerNight = 1500;
 
 function getPackagePrice(packageName, personCount, stayNights) {
 
@@ -476,12 +495,34 @@ function getPackagePrice(packageName, personCount, stayNights) {
         return null;
     }
 
-    if (!Number.isInteger(stayNights) || stayNights < 1) {
-        return null;
+    // Normal: existing price remains unchanged.
+    if (packageName === "normal") {
+        return basePrice;
     }
 
-    return basePrice + (extraNightCharge * (stayNights - 1));
+    // Medium: ₹1,000 per night.
+    if (packageName === "medium") {
+
+        if (!Number.isInteger(stayNights) || stayNights < 1) {
+            return null;
+        }
+
+        return basePrice + (mediumPricePerNight * stayNights);
+    }
+
+    // Premium: ₹1,500 per night.
+    if (packageName === "premium") {
+
+        if (!Number.isInteger(stayNights) || stayNights < 1) {
+            return null;
+        }
+
+        return basePrice + (premiumPricePerNight * stayNights);
+    }
+
+    return null;
 }
+
 
 
 /* =========================================

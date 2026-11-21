@@ -2711,3 +2711,51 @@ select {
         max-height: 120px;
     }
 }
+
+/* =========================================
+   PREMIUM DATE FIELDS - SIDE BY SIDE
+========================================= */
+
+.booking-card .date-fields-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    width: 100%;
+}
+
+.booking-card .date-fields-row .booking-field {
+    min-width: 0;
+}
+
+.booking-card .date-fields-row input[type="date"] {
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    padding: 12px;
+
+    box-sizing: border-box;
+    background: #ffffff;
+    color: #003049;
+
+    border: 1px solid #f0d5c2;
+    border-radius: 16px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Date field focus */
+.booking-card .date-fields-row input[type="date"]:focus {
+    outline: none;
+    border-color: #f77f00;
+    box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.15);
+}
+
+/* Narrow screens */
+@media (max-width: 360px) {
+    .booking-card .date-fields-row {
+        grid-template-columns: 1fr;
+    }
+}
+
