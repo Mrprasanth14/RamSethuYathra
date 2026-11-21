@@ -1,268 +1,230 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Rameswaram Rooms & Hotel Booking | RamSethuYatra</title>
 
     <meta name="description"
-          content="Book comfortable AC rooms and family stays in Rameswaram with RamSethuYatra. Choose Standard, Family or Premium rooms for your Rameswaram journey.">
+          content="Book comfortable AC rooms and family stays in Rameswaram with RamSethuYatra. Choose Standard, Family or Premium rooms.">
 
     <meta name="keywords"
-          content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family room Rameswaram, premium room Rameswaram, hotel near Ramanathaswamy Temple">
+          content="Rameswaram rooms, Rameswaram hotel booking, AC rooms Rameswaram, family room Rameswaram">
 
-    <meta name="author"
-          content="RamSethuYatra">
+    <meta name="author" content="RamSethuYatra">
 
     <link rel="stylesheet" href="rooms.css">
-     <link rel="stylesheet"
-          href="header.css">
-          <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="site-theme.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-</head>
+    <style>
+        /* BED TYPE DROPDOWN */
 
+        .bed-type-select {
+            width: 100%;
+            min-height: 58px;
+            padding: 14px 18px;
+            border: 1.5px solid #f77f00;
+            border-radius: 18px;
+            background: #fffaf5;
+            color: #003049;
+            font-size: 17px;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            appearance: auto;
+            -webkit-appearance: auto;
+            transition: 0.3s ease;
+        }
+
+        .bed-type-select:focus {
+            border-color: #003049;
+            box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.12);
+        }
+
+        .bed-type-select option {
+            background: #fffaf5;
+            color: #003049;
+            font-size: 16px;
+        }
+
+        .room-price-title {
+            display: block;
+            margin-bottom: 10px;
+            color: #003049;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .room-selected-price {
+            margin-top: 12px;
+        }
+
+        .room-selected-price small {
+            display: block;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .room-selected-price strong {
+            color: #f77f00;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .room-total-box {
+            margin-top: 20px;
+            padding: 18px;
+            border: 1px solid #f77f00;
+            border-radius: 16px;
+            background: #fffaf5;
+        }
+
+        .room-total-box strong {
+            display: block;
+            color: #003049;
+            font-size: 25px;
+            margin-top: 6px;
+        }
+
+        .room-total-box small {
+            display: block;
+            color: #666;
+            margin-top: 6px;
+        }
+    </style>
+</head>
 
 <body>
 
-
 <!-- =====================================================
      HEADER
-     ===================================================== -->
+===================================================== -->
 
 <header class="site-header">
 
     <div class="header-inner">
 
-
-        <!-- LOGO -->
-
-        <a href="index.html"
-           class="logo"
+        <a href="index.html" class="logo"
            aria-label="RamSethuYatra home">
 
-            <span class="logo-mark">
-                ॐ
-            </span>
+            <span class="logo-mark">ॐ</span>
 
-            <span class="logo-name">
-
-                <b>Ram</b>
-
-                <em>Sethu</em>
-
-                <b>Yatra</b>
-
-            </span>
+             <span class="logo-name">
+                 <b>Ram</b>
+                 <em>Sethu</em>
+                 <b>Yatra</b>
+             </span>
 
         </a>
 
+        <nav class="main-nav" id="mainNav">
 
-        <!-- NAVIGATION -->
+            <a href="index.html">
+                 <i class="fa-solid fa-house"></i>
+                 <span>Home</span>
+             </a>
 
-        <nav class="main-nav"
-             id="mainNav">
-
-
-            <a href="index.html"
-               class="active">
-
-                <i class="fa-solid fa-house"></i>
-
-                <span>Home</span>
-
-            </a>
-
-
-            <a href="totalpackage.html">
-
-                <i class="fa-solid fa-suitcase-rolling"></i>
-
+             <a href="totalpackage.html">
+                 <i class="fa-solid fa-suitcase-rolling"></i>
                 <span>Packages</span>
+             </a>
 
-            </a>
-
-
-            <a href="ramanathaswamy-temple.html">
-
+             <a href="ramanathaswamy-temple.html">
                 <i class="fa-solid fa-place-of-worship"></i>
+                 <span>Temple</span>
+             </a>
 
-                <span>Temple</span>
-
-            </a>
-
-
-            <a href="rameswaram-cab-service.html">
-
-                <i class="fa-solid fa-car"></i>
-
+             <a href="rameswaram-cab-service.html">
+                 <i class="fa-solid fa-car"></i>
                 <span>Cabs</span>
+             </a>
 
-            </a>
+             <a href="rameswaram-rooms.html" class="active">
+                 <i class="fa-solid fa-bed"></i>
+                 <span>Rooms</span>
+             </a>
 
-
-            <a href="rameswaram-rooms.html">
-
-                <i class="fa-solid fa-bed"></i>
-
-                <span>Rooms</span>
-
-            </a>
-
-
-            <!-- SHOW ONLY AFTER LOGIN -->
-
-            <a href="customer-dashboard.html"
+             <a href="customer-dashboard.html"
                id="myBookingNav"
                class="logged-in-only"
                style="display:none;">
 
-                <i class="fa-solid fa-book-open"></i>
-
+                 <i class="fa-solid fa-book-open"></i>
                 <span>My Bookings</span>
-
-            </a>
-
-
-            <!-- SHOW WHEN NOT LOGGED IN -->
-
-            <a href="login.html"
+             </a>
+ 
+             <a href="login.html"
                id="loginNav"
                class="logged-out-only">
 
-                <i class="fa-solid fa-right-to-bracket"></i>
-
+                 <i class="fa-solid fa-right-to-bracket"></i>
                 <span>Login</span>
+             </a>
 
-            </a>
+             <a href="about.html">
+                 <i class="fa-solid fa-circle-info"></i>
+                 <span>About</span>
+             </a>
 
-
-            <a href="about.html">
-
-                <i class="fa-solid fa-circle-info"></i>
-
-                <span>About</span>
-
-            </a>
-
-
-            <!-- LOGOUT -->
-
-            <button type="button"
+             <button type="button"
                     id="logoutNav"
                     class="logged-in-only nav-logout"
                     style="display:none;">
 
                 <i class="fa-solid fa-right-from-bracket"></i>
-
-                <span>Logout</span>
-
-            </button>
+                 <span>Logout</span>
+             </button>
 
         </nav>
 
+         <div class="header-actions">
 
-        <!-- HEADER ACTIONS -->
+             <div class="translate-box">
 
-        <div class="header-actions">
+                <button type="button"
+                        id="languageBtn"
+                        class="language-btn"
+                        aria-label="Select language">
 
+                    <i class="fa-solid fa-globe"></i>
+                </button>
 
-            <!-- LANGUAGE -->
+                <div id="languageMenu" class="language-menu">
 
-            <div class="translate-box">
+                    <div class="language-title">
+                        Select Language
+                    </div>
 
-    <button type="button"
-            id="languageBtn"
-            class="language-btn"
-            aria-label="Select language">
+                    <button type="button" data-lang="en">🇬🇧 English</button>
+                    <button type="button" data-lang="ta">🇮🇳 தமிழ்</button>
+                    <button type="button" data-lang="hi">🇮🇳 हिन्दी</button>
+                    <button type="button" data-lang="ml">🇮🇳 മലയാളം</button>
+                    <button type="button" data-lang="te">🇮🇳 తెలుగు</button>
+                    <button type="button" data-lang="kn">🇮🇳 ಕನ್ನಡ</button>
+                    <button type="button" data-lang="bn">🇮🇳 বাংলা</button>
+                    <button type="button" data-lang="mr">🇮🇳 मराठी</button>
+                    <button type="button" data-lang="gu">🇮🇳 ગુજરાતી</button>
+                    <button type="button" data-lang="pa">🇮🇳 ਪੰਜਾਬੀ</button>
+                    <button type="button" data-lang="es">🇪🇸 Español</button>
+                    <button type="button" data-lang="fr">🇫🇷 Français</button>
+                    <button type="button" data-lang="de">🇩🇪 Deutsch</button>
+                    <button type="button" data-lang="ar">🇸🇦 العربية</button>
 
-        <i class="fa-solid fa-globe"></i>
+                </div>
 
-    </button>
+                <div id="google_translate_element"
+                     class="google-translate-hidden">
+                </div>
 
-    <div id="languageMenu"
-         class="language-menu">
-
-        <div class="language-title">
-            Select Language
-        </div>
-
-        <button type="button" data-lang="en">
-            🇬🇧 English
-        </button>
-
-        <button type="button" data-lang="ta">
-            🇮🇳 தமிழ்
-        </button>
-
-        <button type="button" data-lang="hi">
-            🇮🇳 हिन्दी
-        </button>
-
-        <button type="button" data-lang="ml">
-            🇮🇳 മലയാളം
-        </button>
-
-        <button type="button" data-lang="te">
-            🇮🇳 తెలుగు
-        </button>
-
-        <button type="button" data-lang="kn">
-            🇮🇳 ಕನ್ನಡ
-        </button>
-
-        <button type="button" data-lang="bn">
-            🇮🇳 বাংলা
-        </button>
-
-        <button type="button" data-lang="mr">
-            🇮🇳 मराठी
-        </button>
-
-        <button type="button" data-lang="gu">
-            🇮🇳 ગુજરાતી
-        </button>
-
-        <button type="button" data-lang="pa">
-            🇮🇳 ਪੰਜਾਬੀ
-        </button>
-
-        <button type="button" data-lang="es">
-            🇪🇸 Español
-        </button>
-
-        <button type="button" data-lang="fr">
-            🇫🇷 Français
-        </button>
-
-        <button type="button" data-lang="de">
-            🇩🇪 Deutsch
-        </button>
-
-        <button type="button" data-lang="ar">
-            🇸🇦 العربية
-        </button>
-
-    </div>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element"
-         class="google-translate-hidden">
-    </div>
-
-</div>
-
-
-            <!-- MOBILE MENU -->
+            </div>
 
             <button type="button"
                     class="mobile-menu-btn"
@@ -270,537 +232,307 @@
                     aria-label="Open menu">
 
                 <i class="fa-solid fa-bars"></i>
-
-            </button>
+              </button>
 
         </div>
 
     </div>
 
-</header>
-
-
-
+ </header>
+ 
+ 
 <!-- =====================================================
      HERO
-     ===================================================== -->
+===================================================== -->
 
-<section class="rooms-hero">
+ <section class="rooms-hero">
 
+     <div class="rooms-hero-overlay"></div>
 
-    <div class="rooms-hero-overlay"></div>
+     <div class="rooms-hero-content">
 
-
-    <div class="rooms-hero-content">
-
-
-        <div class="hero-label">
-
-            <span></span>
-
+         <div class="hero-label">
+             <span></span>
             RAMESWARAM ROOMS
+         </div>
 
-        </div>
-
-
-        <h1>
-
+         <h1>
             Stay comfortably
+            <strong>during your journey.</strong>
+         </h1>
 
-            <strong>
-                during your journey.
-            </strong>
-
-        </h1>
-
-
-        <p>
-
+         <p>
             Choose a comfortable room for your
             Rameswaram visit. Relax, refresh and
             continue your spiritual journey with ease.
+         </p>
 
-        </p>
+         <div class="hero-buttons">
 
-
-        <div class="hero-buttons">
-
-
-            <a href="#rooms"
-               class="hero-primary-btn">
-
+            <a href="#rooms" class="hero-primary-btn">
                 Explore Rooms
+                 <span>↓</span>
+             </a>
 
-                <span>↓</span>
-
-            </a>
-
-
-            <a href="tel:+918838170745"
+             <a href="tel:+918838170745"
                class="hero-secondary-btn">
 
                 Need Help?
-
-                <span>☎</span>
-
-            </a>
+                 <span>☎</span>
+             </a>
 
         </div>
 
+     </div>
 
-    </div>
-
-
-
-    <!-- =================================================
-         FEATURE STRIP
-         ================================================= -->
-
-    <div class="hero-feature-box">
-
+     <div class="hero-feature-box">
 
         <div class="hero-feature">
-
-            <div class="feature-icon">
-                🛏️
-            </div>
-
+            <div class="feature-icon">🛏️</div>
             <div>
-
-                <h3>
-                    Comfortable Rooms
-                </h3>
-
-                <p>
-                    Relax after travel
-                </p>
-
+                <h3>Comfortable Rooms</h3>
+                <p>Relax after travel</p>
             </div>
+         </div>
 
-        </div>
-
-
-        <div class="hero-feature">
-
-            <div class="feature-icon">
-                ❄️
-            </div>
-
+         <div class="hero-feature">
+            <div class="feature-icon">❄️</div>
             <div>
-
-                <h3>
-                    AC Rooms
-                </h3>
-
-                <p>
-                    Cool & comfortable
-                </p>
-
+                <h3>AC Rooms</h3>
+                <p>Cool & comfortable</p>
             </div>
+         </div>
 
-        </div>
-
-
-        <div class="hero-feature">
-
-            <div class="feature-icon">
-                📶
-            </div>
-
+         <div class="hero-feature">
+            <div class="feature-icon">📶</div>
             <div>
-
-                <h3>
-                    Free WiFi
-                </h3>
-
-                <p>
-                    Stay connected
-                </p>
-
+                <h3>Free WiFi</h3>
+                <p>Stay connected</p>
             </div>
+         </div>
 
-        </div>
-
-
-        <div class="hero-feature">
-
-            <div class="feature-icon">
-                🙏
-            </div>
-
+         <div class="hero-feature">
+            <div class="feature-icon">🙏</div>
             <div>
-
-                <h3>
-                    Pilgrim Friendly
-                </h3>
-
-                <p>
-                    Easy temple visits
-                </p>
-
+                <h3>Pilgrim Friendly</h3>
+                <p>Easy temple visits</p>
             </div>
+         </div>
 
-        </div>
+     </div>
 
+ </section>
 
-    </div>
-
-</section>
-
-
-
+ 
 <!-- =====================================================
      INTRO
-     ===================================================== -->
+===================================================== -->
 
-<section class="rooms-intro section-space">
-
+ <section class="rooms-intro section-space">
 
     <div class="section-heading">
 
         <div class="small-label">
             A COMFORTABLE PLACE TO REST
         </div>
-
-
-        <h2>
-
+ 
+         <h2>
             Your stay in
+            <span>Rameswaram</span>
+         </h2>
 
-            <span>
-                Rameswaram
-            </span>
-
-        </h2>
-
-
-        <p>
-
+         <p>
             After exploring temples, beaches and
             sacred places, return to a comfortable
             space where you can relax and recharge.
+         </p>
 
-        </p>
+     </div>
 
-    </div>
+     <div class="intro-grid">
 
-
-    <div class="intro-grid">
-
-
-        <div class="intro-image">
-
-            <img
+          <div class="intro-image">
+             <img
                 src="images/Modern blue theme bedroom with soft lighting and….jpg"
                 alt="Comfortable room in Rameswaram"
                 loading="lazy">
+         </div>
 
-        </div>
-
-
-        <div class="intro-content">
-
+         <div class="intro-content">
 
             <div class="small-label">
                 COMFORT • CONVENIENCE • REST
-            </div>
+             </div>
 
-
-            <h3>
-
+             <h3>
                 A peaceful place to
                 <span>rest and refresh.</span>
+             </h3>
 
-            </h3>
-
-
-            <p>
-
+             <p>
                 Choose from Standard, Family and
                 Premium rooms according to your
                 travel requirements. Whether you are
                 travelling as a couple, family or group,
                 we provide room options designed for
                 a comfortable stay.
+             </p>
 
-            </p>
-
-
-            <div class="intro-points">
-
+             <div class="intro-points">
 
                 <div class="intro-point">
-
+                     <div>✓</div>
+                    <span>Comfortable accommodation</span>
+                </div>
+ 
+                 <div class="intro-point">
                     <div>✓</div>
+                    <span>AC room options</span>
+                 </div>
 
-                    <span>
-                        Comfortable accommodation
-                    </span>
+                 <div class="intro-point">
+                     <div>✓</div>
+                    <span>Free WiFi</span>
+                 </div>
 
+                 <div class="intro-point">
+                    <div>✓</div>
+                    <span>Hot water facilities</span>
                 </div>
 
-
-                <div class="intro-point">
-
-                    <div>✓</div>
-
-                    <span>
-                        AC room options
-                    </span>
-
-                </div>
-
-
-                <div class="intro-point">
-
-                    <div>✓</div>
-
-                    <span>
-                        Free WiFi
-                    </span>
-
-                </div>
-
-
-                <div class="intro-point">
-
-                    <div>✓</div>
-
-                    <span>
-                        Hot water facilities
-                    </span>
-
-                </div>
-
-
-            </div>
+             </div>
 
         </div>
 
     </div>
 
-</section>
+ </section>
 
-
-
+ 
 <!-- =====================================================
      ROOMS
-     ===================================================== -->
+===================================================== -->
 
-<section class="rooms-section"
-         id="rooms">
-
+<section class="rooms-section" id="rooms">
 
     <div class="section-heading center">
 
+        <div class="small-label">OUR ROOM OPTIONS</div>
 
-        <div class="small-label">
-            OUR ROOM OPTIONS
-        </div>
-
-
-        <h2>
-
+         <h2>
             Choose your
+            <span>perfect stay.</span>
+         </h2>
 
-            <span>
-                perfect stay.
-            </span>
-
-        </h2>
-
-
-        <p>
-
+         <p>
             Comfortable accommodation for
             families, couples and pilgrims
             visiting Rameswaram.
-
-        </p>
+         </p>
 
     </div>
-
-
-
+ 
     <div class="room-container">
 
 
-        <!-- =================================================
-             STANDARD ROOM
-             ================================================= -->
+        <!-- STANDARD ROOM -->
 
         <label class="room-card"
-        data-room-card="Standard Room">
+               data-room-card="Standard Room">
 
+            <input type="radio"
+                   name="room"
+                   value="Standard Room">
 
-            <input
-                type="radio"
-                name="room"
-                value="Standard Room">
-
-
-            <div class="room-image">
-
+             <div class="room-image">
 
                 <img
                     src="images/4011087171522283.jpg"
                     alt="Standard AC Room in Rameswaram"
                     loading="lazy">
 
+                <span class="room-badge">STANDARD</span>
+                <span class="select-indicator">✓</span>
 
-                <span class="room-badge">
-                    STANDARD
-                </span>
+             </div>
 
+             <div class="room-details">
 
-                <span class="select-indicator">
-                    ✓
-                </span>
+                 <div class="room-title-row">
 
-            </div>
-
-
-            <div class="room-details">
-
-
-                <div class="room-title-row">
-
-                    <div>
-
+                     <div>
                         <div class="room-label">
                             SIMPLE & COMFORTABLE
                         </div>
-
-                        <h3>
-                            Standard Room
-                        </h3>
-
-                    </div>
-
-
-                    <span class="room-rating">
+                        <h3>Standard Room</h3>
+                     </div>
+ 
+                     <span class="room-rating">
                         Comfortable Stay
                     </span>
 
                 </div>
+
                 <div class="room-price-options">
 
-    <span class="room-price-title">
-        Choose Bed Type
-    </span>
+                    <label class="room-price-title"
+                           for="standardBed">
 
-    <div class="room-price-list">
+                        Choose Bed Type
+                    </label>
 
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Standard Room"
-            data-bed="Single Bed"
-            data-price="1500">
+                    <select id="standardBed"
+                            class="bed-type-select"
+                            data-room="Standard Room">
 
-            <span class="bed-name">
-                🛏️ Single Bed
-            </span>
+                         <option value="1500" data-bed="Single Bed" data-persons="2">
+                         Single Bed - ₹1,500
+                        </option>
 
-            <span class="bed-price">
-                ₹1,500
-            </span>
+                         <option value="2000" data-bed="Double Bed" data-persons="4" selected>
+                          Double Bed - ₹2,000
+                         </option>
 
-        </button>
+                         <option value="2800" data-bed="Triple Bed" data-persons="6">
+                          Triple Bed - ₹2,800
+                        </option>
 
+                    </select>
 
-        <button
-            type="button"
-            class="bed-price-btn active"
-            data-room="Standard Room"
-            data-bed="Double Bed"
-            data-price="2000">
+                    <div class="room-selected-price">
+                        <small>Selected Price / Night</small>
+                        <strong>₹2,000</strong>
+                    </div>
+                    <div class="bed-capacity">
+                     <strong>Persons Allowed:</strong>
+                     <span class="bed-person-limit">4 Persons</span>
 
-            <span class="bed-name">
-                🛏️ Double Bed
-            </span>
-
-            <span class="bed-price">
-                ₹2,000
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Standard Room"
-            data-bed="Triple Bed"
-            data-price="2800">
-
-            <span class="bed-name">
-                🛏️ Triple Bed
-            </span>
-
-            <span class="bed-price">
-                ₹2,800
-            </span>
-
-        </button>
-
-    </div>
-
-    <div class="room-selected-price">
-
-        <small>
-            Starting / selected price
-        </small>
-
-        <strong>
-            ₹2,000
-        </strong>
-
-    </div>
-
-</div>
-
-
-                <p class="room-description">
-
-                    A comfortable and affordable room
-                    for pilgrims and small families.
-
-                </p>
-
-
-                <div class="room-features">
-
-                    <span>❄️ AC Room</span>
-
-                    <span>📶 Free WiFi</span>
-
-                    <!-- <span>🚿 Hot Water</span> -->
-
-                    <span>🛏️ Comfortable Bed</span>
+                    <small>
+                      Extra bed charge: ₹500 per person, per night.
+                    </small>
+                  </div>
 
                 </div>
 
+                 <p class="room-description">
+                    A comfortable and affordable room
+                    for pilgrims and small families.
+                 </p>
 
-                <div class="room-bottom">
+                 <div class="room-features">
+                     <span>❄️ AC Room</span>
+                     <span>📶 Free WiFi</span>
+                    <span>🛏️ Comfortable Bed</span>
+                 </div>
 
+                 <div class="room-bottom">
 
                     <div>
-
-                        <small>
-                            PERFECT FOR
-                        </small>
-
-                        <strong>
-                            Couples & Small Families
-                        </strong>
-
+                        <small>PERFECT FOR</small>
+                        <strong>Couples & Small Families</strong>
                     </div>
 
-
-                    <span class="choose-text">
-                        Select →
-                    </span>
+                    <span class="choose-text">Select →</span>
 
                 </div>
 
@@ -809,188 +541,102 @@
         </label>
 
 
-
-        <!-- =================================================
-             FAMILY ROOM
-             ================================================= -->
+        <!-- FAMILY ROOM -->
 
         <label class="room-card popular-room"
-        data-room-card="Family Room">
+               data-room-card="Family Room">
 
+            <input type="radio"
+                   name="room"
+                   value="Family Room">
 
-            <input
-                type="radio"
-                name="room"
-                value="Family Room">
-
-
-            <div class="room-image">
-
+             <div class="room-image">
 
                 <img
                     src="images/_Elegant living room with a blend of modern and….jpg"
                     alt="Family Room in Rameswaram"
                     loading="lazy">
 
+                <span class="room-badge family">FAMILY</span>
+                <span class="select-indicator">✓</span>
+                <span class="popular-badge">POPULAR</span>
 
-                <span class="room-badge family">
-                    FAMILY
-                </span>
+             </div>
 
-
-                <span class="select-indicator">
-                    ✓
-                </span>
-
-
-                <span class="popular-badge">
-                    POPULAR
-                </span>
-
-            </div>
-
-
-            <div class="room-details">
-
+             <div class="room-details">
 
                 <div class="room-title-row">
 
                     <div>
-
-                        <div class="room-label">
-                            FAMILY TRAVEL
-                        </div>
-
-                        <h3>
-                            Family Room
-                        </h3>
-
+                        <div class="room-label">FAMILY TRAVEL</div>
+                        <h3>Family Room</h3>
                     </div>
-
 
                     <span class="room-rating">
                         Family Friendly
                     </span>
 
                 </div>
+
                 <div class="room-price-options">
 
-    <span class="room-price-title">
-        Choose Bed Type
-    </span>
+                    <label class="room-price-title"
+                           for="familyBed">
 
-    <div class="room-price-list">
+                        Choose Bed Type
+                    </label>
 
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Family Room"
-            data-bed="Single Bed"
-            data-price="2500">
+                    <select id="familyBed"
+                            class="bed-type-select"
+                            data-room="Family Room">
 
-            <span class="bed-name">
-                🛏️ Single Bed
-            </span>
+                        <option value="2500" data-bed="Single Bed" data-persons="2">
+                        Single Bed - ₹2,500
+                        </option>
 
-            <span class="bed-price">
-                ₹2,500
-            </span>
+                        <option value="3500" data-bed="Double Bed" data-persons="4" selected>
+                         Double Bed - ₹3,500
+                        </option>
 
-        </button>
+                        <option value="4500" data-bed="Triple Bed" data-persons="6">
+                        Triple Bed - ₹4,500
+                       </option>
 
+                    </select>
 
-        <button
-            type="button"
-            class="bed-price-btn active"
-            data-room="Family Room"
-            data-bed="Double Bed"
-            data-price="3500">
+                    <div class="room-selected-price">
+                        <small>Selected Price / Night</small>
+                        <strong>₹3,500</strong>
+                    </div>
+                  <div class="bed-capacity">
+                     <strong>Persons Allowed:</strong>
+                     <span class="bed-person-limit">4 Persons</span>
 
-            <span class="bed-name">
-                🛏️ Double Bed
-            </span>
-
-            <span class="bed-price">
-                ₹3,500
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Family Room"
-            data-bed="Triple Bed"
-            data-price="4500">
-
-            <span class="bed-name">
-                🛏️ Triple Bed
-            </span>
-
-            <span class="bed-price">
-                ₹4,500
-            </span>
-
-        </button>
-
-    </div>
-
-    <div class="room-selected-price">
-
-        <small>
-            Starting / selected price
-        </small>
-
-        <strong>
-            ₹3,500
-        </strong>
-
-    </div>
-
-</div>
-
-
-                <p class="room-description">
-
-                    Spacious accommodation designed
-                    for families travelling together.
-
-                </p>
-
-
-                <div class="room-features">
-
-                    <span>❄️ AC Room</span>
-
-                    <span>📶 Free WiFi</span>
-
-                    <!-- <span>🚿 Hot Water</span> -->
-
-                    <span>👨‍👩‍👧 Family Space</span>
-
+                    <small>
+                      Extra bed charge: ₹500 per person, per night.
+                    </small>
+                  </div>
                 </div>
 
+                 <p class="room-description">
+                    Spacious accommodation designed
+                     for families travelling together.
+                 </p>
 
-                <div class="room-bottom">
+                 <div class="room-features">
+                     <span>❄️ AC Room</span>
+                    <span>📶 Free WiFi</span>
+                     <span>👨‍👩‍👧 Family Space</span>
+                 </div>
 
+                 <div class="room-bottom">
 
                     <div>
-
-                        <small>
-                            PERFECT FOR
-                        </small>
-
-                        <strong>
-                            Families & Groups
-                        </strong>
-
+                        <small>PERFECT FOR</small>
+                        <strong>Families & Groups</strong>
                     </div>
 
-
-                    <span class="choose-text">
-                        Select →
-                    </span>
+                    <span class="choose-text">Select →</span>
 
                 </div>
 
@@ -999,183 +645,100 @@
         </label>
 
 
-
-        <!-- =================================================
-             PREMIUM ROOM
-             ================================================= -->
+        <!-- PREMIUM ROOM -->
 
         <label class="room-card premium-room"
-        data-room-card="Premium Room">
+               data-room-card="Premium Room">
 
+            <input type="radio"
+                   name="room"
+                    value="Premium Room">
 
-            <input
-                type="radio"
-                name="room"
-                value="Premium Room">
-
-
-            <div class="room-image">
-
+             <div class="room-image">
 
                 <img
                     src="images/Modern blue theme bedroom with soft lighting and….jpg"
                     alt="Premium Room in Rameswaram"
                     loading="lazy">
 
+                <span class="room-badge premium">PREMIUM</span>
+                <span class="select-indicator">✓</span>
 
-                <span class="room-badge premium">
-                    PREMIUM
-                </span>
+             </div>
 
-
-                <span class="select-indicator">
-                    ✓
-                </span>
-
-            </div>
-
-
-            <div class="room-details">
-
+             <div class="room-details">
 
                 <div class="room-title-row">
 
                     <div>
-
-                        <div class="room-label">
-                            EXTRA COMFORT
-                        </div>
-
-                        <h3>
-                            Premium Room
-                        </h3>
-
+                        <div class="room-label">EXTRA COMFORT</div>
+                        <h3>Premium Room</h3>
                     </div>
-
 
                     <span class="room-rating">
                         Premium Comfort
                     </span>
 
                 </div>
+
                 <div class="room-price-options">
 
-    <span class="room-price-title">
-        Choose Bed Type
-    </span>
+                    <label class="room-price-title"
+                           for="premiumBed">
 
-    <div class="room-price-list">
+                        Choose Bed Type
+                    </label>
 
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Premium Room"
-            data-bed="Single Bed"
-            data-price="3500">
+                    <select id="premiumBed"
+                            class="bed-type-select"
+                            data-room="Premium Room">
+                    <option value="3500" data-bed="Single Bed" data-persons="2">
+                     Single Bed - ₹3,500
+                    </option>
 
-            <span class="bed-name">
-                🛏️ Single Bed
-            </span>
+                    <option value="4500" data-bed="Double Bed" data-persons="4" selected>
+                     Double Bed - ₹4,500
+                    </option>
 
-            <span class="bed-price">
-                ₹3,500
-            </span>
+                     <option value="5500" data-bed="Triple Bed" data-persons="6">
+                    Triple Bed - ₹5,500
+                    </option>
 
-        </button>
+                    </select>
 
+                    <div class="room-selected-price">
+                        <small>Selected Price / Night</small>
+                        <strong>₹4,500</strong>
+                    </div>
+                     <div class="bed-capacity">
+                     <strong>Persons Allowed:</strong>
+                     <span class="bed-person-limit">4 Persons</span>
 
-        <button
-            type="button"
-            class="bed-price-btn active"
-            data-room="Premium Room"
-            data-bed="Double Bed"
-            data-price="4500">
-
-            <span class="bed-name">
-                🛏️ Double Bed
-            </span>
-
-            <span class="bed-price">
-                ₹4,500
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="bed-price-btn"
-            data-room="Premium Room"
-            data-bed="Triple Bed"
-            data-price="5500">
-
-            <span class="bed-name">
-                🛏️ Triple Bed
-            </span>
-
-            <span class="bed-price">
-                ₹5,500
-            </span>
-
-        </button>
-
-    </div>
-
-    <div class="room-selected-price">
-
-        <small>
-            Starting / selected price
-        </small>
-
-        <strong>
-            ₹4,500
-        </strong>
-
-    </div>
-
-</div>
-
-
-                <p class="room-description">
-
-                    A premium and relaxing stay for
-                    guests looking for extra comfort.
-
-                </p>
-
-
-                <div class="room-features">
-
-                    <span>❄️ Premium AC</span>
-
-                    <span>📶 Free WiFi</span>
-
-                    <!-- <span>🚿 Hot Water</span> -->
-
-                    <span>✨ Premium Comfort</span>
-
+                    <small>
+                      Extra bed charge: ₹500 per person, per night.
+                    </small>
+                  </div>
                 </div>
 
+                 <p class="room-description">
+                    A premium and relaxing stay for
+                    guests looking for extra comfort.
+                 </p>
 
-                <div class="room-bottom">
+                 <div class="room-features">
+                     <span>❄️ Premium AC</span>
+                     <span>📶 Free WiFi</span>
+                     <span>✨ Premium Comfort</span>
+                 </div>
 
+                 <div class="room-bottom">
 
                     <div>
-
-                        <small>
-                            PERFECT FOR
-                        </small>
-
-                        <strong>
-                            Premium Family Stay
-                        </strong>
-
+                        <small>PERFECT FOR</small>
+                        <strong>Premium Family Stay</strong>
                     </div>
 
-
-                    <span class="choose-text">
-                        Select →
-                    </span>
+                    <span class="choose-text">Select →</span>
 
                 </div>
 
@@ -1183,100 +746,62 @@
 
         </label>
 
+     </div>
 
-    </div>
-
-</section>
-
-
-
+ </section>
+ 
+ 
 <!-- =====================================================
      BOOKING
-     ===================================================== -->
+===================================================== -->
 
-<section class="booking-section"
-         id="room-booking">
+<section class="booking-section" id="room-booking">
 
-
-    <div class="booking-container">
-
+     <div class="booking-container">
 
         <div class="booking-intro">
 
+            <div class="small-label">ROOM BOOKING</div>
 
-            <div class="small-label">
-                ROOM BOOKING
-            </div>
-
-
-            <h2>
-
+             <h2>
                 Plan your stay
+                <span>with ease.</span>
+             </h2>
 
-                <span>
-                    with ease.
-                </span>
-
-            </h2>
-
-
-            <p>
-
+             <p>
                 Select your preferred room above
                 and enter your travel details.
                 Submit your booking request and
                 continue with the confirmation process.
-
-            </p>
-
-
-            <div class="booking-benefits">
-
+             </p>
+ 
+             <div class="booking-benefits">
 
                 <div>
-
-                    <span>✓</span>
-
+                     <span>✓</span>
                     Comfortable accommodation
+                 </div>
 
-                </div>
-
-
-                <div>
-
+                 <div>
                     <span>✓</span>
+                     Suitable for pilgrims and families
+                 </div>
 
-                    Suitable for pilgrims and families
-
-                </div>
-
-
-                <div>
-
-                    <span>✓</span>
-
+                 <div>
+                     <span>✓</span>
                     Easy booking process
+                 </div>
 
-                </div>
-
-
-                <div>
-
+                 <div>
                     <span>✓</span>
+                     Travel assistance available
+                 </div>
 
-                    Travel assistance available
+             </div>
 
-                </div>
+             <div class="booking-help">
 
-
-            </div>
-
-
-            <div class="booking-help">
-
-                <small>
-                    Need help with your stay?
-                </small>
+                <small>Need help with your stay?</small>
 
                 <a href="tel:+918838170745">
                     +91 8838170745
@@ -1284,17 +809,12 @@
 
             </div>
 
-
-        </div>
-
+         </div>
 
 
-        <!-- =================================================
-             BOOKING FORM
-             ================================================= -->
+        <!-- BOOKING FORM -->
 
-        <div class="booking-form">
-
+         <div class="booking-form">
 
             <div class="form-title">
 
@@ -1302,45 +822,35 @@
                     COMPLETE YOUR BOOKING
                 </div>
 
-                <h3>
-                    Room booking details
-                </h3>
+                <h3>Room booking details</h3>
 
-                <p>
-                    Enter your travel information below.
-                </p>
+                <p>Enter your travel information below.</p>
+
+             </div>
+ 
+ 
+            <!-- SELECTED ROOM -->
+
+            <div class="selected-room-box">
+
+                <span>Selected Room</span>
+
+                <strong id="selectedRoomText">
+                    Please select a room above
+                </strong>
+
+                <input type="hidden"
+                       id="selectedBedType"
+                       value="">
+
+                <input type="hidden"
+                       id="selectedRoomPrice"
+                       value="">
 
             </div>
 
 
-
-            <!-- SELECTED ROOM -->
-
-           <div class="selected-room-box">
-
-    <span>
-        Selected Room
-    </span>
-
-    <strong id="selectedRoomText">
-        Please select a room above
-    </strong>
-
-    <input
-        type="hidden"
-        id="selectedBedType"
-        value="">
-
-    <input
-        type="hidden"
-        id="selectedRoomPrice"
-        value="">
-
-</div>
-
-
-            <div class="form-grid">
-
+             <div class="form-grid">
 
                 <!-- PERSONS -->
 
@@ -1350,17 +860,15 @@
                         Number of Persons
                     </label>
 
-                    <input
-                        type="number"
-                        id="roomPersons"
-                        min="1"
-                        max="20"
-                        required
-                        placeholder="Enter number of persons">
+                    <input type="number"
+                           id="roomPersons"
+                           min="1"
+                           max="20"
+                           required
+                           placeholder="Enter number of persons">
 
                 </div>
-
-
+ 
 
                 <!-- MOBILE -->
 
@@ -1370,51 +878,54 @@
                         Mobile Number
                     </label>
 
-                    <input
-                        type="tel"
-                        id="roomMobile"
-                        maxlength="10"
-                        pattern="[6-9][0-9]{9}"
-                        inputmode="numeric"
-                        required
-                        placeholder="10 digit mobile number">
+                    <input type="tel"
+                           id="roomMobile"
+                           maxlength="10"
+                           pattern="[6-9][0-9]{9}"
+                           inputmode="numeric"
+                           required
+                           placeholder="10 digit mobile number">
 
                 </div>
-
-
+ 
 
                 <!-- CHECK IN -->
 
                 <div class="form-group">
 
-                    <label for="checkin">
-                        Check In
-                    </label>
+                    <label for="checkin">Check In</label>
 
-                    <input
-                        type="date"
-                        id="checkin"
-                        required>
+                    <input type="date"
+                           id="checkin"
+                           required>
 
                 </div>
-
-
+ 
 
                 <!-- CHECK OUT -->
 
                 <div class="form-group">
 
-                    <label for="checkout">
-                        Check Out
-                    </label>
+                    <label for="checkout">Check Out</label>
 
-                    <input
-                        type="date"
-                        id="checkout"
-                        required>
+                    <input type="date"
+                           id="checkout"
+                           required>
 
                 </div>
 
+
+                <!-- NIGHTS -->
+
+                <div class="form-group full-width">
+
+                    <label>Number of Nights</label>
+
+                    <strong id="nightsDisplay">
+                        Select check-in and check-out dates
+                    </strong>
+
+                </div>
 
 
                 <!-- EMAIL -->
@@ -1425,257 +936,178 @@
                         Email Address
                     </label>
 
-                    <input
-                        type="email"
-                        id="roomEmail"
-                        required
-                        placeholder="Enter your email">
+                    <input type="email"
+                           id="roomEmail"
+                           required
+                           placeholder="Enter your email">
 
                 </div>
-
-
+ 
 
                 <!-- REQUEST -->
 
                 <div class="form-group full-width">
 
-                    <label for="request">
-                        Special Request
-                    </label>
+                    <label for="request">Special Request</label>
 
-                    <textarea
-                        id="request"
-                        placeholder="Any special requirements..."></textarea>
+                    <textarea id="request"
+                              placeholder="Any special requirements..."></textarea>
 
                 </div>
+ 
+             </div>
 
+
+            <!-- TOTAL PRICE -->
+
+            <div class="room-total-box">
+
+                <span>Total Room Price</span>
+
+                <strong id="totalRoomPrice">₹0</strong>
+
+                <small id="priceBreakdown">
+                    Select a room and dates
+                </small>
 
             </div>
-
 
 
             <!-- BOOKING BUTTON -->
 
-            <button
-                type="button"
-                class="booking-button"
-                onclick="sendRoomWhatsApp()">
+            <button type="button"
+                    class="booking-button"
+                    onclick="sendRoomWhatsApp()">
 
                 Continue Booking
 
-                <span>
-                    →
-                </span>
+                <span>→</span>
 
-            </button>
+             </button>
 
-
-            <p class="booking-note">
-
-                Please make sure your details
+             <p class="booking-note">
+                 Please make sure your details
                 are correct before submitting.
-
-            </p>
-
-
+             </p>
+ 
         </div>
 
-    </div>
+     </div>
 
-</section>
+ </section>
 
-
-
+ 
 <!-- =====================================================
      WHY CHOOSE
-     ===================================================== -->
+===================================================== -->
 
-<section class="why-section">
-
+ <section class="why-section">
 
     <div class="section-heading center">
 
-        <div class="small-label">
-            WHY STAY WITH US
-        </div>
+        <div class="small-label">WHY STAY WITH US</div>
 
-        <h2>
-
+         <h2>
             More than just
-
-            <span>
-                a room.
-            </span>
-
+            <span>a room.</span>
         </h2>
 
-        <p>
-
-            Make your Rameswaram journey easier
+         <p>
+             Make your Rameswaram journey easier
             with a comfortable place to stay.
+         </p>
 
-        </p>
+     </div>
 
-    </div>
-
-
-
-    <div class="why-grid">
-
+     <div class="why-grid">
 
         <div class="why-card">
-
-            <div class="why-icon">
-                🛏️
-            </div>
-
-            <h3>
-                Comfortable Stay
-            </h3>
-
-            <p>
-
+            <div class="why-icon">🛏️</div>
+            <h3>Comfortable Stay</h3>
+             <p>
                 Relax in comfortable accommodation
                 after your Rameswaram journey.
+             </p>
+         </div>
 
-            </p>
-
-        </div>
-
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                📍
-            </div>
-
-            <h3>
-                Travel Assistance
-            </h3>
-
-            <p>
-
+         <div class="why-card">
+            <div class="why-icon">📍</div>
+            <h3>Travel Assistance</h3>
+             <p>
                 Easily combine your room stay
-                with sightseeing and cab services.
+                  with sightseeing and cab services.
+             </p>
+         </div>
 
-            </p>
-
-        </div>
-
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                🙏
-            </div>
-
-            <h3>
-                Pilgrim Friendly
-            </h3>
-
-            <p>
-
+         <div class="why-card">
+            <div class="why-icon">🙏</div>
+            <h3>Pilgrim Friendly</h3>
+             <p>
                 Convenient accommodation for
                 visitors coming to Rameswaram.
+             </p>
+         </div>
 
-            </p>
-
-        </div>
-
-
-
-        <div class="why-card">
-
-            <div class="why-icon">
-                💬
-            </div>
-
-            <h3>
-                Easy Booking
-            </h3>
-
-            <p>
-
+         <div class="why-card">
+            <div class="why-icon">💬</div>
+            <h3>Easy Booking</h3>
+             <p>
                 Simple booking process with
                 quick communication.
+             </p>
+         </div>
 
-            </p>
+     </div>
 
-        </div>
+ </section>
 
-
-    </div>
-
-</section>
-
-
-
+ 
 <!-- =====================================================
      RAMESWARAM STAY
-     ===================================================== -->
+===================================================== -->
 
-<section class="stay-section">
+ <section class="stay-section">
 
+     <div class="stay-grid">
 
-    <div class="stay-grid">
-
-
-        <div class="stay-content">
-
+         <div class="stay-content">
 
             <div class="small-label">
                 YOUR RAMESWARAM JOURNEY
-            </div>
+             </div>
 
-
-            <h2>
-
+             <h2>
                 Rest well.
+                <span>Explore more.</span>
+             </h2>
 
-                <span>
-                    Explore more.
-                </span>
-
-            </h2>
-
-
-            <p>
-
+             <p>
                 Rameswaram has temples, beaches,
                 historic landmarks and sacred places
                 waiting to be explored. A comfortable
                 stay gives you the chance to relax
                 between each part of your journey.
+             </p>
 
-            </p>
-
-
-            <div class="stay-links">
-
+             <div class="stay-links">
 
                 <a href="totalpackage.html">
                     Explore Tour Packages →
-                </a>
+                 </a>
 
-
-                <a href="rameswaram-cab-service.html">
+                 <a href="rameswaram-cab-service.html">
                     Book a Cab →
-                </a>
+                 </a>
 
-
-                <a href="ramanathaswamy-temple.html">
+                 <a href="ramanathaswamy-temple.html">
                     Visit Temple Guide →
                 </a>
 
+             </div>
 
-            </div>
+         </div>
 
-        </div>
-
-
-        <div class="stay-image">
+         <div class="stay-image">
 
             <img
                 src="images/Pamban Bridge.jpg"
@@ -1684,230 +1116,144 @@
 
         </div>
 
+     </div>
 
-    </div>
+ </section>
 
-</section>
-
-
-
+ 
 <!-- =====================================================
      SEO CONTENT
-     ===================================================== -->
+===================================================== -->
 
-<section class="seo-section">
-
+ <section class="seo-section">
 
     <div class="seo-content">
 
-        <div class="small-label">
-            RAMSETHUYATRA
-        </div>
+        <div class="small-label">RAMSETHUYATRA</div>
 
+        <h2>Comfortable Rooms in Rameswaram</h2>
 
-        <h2>
-            Comfortable Rooms in Rameswaram
-        </h2>
-
-
-        <p>
-
+         <p>
             RamSethuYatra provides room booking
             options in Rameswaram for pilgrims,
             families, couples and travellers.
             Choose from Standard, Family and
             Premium rooms according to your
             requirements.
+         </p>
 
-        </p>
-
-
-        <p>
-
+         <p>
             Rameswaram visitors can combine their
             accommodation with local cab services,
             sightseeing and temple visits for a
             convenient travel experience.
-
-        </p>
+         </p>
 
     </div>
 
-</section>
+ </section>
 
-
-
+ 
 <!-- =====================================================
      CTA
-     ===================================================== -->
+===================================================== -->
 
-<section class="rooms-cta">
+ <section class="rooms-cta">
 
+     <div class="rooms-cta-overlay"></div>
 
-    <div class="rooms-cta-overlay"></div>
+     <div class="cta-content">
 
+        <div class="small-label">PLAN YOUR STAY</div>
 
-    <div class="cta-content">
-
-
-        <div class="small-label">
-            PLAN YOUR STAY
-        </div>
-
-
-        <h2>
-
+         <h2>
             Make your Rameswaram
             journey comfortable.
-
-        </h2>
-
-
-        <p>
-
+         </h2>
+ 
+         <p>
             Choose your room and start
             planning your stay today.
+         </p>
+ 
+         <div class="cta-buttons">
 
-        </p>
-
-
-        <div class="cta-buttons">
-
-
-            <a href="#rooms"
-               class="cta-primary">
-
+             <a href="#rooms" class="cta-primary">
                 Explore Rooms
+             </a>
 
-            </a>
-
-
-            <a href="tel:+918838170745"
+              <a href="tel:+918838170745"
                class="cta-secondary">
-
+ 
                 Call Us
-
-            </a>
+             </a>
 
         </div>
 
     </div>
 
-</section>
+ </section>
 
-
-
+ 
 <!-- =====================================================
      FOOTER
-     ===================================================== -->
+===================================================== -->
 
-<footer class="site-footer">
+ <footer class="site-footer">
 
+     <div class="footer-container">
 
-    <div class="footer-container">
-
-
-        <div class="footer-brand">
-
+         <div class="footer-brand">
 
             <a href="index.html"
                class="brand footer-logo">
 
-
-                <div class="brand-icon">
-                    ॐ
-                </div>
-
+                <div class="brand-icon">ॐ</div>
 
                 <div class="brand-name">
-
-                    <span>
-                        Ram
-                    </span>
-
-                    <span>
-                        Sethu
-                    </span>
-
-                    <span>
-                        Yatra
-                    </span>
-
+                    <span>Ram</span>
+                    <span>Sethu</span>
+                    <span>Yatra</span>
                 </div>
 
+             </a>
 
-            </a>
-
-
-            <p>
-
+             <p>
                 Your travel companion for
                 comfortable and memorable
                 Rameswaram journeys.
-
-            </p>
+             </p>
+ 
+         </div>
+ 
+ 
+         <div class="footer-column">
+ 
+             <h3>Explore</h3>
+ 
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="totalpackage.html">Packages</a>
+            <a href="ramanathaswamy-temple.html">Temple</a>
 
         </div>
-
-
+  
 
         <div class="footer-column">
 
-            <h3>
-                Explore
-            </h3>
+            <h3>Services</h3>
 
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-            <a href="totalpackage.html">
-                Packages
-            </a>
-
-            <a href="ramanathaswamy-temple.html">
-                Temple
-            </a>
+            <a href="rameswaram-cab-service.html">Cab Service</a>
+            <a href="rameswaram-rooms.html">Rooms</a>
+            <a href="customer-dashboard.html">My Booking</a>
+            <a href="contact.html">Contact</a>
 
         </div>
-
-
+ 
 
         <div class="footer-column">
 
-            <h3>
-                Services
-            </h3>
-
-            <a href="rameswaram-cab-service.html">
-                Cab Service
-            </a>
-
-            <a href="rameswaram-rooms.html">
-                Rooms
-            </a>
-
-            <a href="customer-dashboard.html">
-                My Booking
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </div>
-
-
-
-        <div class="footer-column">
-
-            <h3>
-                Contact
-            </h3>
+            <h3>Contact</h3>
 
             <a href="tel:+918838170745">
                 +91 8838170745
@@ -1918,84 +1264,67 @@
             </a>
 
             <span>
-                Rameswaram,
-                Tamil Nadu, India
+                Rameswaram, Tamil Nadu, India
             </span>
 
-        </div>
+         </div>
 
+     </div>
 
-    </div>
-
-
-
-    <div class="footer-bottom">
-
-
+ 
+     <div class="footer-bottom">
+ 
         <p>
-            © 2026 RamSethuYatra.
-            All Rights Reserved.
+             © 2026 RamSethuYatra. All Rights Reserved.
         </p>
-
-
+  
         <div>
 
-            <a href="privacy.html">
-                Privacy Policy
-            </a>
-
-            <a href="terms.html">
-                Terms
-            </a>
-
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms</a>
             <a href="refund-cancellation.html">
                 Cancellation & Refund
             </a>
 
         </div>
 
+      </div>
 
-    </div>
+ </footer>
 
-</footer>
-
-
-
+ 
 <!-- =====================================================
      FLOATING WHATSAPP
-     ===================================================== -->
+===================================================== -->
 
 <a href="https://wa.me/918838170745"
    class="floating-whatsapp"
    target="_blank"
    rel="noopener noreferrer">
 
-    <span>◉</span>
-
+     <span>◉</span>
     WhatsApp
 
-</a>
+ </a>
 
-
-
+ 
 <!-- =====================================================
      FLOATING CALL
-     ===================================================== -->
+===================================================== -->
 
 <a href="tel:+918838170745"
    class="floating-call">
 
-    <span>☎</span>
-
+     <span>☎</span>
     Call
 
-</a>
-
-
-
+ </a>
+ 
+ 
 <!-- =====================================================
-     JAVASCRIPT
-     ===================================================== -->
+     FIREBASE AUTH
+===================================================== -->
+
 <script type="module">
 
     import { auth } from "./firebase.js";
@@ -2004,13 +1333,7 @@
         onAuthStateChanged,
         signOut
     } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-
-
-
-    /* =====================================================
-       FIREBASE AUTH
-    ===================================================== */
+ 
 
     const loginNav =
         document.getElementById("loginNav");
@@ -2022,193 +1345,313 @@
         document.getElementById("logoutNav");
 
 
-    onAuthStateChanged(
-        auth,
-        (user) => {
+    onAuthStateChanged(auth, (user) => {
 
-            if (user) {
+        if (user) {
 
-                if (loginNav) {
+            if (loginNav) {
+                loginNav.style.display = "none";
+            }
 
-                    loginNav.style.display =
-                        "none";
+            if (myBookingNav) {
+                myBookingNav.style.display = "flex";
+            }
 
-                }
+            if (logoutNav) {
+                logoutNav.style.display = "flex";
+            }
 
+        } else {
 
-                if (myBookingNav) {
+            if (loginNav) {
+                loginNav.style.display = "flex";
+            }
 
-                    myBookingNav.style.display =
-                        "flex";
+            if (myBookingNav) {
+                myBookingNav.style.display = "none";
+            }
 
-                }
-
-
-                if (logoutNav) {
-
-                    logoutNav.style.display =
-                        "flex";
-
-                }
-
-            } else {
-
-                if (loginNav) {
-
-                    loginNav.style.display =
-                        "flex";
-
-                }
-
-
-                if (myBookingNav) {
-
-                    myBookingNav.style.display =
-                        "none";
-
-                }
-
-
-                if (logoutNav) {
-
-                    logoutNav.style.display =
-                        "none";
-
-                }
-
+            if (logoutNav) {
+                logoutNav.style.display = "none";
             }
 
         }
-    );
 
+    });
 
-
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
-
+ 
     if (logoutNav) {
 
-        logoutNav.addEventListener(
-            "click",
-            async () => {
+        logoutNav.addEventListener("click", async () => {
 
-                try {
+            try {
 
-                    await signOut(auth);
+                await signOut(auth);
+                window.location.href = "index.html";
 
-                    window.location.href =
-                        "index.html";
+            } catch (error) {
 
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-                }
+                console.error("Logout error:", error);
 
             }
-        );
+
+        });
 
     }
 
 </script>
+
+
+<!-- =====================================================
+     ROOM BOOKING JAVASCRIPT
+===================================================== -->
+
 <script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const roomInputs = document.querySelectorAll(
+    'input[name="room"]'
+);
+
+const roomCards = document.querySelectorAll(
+    ".room-card"
+);
+
+const bedSelects = document.querySelectorAll(
+    ".bed-type-select"
+);
+
+const selectedRoomText =
+    document.getElementById("selectedRoomText");
+
+const selectedBedType =
+    document.getElementById("selectedBedType");
+
+const selectedRoomPrice =
+    document.getElementById("selectedRoomPrice");
+
+const roomBookingSection =
+    document.getElementById("room-booking");
+
+const checkin =
+    document.getElementById("checkin");
+
+const checkout =
+    document.getElementById("checkout");
+
+const nightsDisplay =
+    document.getElementById("nightsDisplay");
+
+const totalRoomPrice =
+    document.getElementById("totalRoomPrice");
+
+const priceBreakdown =
+    document.getElementById("priceBreakdown");
+
+
+let selectedNightlyPrice = 0;
+let selectedRoomName = "";
+let selectedBedName = "";
 
 
 /* =====================================================
    MOBILE MENU
-   ===================================================== */
+===================================================== */
 
-const menuToggle =
-    document.getElementById("menuToggle");
+const mobileMenuBtn =
+    document.getElementById("mobileMenuBtn");
 
 const mainNav =
     document.getElementById("mainNav");
 
+if (mobileMenuBtn && mainNav) {
 
-if (menuToggle && mainNav) {
+    mobileMenuBtn.addEventListener("click", function () {
 
-    menuToggle.addEventListener(
-        "click",
-        function () {
+        mainNav.classList.toggle("show");
 
-            mainNav.classList.toggle("show");
+        const icon = this.querySelector("i");
 
+        if (icon) {
+            icon.classList.toggle("fa-bars");
+            icon.classList.toggle("fa-xmark");
         }
-    );
 
+    });
 
-    mainNav.querySelectorAll("a")
-        .forEach(function (link) {
+    mainNav.querySelectorAll("a").forEach(link => {
 
-            link.addEventListener(
-                "click",
-                function () {
-
-                    mainNav.classList.remove("show");
-
-                }
-            );
-
+        link.addEventListener("click", () => {
+            mainNav.classList.remove("show");
         });
+
+    });
 
 }
 
 
+/* =====================================================
+   LOCAL DATE
+===================================================== */
+
+function getLocalDateString() {
+
+    const date = new Date();
+
+    const year = date.getFullYear();
+
+    const month = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        date.getDate()
+    ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+if (checkin && checkout) {
+
+    const today = getLocalDateString();
+
+    checkin.min = today;
+    checkout.min = today;
+
+    checkin.addEventListener("change", function () {
+
+        checkout.min = this.value || today;
+
+        if (
+            checkout.value &&
+            checkout.value <= this.value
+        ) {
+            checkout.value = "";
+        }
+
+        updateRoomTotal();
+
+    });
+
+    checkout.addEventListener(
+        "change",
+        updateRoomTotal
+    );
+
+}
+
 
 /* =====================================================
-   ROOM + BED + PRICE SELECTION
-   CUSTOMER-FRIENDLY FLOW
-   ===================================================== */
+   GET NUMBER OF NIGHTS
+===================================================== */
 
-const roomInputs =
-    document.querySelectorAll(
-        'input[name="room"]'
+function getRoomNights() {
+
+    if (!checkin?.value || !checkout?.value) {
+        return 0;
+    }
+
+    const start = new Date(
+        checkin.value + "T00:00:00"
     );
 
-const roomCards =
-    document.querySelectorAll(
-        ".room-card"
+    const end = new Date(
+        checkout.value + "T00:00:00"
     );
 
-const bedButtons =
-    document.querySelectorAll(
-        ".bed-price-btn"
-    );
+    const difference =
+        end.getTime() - start.getTime();
 
-const selectedRoomText =
-    document.getElementById(
-        "selectedRoomText"
-    );
+    const nights =
+        difference / (1000 * 60 * 60 * 24);
 
-const selectedBedType =
-    document.getElementById(
-        "selectedBedType"
-    );
+    return Number.isInteger(nights) && nights > 0
+        ? nights
+        : 0;
 
-const selectedRoomPrice =
-    document.getElementById(
-        "selectedRoomPrice"
-    );
+}
 
-const roomBookingSection =
-    document.getElementById(
-        "room-booking"
-    );
+
+/* =====================================================
+   UPDATE TOTAL PRICE
+===================================================== */
+
+function updateRoomTotal() {
+
+    const nights = getRoomNights();
+
+    if (nightsDisplay) {
+
+        nightsDisplay.textContent = nights > 0
+            ? nights + (nights === 1 ? " Night" : " Nights")
+            : "Select valid check-in and check-out dates";
+
+    }
+
+    if (
+        !selectedNightlyPrice ||
+        nights < 1
+    ) {
+
+        if (totalRoomPrice) {
+            totalRoomPrice.textContent = "₹0";
+        }
+
+        if (priceBreakdown) {
+            priceBreakdown.textContent =
+                "Select a room and valid dates";
+        }
+
+        return;
+
+    }
+
+    const total =
+        selectedNightlyPrice * nights;
+
+    if (totalRoomPrice) {
+
+        totalRoomPrice.textContent =
+            "₹" + total.toLocaleString("en-IN");
+
+    }
+
+    if (priceBreakdown) {
+
+        priceBreakdown.textContent =
+            selectedRoomName +
+            " • " +
+            selectedBedName +
+            " • ₹" +
+            selectedNightlyPrice.toLocaleString("en-IN") +
+            " × " +
+            nights +
+            " nights";
+
+    }
+
+}
 
 
 /* =====================================================
    UPDATE SELECTED ROOM
-   ===================================================== */
-
+===================================================== */
 function updateSelectedRoom(
     roomName,
     bedName,
-    price
+    price,
+    capacity,
+    roomCard
 ) {
+
+    selectedRoomName = roomName;
+    selectedBedName = bedName;
+    selectedNightlyPrice = Number(price);
 
     if (selectedRoomText) {
 
@@ -2217,42 +1660,59 @@ function updateSelectedRoom(
             " • " +
             bedName +
             " • ₹" +
-            Number(price)
-                .toLocaleString("en-IN");
+            selectedNightlyPrice.toLocaleString("en-IN") +
+            " / night";
 
     }
-
 
     if (selectedBedType) {
-
-        selectedBedType.value =
-            bedName;
-
+        selectedBedType.value = bedName;
     }
 
-
     if (selectedRoomPrice) {
-
         selectedRoomPrice.value =
-            price;
+            selectedNightlyPrice;
+    }
 
+    updateRoomTotal();
+
+}
+
+
+/* =====================================================
+   ACTIVATE ROOM CARD
+===================================================== */
+
+function activateRoom(roomCard) {
+
+    if (!roomCard) return;
+
+    roomCards.forEach(card => {
+        card.classList.remove("selected");
+    });
+
+    roomCard.classList.add("selected");
+
+    const roomInput = roomCard.querySelector(
+        'input[name="room"]'
+    );
+
+    if (roomInput) {
+        roomInput.checked = true;
     }
 
 }
 
 
 /* =====================================================
-   SCROLL TO BOOKING FORM
-   ===================================================== */
+   SCROLL TO BOOKING
+===================================================== */
 
 function scrollToRoomBooking() {
 
-    if (!roomBookingSection) {
-        return;
-    }
+    if (!roomBookingSection) return;
 
-
-    setTimeout(function () {
+    setTimeout(() => {
 
         roomBookingSection.scrollIntoView({
             behavior: "smooth",
@@ -2265,537 +1725,243 @@ function scrollToRoomBooking() {
 
 
 /* =====================================================
-   SELECT ROOM
-   ===================================================== */
+   BED DROPDOWN CHANGE
+===================================================== */
 
-function selectRoom(roomName) {
+bedSelects.forEach(select => {
 
-    if (!roomName) {
-        return;
-    }
+    // Show the correct capacity immediately on page load
+    updateBedCapacity(select);
 
+    select.addEventListener("change", function () {
 
-    /* ---------------------------------------------
-       FIND ROOM RADIO
-       --------------------------------------------- */
+        const roomCard = this.closest(".room-card");
+        const option = this.options[this.selectedIndex];
 
-    const roomInput =
-        document.querySelector(
-            'input[name="room"][value="' +
-            roomName +
-            '"]'
-        );
+        const roomName = this.dataset.room;
+        const bedName = option.dataset.bed;
+        const price = Number(this.value);
+        const capacity = Number(option.dataset.persons);
 
+        if (!roomCard || !capacity || !price) return;
 
-    if (!roomInput) {
-        return;
-    }
+        activateRoom(roomCard);
 
+        const priceDisplay =
+            roomCard.querySelector(".room-selected-price strong");
 
-    /* ---------------------------------------------
-       CHECK RADIO
-       --------------------------------------------- */
+        if (priceDisplay) {
+            priceDisplay.textContent =
+                "₹" + price.toLocaleString("en-IN");
+        }
 
-    roomInput.checked = true;
+        // Update the selected room's capacity
+        updateBedCapacity(this);
 
-
-    /* ---------------------------------------------
-       FIND ROOM CARD
-       --------------------------------------------- */
-
-    const roomCard =
-        roomInput.closest(
-            ".room-card"
-        );
-
-
-    if (!roomCard) {
-        return;
-    }
-
-
-    /* ---------------------------------------------
-       FIND ACTIVE BED
-       --------------------------------------------- */
-
-    const activeBed =
-        roomCard.querySelector(
-            ".bed-price-btn.active"
-        );
-
-
-    const firstBed =
-        activeBed ||
-        roomCard.querySelector(
-            ".bed-price-btn"
-        );
-
-
-    if (!firstBed) {
-        return;
-    }
-
-
-    const bedName =
-        firstBed.dataset.bed;
-
-    const price =
-        firstBed.dataset.price;
-
-
-    /* ---------------------------------------------
-       MAKE THIS BED ACTIVE
-       --------------------------------------------- */
-
-    roomCard
-        .querySelectorAll(
-            ".bed-price-btn"
-        )
-        .forEach(function (button) {
-
-            button.classList.remove(
-                "active"
-            );
-
-        });
-
-
-    firstBed.classList.add(
-        "active"
-    );
-
-
-    /* ---------------------------------------------
-       UPDATE PRICE DISPLAY
-       --------------------------------------------- */
-
-    const priceDisplay =
-        roomCard.querySelector(
-            ".room-selected-price strong"
-        );
-
-
-    if (priceDisplay) {
-
-        priceDisplay.textContent =
-            "₹" +
-            Number(price)
-                .toLocaleString("en-IN");
-
-    }
-
-
-    /* ---------------------------------------------
-       UPDATE BOOKING FORM
-       --------------------------------------------- */
-
-    updateSelectedRoom(
-        roomName,
-        bedName,
-        price
-    );
-
-
-    /* ---------------------------------------------
-       SELECTED CARD
-       --------------------------------------------- */
-
-    roomCards.forEach(function (card) {
-
-        card.classList.remove(
-            "selected"
+        updateSelectedRoom(
+            roomName,
+            bedName,
+            price,
+            capacity,
+            roomCard
         );
 
     });
 
-
-    roomCard.classList.add(
-        "selected"
-    );
-
-
-    /* ---------------------------------------------
-       MOVE TO BOOKING FORM
-       --------------------------------------------- */
-
-    scrollToRoomBooking();
-
-}
-
-
-/* =====================================================
-   ROOM RADIO CHANGE
-   ===================================================== */
-
-roomInputs.forEach(function (radio) {
-
-    radio.addEventListener(
-        "change",
-        function () {
-
-            selectRoom(
-                this.value
-            );
-
-        }
-    );
-
 });
+function updateBedCapacity(select) {
 
+    const roomCard = select.closest(".room-card");
 
-/* =====================================================
-   WHOLE ROOM CARD CLICK
-   ===================================================== */
+    if (!roomCard) return;
 
-roomCards.forEach(function (card) {
+    const option = select.options[select.selectedIndex];
 
-    card.addEventListener(
-        "click",
-        function (event) {
+    const capacity = Number(option.dataset.persons);
 
-            /*
-             * If customer clicked a bed/price
-             * button, its own handler will manage
-             * the selection.
-             */
+    const capacityDisplay =
+        roomCard.querySelector(".bed-person-limit");
 
-            if (
-                event.target.closest(
-                    ".bed-price-btn"
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            const roomName =
-                this.dataset.roomCard;
-
-
-            if (!roomName) {
-                return;
-            }
-
-
-            selectRoom(
-                roomName
-            );
-
-        }
-    );
-
-});
-
-
-/* =====================================================
-   BED TYPE + PRICE SELECTION
-   ===================================================== */
-
-bedButtons.forEach(function (button) {
-
-    button.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-
-            /* -------------------------------------
-               GET VALUES
-               ------------------------------------- */
-
-            const roomName =
-                this.dataset.room;
-
-            const bedName =
-                this.dataset.bed;
-
-            const price =
-                this.dataset.price;
-
-
-            /* -------------------------------------
-               FIND ROOM CARD
-               ------------------------------------- */
-
-            const roomCard =
-                this.closest(
-                    ".room-card"
-                );
-
-
-            if (!roomCard) {
-                return;
-            }
-
-
-            /* -------------------------------------
-               SELECT ROOM RADIO
-               ------------------------------------- */
-
-            const roomInput =
-                roomCard.querySelector(
-                    'input[name="room"]'
-                );
-
-
-            if (roomInput) {
-
-                roomInput.checked =
-                    true;
-
-            }
-
-
-            /* -------------------------------------
-               REMOVE ACTIVE BED
-               ------------------------------------- */
-
-            roomCard
-                .querySelectorAll(
-                    ".bed-price-btn"
-                )
-                .forEach(function (item) {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-            /* -------------------------------------
-               SELECT THIS BED
-               ------------------------------------- */
-
-            this.classList.add(
-                "active"
-            );
-
-
-            /* -------------------------------------
-               UPDATE PRICE
-               ------------------------------------- */
-
-            const priceDisplay =
-                roomCard.querySelector(
-                    ".room-selected-price strong"
-                );
-
-
-            if (priceDisplay) {
-
-                priceDisplay.textContent =
-                    "₹" +
-                    Number(price)
-                        .toLocaleString("en-IN");
-
-            }
-
-
-            /* -------------------------------------
-               SELECTED ROOM CARD
-               ------------------------------------- */
-
-            roomCards.forEach(function (card) {
-
-                card.classList.remove(
-                    "selected"
-                );
-
-            });
-
-
-            roomCard.classList.add(
-                "selected"
-            );
-
-
-            /* -------------------------------------
-               UPDATE BOOKING FORM
-               ------------------------------------- */
-
-            updateSelectedRoom(
-                roomName,
-                bedName,
-                price
-            );
-
-
-            /* -------------------------------------
-               MOVE TO BOOKING FORM
-               ------------------------------------- */
-
-            scrollToRoomBooking();
-
-        }
-    );
-
-});
-
-
-
-/* =====================================================
-   DATE VALIDATION
-   ===================================================== */
-
-const checkin =
-    document.getElementById("checkin");
-
-const checkout =
-    document.getElementById("checkout");
-
-
-if (checkin && checkout) {
-
-    const today =
-        new Date()
-            .toISOString()
-            .split("T")[0];
-
-
-    checkin.min = today;
-
-    checkout.min = today;
-
-
-    checkin.addEventListener(
-        "change",
-        function () {
-
-            checkout.min =
-                this.value;
-
-            if (
-                checkout.value &&
-                checkout.value < this.value
-            ) {
-
-                checkout.value = "";
-
-            }
-
-        }
-    );
-
-}
-document.addEventListener("DOMContentLoaded", function () {
-
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const mobileMenu =
-        document.getElementById("mobileMenu");
-
-    if(menuToggle && mobileMenu){
-
-        menuToggle.addEventListener("click", function () {
-
-            mobileMenu.classList.toggle("active");
-
-        });
-
+    if (capacityDisplay && capacity) {
+        capacityDisplay.textContent = capacity + " Persons";
     }
 
+}
+
+
+/* =====================================================
+   ROOM CARD CLICK
+===================================================== */
+
+roomCards.forEach(card => {
+
+    card.addEventListener("click", function (event) {
+
+        if (
+            event.target.closest(".bed-type-select")
+        ) {
+            return;
+        }
+
+        activateRoom(this);
+
+        const select =
+            this.querySelector(".bed-type-select");
+
+        if (!select) return;
+
+        const option =
+            select.options[select.selectedIndex];
+
+        updateSelectedRoom(
+            select.dataset.room,
+            option.dataset.bed,
+            Number(select.value)
+        );
+
+    });
+
 });
 
 
 /* =====================================================
-   MOBILE NUMBER
-   ===================================================== */
+   RADIO CHANGE
+===================================================== */
+
+roomInputs.forEach(radio => {
+
+    radio.addEventListener("change", function () {
+
+        const roomCard =
+            this.closest(".room-card");
+
+        if (!roomCard) return;
+
+        activateRoom(roomCard);
+
+        const select =
+            roomCard.querySelector(".bed-type-select");
+
+        if (!select) return;
+
+        const option =
+            select.options[select.selectedIndex];
+
+        updateSelectedRoom(
+            select.dataset.room,
+            option.dataset.bed,
+            Number(select.value)
+        );
+
+    });
+
+});
+
+
+/* =====================================================
+   MOBILE NUMBER VALIDATION
+===================================================== */
 
 const roomMobile =
     document.getElementById("roomMobile");
 
-
 if (roomMobile) {
 
-    roomMobile.addEventListener(
-        "input",
-        function () {
+    roomMobile.addEventListener("input", function () {
 
-            this.value =
-                this.value
-                    .replace(/\D/g, "")
-                    .slice(0, 10);
+        this.value = this.value
+            .replace(/\D/g, "")
+            .slice(0, 10);
 
-        }
-    );
+    });
 
 }
 
 
-
 /* =====================================================
    SCROLL REVEAL
-   ===================================================== */
+===================================================== */
 
 const revealElements =
     document.querySelectorAll(
         ".room-card, .why-card, .intro-grid, .stay-grid"
     );
 
+if ("IntersectionObserver" in window) {
 
-const revealObserver =
-    new IntersectionObserver(
-        function (entries) {
+    const revealObserver =
+        new IntersectionObserver(
+            function (entries) {
 
-            entries.forEach(
-                function (entry) {
+                entries.forEach(entry => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    if (entry.isIntersecting) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
+                        entry.target.classList.add("visible");
+
+                        revealObserver.unobserve(entry.target);
 
                     }
 
-                }
-            );
+                });
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+            },
+            {
+                threshold: 0.12
+            }
+        );
 
-
-revealElements.forEach(
-    function (element) {
+    revealElements.forEach(element => {
 
         element.classList.add("reveal");
-
         revealObserver.observe(element);
 
-    }
-);
+    });
 
+}
+
+
+/* =====================================================
+   INITIAL DISPLAY
+===================================================== */
+
+updateRoomTotal();
+
+
+/* =====================================================
+   EXPOSE BOOKING DETAILS FOR script.js
+===================================================== */
+
+window.getRoomBookingDetails = function () {
+
+    const nights = getRoomNights();
+
+    return {
+        room: selectedRoomName,
+        bedType: selectedBedName,
+        pricePerNight: selectedNightlyPrice,
+        persons: document.getElementById("roomPersons")?.value || "",
+        mobile: document.getElementById("roomMobile")?.value || "",
+        checkIn: checkin?.value || "",
+        checkOut: checkout?.value || "",
+        nights: nights,
+        totalPrice: selectedNightlyPrice * nights,
+        email: document.getElementById("roomEmail")?.value || "",
+        request: document.getElementById("request")?.value || ""
+    };
+
+};
 
 </script>
 
 
+<!-- EXISTING BOOKING / WHATSAPP SCRIPT -->
 
-<!-- YOUR EXISTING FIREBASE / BOOKING SCRIPT -->
+<script type="module" src="script.js"></script>
 
-<script type="module"
-        src="script.js">
-</script>
-
-
-<script type="module"
-        src="firebase.js">
-</script>
 <script type="module" src="header.js"></script>
 
 <script src="language.js"></script>
 
 </body>
-
 </html>

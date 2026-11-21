@@ -768,62 +768,103 @@ if (
     }
 
 
-    /* ROOM */
+  
+/* ROOM */
 
-    else if (
+else if (
     booking.collection ===
     "roomBookings"
 ) {
+
+    const nights = Number(booking.nights || 0);
+
+    const pricePerNight =
+        Number(booking.pricePerNight || 0);
+
+    const savedTotal =
+        Number(booking.totalPrice || 0);
+
+    const oldRoomPrice =
+        Number(booking.roomPrice || 0);
+
+    // Correct older bookings that stored only the nightly rate
+    let totalRoomAmount = 0;
+
+    if (
+        savedTotal > 0 &&
+        !(nights > 1 &&
+          pricePerNight > 0 &&
+          savedTotal === pricePerNight)
+    ) {
+        totalRoomAmount = savedTotal;
+    }
+    else if (pricePerNight > 0 && nights > 0) {
+        totalRoomAmount = pricePerNight * nights;
+    }
+    else {
+        totalRoomAmount = savedTotal || oldRoomPrice;
+    }
 
     details = `
 
         <p>
             🛏️
             <strong>Room:</strong>
-            ${booking.room || "-"}
+            ${escapeHTML(booking.room || "-")}
         </p>
 
         <p>
             🛌
             <strong>Bed Type:</strong>
-            ${booking.bedType || "-"}
+            ${escapeHTML(booking.bedType || "-")}
         </p>
 
         <p>
             👥
             <strong>Persons:</strong>
-            ${booking.persons || "-"}
+            ${escapeHTML(booking.persons || "-")}
         </p>
 
         <p>
             📅
             <strong>Check-in:</strong>
-            ${booking.checkin || "-"}
+            ${escapeHTML(booking.checkin || "-")}
         </p>
 
         <p>
             📅
             <strong>Check-out:</strong>
-            ${booking.checkout || "-"}
+            ${escapeHTML(booking.checkout || "-")}
+        </p>
+
+        <p>
+            🌙
+            <strong>Duration:</strong>
+            ${nights} Nights
+        </p>
+
+        <p>
+            💵
+            <strong>Price Per Night:</strong>
+            ₹${pricePerNight.toLocaleString("en-IN")}
         </p>
 
         <p>
             💰
-            <strong>Room Price:</strong>
-            ₹${Number(
-                booking.roomPrice || 0
-            ).toLocaleString("en-IN")}
+            <strong>Total Room Price:</strong>
+            ₹${totalRoomAmount.toLocaleString("en-IN")}
         </p>
 
         <p>
             📝
             <strong>Request:</strong>
-            ${booking.request || "None"}
+            ${escapeHTML(booking.request || "None")}
         </p>
 
     `;
 
 }
+
 
 
     /* TEMPLE */

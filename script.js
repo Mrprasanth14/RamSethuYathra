@@ -365,112 +365,158 @@ async function sendWhatsApp() {
     );
   }
 }
+
 async function sendRoomWhatsApp() {
 
-  const user = getCurrentUser();
-  if (!user) return;
+    const user = getCurrentUser();
+    if (!user) return;
 
-  const room =
-    document.querySelector('input[name="room"]:checked')?.value;
+    const room =
+        document.querySelector('input[name="room"]:checked')?.value;
 
-  const persons =
-    document.getElementById("roomPersons").value;
-
-  const checkin =
-    document.getElementById("checkin").value;
-
-  const checkout =
-    document.getElementById("checkout").value;
-
-  const mobile =
-    document.getElementById("roomMobile").value.trim();
-
-  const email =
-    document.getElementById("roomEmail").value.trim();
-
-  const request =
-    document.getElementById("request").value.trim();
     const bedType =
-    document.getElementById("selectedBedType")?.value || "";
+        document.getElementById("selectedBedType")?.value || "";
 
-    const roomPrice =
-    Number(
-        document.getElementById("selectedRoomPrice")?.value || 0
+    const persons =
+        Number(document.getElementById("roomPersons").value);
+
+    const checkin =
+        document.getElementById("checkin").value;
+
+    const checkout =
+        document.getElementById("checkout").value;
+
+    const mobile =
+        document.getElementById("roomMobile").value.trim();
+
+    const email =
+        document.getElementById("roomEmail").value.trim();
+
+    const request =
+        document.getElementById("request").value.trim();
+
+    // Price selected on the room page (per night)
+    const pricePerNight =
+        Number(document.getElementById("selectedRoomPrice")?.value || 0);
+
+    // Validate required details
+    if (!room || !bedType || !persons || !checkin ||
+        !checkout || !mobile || !email) {
+
+        Swal.fire(
+            "Incomplete Form",
+            "Please fill all booking details.",
+            "warning"
+        );
+        return;
+    }
+
+    if (!Number.isInteger(persons) || persons < 1) {
+        Swal.fire("Invalid Persons", "Select valid persons.", "warning");
+        return;
+    }
+
+    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+        Swal.fire(
+            "Invalid Mobile Number",
+            "Please enter a valid 10-digit mobile number.",
+            "error"
+        );
+        return;
+    }
+
+    if (!Number.isFinite(pricePerNight) || pricePerNight <= 0) {
+        Swal.fire(
+            "Invalid Room Price",
+            "Please select a valid room and bed type.",
+            "error"
+        );
+        return;
+    }
+
+    // Calculate nights accurately using calendar dates
+    const [inYear, inMonth, inDay] = checkin.split("-").map(Number);
+    const [outYear, outMonth, outDay] = checkout.split("-").map(Number);
+
+    const checkInUTC = Date.UTC(inYear, inMonth - 1, inDay);
+    const checkOutUTC = Date.UTC(outYear, outMonth - 1, outDay);
+
+    const nights = Math.round(
+        (checkOutUTC - checkInUTC) / (1000 * 60 * 60 * 24)
     );
 
-  if (!room) {
-    Swal.fire(
-      "Room Not Selected",
-      "Please select a room",
-      "warning"
-    );
-    return;
-  }
+    if (nights < 1) {
+        Swal.fire(
+            "Invalid Dates",
+            "Check-out must be after check-in.",
+            "warning"
+        );
+        return;
+    }
 
-  if (!persons || !checkin || !checkout || !mobile || !email) {
-    Swal.fire(
-      "Incomplete Form",
-      "Please fill all booking details",
-      "warning"
-    );
-    return;
-  }
+    // Calculate total room price
+    const totalPrice = pricePerNight * nights;
 
-  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    Swal.fire(
-      "Invalid Mobile Number",
-      "Please enter valid 10-digit mobile number",
-      "error"
-    );
-    return;
-  }
+    try {
 
-  try {
+        await addDoc(collection(db, "roomBookings"), {
 
-    await addDoc(collection(db, "roomBookings"), {
+            // CUSTOMER DETAILS
+            userId: user.uid,
+            customerEmail: user.email || email,
+            mobile: mobile,
+            email: email,
 
-      // CUSTOMER
-      userId: user.uid,
-      customerEmail: user.email || email,
+            // ROOM DETAILS
+            room: room,
+            bedType: bedType,
+            persons: persons,
 
-      // BOOKING
-      room,
-      persons,
-      checkin,
-      checkout,
-      mobile,
-      email,
-      request: request || "No Special Request",
-      bedType,
-      roomPrice,
+            // STAY DETAILS
+            checkin: checkin,
+            checkout: checkout,
+            nights: nights,
 
-      service: "Room Booking",
-      status: "pending",
+            // PRICE DETAILS
+            pricePerNight: pricePerNight,
+            roomPrice: totalPrice,
+            totalPrice: totalPrice,
 
-      createdAt: new Date()
-    });
+            // OTHER DETAILS
+            request: request || "No Special Request",
+            service: "Room Booking",
+            status: "pending",
 
-    Swal.fire({
-      icon: "success",
-      title: "Booking Successful!",
-      text: "Your room booking has been submitted successfully.",
-      confirmButtonText: "OK",
-      confirmButtonColor: "#ff7a00"
-    }).then(() => {
-      location.reload();
-    });
+            createdAt: serverTimestamp()
 
-  } catch (error) {
+        });
 
-    console.error("Room Booking Error:", error);
+        Swal.fire({
+            icon: "success",
+            title: "Booking Successful!",
+            html: `
+                <p>Your room booking has been submitted.</p>
+                <h3>Total: ₹${totalPrice.toLocaleString("en-IN")}</h3>
+                <p>${nights} night(s) × ₹${pricePerNight.toLocaleString("en-IN")}</p>
+            `,
+            confirmButtonText: "OK",
+            confirmButtonColor: "#ff7a00"
+        }).then(() => {
+            location.reload();
+        });
 
-    Swal.fire(
-      "Error",
-      error.message,
-      "error"
-    );
-  }
+    } catch (error) {
+
+        console.error("Room Booking Error:", error);
+
+        Swal.fire(
+            "Booking Failed",
+            error.message,
+            "error"
+        );
+    }
 }
+
 async function showTempleDetailsform() {
   const persons = document.getElementById("templePersons").value.trim();
   const date = document.getElementById("templeDate").value;
