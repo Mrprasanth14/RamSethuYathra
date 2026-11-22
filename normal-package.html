@@ -754,11 +754,7 @@
         <option value="4">4 Persons</option>
         <option value="5" selected>5 Persons</option>
         <option value="6">6 Persons</option>
-        <option value="7">7 Persons</option>
-        <option value="8">8 Persons</option>
-        <option value="9">9 Persons</option>
-        <option value="10">10 Persons</option>
-
+ 
     </select>
 
 </div>
@@ -1503,12 +1499,15 @@ const prices = {
     2: 7500,
     3: 8500,
     4: 9500,
-    5: 11500,
-    6: 12500,
-    7: 13500,
-    8: 14500,
-    9: 15500,
-    10: 17500
+    5: 12500,
+    6: 13500
+};
+const extraNightCharges = {
+    2: 2000,
+    3: 2500,
+    4: 2500,
+    5: 3800,
+    6: 4000
 };
 
 
@@ -1609,7 +1608,7 @@ function updatePrice() {
     }
 
     // 5. Additional night charge (change this amount whenever you want)
-    const extraNightCharge = 1000;
+   const extraNightCharge = extraNightCharges[persons];
 
     // 6. Calculate total price
     // First night = base price

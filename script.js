@@ -366,6 +366,7 @@ async function sendWhatsApp() {
   }
 }
 
+
 async function sendRoomWhatsApp() {
 
     const user = getCurrentUser();
@@ -395,10 +396,6 @@ async function sendRoomWhatsApp() {
     const request =
         document.getElementById("request").value.trim();
 
-    // Price selected on the room page (per night)
-    const pricePerNight =
-        Number(document.getElementById("selectedRoomPrice")?.value || 0);
-
     // Validate required details
     if (!room || !bedType || !persons || !checkin ||
         !checkout || !mobile || !email) {
@@ -425,27 +422,7 @@ async function sendRoomWhatsApp() {
         return;
     }
 
-    if (!Number.isFinite(pricePerNight) || pricePerNight <= 0) {
-        Swal.fire(
-            "Invalid Room Price",
-            "Please select a valid room and bed type.",
-            "error"
-        );
-        return;
-    }
-
-    // Calculate nights accurately using calendar dates
-    const [inYear, inMonth, inDay] = checkin.split("-").map(Number);
-    const [outYear, outMonth, outDay] = checkout.split("-").map(Number);
-
-    const checkInUTC = Date.UTC(inYear, inMonth - 1, inDay);
-    const checkOutUTC = Date.UTC(outYear, outMonth - 1, outDay);
-
-    const nights = Math.round(
-        (checkOutUTC - checkInUTC) / (1000 * 60 * 60 * 24)
-    );
-
-    if (nights < 1) {
+    if (new Date(checkout) <= new Date(checkin)) {
         Swal.fire(
             "Invalid Dates",
             "Check-out must be after check-in.",
@@ -454,36 +431,28 @@ async function sendRoomWhatsApp() {
         return;
     }
 
-    // Calculate total room price
-    const totalPrice = pricePerNight * nights;
-
     try {
 
         await addDoc(collection(db, "roomBookings"), {
 
-            // CUSTOMER DETAILS
             userId: user.uid,
-            customerEmail: user.email || email,
-            mobile: mobile,
-            email: email,
+            customerEmail: user.email || "",
 
-            // ROOM DETAILS
             room: room,
             bedType: bedType,
             persons: persons,
 
-            // STAY DETAILS
             checkin: checkin,
             checkout: checkout,
-            nights: nights,
 
-            // PRICE DETAILS
-            pricePerNight: pricePerNight,
-            roomPrice: totalPrice,
-            totalPrice: totalPrice,
+            mobile: mobile,
+            email: email,
 
-            // OTHER DETAILS
             request: request || "No Special Request",
+
+            // Price will be confirmed by the owner
+            roomPrice: 0,
+
             service: "Room Booking",
             status: "pending",
 
@@ -493,11 +462,10 @@ async function sendRoomWhatsApp() {
 
         Swal.fire({
             icon: "success",
-            title: "Booking Successful!",
+            title: "Booking Request Submitted!",
             html: `
-                <p>Your room booking has been submitted.</p>
-                <h3>Total: ₹${totalPrice.toLocaleString("en-IN")}</h3>
-                <p>${nights} night(s) × ₹${pricePerNight.toLocaleString("en-IN")}</p>
+                <p>Your room booking request has been submitted successfully.</p>
+                <p>Our team will contact you to confirm the room price.</p>
             `,
             confirmButtonText: "OK",
             confirmButtonColor: "#ff7a00"
@@ -516,6 +484,7 @@ async function sendRoomWhatsApp() {
         );
     }
 }
+
 
 async function showTempleDetailsform() {
   const persons = document.getElementById("templePersons").value.trim();

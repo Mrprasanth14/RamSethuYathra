@@ -301,7 +301,7 @@
 
                 <div>
                     <small>PERSONS</small>
-                    <strong>2–10</strong>
+                    <strong>2–6</strong>
                 </div>
 
             </div>
@@ -734,22 +734,6 @@
 
                             <option value="6">
                                 6 Persons
-                            </option>
-
-                            <option value="7">
-                                7 Persons
-                            </option>
-
-                            <option value="8">
-                                8 Persons
-                            </option>
-
-                            <option value="9">
-                                9 Persons
-                            </option>
-
-                            <option value="10">
-                                10 Persons
                             </option>
 
                         </select>
@@ -1306,45 +1290,38 @@ checkOutInput.addEventListener("change", () => {
          * before publishing them as final prices.
          */
 
-        const prices = {
-
-            2: 9500,
-
-            3: 10500,
-
-            4: 11500,
-
-            5: 13500,
-
-            6: 14500,
-
-            7: 15500,
-
-            8: 16500,
-
-            9: 17500,
-
-            10: 19500
-
-        };
-
+       const prices = {
+    2: 15000,
+    3: 17000,
+    4: 19500,
+    5: 23500,
+    6: 25000
+};
+const extraNightCharges = {
+    2: 4000,
+    3: 4000,
+    4: 7000,
+    5: 9000,
+    6: 10000
+};
 
        
 function updatePrice() {
 
     const persons = Number(personsSelect.value);
     const basePrice = prices[persons];
+    const extraCharge = extraNightCharges[persons];
 
-    if (!basePrice) {
+    if (basePrice === undefined || extraCharge === undefined) {
         return;
     }
 
     const nights = getPremiumNights();
 
-    const accommodationCharge =
-        nights > 0 ? 1500 * nights : 0;
+    const additionalNights = Math.max(0, nights - 1);
 
-    const finalPrice = basePrice + accommodationCharge;
+    const finalPrice =
+        basePrice + (extraCharge * additionalNights);
 
     priceElement.textContent =
         "₹" + finalPrice.toLocaleString("en-IN");
@@ -1352,7 +1329,6 @@ function updatePrice() {
     priceText.textContent = nights > 0
         ? `For ${persons} Persons · ${nights} ${nights === 1 ? "Night" : "Nights"}`
         : `For ${persons} Persons · Select dates`;
-
 }
 
 
@@ -1396,8 +1372,12 @@ if (continueBtn) {
             return;
         }
 
-        const accommodationCharge = 1500 * nights;
-        const finalPrice = basePrice + accommodationCharge;
+        const extraCharge = extraNightCharges[persons];
+
+const additionalNights = nights - 1;
+
+const finalPrice =
+    basePrice + (extraCharge * additionalNights);
 
         const params = new URLSearchParams({
             package: "premium",

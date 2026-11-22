@@ -2996,3 +2996,35 @@ textarea {
     }
 
 }
+.room-offer-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fffaf5;
+    border: 1px solid #f3dfca;
+    border-radius: 18px;
+}
+
+.room-offer-box .offer-label {
+    display: inline-block;
+    color: #f77f00;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.room-offer-box h4 {
+    color: #003049;
+    font-size: 23px;
+    margin: 0 0 10px;
+}
+
+.room-offer-box p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.room-offer-box strong {
+    color: #003049;
+    font-size: 14px;
+}

@@ -482,35 +482,35 @@
                     </label>
 
                     <select id="standardBed"
-                            class="bed-type-select"
-                            data-room="Standard Room">
+        class="bed-type-select"
+        data-room="Standard Room">
 
-                         <option value="1500" data-bed="Single Bed" data-persons="2">
-                         Single Bed - ₹1,500
-                        </option>
+    <option value="2000" data-bed="Double Bed" data-persons="4" selected>
+        Double Bed
+    </option>
 
-                         <option value="2000" data-bed="Double Bed" data-persons="4" selected>
-                          Double Bed - ₹2,000
-                         </option>
+    <option value="2800" data-bed="Triple Bed" data-persons="6">
+        Triple Bed
+    </option>
 
-                         <option value="2800" data-bed="Triple Bed" data-persons="6">
-                          Triple Bed - ₹2,800
-                        </option>
+    <option value="3500" data-bed="Four Bed" data-persons="8">
+        Four Bed
+    </option>
 
-                    </select>
+</select>
+<div class="room-price-options room-offer-box">
 
-                    <div class="room-selected-price">
-                        <small>Selected Price / Night</small>
-                        <strong>₹2,000</strong>
-                    </div>
-                    <div class="bed-capacity">
-                     <strong>Persons Allowed:</strong>
-                     <span class="bed-person-limit">4 Persons</span>
+    <span class="offer-label">Affordable Stay</span>
 
-                    <small>
-                      Extra bed charge: ₹500 per person, per night.
-                    </small>
-                  </div>
+    <h4>Best Price Available Today</h4>
+
+    <p>
+        Contact us for today's affordable room rate.
+    </p>
+
+    <strong>Call or WhatsApp for the latest price.</strong>
+
+</div>
 
                 </div>
 
@@ -587,35 +587,35 @@
                     </label>
 
                     <select id="familyBed"
-                            class="bed-type-select"
-                            data-room="Family Room">
+        class="bed-type-select"
+        data-room="Family Room">
 
-                        <option value="2500" data-bed="Single Bed" data-persons="2">
-                        Single Bed - ₹2,500
-                        </option>
+    <option value="3500" data-bed="Double Bed" data-persons="4" selected>
+        Double Bed
+    </option>
 
-                        <option value="3500" data-bed="Double Bed" data-persons="4" selected>
-                         Double Bed - ₹3,500
-                        </option>
+    <option value="4500" data-bed="Triple Bed" data-persons="6">
+        Triple Bed
+    </option>
 
-                        <option value="4500" data-bed="Triple Bed" data-persons="6">
-                        Triple Bed - ₹4,500
-                       </option>
+    <option value="5500" data-bed="Four Bed" data-persons="8">
+        Four Bed
+    </option>
 
-                    </select>
+</select>
+                    <div class="room-price-options room-offer-box">
 
-                    <div class="room-selected-price">
-                        <small>Selected Price / Night</small>
-                        <strong>₹3,500</strong>
-                    </div>
-                  <div class="bed-capacity">
-                     <strong>Persons Allowed:</strong>
-                     <span class="bed-person-limit">4 Persons</span>
+    <span class="offer-label">Affordable Stay</span>
 
-                    <small>
-                      Extra bed charge: ₹500 per person, per night.
-                    </small>
-                  </div>
+    <h4>Best Price Available Today</h4>
+
+    <p>
+        Contact us for today's affordable room rate.
+    </p>
+
+    <strong>Call or WhatsApp for the latest price.</strong>
+
+</div>
                 </div>
 
                  <p class="room-description">
@@ -690,34 +690,36 @@
                     </label>
 
                     <select id="premiumBed"
-                            class="bed-type-select"
-                            data-room="Premium Room">
-                    <option value="3500" data-bed="Single Bed" data-persons="2">
-                     Single Bed - ₹3,500
-                    </option>
+        class="bed-type-select"
+        data-room="Premium Room">
 
-                    <option value="4500" data-bed="Double Bed" data-persons="4" selected>
-                     Double Bed - ₹4,500
-                    </option>
+    <option value="4500" data-bed="Double Bed" data-persons="4" selected>
+        Double Bed
+    </option>
 
-                     <option value="5500" data-bed="Triple Bed" data-persons="6">
-                    Triple Bed - ₹5,500
-                    </option>
+    <option value="5500" data-bed="Triple Bed" data-persons="6">
+        Triple Bed
+    </option>
 
-                    </select>
+    <option value="6500" data-bed="Four Bed" data-persons="8">
+        Four Bed
+    </option>
 
-                    <div class="room-selected-price">
-                        <small>Selected Price / Night</small>
-                        <strong>₹4,500</strong>
-                    </div>
-                     <div class="bed-capacity">
-                     <strong>Persons Allowed:</strong>
-                     <span class="bed-person-limit">4 Persons</span>
+</select>
 
-                    <small>
-                      Extra bed charge: ₹500 per person, per night.
-                    </small>
-                  </div>
+                  <div class="room-price-options room-offer-box">
+
+    <span class="offer-label">Affordable Stay</span>
+
+    <h4>Best Price Available Today</h4>
+
+    <p>
+        Contact us for today's affordable room rate.
+    </p>
+
+    <strong>Call or WhatsApp for the latest price.</strong>
+
+</div>
                 </div>
 
                  <p class="room-description">
@@ -957,20 +959,6 @@
  
              </div>
 
-
-            <!-- TOTAL PRICE -->
-
-            <div class="room-total-box">
-
-                <span>Total Room Price</span>
-
-                <strong id="totalRoomPrice">₹0</strong>
-
-                <small id="priceBreakdown">
-                    Select a room and dates
-                </small>
-
-            </div>
 
 
             <!-- BOOKING BUTTON -->
@@ -1655,15 +1643,10 @@ function updateSelectedRoom(
 
     if (selectedRoomText) {
 
-        selectedRoomText.textContent =
-            roomName +
-            " • " +
-            bedName +
-            " • ₹" +
-            selectedNightlyPrice.toLocaleString("en-IN") +
-            " / night";
+    selectedRoomText.textContent =
+        roomName + " • " + bedName;
 
-    }
+}
 
     if (selectedBedType) {
         selectedBedType.value = bedName;

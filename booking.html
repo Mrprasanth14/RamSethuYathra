@@ -429,46 +429,32 @@ const packageNames = {
 const packagePrices = {
 
     normal: {
-
-        2: 7500,
+    2: 7500,
     3: 8500,
     4: 9500,
-    5: 11500,
-    6: 12500,
-    7: 13500,
-    8: 14500,
-    9: 15500,
-    10: 17500
+    5: 12500,
+    6: 13500
+},
 
-    },
-
-    medium: {
-
-        2: 8500,
-        3: 9500,
-        4: 10500,
-        5: 12500,
-        6: 13500,
-        7: 14500,
-        8: 15500,
-        9: 16500,
-        10: 18500
-
-    },
+   medium: {
+    2: 9000,
+    3: 10000,
+    4: 11000,
+    5: 14000,
+    6: 15000,
+    7: 16500,
+    8: 21000,
+    9: 23000,
+    10: 24000
+},
 
     premium: {
-
-        2: 9500,
-        3: 10500,
-        4: 11500,
-        5: 13500,
-        6: 14500,
-        7: 15500,
-        8: 16500,
-        9: 17500,
-        10: 19500
-
-    }
+    2: 15000,
+    3: 17000,
+    4: 19500,
+    5: 23500,
+    6: 25000
+}
 
 };
 
@@ -479,9 +465,33 @@ const packagePrices = {
 /* =========================================
    PACKAGE ACCOMMODATION CHARGES
 ========================================= */
+const normalExtraNightCharges = {
+    2: 2000,
+    3: 2500,
+    4: 2500,
+    5: 3800,
+    6: 4000
+};
 
-const mediumPricePerNight = 1000;
-const premiumPricePerNight = 1500;
+const mediumRoomCharges = {
+    2: 2000,
+    3: 2800,
+    4: 3000,
+    5: 4500,
+    6: 5000,
+    7: 5500,
+    8: 6000,
+    9: 7500,
+    10: 8000
+};
+
+const premiumExtraNightCharges = {
+    2: 4000,
+    3: 4000,
+    4: 7000,
+    5: 9000,
+    6: 10000
+};
 
 function getPackagePrice(packageName, personCount, stayNights) {
 
@@ -495,30 +505,51 @@ function getPackagePrice(packageName, personCount, stayNights) {
         return null;
     }
 
-    // Normal: existing price remains unchanged.
-    if (packageName === "normal") {
-        return basePrice;
+   // Normal: base price + extra-night charges.
+if (packageName === "normal") {
+
+    if (!Number.isInteger(stayNights) || stayNights < 1) {
+        return null;
     }
 
-    // Medium: ₹1,000 per night.
-    if (packageName === "medium") {
+    const extraNights = stayNights - 1;
+    const extraNightCharge = normalExtraNightCharges[personCount];
 
-        if (!Number.isInteger(stayNights) || stayNights < 1) {
-            return null;
-        }
+    return basePrice + (extraNightCharge * extraNights);
+}
 
-        return basePrice + (mediumPricePerNight * stayNights);
+    // Medium: Person-based room charge per night.
+if (packageName === "medium") {
+
+    if (!Number.isInteger(stayNights) || stayNights < 1) {
+        return null;
     }
 
-    // Premium: ₹1,500 per night.
-    if (packageName === "premium") {
+    const roomCharge = mediumRoomCharges[personCount];
 
-        if (!Number.isInteger(stayNights) || stayNights < 1) {
-            return null;
-        }
-
-        return basePrice + (premiumPricePerNight * stayNights);
+    if (roomCharge === undefined) {
+        return null;
     }
+
+    return basePrice + (roomCharge * stayNights);
+}
+// Premium: Base price includes the first night.
+if (packageName === "premium") {
+
+    if (!Number.isInteger(stayNights) || stayNights < 1) {
+        return null;
+    }
+
+    const extraCharge = premiumExtraNightCharges[personCount];
+
+    if (extraCharge === undefined) {
+        return null;
+    }
+
+    const additionalNights = stayNights - 1;
+
+    return basePrice + (extraCharge * additionalNights);
+}
 
     return null;
 }
@@ -868,14 +899,13 @@ document.getElementById("bookingForm")
             /* =================================
                PACKAGE VALIDATION
             ================================= */
-
-            if (
-                !packageNames[packageType] ||
-                totalPrice === null ||
-                !Number.isInteger(personNumber) ||
-                personNumber < 2 ||
-                personNumber > 10
-            ) {
+if (
+    !packageNames[packageType] ||
+    totalPrice === null ||
+    !Number.isInteger(personNumber) ||
+    !packagePrices[packageType] ||
+    packagePrices[packageType][personNumber] === undefined
+) {
 
                 showPopup(
 
