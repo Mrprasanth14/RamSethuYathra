@@ -1,4 +1,10 @@
+// ==========================================
+// RAMSETHUYATRA - MAIN SCRIPT.JS
+// Firebase 11.9.1
+// ==========================================
+
 import { db, auth } from "./firebase.js";
+
 import {
     collection,
     addDoc,
@@ -7,7 +13,6 @@ import {
     getDocs,
     query,
     where,
-    orderBy,
     limit,
     setDoc,
     serverTimestamp
@@ -17,461 +22,779 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-function getCurrentUser() {
-  const user = auth.currentUser;
 
-  if (!user) {
-    Swal.fire({
-      icon: "warning",
-      title: "Login Required",
-      text: "Please login before making a booking.",
-      confirmButtonText: "Login",
-      confirmButtonColor: "#ff7a00"
-    }).then(() => {
-      window.location.href =
-        "login.html?redirect=" +
-        encodeURIComponent(
-          window.location.pathname + window.location.search
-        );
-    });
+// ==========================================
+// 1. COMMON VALIDATION FUNCTIONS
+// ==========================================
 
-    return null;
-  }
-
-  return user;
+function validMobile(value) {
+    return /^[6-9][0-9]{9}$/.test(String(value));
 }
+
+function validName(value) {
+    return typeof value === "string"
+        && value.trim().length >= 2
+        && value.trim().length <= 100;
+}
+
+function validDate(value) {
+
+    if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)) {
+        return false;
+    }
+
+    const [year, month, day] = value.split("-").map(Number);
+
+    const date = new Date(Date.UTC(year, month - 1, day));
+
+    return date.getUTCFullYear() === year
+        && date.getUTCMonth() === month - 1
+        && date.getUTCDate() === day;
+}
+
+function validTime(value) {
+    return /^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(value);
+}
+
+function validPersons(value, min = 1, max = 20) {
+    return Number.isInteger(value)
+        && value >= min
+        && value <= max;
+}
+
+
+// ==========================================
+// 2. GET VERIFIED FIREBASE USER
+// ==========================================
+
+async function getCurrentUser() {
+
+    let user = auth.currentUser;
+
+    if (!user) {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Login Required",
+            text: "Please login before making a booking.",
+            confirmButtonText: "Login",
+            confirmButtonColor: "#ff7a00"
+
+        }).then(() => {
+
+            window.location.href =
+                "login.html?redirect=" +
+                encodeURIComponent(
+                    window.location.pathname + window.location.search
+                );
+
+        });
+
+        return null;
+    }
+
+    try {
+
+        // Refresh Firebase user information
+        await user.reload();
+
+        // Refresh Firebase authentication token
+        await user.getIdToken(true);
+
+        user = auth.currentUser;
+
+    } catch (error) {
+
+        console.error("Authentication Error:", error);
+
+        Swal.fire({
+            icon: "error",
+            title: "Authentication Error",
+            text: "Please login again.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return null;
+    }
+
+    // Check verified email
+
+    if (!user || !user.email || !user.emailVerified) {
+
+        Swal.fire({
+            icon: "warning",
+            title: "Email Verification Required",
+            text: "Please verify your email before making a booking.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return null;
+    }
+
+    return user;
+}
+
+
+// ==========================================
+// 3. PACKAGE SELECTION
+// ==========================================
+
 function selectPackage(packageName) {
-  document.getElementById("package").value = packageName;
-  document.getElementById("booking").scrollIntoView({
-    behavior: "smooth"
-  });
+
+    const packageInput = document.getElementById("package");
+    const bookingSection = document.getElementById("booking");
+
+    if (packageInput) {
+        packageInput.value = packageName;
+    }
+
+    bookingSection?.scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
+
+// ==========================================
+// 4. PACKAGE BOOKING FORM
+// WHATSAPP ENQUIRY
+// ==========================================
 
 const bookingForm = document.getElementById("bookingForm");
 
 if (bookingForm) {
-  bookingForm.addEventListener("submit", function(e) {
-    e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const mobile = document.getElementById("mobile").value;
-    const persons = document.getElementById("persons").value;
-    const date = document.getElementById("date").value;
-    const packageName = document.getElementById("package").value;
-    const message = document.getElementById("message").value;
+    bookingForm.addEventListener("submit", function(e) {
 
-    
-const ownerNumber = "918838170745";
+        e.preventDefault();
 
-const whatsappMessage =
-  `New Rameswaram Package Booking\n\n` +
-  `Name: ${name}\n` +
-  `Mobile: ${mobile}\n` +
-  `Persons: ${persons}\n` +
-  `Date: ${date}\n` +
-  `Package: ${packageName}\n` +
-  `Message: ${message}`;
+        const name =
+            document.getElementById("name").value.trim();
 
-openWhatsAppWithSuccess(whatsappMessage, ownerNumber);
+        const mobile =
+            document.getElementById("mobile").value.trim();
 
-  });
+        const persons =
+            document.getElementById("persons").value;
+
+        const date =
+            document.getElementById("date").value;
+
+        const packageName =
+            document.getElementById("package").value;
+
+        const message =
+            document.getElementById("message").value.trim();
+
+
+        if (
+            !name ||
+            !mobile ||
+            !persons ||
+            !date ||
+            !packageName
+        ) {
+
+            Swal.fire({
+                icon: "warning",
+                title: "Incomplete Form",
+                text: "Please fill all required booking details.",
+                confirmButtonColor: "#ff7a00"
+            });
+
+            return;
+        }
+
+
+        if (!validName(name)) {
+
+            Swal.fire(
+                "Invalid Name",
+                "Please enter a valid name.",
+                "warning"
+            );
+
+            return;
+        }
+
+
+        if (!validMobile(mobile)) {
+
+            Swal.fire(
+                "Invalid Mobile",
+                "Please enter a valid 10-digit mobile number.",
+                "warning"
+            );
+
+            return;
+        }
+
+
+        const ownerNumber = "918838170745";
+
+        const whatsappMessage =
+            `New Rameswaram Package Booking\n\n` +
+            `Name: ${name}\n` +
+            `Mobile: ${mobile}\n` +
+            `Persons: ${persons}\n` +
+            `Date: ${date}\n` +
+            `Package: ${packageName}\n` +
+            `Message: ${message}`;
+
+        openWhatsAppWithSuccess(
+            whatsappMessage,
+            ownerNumber
+        );
+
+    });
 }
+
+
+// ==========================================
+// 5. OPEN WHATSAPP
+// ==========================================
 
 function openWhatsAppWithSuccess(message, ownerNumber) {
 
-  Swal.fire({
-    icon: "success",
-    title: "Opening WhatsApp",
-    text: "Your booking details are ready to send.",
-    confirmButtonColor: "#ff7a00"
-  }).then(() => {
-
-    const whatsappURL =
-      `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, "_blank");
-
-  });
-
-}
-
-window.onscroll = function () {
-  const topBtn = document.getElementById("topBtn");
-
-  if (!topBtn) return;
-
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-};
-
-function showPersonBox(seats) {
-  const personBox = document.getElementById("personBox");
-  const persons = document.getElementById("persons");
-
-  personBox.style.display = "block";
-  persons.innerHTML = '<option value="">Select Persons</option>';
-
-  for (let i = 1; i <= seats; i++) {
-    persons.innerHTML += `
-      <option value="${i}">
-        ${i} Person${i > 1 ? "s" : ""}
-      </option>
-    `;
-  }
-}
-
-
-function continueBooking() {
- 
-  const personsValue =
-    document.getElementById("persons").value;
-
-  if (!personsValue) {
     Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Please select persons!",
-      confirmButtonColor: "#ff7a00"
-    });
-
-    return;
-  }
-
-  const persons = Number(personsValue);
-
-  if (!Number.isInteger(persons) || persons < 1) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Persons",
-      text: "Please select a valid number of persons.",
-      confirmButtonColor: "#ff7a00"
-    });
-
-    return;
-  }
-
-  document.getElementById("bookingForm").style.display = "block";
-
-  document.getElementById("bookingForm")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-}
-
-
-async function sendWhatsApp() {
-
-  const user = getCurrentUser();
-
-  if (!user) return;
-
-
-  const cab =
-    document.querySelector(
-      'input[name="cab"]:checked'
-    )?.value;
-
-
-  // IMPORTANT:
-  // Convert select value from string to number
-  const persons =
-    Number(
-      document.getElementById("persons").value
-    );
-
-
-  const name =
-    document.getElementById("name").value.trim();
-
-
-  const mobile =
-    document.getElementById("mobile").value.trim();
-
-
-  const date =
-    document.getElementById("date").value;
-
-
-  const time =
-    document.getElementById("time").value;
-
-
-  const pickup =
-    document.getElementById("pickup").value.trim();
-
-
-  // ==============================
-  // CAB VALIDATION
-  // ==============================
-
-  if (!cab) {
-
-    Swal.fire(
-      "Cab Not Selected",
-      "Please select a cab",
-      "warning"
-    );
-
-    return;
-  }
-
-
-  // ==============================
-  // PERSON VALIDATION
-  // ==============================
-
-  if (
-    !Number.isInteger(persons) ||
-    persons < 1
-  ) {
-
-    Swal.fire(
-      "Invalid Persons",
-      "Please select the number of persons",
-      "warning"
-    );
-
-    return;
-  }
-
-
-  // ==============================
-  // OTHER FORM VALIDATION
-  // ==============================
-
-  if (
-    !name ||
-    !mobile ||
-    !date ||
-    !time ||
-    !pickup
-  ) {
-
-    Swal.fire(
-      "Incomplete Form",
-      "Please fill all booking details",
-      "warning"
-    );
-
-    return;
-  }
-
-
-  // ==============================
-  // MOBILE VALIDATION
-  // ==============================
-
-  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-
-    Swal.fire(
-      "Invalid Mobile Number",
-      "Please enter valid 10-digit mobile number",
-      "error"
-    );
-
-    return;
-  }
-
-
-  // ==============================
-  // SAVE BOOKING
-  // ==============================
-
-  try {
-
-    await addDoc(
-      collection(db, "cabBookings"),
-      {
-
-        // CUSTOMER INFORMATION
-        userId: user.uid,
-
-        customerEmail:
-          user.email || "",
-
-
-        // BOOKING INFORMATION
-        cab: cab,
-
-        // NUMBER, NOT STRING
-        persons: persons,
-
-        name: name,
-
-        mobile: mobile,
-
-        pickup: pickup,
-
-        date: date,
-
-        time: time,
-
-
-        // SERVICE
-        service: "Cab Booking",
-
-        status: "pending",
-
-
-        // TIME
-        bookingTime:
-          new Date().toLocaleTimeString(),
-
-        createdAt:
-          new Date()
-      }
-    );
-
-
-    // ==============================
-    // SUCCESS
-    // ==============================
-
-    Swal.fire({
-
-      icon: "success",
-
-      title: "Booking Successful!",
-
-      text:
-        "Your cab booking has been submitted successfully.",
-
-      confirmButtonText: "OK",
-
-      confirmButtonColor: "#ff7a00"
+        icon: "success",
+        title: "Opening WhatsApp",
+        text: "Your booking details are ready to send.",
+        confirmButtonColor: "#ff7a00"
 
     }).then(() => {
 
-      location.reload();
+        const whatsappURL =
+            `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappURL, "_blank");
 
     });
-
-
-  } catch (error) {
-
-    console.error(
-      "Cab Booking Error:",
-      error
-    );
-
-
-    Swal.fire(
-      "Error",
-      error.message,
-      "error"
-    );
-  }
 }
 
 
-async function sendRoomWhatsApp() {
+// ==========================================
+// 6. SCROLL TO TOP BUTTON
+// ==========================================
 
-    const user = getCurrentUser();
+window.onscroll = function() {
+
+    const topBtn = document.getElementById("topBtn");
+
+    if (!topBtn) return;
+
+    if (
+        document.body.scrollTop > 200 ||
+        document.documentElement.scrollTop > 200
+    ) {
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+
+    }
+};
+
+
+// ==========================================
+// 7. SHOW PERSON BOX
+// ==========================================
+
+function showPersonBox(seats) {
+
+    const personBox = document.getElementById("personBox");
+    const persons = document.getElementById("persons");
+
+    if (!personBox || !persons) return;
+
+    personBox.style.display = "block";
+
+    persons.innerHTML =
+        '<option value="">Select Persons</option>';
+
+    for (let i = 1; i <= seats; i++) {
+
+        const option = document.createElement("option");
+
+        option.value = i;
+
+        option.textContent =
+            `${i} Person${i > 1 ? "s" : ""}`;
+
+        persons.appendChild(option);
+
+    }
+}
+
+
+// ==========================================
+// 8. CONTINUE BOOKING
+// ==========================================
+
+function continueBooking() {
+
+    const personsValue =
+        document.getElementById("persons")?.value;
+
+    if (!personsValue) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please select persons!",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+    const persons = Number(personsValue);
+
+    if (!Number.isInteger(persons) || persons < 1) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Persons",
+            text: "Please select a valid number of persons.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+    const form = document.getElementById("bookingForm");
+
+    if (!form) return;
+
+    form.style.display = "block";
+
+    form.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+// ==========================================
+// 9. CAB BOOKING
+// ==========================================
+
+async function sendWhatsApp() {
+
+    const user = await getCurrentUser();
+
     if (!user) return;
 
-    const room =
-        document.querySelector('input[name="room"]:checked')?.value;
 
-    const bedType =
-        document.getElementById("selectedBedType")?.value || "";
+    const cab =
+        document.querySelector(
+            'input[name="cab"]:checked'
+        )?.value;
+
 
     const persons =
-        Number(document.getElementById("roomPersons").value);
+        Number(
+            document.getElementById("persons").value
+        );
 
-    const checkin =
-        document.getElementById("checkin").value;
 
-    const checkout =
-        document.getElementById("checkout").value;
+    const name =
+        document.getElementById("name").value.trim();
+
 
     const mobile =
-        document.getElementById("roomMobile").value.trim();
+        document.getElementById("mobile").value.trim();
 
-    const email =
-        document.getElementById("roomEmail").value.trim();
 
-    const request =
-        document.getElementById("request").value.trim();
+    const date =
+        document.getElementById("date").value;
 
-    // Validate required details
-    if (!room || !bedType || !persons || !checkin ||
-        !checkout || !mobile || !email) {
+
+    const time =
+        document.getElementById("time").value;
+
+
+    const pickup =
+        document.getElementById("pickup").value.trim();
+
+
+    // CAB VALIDATION
+
+    if (!cab) {
+
+        Swal.fire(
+            "Cab Not Selected",
+            "Please select a cab.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    const maxPersons = {
+        Sedan: 4,
+        SUV: 6,
+        Traveller: 12
+    };
+
+    if (
+        !maxPersons[cab] ||
+        !validPersons(persons, 1, maxPersons[cab])
+    ) {
+
+        Swal.fire(
+            "Invalid Persons",
+            "Please select a valid number of persons for your cab.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // CUSTOMER VALIDATION
+
+    if (
+        !validName(name) ||
+        !mobile ||
+        !date ||
+        !time ||
+        !pickup
+    ) {
 
         Swal.fire(
             "Incomplete Form",
             "Please fill all booking details.",
             "warning"
         );
+
         return;
     }
 
-    if (!Number.isInteger(persons) || persons < 1) {
-        Swal.fire("Invalid Persons", "Select valid persons.", "warning");
-        return;
-    }
 
-    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    if (!validMobile(mobile)) {
+
         Swal.fire(
             "Invalid Mobile Number",
             "Please enter a valid 10-digit mobile number.",
             "error"
         );
+
         return;
     }
 
-    if (new Date(checkout) <= new Date(checkin)) {
+
+    if (pickup.length < 2 || pickup.length > 250) {
+
+        Swal.fire(
+            "Invalid Pickup Location",
+            "Pickup location must contain 2 to 250 characters.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    if (!validDate(date) || !validTime(time)) {
+
+        Swal.fire(
+            "Invalid Date or Time",
+            "Please enter a valid date and time.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // SAVE CAB BOOKING
+
+    try {
+
+        await addDoc(
+            collection(db, "cabBookings"),
+            {
+
+                userId: user.uid,
+
+                customerEmail: user.email,
+
+                cab: cab,
+
+                persons: persons,
+
+                name: name,
+
+                mobile: mobile,
+
+                pickup: pickup,
+
+                date: date,
+
+                time: time,
+
+                service: "Cab Booking",
+
+                status: "pending",
+
+                bookingTime:
+                    new Date().toLocaleTimeString(),
+
+                createdAt: serverTimestamp()
+
+            }
+        );
+
+
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Booking Successful!",
+
+            text:
+                "Your cab booking has been submitted successfully.",
+
+            confirmButtonText: "OK",
+
+            confirmButtonColor: "#ff7a00"
+
+        }).then(() => {
+
+            location.reload();
+
+        });
+
+
+    } catch (error) {
+
+        console.error("Cab Booking Error:", error);
+
+        Swal.fire(
+            "Booking Failed",
+            error.message,
+            "error"
+        );
+
+    }
+}
+
+
+// ==========================================
+// 10. ROOM BOOKING
+// ==========================================
+
+async function sendRoomWhatsApp() {
+
+    const user = await getCurrentUser();
+
+    if (!user) return;
+
+
+    const room =
+        document.querySelector(
+            'input[name="room"]:checked'
+        )?.value;
+
+
+    const bedType =
+        document.getElementById("selectedBedType")?.value || "";
+
+
+    const persons =
+        Number(
+            document.getElementById("roomPersons").value
+        );
+
+
+    const checkin =
+        document.getElementById("checkin").value;
+
+
+    const checkout =
+        document.getElementById("checkout").value;
+
+
+    const mobile =
+        document.getElementById("roomMobile").value.trim();
+
+
+    const email =
+        document.getElementById("roomEmail").value.trim();
+
+
+    const request =
+        document.getElementById("request").value.trim();
+
+
+    // REQUIRED VALIDATION
+
+    if (
+        !room ||
+        !bedType ||
+        !checkin ||
+        !checkout ||
+        !mobile ||
+        !email
+    ) {
+
+        Swal.fire(
+            "Incomplete Form",
+            "Please fill all booking details.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // PERSON VALIDATION
+
+    if (!validPersons(persons, 1, 20)) {
+
+        Swal.fire(
+            "Invalid Persons",
+            "Select between 1 and 20 persons.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // MOBILE VALIDATION
+
+    if (!validMobile(mobile)) {
+
+        Swal.fire(
+            "Invalid Mobile Number",
+            "Please enter a valid 10-digit mobile number.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // CONTACT EMAIL VALIDATION
+
+    if (
+        email.length > 254 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ) {
+
+        Swal.fire(
+            "Invalid Email",
+            "Please enter a valid contact email address.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // DATE VALIDATION
+
+    if (
+        !validDate(checkin) ||
+        !validDate(checkout) ||
+        checkout <= checkin
+    ) {
+
         Swal.fire(
             "Invalid Dates",
             "Check-out must be after check-in.",
             "warning"
         );
+
         return;
     }
 
+
+    // BED / ROOM VALIDATION
+
+    if (
+        room.length > 100 ||
+        bedType.length > 50 ||
+        request.length > 1000
+    ) {
+
+        Swal.fire(
+            "Invalid Details",
+            "Please check your room and special request details.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // SAVE ROOM BOOKING
+
     try {
 
-        await addDoc(collection(db, "roomBookings"), {
+        await addDoc(
+            collection(db, "roomBookings"),
+            {
 
-            userId: user.uid,
-            customerEmail: user.email || "",
+                userId: user.uid,
 
-            room: room,
-            bedType: bedType,
-            persons: persons,
+                customerEmail: user.email,
 
-            checkin: checkin,
-            checkout: checkout,
+                room: room,
 
-            mobile: mobile,
-            email: email,
+                bedType: bedType,
 
-            request: request || "No Special Request",
+                persons: persons,
 
-            // Price will be confirmed by the owner
-            roomPrice: 0,
+                checkin: checkin,
 
-            service: "Room Booking",
-            status: "pending",
+                checkout: checkout,
 
-            createdAt: serverTimestamp()
+                mobile: mobile,
 
-        });
+                email: email,
+
+                request:
+                    request || "No Special Request",
+
+                // Owner will confirm the actual price.
+                // Do not treat this as a final payment amount.
+                roomPrice: 0,
+
+                service: "Room Booking",
+
+                status: "pending",
+
+                createdAt: serverTimestamp()
+
+            }
+        );
+
 
         Swal.fire({
+
             icon: "success",
+
             title: "Booking Request Submitted!",
+
             html: `
                 <p>Your room booking request has been submitted successfully.</p>
                 <p>Our team will contact you to confirm the room price.</p>
             `,
+
             confirmButtonText: "OK",
+
             confirmButtonColor: "#ff7a00"
+
         }).then(() => {
+
             location.reload();
+
         });
+
 
     } catch (error) {
 
@@ -482,172 +805,339 @@ async function sendRoomWhatsApp() {
             error.message,
             "error"
         );
+
     }
 }
 
 
+// ==========================================
+// 11. TEMPLE VISIT BOOKING
+// ==========================================
+
 async function showTempleDetailsform() {
-  const persons = document.getElementById("templePersons").value.trim();
-  const date = document.getElementById("templeDate").value;
-  const time = document.getElementById("templeTime").value;
-  const mobile = document.getElementById("templeMobile").value.trim();
 
-  if (!persons || !date || !time || !mobile) {
-    Swal.fire({
-      icon: "warning",
-      title: "Incomplete Form",
-      text: "Please fill all required fields first",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
+    const persons =
+        Number(
+            document.getElementById("templePersons").value
+        );
 
-  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Mobile Number",
-      text: "Enter valid 10 digit mobile number",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
 
-const user = getCurrentUser();
-if (!user) return;
+    const date =
+        document.getElementById("templeDate").value;
 
-try {
 
-  await addDoc(collection(db, "templeBookings"), {
+    const time =
+        document.getElementById("templeTime").value;
 
-    userId: user.uid,
-    customerEmail: user.email || "",
 
-    persons,
-    date,
-    time,
-    mobile,
+    const mobile =
+        document.getElementById("templeMobile").value.trim();
 
-    service: "Temple Visit",
-    status: "pending",
 
-    bookingTime: new Date().toLocaleTimeString(),
-    createdAt: new Date()
-  });
+    // REQUIRED VALIDATION
 
- Swal.fire({
-  icon: "success",
-  title: "Booking Successful!",
-  text: "Your temple visit booking has been submitted successfully.",
-  confirmButtonText: "OK",
-  confirmButtonColor: "#ff7a00"
-}).then(() => {
-  window.location.href = "index.html";
-});
+    if (!date || !time || !mobile) {
 
-} catch (error) {
-  console.error("Firebase Error:", error);
-  alert(error.message);
+        Swal.fire({
+            icon: "warning",
+            title: "Incomplete Form",
+            text: "Please fill all required fields first.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+
+    // PERSON VALIDATION
+
+    if (!validPersons(persons, 1, 20)) {
+
+        Swal.fire(
+            "Invalid Persons",
+            "Please select between 1 and 20 persons.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // MOBILE VALIDATION
+
+    if (!validMobile(mobile)) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Mobile Number",
+            text: "Enter a valid 10-digit mobile number.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+
+    if (!validDate(date) || !validTime(time)) {
+
+        Swal.fire(
+            "Invalid Date or Time",
+            "Please enter valid date and time.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    const user = await getCurrentUser();
+
+    if (!user) return;
+
+
+    try {
+
+        await addDoc(
+            collection(db, "templeBookings"),
+            {
+
+                userId: user.uid,
+
+                customerEmail: user.email,
+
+                persons: persons,
+
+                date: date,
+
+                time: time,
+
+                mobile: mobile,
+
+                service: "Temple Visit",
+
+                status: "pending",
+
+                bookingTime:
+                    new Date().toLocaleTimeString(),
+
+                createdAt: serverTimestamp()
+
+            }
+        );
+
+
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Booking Successful!",
+
+            text:
+                "Your temple visit booking has been submitted successfully.",
+
+            confirmButtonText: "OK",
+
+            confirmButtonColor: "#ff7a00"
+
+        }).then(() => {
+
+            window.location.href = "index.html";
+
+        });
+
+
+    } catch (error) {
+
+        console.error("Temple Booking Error:", error);
+
+        Swal.fire(
+            "Booking Failed",
+            error.message,
+            "error"
+        );
+
+    }
 }
-}
+
+
+// ==========================================
+// 12. 22 HOLY WELLS BOOKING
+// ==========================================
+
 async function showWellDetailsform() {
-  const persons = document.getElementById("wellPersons").value;
-  const date = document.getElementById("wellDate").value;
-  const time = document.getElementById("wellTime").value;
-  const mobile = document.getElementById("wellMobile").value.trim();
 
-  if (!persons || !date || !time || !mobile) {
-    Swal.fire({
-      icon: "warning",
-      title: "Incomplete Form",
-      text: "Please fill all required fields first",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
+    const persons =
+        Number(
+            document.getElementById("wellPersons").value
+        );
 
-  if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Mobile Number",
-      text: "Enter valid 10 digit mobile number",
-      confirmButtonColor: "#ff7a00"
-    });
-    return;
-  }
 
-  const message =
-`🚿 22 Wells Booking Request
+    const date =
+        document.getElementById("wellDate").value;
 
-👥 Persons: ${persons}
-📅 Date: ${date}
-⏰ Time: ${time}
-📞 Mobile: ${mobile}`;
 
-  const user = getCurrentUser();
-if (!user) return;
+    const time =
+        document.getElementById("wellTime").value;
 
-try {
 
-  await addDoc(collection(db, "wellBookings"), {
+    const mobile =
+        document.getElementById("wellMobile").value.trim();
 
-    userId: user.uid,
-    customerEmail: user.email || "",
 
-    persons,
-    date,
-    time,
-    mobile,
+    // REQUIRED VALIDATION
 
-    service: "22 Holy Wells",
-    status: "pending",
+    if (!date || !time || !mobile) {
 
-    createdAt: new Date()
-  });
+        Swal.fire({
+            icon: "warning",
+            title: "Incomplete Form",
+            text: "Please fill all required fields first.",
+            confirmButtonColor: "#ff7a00"
+        });
 
-  Swal.fire({
-    icon: "success",
-    title: "Booking Successful!",
-    text: "Your 22 Holy Wells booking has been submitted successfully.",
-    confirmButtonText: "OK",
-    confirmButtonColor: "#ff7a00"
-  }).then(() => {
-    window.location.href = "index.html";
-  });
+        return;
+    }
 
-} catch (error) {
 
-  console.error("Holy Wells Booking Error:", error);
+    // PERSON VALIDATION
 
-  Swal.fire(
-    "Error",
-    error.message,
-    "error"
-  );
+    if (!validPersons(persons, 1, 20)) {
+
+        Swal.fire(
+            "Invalid Persons",
+            "Please select between 1 and 20 persons.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // MOBILE VALIDATION
+
+    if (!validMobile(mobile)) {
+
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Mobile Number",
+            text: "Enter a valid 10-digit mobile number.",
+            confirmButtonColor: "#ff7a00"
+        });
+
+        return;
+    }
+
+
+    if (!validDate(date) || !validTime(time)) {
+
+        Swal.fire(
+            "Invalid Date or Time",
+            "Please enter a valid date and time.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    const user = await getCurrentUser();
+
+    if (!user) return;
+
+
+    try {
+
+        await addDoc(
+            collection(db, "wellBookings"),
+            {
+
+                userId: user.uid,
+
+                customerEmail: user.email,
+
+                persons: persons,
+
+                date: date,
+
+                time: time,
+
+                mobile: mobile,
+
+                service: "22 Holy Wells",
+
+                status: "pending",
+
+                createdAt: serverTimestamp()
+
+            }
+        );
+
+
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Booking Successful!",
+
+            text:
+                "Your 22 Holy Wells booking has been submitted successfully.",
+
+            confirmButtonText: "OK",
+
+            confirmButtonColor: "#ff7a00"
+
+        }).then(() => {
+
+            window.location.href = "index.html";
+
+        });
+
+
+    } catch (error) {
+
+        console.error("Holy Wells Booking Error:", error);
+
+        Swal.fire(
+            "Booking Failed",
+            error.message,
+            "error"
+        );
+
+    }
 }
-}
+
+
+// ==========================================
+// 13. POOJA BOOKING
+// ==========================================
+
 async function showPoojaDetailsform() {
 
     const persons =
-        document.getElementById("poojaPersons").value.trim();
+        Number(
+            document.getElementById("poojaPersons").value
+        );
+
 
     const date =
         document.getElementById("poojaDate").value;
 
+
     const time =
         document.getElementById("poojaTime").value;
+
 
     const mobile =
         document.getElementById("poojaMobile").value.trim();
 
+
     const poojaType =
-        document.getElementById("poojaType").value;
+        document.getElementById("poojaType").value.trim();
 
 
-    // ==============================
-    // VALIDATE FORM
-    // ==============================
+    // REQUIRED VALIDATION
 
-    if (!persons || !date || !time || !mobile || !poojaType) {
+    if (!date || !time || !mobile || !poojaType) {
 
         Swal.fire({
             icon: "warning",
@@ -660,11 +1150,23 @@ async function showPoojaDetailsform() {
     }
 
 
-    // ==============================
-    // VALIDATE MOBILE
-    // ==============================
+    // PERSON VALIDATION
 
-    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+    if (!validPersons(persons, 1, 20)) {
+
+        Swal.fire(
+            "Invalid Persons",
+            "Please select between 1 and 20 persons.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    // MOBILE VALIDATION
+
+    if (!validMobile(mobile)) {
 
         Swal.fire({
             icon: "warning",
@@ -677,20 +1179,36 @@ async function showPoojaDetailsform() {
     }
 
 
-    // ==============================
-    // GET LOGGED-IN USER
-    // ==============================
+    if (!validDate(date) || !validTime(time)) {
 
-    const user = getCurrentUser();
+        Swal.fire(
+            "Invalid Date or Time",
+            "Please enter valid date and time.",
+            "warning"
+        );
 
-    if (!user) {
         return;
     }
 
 
-    // ==============================
-    // SAVE TO FIRESTORE
-    // ==============================
+    if (poojaType.length > 100) {
+
+        Swal.fire(
+            "Invalid Pooja Type",
+            "Please select a valid pooja type.",
+            "warning"
+        );
+
+        return;
+    }
+
+
+    const user = await getCurrentUser();
+
+    if (!user) return;
+
+
+    // SAVE POOJA BOOKING
 
     try {
 
@@ -700,49 +1218,44 @@ async function showPoojaDetailsform() {
 
                 userId: user.uid,
 
-                customerEmail:
-                    user.email || "",
+                customerEmail: user.email,
 
-                persons:
-                    Number(persons),
+                persons: persons,
 
-                date:
-                    date,
+                date: date,
 
-                time:
-                    time,
+                time: time,
 
-                mobile:
-                    mobile,
+                mobile: mobile,
 
-                poojaType:
-                    poojaType,
+                poojaType: poojaType,
 
-                service:
-                    "Temple Poojai",
+                service: "Temple Poojai",
 
-                status:
-                    "pending",
+                status: "pending",
 
                 bookingTime:
                     new Date().toLocaleString(),
 
-                createdAt:
-                    serverTimestamp()
+                createdAt: serverTimestamp()
+
             }
         );
 
 
-        // ==============================
-        // SUCCESS
-        // ==============================
-
         Swal.fire({
+
             icon: "success",
+
             title: "Booking Submitted!",
-            text: "Your Pooja booking request has been submitted successfully.",
+
+            text:
+                "Your Pooja booking request has been submitted successfully.",
+
             confirmButtonText: "OK",
+
             confirmButtonColor: "#ff7a00"
+
         }).then(() => {
 
             closeDetails("PoojaDetails");
@@ -752,10 +1265,7 @@ async function showPoojaDetailsform() {
 
     } catch (error) {
 
-        console.error(
-            "Pooja booking error:",
-            error
-        );
+        console.error("Pooja Booking Error:", error);
 
         Swal.fire({
             icon: "error",
@@ -768,8 +1278,8 @@ async function showPoojaDetailsform() {
 }
 
 
-/// ==========================================
-// VIEW DETAILS
+// ==========================================
+// 14. VIEW DETAILS
 // ==========================================
 
 function showDetails(id) {
@@ -777,196 +1287,264 @@ function showDetails(id) {
     const box = document.getElementById(id);
 
     if (!box) {
+
         console.error("Details box not found:", id);
+
         return;
     }
 
-    // Close all other boxes
+
+    // CLOSE OTHER DETAILS BOXES
+
     document.querySelectorAll(".details-box").forEach(item => {
+
         if (item.id !== id) {
+
             item.classList.remove("active");
+
         }
+
     });
 
-    // Open selected box
+
+    // OPEN SELECTED DETAILS BOX
+
     box.classList.add("active");
 
-    // Scroll to the box
+
+    // SCROLL TO DETAILS BOX
+
     setTimeout(() => {
+
         box.scrollIntoView({
             behavior: "smooth",
             block: "center"
         });
+
     }, 100);
 }
 
 
+// ==========================================
+// 15. OPEN DETAILS
+// ==========================================
 
 function showTempleDetails() {
+
     showDetails("templeDetails");
+
 }
 
 
 function showWellDetails() {
+
     showDetails("WellDetails");
+
 }
 
 
 function showPoojaDetails() {
+
     showDetails("PoojaDetails");
+
 }
 
+
+// ==========================================
+// 16. CLOSE DETAILS
+// ==========================================
 
 function closeDetails(id) {
 
     const box = document.getElementById(id);
 
     if (box) {
+
         box.classList.remove("active");
+
     }
 }
 
 
-// // Make HTML onclick functions available
-// window.showTempleDetails = showTempleDetails;
-// window.showWellDetails = showWellDetails;
-// window.showPoojaDetails = showPoojaDetails;
-// window.closeDetails = closeDetails;   
 // ==========================================
-// CLOSE BUTTONS
+// 17. CLOSE BUTTONS
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
-    const closeTempleBtn = document.getElementById("closeTempleBtn");
-    const closeWellBtn = document.getElementById("closeWellBtn");
-    const closePoojaBtn = document.getElementById("closePoojaBtn");
+    const closeTempleBtn =
+        document.getElementById("closeTempleBtn");
 
-    const templeBox = document.getElementById("templeDetails");
-    const wellBox = document.getElementById("WellDetails");
-    const poojaBox = document.getElementById("PoojaDetails");
+    const closeWellBtn =
+        document.getElementById("closeWellBtn");
+
+    const closePoojaBtn =
+        document.getElementById("closePoojaBtn");
+
+
+    const templeBox =
+        document.getElementById("templeDetails");
+
+    const wellBox =
+        document.getElementById("WellDetails");
+
+    const poojaBox =
+        document.getElementById("PoojaDetails");
 
 
     if (closeTempleBtn) {
-        closeTempleBtn.addEventListener("click", function () {
+
+        closeTempleBtn.addEventListener("click", function() {
+
             templeBox?.classList.remove("active");
+
         });
+
     }
 
 
     if (closeWellBtn) {
-        closeWellBtn.addEventListener("click", function () {
+
+        closeWellBtn.addEventListener("click", function() {
+
             wellBox?.classList.remove("active");
+
         });
+
     }
 
 
     if (closePoojaBtn) {
-        closePoojaBtn.addEventListener("click", function () {
+
+        closePoojaBtn.addEventListener("click", function() {
+
             poojaBox?.classList.remove("active");
+
         });
+
     }
 
 });
+
+
 // ==========================================
-// MAKE HTML FUNCTIONS AVAILABLE
+// 18. GOOGLE TRANSLATE BANNER FIX
 // ==========================================
-
-// View Details
-window.showTempleDetails = showTempleDetails;
-window.showWellDetails = showWellDetails;
-window.showPoojaDetails = showPoojaDetails;
-
-// Close Details
-window.closeDetails = closeDetails;
-
-// Continue Booking
-window.showTempleDetailsform = showTempleDetailsform;
-window.showWellDetailsform = showWellDetailsform;
-window.showPoojaDetailsform = showPoojaDetailsform;
-
-// Other functions
-window.showPersonBox = showPersonBox;
-window.continueBooking = continueBooking;
-
-window.sendWhatsApp = sendWhatsApp;
-window.sendRoomWhatsApp = sendRoomWhatsApp;
-
-// ========================================
-// HIDE GOOGLE TRANSLATE TOP BANNER
-// ========================================
 
 function hideGoogleTranslate() {
 
-    // Hide Google Translate banner
     document.querySelectorAll(
         ".goog-te-banner-frame, iframe.goog-te-banner-frame"
-    ).forEach(function (element) {
+    ).forEach(function(element) {
+
         element.style.display = "none";
         element.style.visibility = "hidden";
         element.style.height = "0";
         element.style.width = "0";
+
     });
 
-    // Hide Google Translate wrapper
-    document.querySelectorAll("body > .skiptranslate").forEach(function (element) {
+
+    document.querySelectorAll(
+        "body > .skiptranslate"
+    ).forEach(function(element) {
+
         element.style.display = "none";
         element.style.visibility = "hidden";
         element.style.height = "0";
+
     });
 
-    // Remove Google's page offset
+
     document.documentElement.style.marginTop = "0px";
 
+
     if (document.body) {
+
         document.body.style.top = "0px";
         document.body.style.marginTop = "0px";
+
     }
+
 }
 
-// Run immediately
+
+// RUN IMMEDIATELY
+
 hideGoogleTranslate();
 
-// Run whenever Google adds/changes the banner
-const translateObserver = new MutationObserver(function () {
+
+// OBSERVE GOOGLE TRANSLATE CHANGES
+
+const translateObserver = new MutationObserver(function() {
+
     hideGoogleTranslate();
+
 });
 
 translateObserver.observe(document.documentElement, {
+
     childList: true,
+
     subtree: true,
+
     attributes: true
+
 });
+
+
 // ==========================================
-// ⭐ CUSTOMER REVIEW SYSTEM
+// 19. CUSTOMER REVIEW SYSTEM
 // ==========================================
 
 let selectedRating = 0;
 
 
 // ==========================================
-// ⭐ STAR RATING
+// 20. STAR RATING
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
-    const stars = document.querySelectorAll("#starPicker button");
-    const ratingInput = document.getElementById("reviewRating");
+    const stars =
+        document.querySelectorAll("#starPicker button");
 
-    stars.forEach(function (star) {
+    const ratingInput =
+        document.getElementById("reviewRating");
 
-        star.addEventListener("click", function () {
 
-            selectedRating = Number(this.dataset.rating);
+    stars.forEach(function(star) {
 
-            if (ratingInput) {
-                ratingInput.value = selectedRating;
+        star.addEventListener("click", function() {
+
+            selectedRating =
+                Number(this.dataset.rating);
+
+
+            if (
+                !Number.isInteger(selectedRating) ||
+                selectedRating < 1 ||
+                selectedRating > 5
+            ) {
+
+                selectedRating = 0;
+
+                return;
             }
 
-            stars.forEach(function (item) {
+
+            if (ratingInput) {
+
+                ratingInput.value = selectedRating;
+
+            }
+
+
+            stars.forEach(function(item) {
 
                 const rating =
                     Number(item.dataset.rating);
+
 
                 item.style.color =
                     rating <= selectedRating
@@ -983,10 +1561,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // ==========================================
-// ⭐ REVIEW LOGIN STATE
+// 21. REVIEW LOGIN STATE
 // ==========================================
 
-onAuthStateChanged(auth, function (user) {
+onAuthStateChanged(auth, function(user) {
 
     const reviewForm =
         document.getElementById("reviewForm");
@@ -997,14 +1575,16 @@ onAuthStateChanged(auth, function (user) {
 
     if (reviewForm && loginMessage) {
 
-        if (user) {
+        if (user && user.emailVerified) {
 
             reviewForm.style.display = "block";
+
             loginMessage.style.display = "none";
 
         } else {
 
             reviewForm.style.display = "none";
+
             loginMessage.style.display = "block";
 
         }
@@ -1012,62 +1592,47 @@ onAuthStateChanged(auth, function (user) {
     }
 
 
-    // ======================================
-    // ⭐ LOAD APPROVED REVIEWS
-    // ======================================
+    // LOAD APPROVED REVIEWS
 
     loadApprovedReviews();
 
 });
 
+
 // ==========================================
-// ⭐ SUBMIT REVIEW
+// 22. SUBMIT CUSTOMER REVIEW
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
     const reviewForm =
         document.getElementById("reviewForm");
 
-    if (!reviewForm) {
-        return;
-    }
+
+    if (!reviewForm) return;
 
 
-    reviewForm.addEventListener("submit", async function (event) {
+    reviewForm.addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
 
-        // --------------------------------------
-        // GET CURRENT FIREBASE USER
-        // --------------------------------------
+        // GET VERIFIED USER
 
-        const user = auth.currentUser;
+        const user = await getCurrentUser();
 
-
-        if (!user) {
-
-            await Swal.fire({
-                icon: "warning",
-                title: "Login Required",
-                text: "Please login before submitting a review.",
-                confirmButtonColor: "#f77f00"
-            });
-
-            return;
-        }
+        if (!user) return;
 
 
-        // --------------------------------------
         // GET FORM VALUES
-        // --------------------------------------
 
         const service =
             document.getElementById("reviewService")?.value.trim();
 
+
         const review =
             document.getElementById("reviewText")?.value.trim();
+
 
         const rating =
             Number(
@@ -1075,9 +1640,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        // --------------------------------------
-        // VALIDATION
-        // --------------------------------------
+        // SERVICE VALIDATION
 
         if (!service) {
 
@@ -1092,7 +1655,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        if (rating < 1 || rating > 5) {
+        if (service.length > 100) {
+
+            await Swal.fire({
+                icon: "warning",
+                title: "Invalid Service",
+                text: "Please select a valid service.",
+                confirmButtonColor: "#f77f00"
+            });
+
+            return;
+        }
+
+
+        // RATING VALIDATION
+
+        if (
+            !Number.isInteger(rating) ||
+            rating < 1 ||
+            rating > 5
+        ) {
 
             await Swal.fire({
                 icon: "warning",
@@ -1105,12 +1687,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        if (!review || review.length < 5) {
+        // REVIEW VALIDATION
+
+        if (!review || review.length < 5 || review.length > 1000) {
 
             await Swal.fire({
                 icon: "warning",
                 title: "Write Your Review",
-                text: "Please write at least 5 characters.",
+                text: "Please write between 5 and 1000 characters.",
                 confirmButtonColor: "#f77f00"
             });
 
@@ -1118,26 +1702,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // --------------------------------------
         // LOADING
-        // --------------------------------------
 
         Swal.fire({
             title: "Submitting Review...",
             text: "Please wait.",
             allowOutsideClick: false,
             allowEscapeKey: false,
-            didOpen: function () {
+
+            didOpen: function() {
+
                 Swal.showLoading();
+
             }
+
         });
 
 
         try {
 
-            // ----------------------------------
             // REVIEW DOCUMENT
-            // ----------------------------------
 
             const reviewRef =
                 doc(
@@ -1147,9 +1731,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-            // ----------------------------------
             // CHECK EXISTING REVIEW
-            // ----------------------------------
 
             const existingReview =
                 await getDoc(reviewRef);
@@ -1170,9 +1752,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // ----------------------------------
+            // SAFE CUSTOMER NAME
+
+            const customerName =
+                String(
+                    user.displayName ||
+                    user.email?.split("@")[0] ||
+                    "Customer"
+                )
+                .trim()
+                .slice(0, 100);
+
+
             // SAVE REVIEW
-            // ----------------------------------
 
             await setDoc(
                 reviewRef,
@@ -1180,50 +1772,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     userId: user.uid,
 
-                    name:
-                        user.displayName ||
-                        user.email?.split("@")[0] ||
-                        "Customer",
+                    name: customerName,
 
-                    email:
-                        user.email || "",
+                    // Do not store customer email
+                    // in public review documents.
 
-                    service:
-                        service,
+                    service: service,
 
-                    rating:
-                        rating,
+                    rating: rating,
 
-                    review:
-                        review,
+                    review: review,
 
-                    approved:
-                        false,
+                    approved: false,
 
-                    createdAt:
-                        serverTimestamp()
+                    createdAt: serverTimestamp()
 
                 }
             );
 
 
-            // ----------------------------------
             // SUCCESS
-            // ----------------------------------
 
             Swal.close();
 
             await Swal.fire({
+
                 icon: "success",
+
                 title: "Review Submitted! ⭐",
-                text: "Your review is waiting for admin approval.",
+
+                text:
+                    "Your review is waiting for admin approval.",
+
                 confirmButtonColor: "#f77f00"
+
             });
 
 
-            // ----------------------------------
             // RESET FORM
-            // ----------------------------------
 
             reviewForm.reset();
 
@@ -1234,13 +1820,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("reviewRating");
 
             if (ratingInput) {
+
                 ratingInput.value = "0";
+
             }
 
 
             document
                 .querySelectorAll("#starPicker button")
-                .forEach(function (star) {
+                .forEach(function(star) {
 
                     star.style.color = "#ccc";
 
@@ -1250,19 +1838,24 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
 
             console.error(
-                "Review submission failed:",
+                "Review Submission Error:",
                 error
             );
 
             Swal.close();
 
             await Swal.fire({
+
                 icon: "error",
+
                 title: "Review Submission Failed",
+
                 text:
                     error.message ||
                     "Unable to submit your review.",
+
                 confirmButtonColor: "#d33"
+
             });
 
         }
@@ -1270,8 +1863,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
 // ==========================================
-// ⭐ LOAD APPROVED REVIEWS
+// 23. LOAD APPROVED REVIEWS
 // ==========================================
 
 async function loadApprovedReviews() {
@@ -1279,95 +1874,154 @@ async function loadApprovedReviews() {
     const reviewGrid =
         document.getElementById("reviewGrid");
 
+
     if (!reviewGrid) return;
+
 
     reviewGrid.innerHTML =
         "<p>Loading reviews...</p>";
 
+
     try {
 
+        // ONLY APPROVED REVIEWS
+
         const reviewsQuery = query(
-    collection(db, "reviews"),
-    where("approved", "==", true),
-    limit(12)
-);
+
+            collection(db, "reviews"),
+
+            where("approved", "==", true),
+
+            limit(12)
+
+        );
+
 
         const snapshot =
             await getDocs(reviewsQuery);
 
+
         reviewGrid.innerHTML = "";
+
 
         if (snapshot.empty) {
 
             reviewGrid.innerHTML = `
+
                 <p class="review-note">
+
                     No customer reviews yet.
                     Be the first to share your experience!
+
                 </p>
+
             `;
 
             return;
         }
 
+
         snapshot.forEach((reviewDoc) => {
 
             const data = reviewDoc.data();
 
+
             const name =
-                data.name || "Customer";
+                typeof data.name === "string"
+                    ? data.name.slice(0, 100)
+                    : "Customer";
+
+
+            const ratingValue =
+                Number(data.rating);
+
 
             const rating =
-                Number(data.rating) || 0;
+                Number.isInteger(ratingValue)
+                    ? Math.max(0, Math.min(5, ratingValue))
+                    : 0;
+
 
             const service =
-                data.service || "Service";
+                typeof data.service === "string"
+                    ? data.service
+                    : "Service";
+
 
             const review =
-                data.review || "";
+                typeof data.review === "string"
+                    ? data.review
+                    : "";
+
 
             const stars =
                 "★".repeat(rating) +
                 "☆".repeat(5 - rating);
 
+
             const firstLetter =
                 name.charAt(0).toUpperCase();
+
+
+            // CREATE REVIEW CARD
 
             const card =
                 document.createElement("div");
 
+
             card.className = "review-card";
 
+
             card.innerHTML = `
+
                 <div class="review-person">
 
                     <div class="review-avatar">
-                        ${firstLetter}
+
+                        ${escapeReviewHtml(firstLetter)}
+
                     </div>
 
                     <div>
+
                         <strong>
+
                             ${escapeReviewHtml(name)}
+
                         </strong>
+
                     </div>
 
                 </div>
 
+
                 <div class="stars">
+
                     ${stars}
+
                 </div>
 
+
                 <span class="review-service">
+
                     ${escapeReviewHtml(service)}
+
                 </span>
 
+
                 <p>
+
                     ${escapeReviewHtml(review)}
+
                 </p>
+
             `;
+
 
             reviewGrid.appendChild(card);
 
         });
+
 
     } catch (error) {
 
@@ -1376,23 +2030,69 @@ async function loadApprovedReviews() {
             error
         );
 
+
         reviewGrid.innerHTML = `
+
             <p class="review-note">
+
                 Reviews could not be loaded.
+
             </p>
+
         `;
+
     }
+
 }
+
+
 // ==========================================
-// 🔐 PROTECT REVIEW TEXT
+// 24. PROTECT REVIEW HTML
 // ==========================================
 
-function escapeReviewHtml(text) {
+function escapeReviewHtml(value) {
 
     const div =
         document.createElement("div");
 
-    div.textContent = text;
+
+    div.textContent =
+        String(value ?? "");
+
 
     return div.innerHTML;
+
 }
+
+
+// ==========================================
+// 25. MAKE HTML FUNCTIONS AVAILABLE
+// ==========================================
+
+// Package selection
+window.selectPackage = selectPackage;
+
+// Details
+window.showTempleDetails = showTempleDetails;
+window.showWellDetails = showWellDetails;
+window.showPoojaDetails = showPoojaDetails;
+
+// Close Details
+window.closeDetails = closeDetails;
+
+// Booking forms
+window.showTempleDetailsform = showTempleDetailsform;
+window.showWellDetailsform = showWellDetailsform;
+window.showPoojaDetailsform = showPoojaDetailsform;
+
+// Person selection
+window.showPersonBox = showPersonBox;
+window.continueBooking = continueBooking;
+
+// Booking submission
+window.sendWhatsApp = sendWhatsApp;
+window.sendRoomWhatsApp = sendRoomWhatsApp;
+
+// ==========================================
+// END OF RAMSETHUYATRA SCRIPT.JS
+// ==========================================   
