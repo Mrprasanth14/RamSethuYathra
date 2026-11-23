@@ -1797,10 +1797,15 @@ roomCards.forEach(card => {
             select.options[select.selectedIndex];
 
         updateSelectedRoom(
-            select.dataset.room,
-            option.dataset.bed,
-            Number(select.value)
-        );
+    select.dataset.room,
+    option.dataset.bed,
+    Number(select.value)
+);
+
+// On mobile, take the customer directly to the booking form
+if (window.innerWidth <= 600) {
+    scrollToRoomBooking();
+}
 
     });
 

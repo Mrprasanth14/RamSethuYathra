@@ -2759,3 +2759,108 @@ select {
     }
 }
 
+/* =========================================
+   PREMIUM - COMPACT GUEST AGE POLICY
+   Mobile sizing only - preserve all colors
+========================================= */
+
+@media (max-width: 600px) {
+
+    .guest-age-policy {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 8px 0 !important;
+        padding: 10px 12px !important;
+
+        box-sizing: border-box !important;
+        overflow: visible !important;
+    }
+
+    /* Compact heading row */
+    .guest-age-policy summary {
+        min-height: 22px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Remove reserved space when collapsed */
+    .guest-age-policy:not([open]) > p {
+        display: none !important;
+    }
+
+    /* Show policy only when expanded */
+    .guest-age-policy[open] > p {
+        display: block !important;
+        margin: 8px 0 0 22px !important;
+        line-height: 1.5 !important;
+        font-size: 12px !important;
+    }
+}
+@media (max-width: 600px) {
+    .guest-age-policy {
+        width: 90% !important;
+        margin: 8px auto !important;
+    }
+}
+/* Guest Age Policy - remove unnecessary empty space on all screens */
+.guest-age-policy {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 12px 14px !important;
+    margin: 12px 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Collapsed policy: show heading only */
+.guest-age-policy:not([open]) > p {
+    display: none !important;
+}
+
+/* Expanded policy: show text naturally */
+.guest-age-policy[open] > p {
+    display: block !important;
+    height: auto !important;
+    margin: 10px 0 0 !important;
+    line-height: 1.6 !important;
+}
+
+/* Keep heading compact */
+.guest-age-policy summary {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}/* Guest Age Policy - match Package Price card width */
+.guest-age-policy {
+    width: 85% !important;
+    max-width: none !important;
+    margin: 12px auto !important;
+    box-sizing: border-box !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 12px 14px !important;
+}
+
+/* Remove empty space when collapsed */
+.guest-age-policy:not([open]) > p {
+    display: none !important;
+}
+
+/* Keep heading compact */
+.guest-age-policy summary {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+}
+
+/* Show policy text when expanded */
+.guest-age-policy[open] > p {
+    display: block !important;
+    height: auto !important;
+    margin: 10px 0 0 !important;
+    line-height: 1.6 !important;
+}

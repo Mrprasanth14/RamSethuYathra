@@ -3972,3 +3972,397 @@ body {
         font-size: 14px;
     }
 }
+.price-offer-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+.price-offer-row del {
+    color: #89939a;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price-offer-row strong {
+    color: #003049;
+    font-size: 38px;
+    font-weight: 900;
+}
+
+.offer-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 30px;
+    background: #e5f7ee;
+    color: #087b48;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+/* =========================================
+   NORMAL PACKAGE BOOKING CARD - MOBILE
+   Match RamSethuYatra booking screenshot
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* Main booking card */
+    .booking-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 24px 22px;
+        margin: 0 auto;
+        border-radius: 22px;
+        background: #ffffff;
+        box-shadow: 0 8px 30px rgba(0, 48, 73, 0.08);
+    }
+
+    /* Package heading */
+    .booking-card-top > span {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    /* Price section */
+    .booking-price {
+        margin-top: 14px;
+    }
+
+    .booking-price small {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+        color: #64748b;
+        margin-bottom: 12px;
+    }
+
+    .price-offer-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .price-offer-row del {
+        font-size: 17px;
+        font-weight: 600;
+        color: #9ca3af;
+    }
+
+    .price-offer-row strong {
+        font-size: clamp(28px, 8vw, 40px);
+        line-height: 1.1;
+        font-weight: 900;
+        color: #003049;
+    }
+
+    .offer-badge {
+        font-size: 12px;
+        font-weight: 800;
+        padding: 9px 14px;
+        border-radius: 30px;
+        color: #087443;
+        background: #e5f7ed;
+    }
+
+    #pricePersonDisplay {
+        display: block;
+        margin-top: 12px;
+        font-size: 15px;
+        font-style: normal;
+        color: #64748b;
+    }
+
+    /* Divider */
+    .booking-divider {
+        margin: 26px 0;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    /* Check-in / check-out */
+    .stay-date-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .booking-field {
+        min-width: 0;
+    }
+
+    .booking-field label {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 15px;
+        font-weight: 800;
+        color: #003049;
+        margin-bottom: 12px;
+    }
+
+    .booking-field label i {
+        color: #f58213;
+        font-size: 17px;
+    }
+
+    .stay-date-row input[type="date"] {
+        width: 100%;
+        height: 60px;
+        padding: 0 12px;
+        box-sizing: border-box;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        background: #ffffff;
+        color: #003049;
+        font-size: 14px;
+    }
+
+    /* Guests selector */
+    .guests-field {
+        margin-top: 26px;
+    }
+
+    #persons {
+        width: 100%;
+        height: 66px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        background: #ffffff;
+        color: #003049;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    /* Stay duration */
+    .stay-duration-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 24px;
+        padding: 18px 20px;
+        border-radius: 16px;
+        background: #fff7ed;
+        color: #003049;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .stay-duration-row i {
+        color: #f58213;
+        font-size: 18px;
+    }
+
+    /* Guest age policy */
+    .age-policy-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-top: 24px;
+        padding: 22px 18px;
+        border: 1px solid #eee1c6;
+        border-radius: 20px;
+        background: #fffdf6;
+    }
+
+    .age-policy-icon {
+        flex-shrink: 0;
+        font-size: 24px;
+    }
+
+    .age-policy-note strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 800;
+        color: #003049;
+        margin-bottom: 12px;
+    }
+
+    .age-policy-note p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.9;
+        color: #777777;
+    }
+
+    /* Price summary */
+    .price-summary {
+        margin-top: 24px;
+        padding: 22px 20px;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        background: #ffffff;
+    }
+
+    .price-summary > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .price-summary > div:last-child {
+        margin-bottom: 0;
+    }
+
+    .price-summary span {
+        font-size: 15px;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .price-summary strong {
+        font-size: 16px;
+        font-weight: 800;
+        color: #003049;
+        text-align: right;
+    }
+
+    .price-summary > div:last-child {
+        border-top: 1px dashed #d1d5db;
+        padding-top: 22px;
+    }
+
+    .price-summary > div:last-child span {
+        color: #003049;
+        font-weight: 800;
+    }
+
+    .price-summary > div:last-child strong {
+        color: #f58213;
+        font-size: 25px;
+        font-weight: 900;
+    }
+
+    /* Continue booking button */
+    .continue-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        min-height: 76px;
+        margin-top: 24px;
+        padding: 18px 20px;
+        border: none;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #ff8500, #ff7100);
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 800;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .continue-btn i {
+        font-size: 18px;
+    }
+
+    /* Login note */
+    .booking-login-note {
+        margin-top: 18px;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #8793a0;
+    }
+
+    /* Help link */
+    .help-link {
+        display: block;
+        margin-top: 16px;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+/* Compact expandable Guest Age Policy */
+@media (max-width: 600px) {
+
+    .age-policy-note {
+        margin-top: 14px !important;
+        padding: 12px 14px !important;
+        border: 1px solid #eee1c6;
+        border-radius: 14px;
+        background: #fffdf6;
+    }
+
+    .age-policy-note summary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .age-policy-note summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .age-policy-note summary strong {
+        font-size: 13px;
+        margin: 0;
+        flex: 1;
+    }
+
+    .age-policy-note .age-policy-icon {
+        font-size: 17px;
+    }
+
+    .age-policy-note .policy-arrow {
+        font-size: 16px;
+        color: #64748b;
+        transition: transform 0.2s;
+    }
+
+    .age-policy-note[open] .policy-arrow {
+        transform: rotate(180deg);
+    }
+
+    .age-policy-note p {
+        margin: 10px 0 0 25px;
+        font-size: 12px;
+        line-height: 1.55;
+    }
+}
+@media (max-width: 600px) {
+
+    .booking-divider {
+        margin: 18px 0 !important;
+    }
+
+    .guests-field {
+        margin-top: 18px !important;
+    }
+
+    .stay-duration-row {
+        margin-top: 16px !important;
+        padding: 14px 16px !important;
+    }
+
+    .price-summary {
+        margin-top: 16px !important;
+        padding: 18px 16px !important;
+    }
+
+    .price-summary > div {
+        margin-bottom: 16px !important;
+    }
+
+    .price-summary > div:last-child {
+        padding-top: 16px !important;
+    }
+
+    .continue-btn {
+        margin-top: 16px !important;
+        min-height: 64px !important;
+        font-size: 16px !important;
+    }
+}
+

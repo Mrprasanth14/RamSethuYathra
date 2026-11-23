@@ -184,93 +184,8 @@
 
         <!-- HEADER ACTIONS -->
 
-        <div class="header-actions">
 
-
-            <!-- LANGUAGE -->
-
-            <div class="translate-box">
-
-    <button type="button"
-            id="languageBtn"
-            class="language-btn"
-            aria-label="Select language">
-
-        <i class="fa-solid fa-globe"></i>
-
-    </button>
-
-    <div id="languageMenu"
-         class="language-menu">
-
-        <div class="language-title">
-            Select Language
-        </div>
-
-        <button type="button" data-lang="en">
-            🇬🇧 English
-        </button>
-
-        <button type="button" data-lang="ta">
-            🇮🇳 தமிழ்
-        </button>
-
-        <button type="button" data-lang="hi">
-            🇮🇳 हिन्दी
-        </button>
-
-        <button type="button" data-lang="ml">
-            🇮🇳 മലയാളം
-        </button>
-
-        <button type="button" data-lang="te">
-            🇮🇳 తెలుగు
-        </button>
-
-        <button type="button" data-lang="kn">
-            🇮🇳 ಕನ್ನಡ
-        </button>
-
-        <button type="button" data-lang="bn">
-            🇮🇳 বাংলা
-        </button>
-
-        <button type="button" data-lang="mr">
-            🇮🇳 मराठी
-        </button>
-
-        <button type="button" data-lang="gu">
-            🇮🇳 ગુજરાતી
-        </button>
-
-        <button type="button" data-lang="pa">
-            🇮🇳 ਪੰਜਾਬੀ
-        </button>
-
-        <button type="button" data-lang="es">
-            🇪🇸 Español
-        </button>
-
-        <button type="button" data-lang="fr">
-            🇫🇷 Français
-        </button>
-
-        <button type="button" data-lang="de">
-            🇩🇪 Deutsch
-        </button>
-
-        <button type="button" data-lang="ar">
-            🇸🇦 العربية
-        </button>
-
-    </div>
-
-    <!-- Google Translate -->
-    <div id="google_translate_element"
-         class="google-translate-hidden">
-    </div>
-
-</div>
+            
 
 
             <!-- MOBILE MENU -->
@@ -354,7 +269,7 @@
                 <i class="fa-solid fa-users"></i>
 
                 <span>
-                    2–10 Persons
+                    2–6 Persons
                 </span>
 
             </div>
@@ -685,23 +600,31 @@
                 </span>
 
 
-                <div class="booking-price">
+               <div class="booking-price">
 
-                    <small>
-                        Package price
-                    </small>
+    <small>Package price</small>
 
+    <div class="price-offer-row">
 
-                    <strong id="price">
-                        ₹7,000
-                    </strong>
+        <del id="originalPriceDisplay">
+            ₹15,000
+        </del>
 
+        <strong id="priceDisplay">
+            ₹12,500
+        </strong>
 
-                    <em id="priceLabel">
-                        For 5 Persons
-                    </em>
+        <span class="offer-badge">
+            OFFER
+        </span>
 
-                </div>
+    </div>
+
+    <em id="pricePersonDisplay">
+        For 5 Persons
+    </em>
+
+</div>
 
 
             </div>
@@ -769,56 +692,40 @@
     </span>
 
 </div>
-            
-<div class="age-policy-note">
-    <span class="age-policy-icon">ℹ️</span>
-    <div>
+            <details class="age-policy-note">
+    <summary>
+        <span class="age-policy-icon">ℹ️</span>
         <strong>Guest Age Policy</strong>
-        <p>
-            Guests aged 18 years and above are counted as adults
-            for room accommodation. Guests aged 10–17 years are
-            not counted as separate room occupants under this policy.
-            Please include their ages in your booking details so we
-            can confirm suitable accommodation arrangements.
-        </p>
-    </div>
-</div>
+        <span class="policy-arrow"></span>
+    </summary>
 
-
-
-
+    <p>
+        Guests aged 18 years and above are counted as adults for room
+        accommodation. Guests aged 10–17 years are not counted as separate
+        room occupants under this policy. Please include their ages in your
+        booking details so we can confirm suitable accommodation arrangements.
+    </p>
+</details>
             <!-- PRICE INFO -->
 
             <div class="price-summary">
 
+    <div>
+        <span>Selected travellers</span>
+        <strong id="summaryPersons">5</strong>
+    </div>
 
-                <div>
+    <div>
+        <span>Package</span>
+        <strong>Normal</strong>
+    </div>
 
-                    <span>
-                        Selected Persons
-                    </span>
+    <div>
+        <span>Total</span>
+        <strong id="summaryPrice">₹12,500</strong>
+    </div>
 
-                    <strong id="selectedPersons">
-                        5
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        Total Package Price
-                    </span>
-
-                    <strong id="totalPrice">
-                        ₹7,000
-                    </strong>
-
-                </div>
-
-
-            </div>
+</div>
 
 
 
@@ -1478,23 +1385,20 @@
        PRICE DATA
     ===================================================== */
 
-    // NORMAL PACKAGE PRICES
-// Both values are total prices for the whole group.
+   /* =====================================================
+   NORMAL PACKAGE PRICE DATA
+===================================================== */
 
-// 1 NIGHT NORMAL PRICE
+// One-night regular prices
 const regularPrices = {
     2: 9000,
     3: 11000,
     4: 13000,
     5: 15000,
-    6: 17000,
-    7: 20000,
-    8: 22000,
-    9: 25000,
-    10: 28000
+    6: 17000
 };
 
-// 1 NIGHT OFFER PRICE
+// One-night offer prices
 const prices = {
     2: 7500,
     3: 8500,
@@ -1502,6 +1406,8 @@ const prices = {
     5: 12500,
     6: 13500
 };
+
+// Additional charge for EACH night after the first night
 const extraNightCharges = {
     2: 2000,
     3: 2500,
@@ -1511,28 +1417,29 @@ const extraNightCharges = {
 };
 
 
-    const personsSelect =
-        document.getElementById("persons");
+/* =====================================================
+   GET HTML ELEMENTS
+===================================================== */
 
+const personsSelect = document.getElementById("persons");
 
-    const priceElement =
-        document.getElementById("price");
+const originalPriceDisplay =
+    document.getElementById("originalPriceDisplay");
 
+const priceDisplay =
+    document.getElementById("priceDisplay");
 
-    const priceLabel =
-        document.getElementById("priceLabel");
+const pricePersonDisplay =
+    document.getElementById("pricePersonDisplay");
 
+const summaryPersons =
+    document.getElementById("summaryPersons");
 
-    const selectedPersons =
-        document.getElementById("selectedPersons");
+const summaryPrice =
+    document.getElementById("summaryPrice");
 
-
-    const totalPrice =
-        document.getElementById("totalPrice");
-
-
-    const continueBtn =
-        document.getElementById("continueBtn");
+const continueBtn =
+    document.getElementById("continueBtn");
 
 const checkInInput =
     document.getElementById("checkIn");
@@ -1544,6 +1451,12 @@ const nightsDisplay =
     document.getElementById("nightsDisplay");
 
 let selectedNights = 0;
+
+
+/* =====================================================
+   CALCULATE STAY NIGHTS
+===================================================== */
+
 function calculateNights() {
 
     const checkInValue = checkInInput.value;
@@ -1561,11 +1474,15 @@ function calculateNights() {
     const [outYear, outMonth, outDay] =
         checkOutValue.split("-").map(Number);
 
-    const checkInDate = Date.UTC(inYear, inMonth - 1, inDay);
-    const checkOutDate = Date.UTC(outYear, outMonth - 1, outDay);
+    const checkInDate =
+        Date.UTC(inYear, inMonth - 1, inDay);
+
+    const checkOutDate =
+        Date.UTC(outYear, outMonth - 1, outDay);
 
     const nights = Math.round(
-        (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)
+        (checkOutDate - checkInDate) /
+        (1000 * 60 * 60 * 24)
     );
 
     if (nights <= 0) {
@@ -1581,131 +1498,133 @@ function calculateNights() {
 
     return true;
 }
-    /* =====================================================
-       UPDATE PRICE
-    ===================================================== */
+
+
 /* =====================================================
-   UPDATE PRICE
+   UPDATE PACKAGE PRICE
 ===================================================== */
 
 function updatePrice() {
 
-    // 1. Get selected number of persons
     const persons = Number(personsSelect.value);
 
-    // 2. Calculate selected nights from check-in/check-out
     const validDates = calculateNights();
+
+    // Until dates are selected, display the one-night price
     const nights = validDates ? selectedNights : 1;
 
-    // 3. Get manually configured prices for selected persons
     const regularRate = regularPrices[persons];
     const offerRate = prices[persons];
+    const extraCharge = extraNightCharges[persons];
 
-    // 4. Check if prices exist
-    if (!regularRate || !offerRate) {
-        console.error("Price not found for:", persons, "persons");
+    if (
+        regularRate === undefined ||
+        offerRate === undefined ||
+        extraCharge === undefined
+    ) {
         return;
     }
 
-    // 5. Additional night charge (change this amount whenever you want)
-   const extraNightCharge = extraNightCharges[persons];
-
-    // 6. Calculate total price
-    // First night = base price
-    // Each additional night = + ₹1,000
-    const extraNights = nights - 1;
+    // First night is included in the base price
+    const additionalNights = Math.max(0, nights - 1);
 
     const regularTotal =
-        regularRate + (extraNightCharge * extraNights);
+        regularRate + (extraCharge * additionalNights);
 
     const offerTotal =
-        offerRate + (extraNightCharge * extraNights);
+        offerRate + (extraCharge * additionalNights);
 
-    // 7. Display regular and offer prices
-    priceElement.innerHTML = `
-        <span class="regular-price">
-            ₹${regularTotal.toLocaleString("en-IN")}
-        </span>
+    // Original price
+    originalPriceDisplay.textContent =
+        "₹" + regularTotal.toLocaleString("en-IN");
 
-        <span class="offer-price">
-            ₹${offerTotal.toLocaleString("en-IN")}
-        </span>
+    // Offer price
+    priceDisplay.textContent =
+        "₹" + offerTotal.toLocaleString("en-IN");
 
-        <span class="discount-badge">
-            OFFER
-        </span>
-    `;
+    // Person and night information
+    pricePersonDisplay.textContent = validDates
+        ? `For ${persons} Persons · ${nights} ${nights === 1 ? "Night" : "Nights"}`
+        : `For ${persons} Persons`;
 
-    // 8. Display selected persons and nights
-    priceLabel.textContent =
-        `For ${persons} Persons · ${nights} ${nights === 1 ? "Night" : "Nights"}`;
+    // Booking summary
+    summaryPersons.textContent = persons;
 
-    if (selectedPersons) {
-        selectedPersons.textContent = persons;
-    }
-
-    // 9. Update total price
-    if (totalPrice) {
-        totalPrice.textContent =
-            `₹${offerTotal.toLocaleString("en-IN")}`;
-    }
-
-    // 10. Console debugging
-    console.log({
-        persons,
-        nights,
-        regularTotal,
-        offerTotal
-    });
+    summaryPrice.textContent =
+        "₹" + offerTotal.toLocaleString("en-IN");
 }
+
+
+/* =====================================================
+   PRICE EVENT LISTENERS
+===================================================== */
+
 personsSelect.addEventListener("change", updatePrice);
-checkInInput.addEventListener("change", updatePrice);
+
+checkInInput.addEventListener("change", function () {
+
+    checkOutInput.min = checkInInput.value;
+
+    if (
+        checkOutInput.value &&
+        checkOutInput.value <= checkInInput.value
+    ) {
+        checkOutInput.value = "";
+    }
+
+    updatePrice();
+
+});
+
 checkOutInput.addEventListener("change", updatePrice);
 
 updatePrice();
 
-    /* =====================================================
-       CONTINUE TO BOOKING
-    ===================================================== */
 
-    continueBtn.addEventListener("click", () => {
+/* =====================================================
+   CONTINUE TO BOOKING
+===================================================== */
+
+continueBtn.addEventListener("click", function () {
 
     const persons = Number(personsSelect.value);
 
-    // Require selected dates
     if (!checkInInput.value || !checkOutInput.value) {
         alert("Please select check-in and check-out dates.");
         return;
     }
 
-    // Validate stay duration
     if (!calculateNights() || selectedNights < 1) {
-        alert("Please select valid dates.");
+        alert("Please select valid check-in and check-out dates.");
         return;
     }
 
-    const pricePerNight = prices[persons];
+    const basePrice = prices[persons];
+    const extraCharge = extraNightCharges[persons];
 
-    if (!pricePerNight) {
+    if (
+        basePrice === undefined ||
+        extraCharge === undefined
+    ) {
         alert("Price not found for selected persons.");
         return;
     }
 
-    const extraNightCharge = 1000;
+    const additionalNights = selectedNights - 1;
 
-    // Base price + additional night charges
-    const total = pricePerNight +
-        (extraNightCharge * (selectedNights - 1));
+    const finalPrice =
+        basePrice + (extraCharge * additionalNights);
 
     const bookingUrl =
         `booking.html?package=normal` +
         `&persons=${persons}` +
-        `&checkin=${checkInInput.value}` +
-        `&checkout=${checkOutInput.value}` +
+        `&checkIn=${checkInInput.value}` +
+        `&checkOut=${checkOutInput.value}` +
         `&nights=${selectedNights}` +
-        `&price=${total}`;
+        `&price=${finalPrice}`;
 
     window.location.href = bookingUrl;
+
 });
 
 
