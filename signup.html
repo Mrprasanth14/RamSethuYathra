@@ -491,472 +491,433 @@
 
     <script type="module">
 
-        import {
-            auth,
-            db
-        } from "./firebase.js";
+import {
+    auth,
+    db
+} from "./firebase.js";
+
+import {
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 
-        import {
-            createUserWithEmailAndPassword,
-            updateProfile
-        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+// ==========================================
+// 1. GET HTML ELEMENTS
+// ==========================================
+
+const signupForm = document.getElementById("signupForm");
+
+const signupBtn = document.getElementById("signupBtn");
+
+const password = document.getElementById("password");
+
+const confirmPassword = document.getElementById("confirmPassword");
+
+const passwordToggle = document.getElementById("passwordToggle");
+
+const confirmPasswordToggle = document.getElementById("confirmPasswordToggle");
 
 
-        import {
-            doc,
-            setDoc,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+// ==========================================
+// 2. PASSWORD SHOW / HIDE
+// ==========================================
+
+if (passwordToggle && password) {
+
+    passwordToggle.addEventListener("click", () => {
+
+        if (password.type === "password") {
+
+            password.type = "text";
+            passwordToggle.textContent = "Hide";
+            passwordToggle.setAttribute("aria-label", "Hide password");
+
+        } else {
+
+            password.type = "password";
+            passwordToggle.textContent = "Show";
+            passwordToggle.setAttribute("aria-label", "Show password");
+
+        }
+
+    });
+
+}
 
 
-        const signupForm =
-            document.getElementById(
-                "signupForm"
+// ==========================================
+// 3. CONFIRM PASSWORD SHOW / HIDE
+// ==========================================
+
+if (confirmPasswordToggle && confirmPassword) {
+
+    confirmPasswordToggle.addEventListener("click", () => {
+
+        if (confirmPassword.type === "password") {
+
+            confirmPassword.type = "text";
+            confirmPasswordToggle.textContent = "Hide";
+
+            confirmPasswordToggle.setAttribute(
+                "aria-label",
+                "Hide confirm password"
             );
 
+        } else {
 
-        const signupBtn =
-            document.getElementById(
-                "signupBtn"
+            confirmPassword.type = "password";
+            confirmPasswordToggle.textContent = "Show";
+
+            confirmPasswordToggle.setAttribute(
+                "aria-label",
+                "Show confirm password"
             );
 
+        }
 
-        const password =
-            document.getElementById(
-                "password"
-            );
+    });
 
+}
 
-        const confirmPassword =
-            document.getElementById(
-                "confirmPassword"
-            );
 
+// ==========================================
+// 4. MOBILE NUMBER VALIDATION
+// ==========================================
 
-        const passwordToggle =
-            document.getElementById(
-                "passwordToggle"
-            );
+const phoneInput = document.getElementById("phone");
 
+if (phoneInput) {
 
-        const confirmPasswordToggle =
-            document.getElementById(
-                "confirmPasswordToggle"
-            );
+    phoneInput.addEventListener("input", function () {
 
+        this.value = this.value
+            .replace(/\D/g, "")
+            .slice(0, 10);
 
-        /* =========================================
-           PASSWORD SHOW / HIDE
-        ========================================== */
+    });
 
-        passwordToggle.addEventListener(
-            "click",
-            () => {
+}
 
-                if (
-                    password.type ===
-                    "password"
-                ) {
 
-                    password.type =
-                        "text";
+// ==========================================
+// 5. SIGNUP BUTTON LOADING
+// ==========================================
 
-                    passwordToggle.textContent =
-                        "Hide";
+function setSignupLoading(loading) {
 
-                    passwordToggle.setAttribute(
-                        "aria-label",
-                        "Hide password"
-                    );
+    if (!signupBtn) return;
 
-                } else {
+    signupBtn.disabled = loading;
 
-                    password.type =
-                        "password";
+    signupBtn.classList.toggle("loading", loading);
 
-                    passwordToggle.textContent =
-                        "Show";
+    const buttonText =
+        signupBtn.querySelector(".btn-text");
 
-                    passwordToggle.setAttribute(
-                        "aria-label",
-                        "Show password"
-                    );
+    if (buttonText) {
 
-                }
+        buttonText.textContent = loading
+            ? "Creating Account..."
+            : "Create Account";
 
-            }
-        );
+    }
 
+}
 
-        /* =========================================
-           CONFIRM PASSWORD SHOW / HIDE
-        ========================================== */
 
-        confirmPasswordToggle.addEventListener(
-            "click",
-            () => {
+// ==========================================
+// 6. SIGNUP FORM SUBMISSION
+// ==========================================
 
-                if (
-                    confirmPassword.type ===
-                    "password"
-                ) {
+if (signupForm) {
 
-                    confirmPassword.type =
-                        "text";
+    signupForm.addEventListener("submit", async (event) => {
 
-                    confirmPasswordToggle.textContent =
-                        "Hide";
+        event.preventDefault();
 
-                    confirmPasswordToggle.setAttribute(
-                        "aria-label",
-                        "Hide confirm password"
-                    );
+        // ==================================
+        // GET CUSTOMER DETAILS
+        // ==================================
 
-                } else {
+        const name =
+            document.getElementById("name").value.trim();
 
-                    confirmPassword.type =
-                        "password";
+        const phone =
+            document.getElementById("phone").value.trim();
 
-                    confirmPasswordToggle.textContent =
-                        "Show";
+        const email =
+            document.getElementById("email").value.trim().toLowerCase();
 
-                    confirmPasswordToggle.setAttribute(
-                        "aria-label",
-                        "Show confirm password"
-                    );
+        const passwordValue =
+            password.value;
 
-                }
+        const confirmPasswordValue =
+            confirmPassword.value;
 
-            }
-        );
 
+        // ==================================
+        // NAME VALIDATION
+        // ==================================
 
-        /* =========================================
-           MOBILE NUMBER
-        ========================================== */
+        if (name.length < 2 || name.length > 100) {
 
-        document
-            .getElementById("phone")
-            .addEventListener(
-                "input",
-                function () {
+            Swal.fire({
+                icon: "warning",
+                title: "Invalid Name",
+                text: "Please enter your full name.",
+                confirmButtonColor: "#f77f00"
+            });
 
-                    this.value =
-                        this.value
-                            .replace(/\D/g, "")
-                            .slice(0, 10);
+            return;
+        }
 
-                }
-            );
 
+        // ==================================
+        // PHONE VALIDATION
+        // ==================================
 
-        /* =========================================
-           SIGNUP
-        ========================================== */
+        if (!/^[6-9][0-9]{9}$/.test(phone)) {
 
-        signupForm.addEventListener(
-            "submit",
-            async (event) => {
+            Swal.fire({
+                icon: "warning",
+                title: "Invalid Mobile Number",
+                text: "Please enter a valid 10-digit mobile number.",
+                confirmButtonColor: "#f77f00"
+            });
 
-                event.preventDefault();
+            return;
+        }
 
 
-                const name =
-                    document
-                        .getElementById("name")
-                        .value
-                        .trim();
+        // ==================================
+        // EMAIL VALIDATION
+        // ==================================
 
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
 
-                const phone =
-                    document
-                        .getElementById("phone")
-                        .value
-                        .trim();
+            Swal.fire({
+                icon: "warning",
+                title: "Invalid Email",
+                text: "Please enter a valid email address.",
+                confirmButtonColor: "#f77f00"
+            });
 
+            return;
+        }
 
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
 
+        // ==================================
+        // PASSWORD VALIDATION
+        // ==================================
 
-                const passwordValue =
-                    password.value;
+        if (passwordValue.length < 6) {
 
+            Swal.fire({
+                icon: "warning",
+                title: "Weak Password",
+                text: "Password must contain at least 6 characters.",
+                confirmButtonColor: "#f77f00"
+            });
 
-                const confirmPasswordValue =
-                    confirmPassword.value;
+            return;
+        }
 
 
-                /* =============================
-                   NAME
-                ============================== */
+        // ==================================
+        // CONFIRM PASSWORD VALIDATION
+        // ==================================
 
-                if (name.length < 2) {
+        if (passwordValue !== confirmPasswordValue) {
 
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Invalid Name",
-                        text: "Please enter your full name.",
-                        confirmButtonColor: "#f77f00"
-                    });
+            Swal.fire({
+                icon: "error",
+                title: "Passwords Don't Match",
+                text: "Please make sure both passwords are the same.",
+                confirmButtonColor: "#f77f00"
+            });
 
-                    return;
-                }
+            return;
+        }
 
 
-                /* =============================
-                   PHONE
-                ============================== */
+        // ==================================
+        // START LOADING
+        // ==================================
 
-                if (
-                    !/^[0-9]{10}$/.test(phone)
-                ) {
+        setSignupLoading(true);
 
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Invalid Mobile Number",
-                        text: "Please enter a valid 10-digit mobile number.",
-                        confirmButtonColor: "#f77f00"
-                    });
+        let accountCreated = false;
 
-                    return;
-                }
 
+        try {
 
-                /* =============================
-                   PASSWORD
-                ============================== */
+            // ==================================
+            // 1. CREATE FIREBASE ACCOUNT
+            // ==================================
 
-                if (
-                    passwordValue.length < 6
-                ) {
-
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Weak Password",
-                        text: "Password must be at least 6 characters.",
-                        confirmButtonColor: "#f77f00"
-                    });
-
-                    return;
-                }
-
-
-                /* =============================
-                   CONFIRM PASSWORD
-                ============================== */
-
-                if (
-                    passwordValue !==
-                    confirmPasswordValue
-                ) {
-
-                    Swal.fire({
-                        icon: "error",
-                        title: "Passwords Don't Match",
-                        text: "Please make sure both passwords are the same.",
-                        confirmButtonColor: "#f77f00"
-                    });
-
-                    return;
-                }
-
-
-                /* =============================
-                   LOADING
-                ============================== */
-
-                signupBtn.disabled = true;
-
-                signupBtn.classList.add(
-                    "loading"
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    passwordValue
                 );
 
-                signupBtn.querySelector(
-                    ".btn-text"
-                ).textContent =
-                    "Creating Account...";
+            const user = userCredential.user;
+
+            accountCreated = true;
 
 
-                try {
+            // ==================================
+            // 2. UPDATE CUSTOMER PROFILE
+            // ==================================
 
-                    /* =========================
-                       FIREBASE AUTH
-                    ========================== */
+            await updateProfile(user, {
 
-                    const userCredential =
-                        await createUserWithEmailAndPassword(
-                            auth,
-                            email,
-                            passwordValue
-                        );
+                displayName: name
+
+            });
 
 
-                    const user =
-                        userCredential.user;
+            // ==================================
+            // 3. SAVE CUSTOMER IN FIRESTORE
+            // ==================================
 
+            await setDoc(
+                doc(db, "customers", user.uid),
+                {
 
-                    /* =========================
-                       DISPLAY NAME
-                    ========================== */
+                    uid: user.uid,
 
-                    await updateProfile(
-                        user,
-                        {
-                            displayName: name
-                        }
-                    );
+                    name: name,
 
+                    email: user.email,
 
-                    /* =========================
-                       FIRESTORE CUSTOMER
-                    ========================== */
+                    phone: phone,
 
-                    await setDoc(
-                        doc(
-                            db,
-                            "customers",
-                            user.uid
-                        ),
-                        {
-                            uid: user.uid,
-                            name: name,
-                            email: email,
-                            phone: phone,
-                            createdAt:
-                                serverTimestamp()
-                        }
-                    );
-
-
-                    /* =========================
-                       SUCCESS
-                    ========================== */
-
-                    await Swal.fire({
-
-                        icon: "success",
-
-                        title:
-                            "Account Created!",
-
-                        text:
-                            "Your RamSethuYatra account has been created successfully.",
-
-                        confirmButtonText:
-                            "Go to Login",
-
-                        confirmButtonColor:
-                            "#f77f00"
-
-                    });
-
-
-                    window.location.href =
-                        "login.html";
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Signup error:",
-                        error
-                    );
-
-
-                    let message =
-                        "Unable to create account. Please try again.";
-
-
-                    if (
-                        error.code ===
-                        "auth/email-already-in-use"
-                    ) {
-
-                        message =
-                            "This email is already registered. Please login instead.";
-
-                    } else if (
-                        error.code ===
-                        "auth/invalid-email"
-                    ) {
-
-                        message =
-                            "Please enter a valid email address.";
-
-                    } else if (
-                        error.code ===
-                        "auth/weak-password"
-                    ) {
-
-                        message =
-                            "Password must be at least 6 characters.";
-
-                    } else if (
-                        error.code ===
-                        "auth/network-request-failed"
-                    ) {
-
-                        message =
-                            "Network error. Please check your internet connection.";
-
-                    } else if (
-                        error.code ===
-                        "auth/operation-not-allowed"
-                    ) {
-
-                        message =
-                            "Email/password authentication is not enabled in Firebase.";
-
-                    }
-
-
-                    Swal.fire({
-
-                        icon: "error",
-
-                        title:
-                            "Account Creation Failed",
-
-                        text: message,
-
-                        confirmButtonText:
-                            "Try Again",
-
-                        confirmButtonColor:
-                            "#f77f00",
-
-                        background:
-                            "#ffffff",
-
-                        color:
-                            "#243447"
-
-                    });
-
-
-                    signupBtn.disabled =
-                        false;
-
-
-                    signupBtn.classList.remove(
-                        "loading"
-                    );
-
-
-                    signupBtn.querySelector(
-                        ".btn-text"
-                    ).textContent =
-                        "Create Account";
+                    createdAt: serverTimestamp()
 
                 }
+            );
+
+
+            // ==================================
+            // 4. SUCCESS MESSAGE
+            // ==================================
+
+            await Swal.fire({
+
+                icon: "success",
+
+                title: "Account Created Successfully!",
+
+                text: "Welcome to RamSethuYatra! Your account is ready. You can now book your travel services.",
+
+                confirmButtonText: "Go to Login",
+
+                confirmButtonColor: "#f77f00",
+
+                allowOutsideClick: false
+
+            });
+
+
+            // ==================================
+            // 5. REDIRECT TO LOGIN
+            // ==================================
+
+            window.location.href = "login.html";
+
+
+        } catch (error) {
+
+            console.error("Signup Error:", error);
+
+
+            // ==================================
+            // ERROR MESSAGES
+            // ==================================
+
+            let message =
+                "Unable to create your account. Please try again.";
+
+
+            if (error.code === "auth/email-already-in-use") {
+
+                message =
+                    "This email is already registered. Please login instead.";
+
+            } else if (error.code === "auth/invalid-email") {
+
+                message =
+                    "Please enter a valid email address.";
+
+            } else if (error.code === "auth/weak-password") {
+
+                message =
+                    "Password must contain at least 6 characters.";
+
+            } else if (error.code === "auth/network-request-failed") {
+
+                message =
+                    "Network error. Please check your internet connection.";
+
+            } else if (error.code === "auth/operation-not-allowed") {
+
+                message =
+                    "Email/password authentication is not enabled in Firebase.";
+
+            } else if (error.code === "auth/too-many-requests") {
+
+                message =
+                    "Too many attempts. Please try again later.";
+
+            } else if (accountCreated) {
+
+                message =
+                    "Your Firebase account was created, but the customer profile could not be saved. Please contact support rather than registering again.";
 
             }
-        );
+
+
+            await Swal.fire({
+
+                icon: "error",
+
+                title: accountCreated
+                    ? "Account Setup Incomplete"
+                    : "Account Creation Failed",
+
+                text: message,
+
+                confirmButtonText: "OK",
+
+                confirmButtonColor: "#f77f00"
+
+            });
+
+        } finally {
+
+            setSignupLoading(false);
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// END OF SIGNUP JAVASCRIPT
+// ==========================================
+
+
 
     </script>
 

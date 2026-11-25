@@ -69,7 +69,7 @@ function validPersons(value, min = 1, max = 20) {
 
 async function getCurrentUser() {
 
-    let user = auth.currentUser;
+    const user = auth.currentUser;
 
     if (!user) {
 
@@ -88,44 +88,6 @@ async function getCurrentUser() {
                     window.location.pathname + window.location.search
                 );
 
-        });
-
-        return null;
-    }
-
-    try {
-
-        // Refresh Firebase user information
-        await user.reload();
-
-        // Refresh Firebase authentication token
-        await user.getIdToken(true);
-
-        user = auth.currentUser;
-
-    } catch (error) {
-
-        console.error("Authentication Error:", error);
-
-        Swal.fire({
-            icon: "error",
-            title: "Authentication Error",
-            text: "Please login again.",
-            confirmButtonColor: "#ff7a00"
-        });
-
-        return null;
-    }
-
-    // Check verified email
-
-    if (!user || !user.email || !user.emailVerified) {
-
-        Swal.fire({
-            icon: "warning",
-            title: "Email Verification Required",
-            text: "Please verify your email before making a booking.",
-            confirmButtonColor: "#ff7a00"
         });
 
         return null;
