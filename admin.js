@@ -21,7 +21,7 @@ import {
 // ADMIN EMAIL
 // ==========================================
 
-const ADMIN_EMAIL = "ramsethuyatra2026@gmail.com";
+const ADMIN_UID = "ED1tmdXg1jVxZPIUBSt5h1O1WLw1";
 
 
 // ==========================================
@@ -52,6 +52,7 @@ let activeFilters = {
 const allBookings = {};
 
 
+
 // ==========================================
 // CHECK ADMIN LOGIN
 // ==========================================
@@ -59,64 +60,83 @@ const allBookings = {};
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
-
         window.location.href = "admin-login.html";
-
         return;
     }
 
+    try {
 
-    // console.log("Authenticated:", user.email);
+        // Refresh Firebase account
+        await user.reload();
 
+        const currentUser = auth.currentUser;
 
-    // Frontend protection
+        if (!currentUser) {
+            window.location.href = "admin-login.html";
+            return;
+        }
 
-    if (
-        !user.email ||
-        user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()
-    ) {
+        // Refresh authentication token
+        await currentUser.getIdToken(true);
 
-        await signOut(auth);
+        console.log("ADMIN AUTHENTICATION:", {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            projectId: db.app.options.projectId
+        });
+
+        // Verify administrator UID
+        if (currentUser.uid !== ADMIN_UID) {
+
+            await signOut(auth);
+
+            await Swal.fire({
+                icon: "error",
+                title: "Access Denied",
+                text: "Only the authorized administrator can access this dashboard.",
+                confirmButtonColor: "#ff7a00"
+            });
+
+            window.location.href = "admin-login.html";
+            return;
+        }
+
+        console.log("Admin authentication successful.");
+
+        // LOAD ALL BOOKINGS
+        loadPackageBookings();
+
+        loadBookings("templeBookings", "templeData");
+
+        loadBookings("wellBookings", "wellData");
+
+        loadBookings("poojaBookings", "poojaData");
+
+        loadBookings("roomBookings", "roomData");
+
+        loadBookings("cabBookings", "cabData");
+
+        // LOAD REVIEWS
+        loadReviews();
+
+        // DASHBOARD STATISTICS
+        loadDashboardStats();
+
+    } catch (error) {
+
+        console.error("Admin Authentication Error:", error);
 
         Swal.fire({
             icon: "error",
-            title: "Access Denied",
-            text: "Only the administrator can access this page.",
+            title: "Authentication Failed",
+            text: error.message,
             confirmButtonColor: "#ff7a00"
-        }).then(() => {
-
-            window.location.href = "admin-login.html";
-
         });
 
-        return;
     }
 
-
-    // console.log("Admin verified:", user.email);
-
-
-    // Load everything
-
-    loadPackageBookings();
-
-    loadBookings("templeBookings", "templeData");
-
-    loadBookings("wellBookings", "wellData");
-
-    loadBookings("poojaBookings", "poojaData");
-
-    loadBookings("roomBookings", "roomData");
-
-    loadBookings("cabBookings", "cabData");
-
-     // ⭐ Reviews
-    loadReviews();
-
-    // 📊 Dashboard numbers
-    loadDashboardStats();
-
 });
+
 
 
 // ==========================================
@@ -184,12 +204,12 @@ async function loadBookings(collectionName, divId) {
                         <div>
 
                             <span class="booking-type">
-                                ${data.service || collectionName}
-                            </span>
+    ${escapeAdminHtml(data.service || collectionName)}
+</span>
 
-                            <h3>
-                                ${data.name || "Customer Booking"}
-                            </h3>
+<h3>
+    ${escapeAdminHtml(data.name || "Customer Booking")}
+</h3>
 
                         </div>
 
@@ -205,19 +225,19 @@ async function loadBookings(collectionName, divId) {
 
                     <p>
                         <b>👤 Customer:</b>
-                      ${escapeAdminHtml(data.customerName)}
+                     ${escapeAdminHtml(data.name || data.customerName || "-")}
                     </p>
 
 
                     <p>
                         <b>📧 Email:</b>
-                       ${escapeAdminHtml(data.customerEmail)}
+                       ${escapeAdminHtml(data.customerEmail || data.email || "-")}
                     </p>
 
 
                     <p>
                         <b>📱 Mobile:</b>
-                       ${escapeAdminHtml(data.mobile)}
+                       ${escapeAdminHtml(data.mobile || data.customerMobile || "-")}
                     </p>
 
 
@@ -1175,7 +1195,7 @@ async function logout() {
         await signOut(auth);
 
         window.location.href =
-            "admin-login.html";
+            "index.html";
 
     } catch (error) {
 

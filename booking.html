@@ -345,19 +345,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 
-
-/* =========================================
-   URL PARAMETERS
-========================================= */
-
-/* =========================================
-   URL PARAMETERS
-========================================= */
+// ==========================================
+// 1. URL PARAMETERS
+// ==========================================
 
 const params = new URLSearchParams(window.location.search);
 
 const packageType = params.get("package");
-const persons = params.get("persons");
+
+const personNumber = Number(params.get("persons"));
 
 const checkInDate =
     params.get("checkIn") || params.get("checkin");
@@ -366,9 +362,32 @@ const checkOutDate =
     params.get("checkOut") || params.get("checkout");
 
 
+// ==========================================
+// 2. DATE VALIDATION
+// ==========================================
+
+function isValidDate(value) {
+
+    if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return false;
+    }
+
+    const [year, month, day] = value.split("-").map(Number);
+
+    const date = new Date(Date.UTC(year, month - 1, day));
+
+    return date.getUTCFullYear() === year
+        && date.getUTCMonth() === month - 1
+        && date.getUTCDate() === day;
+}
+
+
 function getNightsFromDates(checkin, checkout) {
 
-    if (!checkin || !checkout) {
+    if (
+        !isValidDate(checkin) ||
+        !isValidDate(checkout)
+    ) {
         return 0;
     }
 
@@ -378,37 +397,36 @@ function getNightsFromDates(checkin, checkout) {
     const [outYear, outMonth, outDay] =
         checkout.split("-").map(Number);
 
-    const inDate = Date.UTC(inYear, inMonth - 1, inDay);
-    const outDate = Date.UTC(outYear, outMonth - 1, outDay);
+    const inDate =
+        Date.UTC(inYear, inMonth - 1, inDay);
 
-    const difference = outDate - inDate;
+    const outDate =
+        Date.UTC(outYear, outMonth - 1, outDay);
 
-    if (difference <= 0) {
+    const difference =
+        outDate - inDate;
+
+    const dayMilliseconds =
+        24 * 60 * 60 * 1000;
+
+    if (
+        difference <= 0 ||
+        difference % dayMilliseconds !== 0
+    ) {
         return 0;
     }
 
-    return difference / (1000 * 60 * 60 * 24);
+    return difference / dayMilliseconds;
 }
 
-const nights = getNightsFromDates(checkInDate, checkOutDate);
+
+const nights =
+    getNightsFromDates(checkInDate, checkOutDate);
 
 
-/*
-IMPORTANT:
-
-We intentionally DO NOT use:
-
-params.get("price")
-
-The price is calculated below from
-our trusted package price table.
-*/
-
-
-
-/* =========================================
-   PACKAGE NAMES
-========================================= */
+// ==========================================
+// 3. PACKAGE NAMES
+// ==========================================
 
 const packageNames = {
 
@@ -421,59 +439,60 @@ const packageNames = {
 };
 
 
-
-/* =========================================
-   PACKAGE PRICES
-========================================= */
+// ==========================================
+// 4. PACKAGE BASE PRICES
+// ==========================================
 
 const packagePrices = {
 
     normal: {
-    2: 7500,
-    3: 8500,
-    4: 9500,
-    5: 12500,
-    6: 13500
-},
+        2: 7500,
+        3: 8500,
+        4: 9500,
+        5: 12500,
+        6: 13500
+    },
 
-   medium: {
-    2: 9000,
-    3: 10000,
-    4: 11000,
-    5: 14000,
-    6: 15000,
-    7: 16500,
-    8: 21000,
-    9: 23000,
-    10: 24000
-},
+    medium: {
+        2: 9000,
+        3: 10000,
+        4: 11000,
+        5: 14000,
+        6: 15000,
+        7: 16500,
+        8: 21000,
+        9: 23000,
+        10: 24000
+    },
 
     premium: {
-    2: 15000,
-    3: 17000,
-    4: 19500,
-    5: 23500,
-    6: 25000
-}
+        2: 15000,
+        3: 17000,
+        4: 19500,
+        5: 23500,
+        6: 25000
+    }
 
 };
 
 
+// ==========================================
+// 5. ADDITIONAL NIGHT CHARGES
+// ==========================================
 
-
-
-/* =========================================
-   PACKAGE ACCOMMODATION CHARGES
-========================================= */
 const normalExtraNightCharges = {
+
     2: 2000,
     3: 2500,
     4: 2500,
     5: 3800,
     6: 4000
+
 };
 
+
 const mediumRoomCharges = {
+
     2: 2000,
     3: 2800,
     4: 3000,
@@ -483,84 +502,104 @@ const mediumRoomCharges = {
     8: 6000,
     9: 7500,
     10: 8000
+
 };
 
+
 const premiumExtraNightCharges = {
+
     2: 4000,
     3: 4000,
     4: 7000,
     5: 9000,
     6: 10000
+
 };
 
-function getPackagePrice(packageName, personCount, stayNights) {
 
-    if (!packagePrices[packageName]) {
+// ==========================================
+// 6. CALCULATE PACKAGE PRICE
+// ==========================================
+
+function getPackagePrice(packageName, persons, stayNights) {
+
+    if (
+        !Number.isInteger(persons) ||
+        !Number.isInteger(stayNights) ||
+        stayNights < 1 ||
+        stayNights > 30
+    ) {
         return null;
     }
 
-    const basePrice = packagePrices[packageName][personCount];
+    const basePrice =
+        packagePrices[packageName]?.[persons];
 
-    if (!basePrice) {
+    if (basePrice === undefined) {
         return null;
     }
 
-   // Normal: base price + extra-night charges.
-if (packageName === "normal") {
 
-    if (!Number.isInteger(stayNights) || stayNights < 1) {
-        return null;
+    // NORMAL PACKAGE
+    // Base price + additional night charges
+
+    if (packageName === "normal") {
+
+        const extraCharge =
+            normalExtraNightCharges[persons];
+
+        if (extraCharge === undefined) {
+            return null;
+        }
+
+        return basePrice +
+            (extraCharge * (stayNights - 1));
+
     }
 
-    const extraNights = stayNights - 1;
-    const extraNightCharge = normalExtraNightCharges[personCount];
 
-    return basePrice + (extraNightCharge * extraNights);
-}
+    // MEDIUM PACKAGE
+    // Base price + room charge per night
 
-    // Medium: Person-based room charge per night.
-if (packageName === "medium") {
+    if (packageName === "medium") {
 
-    if (!Number.isInteger(stayNights) || stayNights < 1) {
-        return null;
+        const roomCharge =
+            mediumRoomCharges[persons];
+
+        if (roomCharge === undefined) {
+            return null;
+        }
+
+        return basePrice +
+            (roomCharge * stayNights);
+
     }
 
-    const roomCharge = mediumRoomCharges[personCount];
 
-    if (roomCharge === undefined) {
-        return null;
+    // PREMIUM PACKAGE
+    // Base price + additional night charges
+
+    if (packageName === "premium") {
+
+        const extraCharge =
+            premiumExtraNightCharges[persons];
+
+        if (extraCharge === undefined) {
+            return null;
+        }
+
+        return basePrice +
+            (extraCharge * (stayNights - 1));
+
     }
-
-    return basePrice + (roomCharge * stayNights);
-}
-// Premium: Base price includes the first night.
-if (packageName === "premium") {
-
-    if (!Number.isInteger(stayNights) || stayNights < 1) {
-        return null;
-    }
-
-    const extraCharge = premiumExtraNightCharges[personCount];
-
-    if (extraCharge === undefined) {
-        return null;
-    }
-
-    const additionalNights = stayNights - 1;
-
-    return basePrice + (extraCharge * additionalNights);
-}
 
     return null;
 }
 
 
-
-/* =========================================
-   VALIDATE PACKAGE INFORMATION
-========================================= */
-
-const personNumber = Number(persons);
+// ==========================================
+// 7. GET TOTAL PRICE
+// ==========================================
 
 const totalPrice = getPackagePrice(
     packageType,
@@ -568,80 +607,108 @@ const totalPrice = getPackagePrice(
     nights
 );
 
-console.log("Booking price calculation:", {
-    packageType,
+
+console.log("PACKAGE PRICE:", {
+    package: packageType,
     persons: personNumber,
+    checkInDate,
+    checkOutDate,
     nights,
     totalPrice
 });
 
 
-/* =========================================
-   DISPLAY PACKAGE INFORMATION
-========================================= */
+// ==========================================
+// 8. DISPLAY PACKAGE INFORMATION
+// ==========================================
+
+function formatDate(dateString) {
+
+    if (!isValidDate(dateString)) {
+        return "-";
+    }
+
+    const [year, month, day] =
+        dateString.split("-");
+
+    return `${day}-${month}-${year}`;
+}
+
+
+const packageNameElement =
+    document.getElementById("packageName");
+
+const personCountElement =
+    document.getElementById("personCount");
+
+const totalAmountElement =
+    document.getElementById("totalAmount");
+
+const summaryCheckIn =
+    document.getElementById("summaryCheckIn");
+
+const summaryCheckOut =
+    document.getElementById("summaryCheckOut");
+
+const summaryNights =
+    document.getElementById("summaryNights");
+
 
 if (
     packageNames[packageType] &&
     totalPrice !== null
 ) {
 
-    document.getElementById("packageName").textContent =
+    packageNameElement.textContent =
         packageNames[packageType];
 
-    document.getElementById("personCount").textContent =
-        personNumber + " Persons";
+    personCountElement.textContent =
+        `${personNumber} Persons`;
 
-    document.getElementById("totalAmount").textContent =
+    totalAmountElement.textContent =
         "₹" + totalPrice.toLocaleString("en-IN");
 
 } else {
 
-    document.getElementById("packageName").textContent =
+    packageNameElement.textContent =
         "Invalid Package";
 
-    document.getElementById("personCount").textContent =
-        "-";
+    personCountElement.textContent = "-";
 
-    document.getElementById("totalAmount").textContent =
-        "₹0";
+    totalAmountElement.textContent = "₹0";
+
 }
 
-/* =========================================
-   DISPLAY DATES AND NIGHTS
-========================================= */
 
-function formatDate(dateString) {
-
-    if (!dateString) return "-";
-
-    const [year, month, day] = dateString.split("-");
-
-    return `${day}-${month}-${year}`;
-}
-
-document.getElementById("summaryCheckIn").textContent =
+summaryCheckIn.textContent =
     formatDate(checkInDate);
 
-document.getElementById("summaryCheckOut").textContent =
+summaryCheckOut.textContent =
     formatDate(checkOutDate);
 
-document.getElementById("summaryNights").textContent =
-    nights === 1 ? "1 Night" : `${nights} Nights`;
+summaryNights.textContent =
+    nights > 0
+        ? `${nights} ${nights === 1 ? "Night" : "Nights"}`
+        : "-";
 
-/* =========================================
-   AUTO-FILL TRAVEL DATE
-========================================= */
+
+// ==========================================
+// 9. AUTO-FILL TRAVEL DATE
+// ==========================================
 
 const travelDateInput =
     document.getElementById("travelDate");
 
-if (checkInDate && travelDateInput) {
+if (travelDateInput && isValidDate(checkInDate)) {
+
     travelDateInput.value = checkInDate;
+
 }
 
-/* =========================================
-   POPUP ELEMENTS
-========================================= */
+
+// ==========================================
+// 10. POPUP ELEMENTS
+// ==========================================
 
 const customModal =
     document.getElementById("customModal");
@@ -668,10 +735,9 @@ const popupClose =
     document.getElementById("popupClose");
 
 
-
-/* =========================================
-   SHOW POPUP
-========================================= */
+// ==========================================
+// 11. SHOW POPUP
+// ==========================================
 
 function showPopup(
     type,
@@ -690,71 +756,49 @@ function showPopup(
 
     popupIcon.classList.add(type);
 
+    popupIcon.textContent =
+        type === "success" ? "✓" : "!";
 
-    if (type === "success") {
+    popupTitle.textContent = title;
 
-        popupIcon.textContent = "✓";
-
-    } else {
-
-        popupIcon.textContent = "!";
-
-    }
-
-
-    popupTitle.textContent =
-        title;
-
-    popupMessage.textContent =
-        message;
+    popupMessage.textContent = message;
 
 
     if (bookingId) {
 
-        bookingIdContainer.style.display =
-            "block";
+        bookingIdContainer.style.display = "block";
 
-        popupBookingId.textContent =
-            bookingId;
+        popupBookingId.textContent = bookingId;
 
     } else {
 
-        bookingIdContainer.style.display =
-            "none";
+        bookingIdContainer.style.display = "none";
 
-        popupBookingId.textContent =
-            "";
+        popupBookingId.textContent = "";
 
     }
 
 
-    popupButton.textContent =
-        buttonText;
+    popupButton.textContent = buttonText;
 
+    popupButton.onclick = function() {
 
-    popupButton.onclick =
-        function() {
+        closePopup();
 
-            closePopup();
+        if (callback) {
+            callback();
+        }
 
-            if (callback) {
-
-                callback();
-
-            }
-
-        };
-
+    };
 
     customModal.classList.add("show");
 
 }
 
 
-
-/* =========================================
-   CLOSE POPUP
-========================================= */
+// ==========================================
+// 12. CLOSE POPUP
+// ==========================================
 
 function closePopup() {
 
@@ -763,588 +807,481 @@ function closePopup() {
 }
 
 
-popupClose.addEventListener(
-    "click",
-    closePopup
-);
+if (popupClose) {
+
+    popupClose.addEventListener(
+        "click",
+        closePopup
+    );
+
+}
 
 
-customModal.addEventListener(
-    "click",
-    function(e) {
+customModal.addEventListener("click", function(e) {
 
-        if (e.target === customModal) {
-
-            closePopup();
-
-        }
-
+    if (e.target === customModal) {
+        closePopup();
     }
-);
+
+});
 
 
-
-/* =========================================
-   CUSTOMER LOGIN
-========================================= */
+// ==========================================
+// 13. CUSTOMER AUTHENTICATION
+// ==========================================
 
 let currentUser = null;
 
+let initialAuthResolved = false;
 
-onAuthStateChanged(
-    auth,
-    (user) => {
+let resolveAuthReady;
+
+const authReady = new Promise(resolve => {
+    resolveAuthReady = resolve;
+});
+
+
+onAuthStateChanged(auth, (user) => {
+
+    currentUser = user;
+
+
+    // Resolve initial authentication check once.
+
+    if (!initialAuthResolved) {
+
+        initialAuthResolved = true;
+
+        resolveAuthReady(user);
+
+    }
+
+
+    if (!user) {
+
+        const currentPage =
+            window.location.pathname.split("/").pop()
+            + window.location.search;
+
+        window.location.href =
+            "login.html?redirect=" +
+            encodeURIComponent(currentPage);
+
+        return;
+
+    }
+
+
+    console.log("Customer logged in:", user.uid);
+
+
+    // AUTO-FILL CUSTOMER NAME
+
+    const nameInput =
+        document.getElementById("customerName");
+
+    if (
+        nameInput &&
+        user.displayName &&
+        !nameInput.value
+    ) {
+
+        nameInput.value = user.displayName;
+
+    }
+
+});
+
+
+// ==========================================
+// 14. BOOKING FORM
+// ==========================================
+
+const bookingForm =
+    document.getElementById("bookingForm");
+
+
+if (bookingForm) {
+
+    bookingForm.addEventListener("submit", async function(e) {
+
+        e.preventDefault();
+
+
+        // ==================================
+        // WAIT FOR FIREBASE AUTHENTICATION
+        // ==================================
+
+        const authenticatedUser = await authReady;
+
+        const user = auth.currentUser || authenticatedUser;
+
 
         if (!user) {
 
-            const currentPage =
-                window.location.pathname.split("/").pop()
-                + window.location.search;
+            showPopup(
+                "warning",
+                "Login Required",
+                "Please login before making a booking.",
+                null,
+                "Login",
+                function() {
 
+                    window.location.href =
+                        "login.html?redirect=" +
+                        encodeURIComponent(
+                            window.location.pathname +
+                            window.location.search
+                        );
 
-            window.location.href =
-                "login.html?redirect=" +
-                encodeURIComponent(currentPage);
+                }
+            );
 
             return;
 
         }
 
 
-        currentUser =
-            user;
+        // ==================================
+        // VALIDATE CUSTOMER EMAIL
+        // ==================================
+
+        if (!user.email) {
+
+            showPopup(
+                "error",
+                "Email Required",
+                "Please log in using an email account before booking."
+            );
+
+            return;
+
+        }
 
 
-        console.log(
-            "Customer logged in:",
-            user.uid
-        );
+        // ==================================
+        // PACKAGE VALIDATION
+        // ==================================
+
+        if (
+            !packageNames[packageType] ||
+            totalPrice === null ||
+            !Number.isInteger(personNumber) ||
+            !Number.isInteger(nights) ||
+            nights < 1 ||
+            nights > 30 ||
+            !isValidDate(checkInDate) ||
+            !isValidDate(checkOutDate)
+        ) {
+
+            showPopup(
+                "error",
+                "Invalid Package",
+                "Your package details or travel dates are invalid. Please select your package again.",
+                null,
+                "Go Back",
+                function() {
+                    window.location.href = "totalpackage.html";
+                }
+            );
+
+            return;
+
+        }
 
 
-        /*
-        Automatically fill customer name
-        from Firebase Authentication.
-        */
+        // ==================================
+        // GET CUSTOMER DETAILS
+        // ==================================
 
-        const nameInput =
-            document.getElementById(
-                "customerName"
+        const name =
+            document.getElementById("customerName").value.trim();
+
+        const mobile =
+            document.getElementById("customerMobile").value.trim();
+
+        const travelDate =
+            document.getElementById("travelDate").value;
+
+        const pickupTime =
+            document.getElementById("pickupTime").value;
+
+        const pickupLocation =
+            document.getElementById("pickupLocation").value.trim();
+
+        const specialRequest =
+            document.getElementById("specialRequest").value.trim();
+
+
+        // ==================================
+        // NAME VALIDATION
+        // ==================================
+
+        if (
+            name.length < 2 ||
+            name.length > 100
+        ) {
+
+            showPopup(
+                "warning",
+                "Invalid Name",
+                "Please enter a name between 2 and 100 characters."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // MOBILE VALIDATION
+        // ==================================
+
+        if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+            showPopup(
+                "warning",
+                "Invalid Mobile Number",
+                "Please enter a valid 10-digit Indian mobile number."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // TRAVEL DATE VALIDATION
+        // ==================================
+
+        if (!isValidDate(travelDate)) {
+
+            showPopup(
+                "warning",
+                "Invalid Travel Date",
+                "Please select a valid travel date."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // PICKUP TIME VALIDATION
+        // ==================================
+
+        if (!/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(pickupTime)) {
+
+            showPopup(
+                "warning",
+                "Invalid Pickup Time",
+                "Please select a valid pickup time."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // PICKUP LOCATION VALIDATION
+        // ==================================
+
+        if (
+            pickupLocation.length < 2 ||
+            pickupLocation.length > 250
+        ) {
+
+            showPopup(
+                "warning",
+                "Invalid Pickup Location",
+                "Pickup location must contain 2 to 250 characters."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // SPECIAL REQUEST VALIDATION
+        // ==================================
+
+        if (specialRequest.length > 1000) {
+
+            showPopup(
+                "warning",
+                "Special Request Too Long",
+                "Please keep your special request within 1000 characters."
+            );
+
+            return;
+
+        }
+
+
+        // ==================================
+        // DISABLE BUTTON
+        // ==================================
+
+        const button =
+            bookingForm.querySelector(
+                'button[type="submit"]'
+            );
+
+        if (!button) return;
+
+        button.disabled = true;
+
+        button.textContent = "Saving Booking...";
+
+
+        // Declare outside try so catch can access it.
+        let bookingData = null;
+
+
+        try {
+
+            // ==================================
+            // CREATE FIRESTORE BOOKING DATA
+            // ==================================
+
+            bookingData = {
+
+                userId: user.uid,
+
+                customerEmail: user.email,
+
+                bookingType: "package",
+
+                package: packageType,
+
+                packageName: packageNames[packageType],
+
+                persons: personNumber,
+
+                checkInDate: checkInDate,
+
+                checkOutDate: checkOutDate,
+
+                nights: nights,
+
+                totalPrice: totalPrice,
+
+                customerName: name,
+
+                customerMobile: mobile,
+
+                travelDate: travelDate,
+
+                pickupTime: pickupTime,
+
+                pickupLocation: pickupLocation,
+
+                specialRequest: specialRequest,
+
+                status: "pending",
+
+                createdAt: serverTimestamp()
+
+            };
+
+
+            console.log(
+                "Submitting package booking:",
+                bookingData
             );
 
 
-        if (
-            user.displayName &&
-            !nameInput.value
-        ) {
+            // ==================================
+            // SAVE TO FIRESTORE
+            // ==================================
 
-            nameInput.value =
-                user.displayName;
+            const docRef = await addDoc(
+                collection(db, "packageBookings"),
+                bookingData
+            );
+
+
+            console.log(
+                "Booking saved successfully:",
+                docRef.id
+            );
+
+
+            // ==================================
+            // SHOW SUCCESS POPUP
+            // ==================================
+
+            showPopup(
+
+                "success",
+
+                "Booking Request Submitted!",
+
+                "Your booking request has been received. Our team will contact you to confirm your reservation.",
+
+                docRef.id,
+
+                "View Booking",
+
+                function() {
+
+                    window.location.href =
+                        "booking-success.html?id=" +
+                        encodeURIComponent(docRef.id);
+
+                }
+
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "========== FIREBASE BOOKING ERROR =========="
+            );
+
+            console.error("Error code:", error.code);
+
+            console.error("Error message:", error.message);
+
+            console.error("Full error:", error);
+
+            console.error("Current user:", {
+                uid: user.uid,
+                email: user.email
+            });
+
+            console.error("Submitted booking data:", bookingData);
+
+            console.error(
+                "============================================="
+            );
+
+
+            showPopup(
+                "error",
+                "Booking Failed",
+                error.code === "permission-denied"
+                    ? "Firebase rejected this booking. Check that your published Firestore price rules match the package price shown on this page."
+                    : "Your booking could not be saved. Please try again or contact support."
+            );
+
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent = "Confirm Booking";
 
         }
 
-    }
-);
-
-
-
-/* =========================================
-   BOOKING FORM
-========================================= */
-
-document.getElementById("bookingForm")
-    .addEventListener(
-        "submit",
-        async function(e) {
-
-            e.preventDefault();
-
-
-            /* =================================
-               LOGIN CHECK
-            ================================= */
-
-            if (!currentUser) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Login Required",
-
-                    "Please login to your RamSethuYatra account before making a booking.",
-
-                    null,
-
-                    "Login",
-
-                    function() {
-
-                        window.location.href =
-                            "login.html?redirect=" +
-                            encodeURIComponent(
-                                window.location.pathname +
-                                window.location.search
-                            );
-
-                    }
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               PACKAGE VALIDATION
-            ================================= */
-if (
-    !packageNames[packageType] ||
-    totalPrice === null ||
-    !Number.isInteger(personNumber) ||
-    !packagePrices[packageType] ||
-    packagePrices[packageType][personNumber] === undefined
-) {
-
-                showPopup(
-
-                    "error",
-
-                    "Invalid Package",
-
-                    "The selected package information is invalid. Please return to the package page and select your package again.",
-
-                    null,
-
-                    "Go Back",
-
-                    function() {
-
-                        window.location.href =
-                            "totalpackage.html";
-
-                    }
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               CUSTOMER NAME
-            ================================= */
-
-            const name =
-                document
-                    .getElementById(
-                        "customerName"
-                    )
-                    .value
-                    .trim();
-
-
-
-            /* =================================
-               MOBILE
-            ================================= */
-
-            const mobile =
-                document
-                    .getElementById(
-                        "customerMobile"
-                    )
-                    .value
-                    .trim();
-
-
-
-            /* =================================
-               DATE
-            ================================= */
-
-            const date =
-                document
-                    .getElementById(
-                        "travelDate"
-                    )
-                    .value;
-
-
-
-            /* =================================
-               TIME
-            ================================= */
-
-            const time =
-                document
-                    .getElementById(
-                        "pickupTime"
-                    )
-                    .value;
-
-
-
-            /* =================================
-               PICKUP
-            ================================= */
-
-            const pickup =
-                document
-                    .getElementById(
-                        "pickupLocation"
-                    )
-                    .value
-                    .trim();
-
-
-
-            /* =================================
-               SPECIAL REQUEST
-            ================================= */
-
-            const request =
-                document
-                    .getElementById(
-                        "specialRequest"
-                    )
-                    .value
-                    .trim();
-
-
-
-            /* =================================
-               NAME VALIDATION
-            ================================= */
-
-            if (name.length < 2) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Invalid Name",
-
-                    "Please enter your full name.",
-
-                    null,
-
-                    "Try Again"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               MOBILE VALIDATION
-            ================================= */
-
-            if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Check Your Mobile Number",
-
-                    "Please enter a valid 10-digit Indian mobile number.",
-
-                    null,
-
-                    "Try Again"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               DATE VALIDATION
-            ================================= */
-
-            if (!date) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Travel Date Required",
-
-                    "Please select your travel date.",
-
-                    null,
-
-                    "Try Again"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               TIME VALIDATION
-            ================================= */
-
-            if (!time) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Pickup Time Required",
-
-                    "Please select your pickup time.",
-
-                    null,
-
-                    "Try Again"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               PICKUP VALIDATION
-            ================================= */
-
-            if (pickup.length < 2) {
-
-                showPopup(
-
-                    "warning",
-
-                    "Pickup Location Required",
-
-                    "Please enter your pickup location.",
-
-                    null,
-
-                    "Try Again"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               DISABLE BUTTON
-            ================================= */
-
-            const button =
-                document.querySelector(
-                    ".confirm-btn"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Saving Booking...";
-
-
-
-            /* =================================
-               FIREBASE BOOKING DATA
-            ================================= */
-
-            try {
-
-                const bookingData = {
-
-                    userId:
-                        currentUser.uid,
-
-                    customerEmail:
-                        currentUser.email || "",
-
-                    bookingType:
-                        "package",
-
-                    package:
-                        packageType,
-
-                    packageName:
-                        packageNames[packageType],
-
-                    persons:
-                        personNumber,
-
-                    checkInDate: checkInDate,
-                    checkOutDate: checkOutDate,
-                    nights: nights,
-
-                    totalPrice:
-                        totalPrice,
-
-                    customerName:
-                        name,
-
-                    customerMobile:
-                        mobile,
-
-                    travelDate:
-                        date,
-
-                    pickupTime:
-                        time,
-
-                    pickupLocation:
-                        pickup,
-
-                    specialRequest:
-                        request,
-
-                    status:
-                        "pending",
-
-                    createdAt:
-                        serverTimestamp()
-
-                };
-                if (!currentUser.email) {
-    console.error("Firebase user has no email.");
-
-    showPopup(
-        "error",
-        "Email Required",
-        "Please sign in with an email account before booking.",
-        null,
-        "OK"
-    );
-
-    return;
-}
-
-
-                const docRef =
-                    await addDoc(
-
-                        collection(
-                            db,
-                            "packageBookings"
-                        ),
-
-                        bookingData
-
-                    );
-
-
-                console.log(
-                    "Booking saved:",
-                    docRef.id
-                );
-
-
-                /* =================================
-                   SUCCESS
-                ================================= */
-
-                showPopup(
-
-                    "success",
-
-                    "Booking Request Submitted!🎉",
-
-                    "Your booking request has been received. Our team will contact you to confirm your reservation.",
-
-                    docRef.id,
-
-                    "View Booking",
-
-                    function() {
-
-                        window.location.href =
-                            "booking-success.html?id=" +
-                            encodeURIComponent(
-                                docRef.id
-                            );
-
-                    }
-
-                );
-
-
-            } 
-catch (error) {
-
-    console.error("========== FIREBASE BOOKING ERROR ==========");
-
-    console.error("Error code:", error.code);
-    console.error("Error message:", error.message);
-    console.error("Full error:", error);
-
-    console.error("Current user:", {
-        uid: currentUser?.uid,
-        email: currentUser?.email
     });
 
-    console.error("Booking data:", bookingData);
-
-    console.error("=============================================");
-
-    showPopup(
-        "error",
-        "Booking Failed",
-        "Your booking could not be saved. Please contact support.",
-        null,
-        "Try Again"
-    );
-
-    button.disabled = false;
-    button.textContent = "Confirm Booking";
 }
 
-
-
-            //     showPopup(
-
-            //         "error",
-
-            //         "Booking Failed",
-
-            //         "We couldn't save your booking right now. Please check your internet connection and try again.",
-
-            //         null,
-
-            //         "Try Again"
-
-            //     );
-
-
-            //     button.disabled =
-            //         false;
-
-
-            //     button.textContent =
-            //         "Confirm Booking";
-
-            // }
-
-        }
-    );
-    
 
 </script>
 <script src="header.js"></script>

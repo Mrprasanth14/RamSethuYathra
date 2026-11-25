@@ -585,7 +585,55 @@ if (confirmPasswordToggle && confirmPassword) {
     });
 
 }
+// Preserve booking page when switching to login
 
+const loginLink = document.querySelector(
+    'a[href="login.html"]'
+);
+
+if (loginLink) {
+
+    loginLink.href =
+        "login.html?redirect=" +
+        encodeURIComponent(getSafeRedirect());
+
+}
+// ==========================================
+// GET ORIGINAL BOOKING PAGE
+// ==========================================
+
+function getSafeRedirect() {
+
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+    const redirect = params.get("redirect");
+
+    if (!redirect) {
+        return "index.html";
+    }
+
+    try {
+
+        const target = new URL(
+            redirect,
+            window.location.origin
+        );
+
+        // Prevent redirects to external websites
+        if (target.origin !== window.location.origin) {
+            return "index.html";
+        }
+
+        return target.pathname + target.search + target.hash;
+
+    } catch (error) {
+
+        return "index.html";
+
+    }
+}
 
 // ==========================================
 // 4. MOBILE NUMBER VALIDATION
