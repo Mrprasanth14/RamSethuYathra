@@ -11,4 +11,4 @@ Disallow: /login.html
 Disallow: /signup.html
 Disallow: /forgot-password.html
 
-Sitemap: https://ram-sethu-yathra.vercel.app/sitemap.xml
+Sitemap: https://ramsethuyatra.com/sitemap.xml
