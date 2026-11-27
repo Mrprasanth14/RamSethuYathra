@@ -17,11 +17,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
-// ==========================================
-// ADMIN EMAIL
-// ==========================================
-
-const ADMIN_UID = "ED1tmdXg1jVxZPIUBSt5h1O1WLw1";
 
 
 // ==========================================
@@ -85,23 +80,27 @@ onAuthStateChanged(auth, async (user) => {
             projectId: db.app.options.projectId
         });
 
-        // Verify administrator UID
-        if (currentUser.uid !== ADMIN_UID) {
+        
+// Verify Firebase custom admin claim
+const tokenResult = await currentUser.getIdTokenResult(true);
 
-            await signOut(auth);
+if (tokenResult.claims.admin !== true) {
 
-            await Swal.fire({
-                icon: "error",
-                title: "Access Denied",
-                text: "Only the authorized administrator can access this dashboard.",
-                confirmButtonColor: "#ff7a00"
-            });
+    await signOut(auth);
 
-            window.location.href = "admin-login.html";
-            return;
-        }
+    await Swal.fire({
+        icon: "error",
+        title: "Access Denied",
+        text: "Only the authorized administrator can access this dashboard.",
+        confirmButtonColor: "#ff7a00"
+    });
 
-        console.log("Admin authentication successful.");
+    window.location.href = "admin-login.html";
+    return;
+}
+
+console.log("Admin authentication successful.");
+
 
         // LOAD ALL BOOKINGS
         loadPackageBookings();
@@ -188,7 +187,7 @@ async function loadBookings(collectionName, divId) {
 
 
             const status =
-                data.status || "pending";
+    String(data.status || "pending").toLowerCase();
 
 
             const statusClass =
@@ -214,7 +213,7 @@ async function loadBookings(collectionName, divId) {
                         </div>
 
                         <span class="${statusClass}">
-                            ${status.toUpperCase()}
+                            ${escapeAdminHtml(String(status).toUpperCase())}
                         </span>
 
                     </div>
@@ -271,7 +270,7 @@ async function loadBookings(collectionName, divId) {
                         <b>Booking ID:</b>
 
                         <span>
-                            ${bookingId}
+                            ${escapeAdminHtml(bookingId)}
                         </span>
 
                     </div>
@@ -340,7 +339,7 @@ async function loadBookings(collectionName, divId) {
 
                 <br><br>
 
-                ${error.message}
+                ${escapeAdminHtml(error.message)}
 
             </div>`;
     }
@@ -543,8 +542,7 @@ async function loadPackageBookings() {
 
 
             const status =
-                data.status ||
-                "pending";
+    String(data.status || "pending").toLowerCase();
 
 
             const statusClass =
@@ -564,14 +562,14 @@ async function loadPackageBookings() {
                             </span>
 
                             <h3>
-                                🧳 ${packageName}
+                                🧳 ${escapeAdminHtml(packageName)}
                             </h3>
 
                         </div>
 
 
                         <span class="${statusClass}">
-                            ${status.toUpperCase()}
+                            ${escapeAdminHtml(String(status).toUpperCase())}
                         </span>
 
                     </div>
@@ -657,7 +655,7 @@ async function loadPackageBookings() {
                         <b>Booking ID:</b>
 
                         <span>
-                            ${bookingId}
+                            ${escapeAdminHtml(bookingId)}
                         </span>
 
                     </div>
@@ -723,7 +721,7 @@ async function loadPackageBookings() {
             `<div class="empty-msg">
                 Unable to load package bookings.
                 <br><br>
-                ${error.message}
+                ${escapeAdminHtml(error.message)}
             </div>`;
     }
 
@@ -1354,7 +1352,10 @@ async function loadReviews() {
             const name = data.name || "Customer";
             const email = data.email || "";
             const service = data.service || "Service";
-            const rating = Number(data.rating) || 0;
+           const rating = Math.max(
+    0,
+    Math.min(5, Math.floor(Number(data.rating) || 0))
+);
             const review = data.review || "";
             const approved = data.approved === true;
 
@@ -1477,7 +1478,7 @@ async function loadReviews() {
             <div class="empty-msg">
                 Unable to load reviews.
                 <br><br>
-                ${error.message}
+                ${escapeAdminHtml(error.message)}
             </div>
         `;
 
@@ -1489,12 +1490,11 @@ async function loadReviews() {
 // 🔒 ESCAPE REVIEW HTML
 // ==========================================
 
-function escapeAdminHtml(text) {
+function escapeAdminHtml(value) {
 
-    const div =
-        document.createElement("div");
+    const div = document.createElement("div");
 
-    div.textContent = text;
+    div.textContent = String(value ?? "-");
 
     return div.innerHTML;
 }
@@ -1991,7 +1991,7 @@ async function filterCollection(
             <div class="empty-msg">
                 Unable to filter bookings.
                 <br><br>
-                ${error.message}
+                ${escapeAdminHtml(error.message)}
             </div>
         `;
 
@@ -2094,13 +2094,13 @@ function renderFilteredBookingCard(
                         </span>
 
                         <h3>
-                            🧳 ${packageName}
+                            🧳 ${escapeAdminHtml(packageName)}
                         </h3>
 
                     </div>
 
                     <span class="${statusClass}">
-                        ${status.toUpperCase()}
+                       ${escapeAdminHtml(String(status).toUpperCase())}
                     </span>
 
                 </div>
@@ -2108,44 +2108,44 @@ function renderFilteredBookingCard(
                 <hr>
 
                 <p>
-                    <b>👤 Customer:</b>
-                    ${data.customerName || "-"}
-                </p>
+    <b>👤 Customer:</b>
+    ${escapeAdminHtml(data.customerName || "-")}
+</p>
 
-                <p>
-                    <b>📧 Email:</b>
-                    ${data.customerEmail || "-"}
-                </p>
+<p>
+    <b>📧 Email:</b>
+    ${escapeAdminHtml(data.customerEmail || "-")}
+</p>
 
-                <p>
-                    <b>📱 Mobile:</b>
-                    ${data.customerMobile || "-"}
-                </p>
+<p>
+    <b>📱 Mobile:</b>
+    ${escapeAdminHtml(data.customerMobile || data.mobile || "-")}
+</p>
 
-                <p>
-                    <b>👥 Persons:</b>
-                    ${data.persons || "-"}
-                </p>
+<p>
+    <b>👥 Persons:</b>
+    ${escapeAdminHtml(data.persons || "-")}
+</p>
 
-                <p>
-                    <b>📅 Travel Date:</b>
-                    ${data.travelDate || "-"}
-                </p>
+<p>
+    <b>📅 Travel Date:</b>
+    ${escapeAdminHtml(data.travelDate || "-")}
+</p>
 
-                <p>
-                    <b>⏰ Pickup Time:</b>
-                    ${data.pickupTime || "-"}
-                </p>
+<p>
+    <b>⏰ Pickup Time:</b>
+    ${escapeAdminHtml(data.pickupTime || "-")}
+</p>
 
-                <p>
-                    <b>📍 Pickup Location:</b>
-                    ${data.pickupLocation || "-"}
-                </p>
+<p>
+    <b>📍 Pickup Location:</b>
+    ${escapeAdminHtml(data.pickupLocation || "-")}
+</p>
 
-                <p>
-                    <b>📝 Special Request:</b>
-                    ${data.specialRequest || "None"}
-                </p>
+<p>
+    <b>📝 Special Request:</b>
+    ${escapeAdminHtml(data.specialRequest || "None")}
+</p>
 
                 <div class="package-price">
 
@@ -2162,7 +2162,7 @@ function renderFilteredBookingCard(
                     <b>Booking ID:</b>
 
                     <span>
-                        ${bookingId}
+                        ${escapeAdminHtml(bookingId)}
                     </span>
 
                 </div>
@@ -2221,19 +2221,17 @@ function renderFilteredBookingCard(
                 <div>
 
                     <span class="booking-type">
-                        ${data.service || collectionName}
-                    </span>
+    ${escapeAdminHtml(data.service || collectionName)}
+</span>
 
-                    <h3>
-                        ${data.name ||
-                        data.customerName ||
-                        "Customer Booking"}
-                    </h3>
+<h3>
+    ${escapeAdminHtml(data.name || data.customerName || "Customer Booking")}
+</h3>
 
                 </div>
 
                 <span class="${statusClass}">
-                    ${status.toUpperCase()}
+                    ${escapeAdminHtml(String(status).toUpperCase())}
                 </span>
 
             </div>
@@ -2241,45 +2239,34 @@ function renderFilteredBookingCard(
             <hr>
 
             <p>
-                <b>👤 Customer:</b>
-                ${data.name ||
-                data.customerName ||
-                "-"}
-            </p>
+    <b>👤 Customer:</b>
+    ${escapeAdminHtml(data.name || data.customerName || "-")}
+</p>
 
-            <p>
-                <b>📧 Email:</b>
-                ${data.customerEmail ||
-                data.email ||
-                "-"}
-            </p>
+<p>
+    <b>📧 Email:</b>
+    ${escapeAdminHtml(data.customerEmail || data.email || "-")}
+</p>
 
-            <p>
-                <b>📱 Mobile:</b>
-                ${data.mobile ||
-                data.customerMobile ||
-                "-"}
-            </p>
+<p>
+    <b>📱 Mobile:</b>
+    ${escapeAdminHtml(data.mobile || data.customerMobile || "-")}
+</p>
 
-            <p>
-                <b>👥 Persons:</b>
-                ${data.persons || "-"}
-            </p>
+<p>
+    <b>👥 Persons:</b>
+    ${escapeAdminHtml(data.persons || "-")}
+</p>
 
-            <p>
-                <b>📅 Date:</b>
-                ${data.date ||
-                data.travelDate ||
-                data.checkin ||
-                "-"}
-            </p>
+<p>
+    <b>📅 Date:</b>
+    ${escapeAdminHtml(data.date || data.travelDate || data.checkin || "-")}
+</p>
 
-            <p>
-                <b>⏰ Time:</b>
-                ${data.time ||
-                data.pickupTime ||
-                "-"}
-            </p>
+<p>
+    <b>⏰ Time:</b>
+    ${escapeAdminHtml(data.time || data.pickupTime || "-")}
+</p>
 
             ${renderExtraDetails(
                 collectionName,
