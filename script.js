@@ -1546,6 +1546,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 // ==========================================
 // 21. REVIEW LOGIN STATE
 // ==========================================
@@ -1558,27 +1559,22 @@ onAuthStateChanged(auth, function(user) {
     const loginMessage =
         document.getElementById("reviewLoginMessage");
 
-
-    if (reviewForm && loginMessage) {
-
-        if (user && user.emailVerified) {
-
-            reviewForm.style.display = "block";
-
-            loginMessage.style.display = "none";
-
-        } else {
-
-            reviewForm.style.display = "none";
-
-            loginMessage.style.display = "block";
-
-        }
-
+    if (reviewForm) {
+        reviewForm.style.display = user ? "block" : "none";
     }
 
+    if (loginMessage) {
+        loginMessage.style.display = user ? "none" : "block";
 
-    // LOAD APPROVED REVIEWS
+        if (!user) {
+            loginMessage.innerHTML = `
+                Please login to write a review.
+                <a href="login.html?redirect=index.html%23reviews">
+                    Login to Write a Review
+                </a>
+            `;
+        }
+    }
 
     loadApprovedReviews();
 

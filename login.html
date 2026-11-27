@@ -283,7 +283,8 @@ import {
     sendPasswordResetEmail,
     setPersistence,
     browserLocalPersistence,
-    onAuthStateChanged
+    onAuthStateChanged,
+    reload
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 
@@ -446,31 +447,26 @@ function setLoginLoading(loading) {
 
 
 // ==========================================
-// 6. ALREADY LOGGED-IN CUSTOMER
+// 6. AUTOMATIC REDIRECT AFTER LOGIN PAGE OPENS
 // ==========================================
 
 let redirecting = false;
 
 onAuthStateChanged(auth, (user) => {
 
-    const params =
-        new URLSearchParams(window.location.search);
+    const destination = getSafeRedirect();
 
-    // If the customer is already authenticated
-    // and came from a booking page, return there.
-
-    if (user && params.has("redirect") && !redirecting) {
+    if (user && !redirecting) {
 
         redirecting = true;
 
-        window.location.replace(
-            getSafeRedirect()
-        );
+        console.log("Already logged in. Returning to:", destination);
+
+        window.location.replace(destination);
 
     }
 
 });
-
 
 // ==========================================
 // 7. CUSTOMER LOGIN
@@ -519,29 +515,34 @@ if (loginForm) {
 
 
             // FIREBASE LOGIN
+const credential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+);
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+const user = credential.user;
 
+// Refresh Firebase user information
+await reload(user);
 
-            // GET ORIGINAL BOOKING PAGE
+// Check email verification
+if (!user.emailVerified) {
 
-            const destination =
-                getSafeRedirect();
+    await Swal.fire({
+        icon: "warning",
+        title: "Email Not Verified",
+        text: "Please verify your email address using the verification link sent to your inbox. Then log in again.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#f77f00"
+    });
 
+    setLoginLoading(false);
+    return;
+}
 
-            console.log(
-                "Login successful. Redirecting to:",
-                destination
-            );
-
-
-            // RETURN TO ORIGINAL PAGE
-
-            window.location.replace(destination);
+// Redirect after successful verified login
+window.location.replace(getSafeRedirect());
 
 
         } catch (error) {
