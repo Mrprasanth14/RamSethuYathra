@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Share Your Experience | RamSethuYatra</title>
+
+    <meta name="description"
+          content="Share your Rameswaram travel experience with RamSethuYatra. We value your feedback.">
+
+    <link rel="canonical"
+          href="https://ramsethuyatra.com/review.html">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .customer-review-page {
+            min-height: 80vh;
+            padding: 70px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fffaf3;
+        }
+
+        .customer-review-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 35px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 35px rgba(0,0,0,0.08);
+        }
+
+        .customer-review-card h1 {
+            margin-bottom: 12px;
+        }
+
+        .customer-review-card p {
+            line-height: 1.7;
+        }
+
+        .customer-review-card label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+
+        .customer-review-card select,
+        .customer-review-card textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .customer-review-card textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .star-picker {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .star-picker button {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 36px;
+            cursor: pointer;
+        }
+
+        #reviewForm button[type="submit"] {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #f77f00;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #reviewLoginMessage {
+            margin-top: 20px;
+            padding: 18px;
+            background: #fff3df;
+            border-radius: 10px;
+        }
+
+        #reviewLoginMessage a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #c45b00;
+            font-weight: bold;
+        }
+
+        .review-back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #b65d00;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+
+        <a href="index.html" class="logo">
+            <span class="logo-mark">ॐ</span>
+
+            <span class="logo-name">
+                <b>Ram</b>
+                <em>Sethu</em>
+                <b>Yatra</b>
+            </span>
+        </a>
+
+        <a href="index.html" class="text-link">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="customer-review-page">
+
+        <div class="customer-review-card">
+
+            <div style="text-align:center;">
+
+                <span class="section-kicker">
+                    RAMSETHUYATRA
+                </span>
+
+                <h1>
+                    How was your journey?
+                </h1>
+
+                <p>
+                    Thank you for travelling with us!
+                    Your feedback helps us improve our services
+                    and helps other travellers.
+                </p>
+
+                <div style="font-size:35px;color:#f77f00;">
+                    ★★★★★
+                </div>
+
+            </div>
+
+
+            <form id="reviewForm">
+
+                <label for="reviewService">
+                    Which service did you use?
+                </label>
+
+                <select id="reviewService" required>
+
+                    <option value="">
+                        Select Your Service
+                    </option>
+
+                    <option value="Tour Package">
+                        Tour Package
+                    </option>
+
+                    <option value="Cab Booking">
+                        Cab Booking
+                    </option>
+
+                    <option value="Room Booking">
+                        Room Booking
+                    </option>
+
+                    <option value="Temple Service">
+                        Temple Service
+                    </option>
+
+                    <option value="22 Holy Wells">
+                        22 Holy Wells
+                    </option>
+
+                    <option value="Poojai Service">
+                        Poojai Service
+                    </option>
+
+                    <option value="Overall Experience">
+                        Overall Experience
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Rate your experience
+                </label>
+
+                <div class="star-picker" id="starPicker">
+
+                    <button type="button" data-rating="1"
+                            aria-label="1 star">★</button>
+
+                    <button type="button" data-rating="2"
+                            aria-label="2 stars">★</button>
+
+                    <button type="button" data-rating="3"
+                            aria-label="3 stars">★</button>
+
+                    <button type="button" data-rating="4"
+                            aria-label="4 stars">★</button>
+
+                    <button type="button" data-rating="5"
+                            aria-label="5 stars">★</button>
+
+                </div>
+
+                <input type="hidden"
+                       id="reviewRating"
+                       value="0">
+
+
+                <label for="reviewText">
+                    Write your experience
+                </label>
+
+                <textarea
+                    id="reviewText"
+                    maxlength="1000"
+                    minlength="5"
+                    placeholder="Tell us about your Rameswaram journey..."
+                    required></textarea>
+
+
+                <button type="submit">
+
+                    Submit My Review
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <p id="reviewLoginMessage" style="display:none;">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Please log in with your verified email to
+                submit your review.
+
+                <br>
+
+                <a href="login.html?redirect=review.html">
+                    Login to Write a Review
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </p>
+
+
+            <div style="text-align:center;">
+
+                <a href="index.html" class="review-back-link">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to RamSethuYatra
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 RamSethuYatra. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Reuse your existing review system -->
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

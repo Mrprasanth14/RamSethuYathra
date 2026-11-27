@@ -116,9 +116,57 @@ function selectPackage(packageName) {
 }
 
 
+
 // ==========================================
-// 4. PACKAGE BOOKING FORM
-// WHATSAPP ENQUIRY
+// RAMSETHUYATRA - PROFESSIONAL WHATSAPP
+// ==========================================
+
+function generateBookingID(prefix = "RSY") {
+    const date = new Date();
+    const datePart = [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, "0"),
+        String(date.getDate()).padStart(2, "0")
+    ].join("");
+
+    const randomPart = Math.random()
+        .toString(36)
+        .substring(2, 7)
+        .toUpperCase();
+
+    return `${prefix}-${datePart}-${randomPart}`;
+}
+
+
+// ==========================================
+// WHATSAPP MESSAGE GENERATOR
+// ==========================================
+
+function openWhatsAppWithSuccess(message, ownerNumber) {
+
+    const whatsappURL =
+        `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
+
+    Swal.fire({
+        icon: "success",
+        title: "Booking Enquiry Ready!",
+        html: `
+            <p>Your booking details are ready.</p>
+            <p><b>RamSethuYatra</b> will receive your enquiry through WhatsApp.</p>
+            <p>Please press <b>Send</b> in WhatsApp to submit it.</p>
+        `,
+        confirmButtonText: "Continue to WhatsApp",
+        confirmButtonColor: "#ff7a00"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.open(whatsappURL, "_blank");
+        }
+    });
+}
+
+
+// ==========================================
+// PACKAGE BOOKING WHATSAPP
 // ==========================================
 
 const bookingForm = document.getElementById("bookingForm");
@@ -129,106 +177,82 @@ if (bookingForm) {
 
         e.preventDefault();
 
-        const name =
-            document.getElementById("name").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const mobile = document.getElementById("mobile").value.trim();
+        const persons = document.getElementById("persons").value;
+        const date = document.getElementById("date").value;
+        const packageName = document.getElementById("package").value;
+        const message = document.getElementById("message").value.trim();
 
-        const mobile =
-            document.getElementById("mobile").value.trim();
-
-        const persons =
-            document.getElementById("persons").value;
-
-        const date =
-            document.getElementById("date").value;
-
-        const packageName =
-            document.getElementById("package").value;
-
-        const message =
-            document.getElementById("message").value.trim();
-
-
-        if (
-            !name ||
-            !mobile ||
-            !persons ||
-            !date ||
-            !packageName
-        ) {
-
-            Swal.fire({
-                icon: "warning",
-                title: "Incomplete Form",
-                text: "Please fill all required booking details.",
-                confirmButtonColor: "#ff7a00"
-            });
-
+        if (!name || !mobile || !persons || !date || !packageName) {
+            Swal.fire("Incomplete Details",
+                "Please fill all required booking details.", "warning");
             return;
         }
 
-
-        if (!validName(name)) {
-
-            Swal.fire(
-                "Invalid Name",
-                "Please enter a valid name.",
-                "warning"
-            );
-
+        if (!validName(name) || !validMobile(mobile)) {
+            Swal.fire("Invalid Details",
+                "Please enter a valid name and 10-digit mobile number.", "warning");
             return;
         }
 
-
-        if (!validMobile(mobile)) {
-
-            Swal.fire(
-                "Invalid Mobile",
-                "Please enter a valid 10-digit mobile number.",
-                "warning"
-            );
-
+        if (!validPersons(Number(persons), 1, 20) ||
+            !validDate(date)) {
+            Swal.fire("Invalid Booking",
+                "Please check your persons and travel date.", "warning");
             return;
         }
 
+        if (message.length > 1000) {
+            Swal.fire("Message Too Long",
+                "Please keep your message under 1000 characters.", "warning");
+            return;
+        }
 
+        const bookingID = generateBookingID("RSY-PKG");
         const ownerNumber = "918838170745";
 
-        const whatsappMessage =
-            `New Rameswaram Package Booking\n\n` +
-            `Name: ${name}\n` +
-            `Mobile: ${mobile}\n` +
-            `Persons: ${persons}\n` +
-            `Date: ${date}\n` +
-            `Package: ${packageName}\n` +
-            `Message: ${message}`;
+        const whatsappMessage = `
+🙏 *RAMSETHUYATRA*
+Your Trusted Rameswaram Yatra Partner
+
+━━━━━━━━━━━━━━━━━━━━
+📋 *NEW PACKAGE BOOKING ENQUIRY*
+━━━━━━━━━━━━━━━━━━━━
+
+🆔 Booking Reference: ${bookingID}
+
+👤 *CUSTOMER DETAILS*
+Name: ${name}
+Mobile: ${mobile}
+
+🧳 *TRAVEL DETAILS*
+Package: ${packageName}
+Total Persons: ${persons}
+Travel Date: ${date}
+
+📝 *SPECIAL REQUEST*
+${message || "No additional request"}
+
+━━━━━━━━━━━━━━━━━━━━
+📌 *BOOKING STATUS:*
+🟡 Confirmated
+
+Our team will verify the package availability and contact the customer with the final price and booking confirmation.
+
+━━━━━━━━━━━━━━━━━━━━
+✨ Thank you for choosing RamSethuYatra!
+
+📍 Rameswaram, Tamil Nadu
+📞 Contact: +91 88381 70745
+
+🙏 Have a blessed and memorable journey!
+        `.trim();
 
         openWhatsAppWithSuccess(
             whatsappMessage,
             ownerNumber
         );
-
-    });
-}
-
-
-// ==========================================
-// 5. OPEN WHATSAPP
-// ==========================================
-
-function openWhatsAppWithSuccess(message, ownerNumber) {
-
-    Swal.fire({
-        icon: "success",
-        title: "Opening WhatsApp",
-        text: "Your booking details are ready to send.",
-        confirmButtonColor: "#ff7a00"
-
-    }).then(() => {
-
-        const whatsappURL =
-            `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
-
-        window.open(whatsappURL, "_blank");
 
     });
 }
