@@ -1533,8 +1533,11 @@ function updatePrice() {
 const accommodationPricePerNight =
     accommodationCharges[persons];
 
+// First night is included in package price
+const extraNights = Math.max(0, nights - 1);
+
 const accommodationCharge =
-    nights * accommodationPricePerNight;
+    extraNights * accommodationPricePerNight;
 
     // Calculate final prices
     const finalPrice =
